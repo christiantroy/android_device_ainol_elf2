@@ -21,9 +21,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ramdisk/mali.ko:root/boot/mali.ko \
     $(LOCAL_PATH)/ramdisk/ump.ko:root/boot/ump.ko \
     $(LOCAL_PATH)/ramdisk/init.rc:root/init.rc \
-    $(LOCAL_PATH)/ramdisk/init.amlogic.rc:root/init.amlogic.rc \
-    $(LOCAL_PATH)/ramdisk/init.amlogic.usb.rc:root/init.amlogic.usb.rc \
-    $(LOCAL_PATH)/ramdisk/ueventd.amlogic.rc:root/ueventd.amlogic.rc
+    $(LOCAL_PATH)/ramdisk/init:root/init \
+    $(LOCAL_PATH)/ramdisk/ueventd.rc:root/ueventd.rc
 
 # init.d scripts
 PRODUCT_COPY_FILES += \

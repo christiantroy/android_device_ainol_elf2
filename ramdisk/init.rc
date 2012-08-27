@@ -1,8 +1,13 @@
 on early-init
     # Set init and its forked children's oom_adj.
     write /proc/1/oom_adj -16
-
+    write /sys/class/boot_monitor/boot_timer 1
     start ueventd
+    symlink /initlogo.rle.bak /initlogo.rle
+    write /sys/class/graphics/fb0/blank 0
+    write /sys/class/graphics/fb1/blank 1
+    insmod /boot/ump.ko ump_debug_level=2
+    insmod /boot/mali.ko mali_debug_level=2
 
 # create mountpoints
     mkdir /mnt 0775 root system
@@ -21,6 +26,8 @@ loglevel 3
     export ANDROID_ROOT /system
     export ANDROID_ASSETS /system/app
     export ANDROID_DATA /data
+    export EXTERNAL_STORAGE /mnt/sdcard
+    export SECONDARY_STORAGE /mnt/external_sdcard
     export ASEC_MOUNTPOINT /mnt/asec
     export LOOP_MOUNTPOINT /mnt/obb
     export BOOTCLASSPATH /system/framework/core.jar:/system/framework/core-junit.jar:/system/framework/bouncycastle.jar:/system/framework/ext.jar:/system/framework/framework.jar:/system/framework/android.policy.jar:/system/framework/services.jar:/system/framework/apache-xml.jar:/system/framework/filterfw.jar
@@ -42,6 +49,10 @@ loglevel 3
     mkdir /data 0771 system system
     mkdir /cache 0771 system cache
     mkdir /config 0500 root root
+    
+    mkdir /mnt/sdcard 0000 system system
+    symlink /mnt/sdcard /sdcard
+    mkdir /mnt/external_sdcard 0000 system system
 
     # Directory for putting things only root should see.
     mkdir /mnt/secure 0700 root root
@@ -94,16 +105,15 @@ loglevel 3
     chmod 0644 /dev/xt_qtaguid
 
 on fs
-# mount mtd partitions
-    # Mount /system rw first to give the filesystem a chance to save a checkpoint
-    #mount yaffs2 mtd@system /system
-    #mount yaffs2 mtd@system /system ro remount
-    #mount yaffs2 mtd@userdata /data nosuid nodev
-    #mount yaffs2 mtd@cache /cache nosuid nodev
+    ubiattach mtd@system
+    mount ubifs ubi0_0 /system
+    ubiattach mtd@userdata
+    mount ubifs ubi1_0 /data nosuid nodev
+    mount yaffs2 mtd@cache /cache nosuid nodev
 
 on post-fs
     # once everything is setup, no need to modify /
-    mount rootfs rootfs / ro remount
+    #mount rootfs rootfs / ro remount
 
     # We chown/chmod /cache again so because mount is run as root + defaults
     chown system cache /cache
@@ -125,6 +135,9 @@ on post-fs
 
     # create the lost+found directories, so as to enforce our permissions
     mkdir /cache/lost+found 0770 root root
+    
+    # For 3G Dongle
+    mount usbfs none /proc/bus/usb
 
 on post-fs-data
     # We chown/chmod /data again so because mount is run as root + defaults
@@ -154,10 +167,15 @@ on post-fs-data
     mkdir /data/misc/keystore 0700 keystore keystore
     mkdir /data/misc/keychain 0771 system system
     mkdir /data/misc/vpn 0770 system vpn
+    mkdir /data/misc/vpn/profiles 0770 system system
     mkdir /data/misc/systemkeys 0700 system system
     # give system access to wpa_supplicant.conf for backup and restore
     mkdir /data/misc/wifi 0770 wifi wifi
+    mkdir /data/misc/wifi/sockets 0770 wifi wifi
     chmod 0660 /data/misc/wifi/wpa_supplicant.conf
+    chown wifi wifi /data/misc/wifi
+    chown wifi wifi /data/misc/wifi/sockets
+    chown wifi wifi /data/misc/wifi/wpa_supplicant.conf
     mkdir /data/local 0751 root root
     mkdir /data/local/tmp 0771 shell shell
     mkdir /data/data 0771 system system
@@ -195,14 +213,21 @@ on post-fs-data
 
     chown system system /sys/class/android_usb/android0/f_mass_storage/lun/file
     chmod 0660 /sys/class/android_usb/android0/f_mass_storage/lun/file
+    chown system system /sys/class/android_usb/android0/f_mass_storage/lun0/file
+    chmod 0660 /sys/class/android_usb/android0/f_mass_storage/lun0/file
+    chown system system /sys/class/android_usb/android0/f_mass_storage/lun1/file
+    chmod 0660 /sys/class/android_usb/android0/f_mass_storage/lun1/file
     chown system system /sys/class/android_usb/android0/f_rndis/ethaddr
     chmod 0660 /sys/class/android_usb/android0/f_rndis/ethaddr
+    
+    mkdir /dev/console
 
 # Include extra init file
     import /system/etc/init.local.rc
 
 on boot
 # basic network init
+    setprop wifi.interface wlan0
     ifup lo
     hostname localhost
     domainname localdomain
@@ -270,6 +295,213 @@ on boot
     chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
     chown root system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
     chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+    
+    # Create dhcpcd dir
+    mkdir /data/misc/dhcp 0770 dhcp dhcp
+    chmod 0770 /data/misc/dhcp
+    
+    # Define for Alsa
+    #setprop alsa.mixer.playback.master Digital
+    setprop alsa.mixer.capture.master Digital
+    #setprop alsa.mixer.playback.headset Digital
+    setprop alsa.mixer.capture.headset Digital
+    #setprop alsa.mixer.playback.earpiece Digital
+    setprop alsa.mixer.capture.earpiece Digital
+    #setprop alsa.mixer.playback.speaker Digital
+
+    chmod 0666 /dev/ecompass_ctrl
+    
+    chown media system /sys/class/tsync/pts_video
+    chown media system /sys/class/tsync/pts_audio
+    chown media system /sys/class/tsync/pts_pcrscr
+    chown media system /sys/class/tsync/event
+    chown media system /sys/class/tsync/mode
+    chown media system /sys/class/tsync/enable
+    chown media system /sys/class/graphics/fb0/blank
+    chown media system /sys/class/graphics/fb1/blank
+    chown media system /sys/class/graphics/fb0/enable_key
+    chown media system /sys/class/graphics/fb0/enable_key_onhold
+    chmod 0664 /sys/class/tsync/pts_video
+    chmod 0664 /sys/class/tsync/pts_audio
+    chmod 0664 /sys/class/tsync/pts_pcrscr
+    chmod 0664 /sys/class/tsync/event
+    chmod 0664 /sys/class/tsync/mode
+    chmod 0664 /sys/class/tsync/enable
+    chmod 0664 /sys/class/graphics/fb0/blank
+    chmod 0664 /sys/class/graphics/fb1/blank
+    chmod 0664 /sys/class/graphics/fb0/enable_key
+    chmod 0664 /sys/class/graphics/fb0/enable_key_onhold
+
+    chown media system /sys/class/video/blackout_policy
+    chown media system /sys/class/video/screen_mode
+    chown media system /sys/class/video/axis
+    chown media system /sys/class/video/disable_video
+    chown media system /sys/class/video/zoom
+    chown media system /sys/class/ppmgr/angle
+    chown media system /sys/class/ppmgr/ppscaler
+    chown media system /sys/class/ppmgr/ppscaler_rect
+    chmod 0664 /sys/class/video/blackout_policy
+    chmod 0664 /sys/class/video/screen_mode
+    chmod 0664 /sys/class/video/axis
+    chmod 0664 /sys/class/video/disable_video
+    chmod 0664 /sys/class/video/zoom
+    chmod 0664 /sys/class/ppmgr/angle
+    chmod 0664 /sys/class/ppmgr/ppscaler
+    chmod 0664 /sys/class/ppmgr/ppscaler_rect
+
+    chmod 0666 /dev/amstream_sub_read
+
+    chown system system /sys/class/subtitle/enable
+    chown system system /sys/class/subtitle/total
+    chown system system /sys/class/subtitle/width
+    chown system system /sys/class/subtitle/height
+    chown system system /sys/class/subtitle/type
+    chown system system /sys/class/subtitle/curr
+    chown system system /sys/class/subtitle/size
+    chown system system /sys/class/subtitle/data
+    chown system system /sys/class/subtitle/startpts
+    chown system system /sys/class/subtitle/fps
+    chown system system /sys/class/subtitle/subtype
+    chown media system /sys/class/audiodsp/codec_fatal_err
+    chmod 0664 /sys/class/audiodsp/codec_fatal_err
+    chmod 0664 /sys/class/subtitle/enable
+    chmod 0664 /sys/class/subtitle/total
+    chmod 0664 /sys/class/subtitle/width
+    chmod 0664 /sys/class/subtitle/height
+    chmod 0664 /sys/class/subtitle/type
+    chmod 0664 /sys/class/subtitle/curr
+    chmod 0664 /sys/class/subtitle/size
+    chmod 0664 /sys/class/subtitle/data
+    chmod 0664 /sys/class/subtitle/startpts
+    chmod 0664 /sys/class/subtitle/fps
+    chmod 0664 /sys/class/subtitle/subtype
+
+# chmod
+    # HDMI/LCD switch
+    chown system system /sys/class/display/mode
+    chown media system /sys/class/display/axis
+    chown system system /sys/class/graphics/fb0/scale
+    chown system system /sys/class/graphics/fb1/scale
+    chown system system /sys/class/graphics/fb0/scale_axis
+    chown system system /sys/class/graphics/fb1/scale_axis
+    chown system system /sys/class/amhdmitx/amhdmitx0/disp_mode
+    chmod 0664 /sys/class/display/mode
+    chmod 0664 /sys/class/display/axis
+    chmod 0664 /sys/class/graphics/fb0/scale
+    chmod 0664 /sys/class/graphics/fb1/scale
+    chmod 0664 /sys/class/amhdmitx/amhdmitx0/disp_mode
+
+    chown media system /sys/class/graphics/fb0/block_mode
+    chmod 0664 /sys/class/graphics/fb0/block_mode
+
+    # Free scale
+    chown system system /sys/class/graphics/fb0/free_scale
+    chown system system /sys/class/graphics/fb0/scale_width
+    chown system system /sys/class/graphics/fb0/scale_height
+    chown system system /sys/class/graphics/fb1/free_scale
+    chown system system /sys/class/graphics/fb1/scale_width
+    chown system system /sys/class/graphics/fb1/scale_height
+    chown media system /sys/class/graphics/fb0/request2XScale
+    chmod 0664 /sys/class/graphics/fb0/free_scale
+    chmod 0664 /sys/class/graphics/fb0/scale_width
+    chmod 0664 /sys/class/graphics/fb0/scale_height
+    chmod 0664 /sys/class/graphics/fb1/free_scale
+    chmod 0664 /sys/class/graphics/fb1/scale_width
+    chmod 0664 /sys/class/graphics/fb1/scale_height
+    chmod 0664 /sys/class/graphics/fb0/request2XScale
+
+  # Dual display
+    chown system system /sys/class/display2/mode
+    chown system system /sys/class/display2/axis
+    chown system system /sys/class/video2/clone
+    chown system system /sys/class/vfm/map
+    chown system system /sys/module/amvideo2/parameters/clone_frame_scale_width
+    chown system system /sys/module/amvideo2/parameters/clone_frame_rate
+    chown system system /sys/class/video2/screen_mode
+    chown system system /sys/class/video2/zoom              
+    chmod 0664 /sys/class/display2/mode
+    chmod 0664 /sys/class/display2/axis
+    chmod 0664 /sys/class/video2/clone
+    chmod 0664 /sys/class/vfm/map
+    chmod 0664 /sys/module/amvideo2/parameters/clone_frame_scale_width
+    chmod 0664 /sys/module/amvideo2/parameters/clone_frame_rate
+    chmod 0664 /sys/class/video2/screen_mode
+    chmod 0664 /sys/class/video2/zoom
+
+    # 3G dongle
+    chmod 0666 /dev/ttyS20
+    chmod 0777 /system/etc/init-pppd.sh
+
+    # Backlight control
+    chmod 0664 /sys/class/backlight/aml-bl/brightness
+    chown system system /sys/class/backlight/aml-bl/brightness
+
+
+		
+   
+    
+    # CPU scaling
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+    chown system system /sys/devices/system/cpu/cpufreq/conservative/freq_step
+    
+    chown system system /sys/devices/system/cpu/cpufreq/performance2/sampling_rate
+    chown system system /sys/devices/system/cpu/cpufreq/performance2/down_threshold
+    chown system system /sys/devices/system/cpu/cpufreq/performance2/up_threshold
+    chown system system /sys/devices/system/cpu/cpufreq/conservative/sampling_rate
+    chown system system /sys/devices/system/cpu/cpufreq/conservative/down_threshold
+    chown system system /sys/devices/system/cpu/cpufreq/conservative/up_threshold
+    chown system system /sys/class/mali_freq/max
+    chown system system /sys/class/freq_limit/limit
+    chown system system /sys/devices/system/cpu/cpu1/online
+    
+    chmod 664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+    chmod 664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+    chmod 664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+    chmod 664 /sys/devices/system/cpu/cpufreq/conservative/freq_step
+    chmod 664 /sys/devices/system/cpu/cpufreq/performance2/sampling_rate
+   chmod 664 /sys/devices/system/cpu/cpufreq/performance2/down_threshold
+   chmod 664 /sys/devices/system/cpu/cpufreq/performance2/up_threshold
+   chmod 664 /sys/devices/system/cpu/cpufreq/conservative/sampling_rate
+   chmod 664 /sys/devices/system/cpu/cpufreq/conservative/down_threshold
+   chmod 664 /sys/devices/system/cpu/cpufreq/conservative/up_threshold
+   chmod 664 /sys/class/mali_freq/max
+   chmod 664 /sys/class/freq_limit/limit
+   chmod 664 /sys/devices/system/cpu/cpu1/online
+   
+   	
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1200000
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 96000
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor conservative
+    write /sys/class/freq_limit/limit 0
+    write /sys/devices/system/cpu/cpufreq/conservative/freq_step 8
+    write /sys/devices/system/cpu/cpufreq/conservative/sampling_rate 100000
+    write /sys/devices/system/cpu/cpufreq/conservative/up_threshold 80
+    write /sys/devices/system/cpu/cpufreq/conservative/down_threshold 50
+
+
+
+    # GPS com and pesudo com ports
+    symlink /dev/ttyS1 /dev/ttyS10
+
+    chown system system /sys/devices/system/clocksource/clocksource0/current_clocksource
+	  
+    # G-Sensors
+    chmod 0666 /dev/mpu
+    chmod 0666 /dev/mpuirq
+    chmod 0666 /dev/timerirq
+
+    # Bluetooth
+    chmod 0777 /system/bin/hciattach_usi
+    chown system system /sys/class/rfkill/rfkill0/state
+    chmod 0664 /sys/class/rfkill/rfkill0/state
+    write /sys/class/rfkill/rfkill0/state 0
+
+    # Bluetooth MAC address programming
+    chown bluetooth bluetooth /sys/class/efuse/mac_bt
+    setprop ro.bt.bdaddr_path /sys/class/efuse/mac_bt
+    symlink /sys/class/efuse/mac_bt /system/etc/bt_addr.conf
 
 # Define TCP buffer sizes for various networks
 #   ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
@@ -345,6 +577,40 @@ on property:sys.usb.config=adb
     start adbd
     setprop sys.usb.state $sys.usb.config
 
+on property:sys.usb.config=mass_storage
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 18d1
+    write /sys/class/android_usb/android0/idProduct 0001
+    write /sys/class/android_usb/android0/functions $sys.usb.config
+    write /sys/class/android_usb/android0/enable 1
+    setprop sys.usb.state $sys.usb.config
+
+on property:sys.usb.config=mass_storage,adb
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 18d1
+    write /sys/class/android_usb/android0/idProduct 0003
+    write /sys/class/android_usb/android0/functions $sys.usb.config
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
+    setprop sys.usb.state $sys.usb.config
+
+on property:sys.usb.config=mtp
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 18d1
+    write /sys/class/android_usb/android0/idProduct 0006
+    write /sys/class/android_usb/android0/functions $sys.usb.config
+    write /sys/class/android_usb/android0/enable 1
+    setprop sys.usb.state $sys.usb.config
+
+on property:sys.usb.config=mtp,adb
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 18d1
+    write /sys/class/android_usb/android0/idProduct 0007
+    write /sys/class/android_usb/android0/functions adb
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
+    setprop sys.usb.state $sys.usb.config
+
 # USB accessory configuration
 on property:sys.usb.config=accessory
     write /sys/class/android_usb/android0/enable 0
@@ -368,6 +634,48 @@ on property:sys.usb.config=accessory,adb
 # when changing the default configuration
 on property:persist.sys.usb.config=*
     setprop sys.usb.config $persist.sys.usb.config
+    
+    class_start default
+
+# turn off modules when system booted up
+# set the modules witch are needed to be controled dynamically for power saveing
+on property:init.svc.bootanim=stopped
+    write /sys/class/aml_mod/mod_off audio
+    write /sys/class/aml_mod/mod_off mipi
+    write /sys/class/aml_mod/mod_off spi
+    write /sys/class/aml_mod/mod_off uart0
+    write /sys/class/aml_mod/mod_off uart1
+    write /sys/class/aml_mod/mod_off uart2
+    write /sys/class/aml_mod/mod_off uart3
+    write /sys/class/aml_mod/mod_off venc
+    write /sys/class/aml_mod/mod_off bt656
+    write /sys/class/aml_mod/mod_off vdec
+    write /sys/class/aml_mod/mod_off rom
+    write /sys/class/aml_mod/mod_off efuse
+    write /sys/class/aml_mod/mod_off random_num_gen
+    write /sys/class/aml_mod/mod_off tcon
+    write /sys/class/aml_mod/mod_off ethernet
+    #write /sys/class/aml_mod/mod_off media_cpu
+    #write /sys/class/aml_mod/mod_off viu2
+    write /sys/class/aml_mod/mod_off smart_card
+    write /sys/class/aml_mod/mod_off sdhc
+    write /sys/class/aml_mod/mod_off stream
+    write /sys/class/aml_mod/mod_off blk_mov
+    write /sys/class/aml_mod/mod_off dvin
+    write /sys/class/aml_mod/mod_off rdma
+    write /sys/class/aml_mod/mod_off ge2d
+    #write /sys/class/aml_mod/mod_off vdin
+    
+    write /sys/class/aml_mod/dynamical_control audio
+    write /sys/class/aml_mod/dynamical_control vdec
+    write /sys/class/aml_mod/dynamical_control bt656
+    write /sys/class/aml_mod/dynamical_control lvds
+    write /sys/class/aml_mod/dynamical_control venc
+    #write /sys/class/aml_mod/dynamical_control media_cpu
+    write /sys/class/aml_mod/dynamical_control ge2d
+    #write /sys/class/aml_mod/dynamical_control vdin
+
+    write /sys/class/boot_monitor/boot_timer 0
 
 ## Daemon processes to be run by init.
 ##
@@ -384,6 +692,11 @@ service console /system/bin/sh
 
 on property:ro.debuggable=1
     start console
+
+# Set screen size
+service display /system/bin/logwrapper /system/bin/set_display_mode.sh panel
+    class core
+    oneshot
 
 # adbd is controlled via property triggers in init.<platform>.usb.rc
 service adbd /sbin/adbd
@@ -429,12 +742,25 @@ service netd /system/bin/netd
 service debuggerd /system/bin/debuggerd
     class main
 
-service ril-daemon /system/bin/rild
+service ril-daemon /system/bin/rild -l /system/lib/libaml-ril.so
     class main
     socket rild stream 660 root radio
     socket rild-debug stream 660 radio system
     user root
     group radio cache inet misc audio sdcard_rw qcom_oncrpc diag
+    disabled
+
+service pppd_gprs /system/etc/init-pppd.sh
+    user root
+    group radio net_admin cache inet misc
+    disabled
+    oneshot
+
+on property:hw.nophone=true
+    stop ril-daemon
+
+on property:hw.nophone=false
+    start ril-daemon
 
 service surfaceflinger /system/bin/surfaceflinger
     class main
@@ -514,6 +840,57 @@ service dumpstate /system/bin/dumpstate -s
     socket dumpstate stream 0660 shell log
     disabled
     oneshot
+
+service wpa_supplicant /system/bin/wpa_supplicant -Dwext -iwlan0 -d -c /data/misc/wifi/wpa_supplicant.conf
+    class main
+    socket wpa_wlan0 dgram 0666 system wifi
+    group system wifi
+    disabled
+    oneshot
+
+service hostapd /system/bin/hostapd_wps /data/misc/wifi/hostapd.conf
+  class main
+	disabled
+	oneshot
+
+service dhcpcd_wlan0 /system/bin/dhcpcd -d -f /system/etc/dhcpcd/dhcpcd.conf -B
+    class main
+    group dhcp system
+    disabled
+    oneshot
+
+service dhcpcd_usbnet0 /system/bin/dhcpcd -d -f /system/etc/dhcpcd/dhcpcd.conf -B
+    class main
+    group dhcp system
+    disabled
+    oneshot
+
+service iprenew_wlan0 /system/bin/dhcpcd -n
+    class main
+    disabled
+    oneshot
+
+service audio /system/bin/alsa_ctl restore
+    class core
+    group system audio
+    oneshot
+
+service usbpm /system/bin/usbtestpm_mx_iddq
+    disabled
+
+# do wififix
+service wififix /system/bin/wififix.sh
+	class main
+	group root root
+	oneshot
+	disabled
+
+on property:dev.bootcomplete=1
+    chown media media /sys/class/vm/mirror
+    chmod 0664 /sys/class/vm/mirror
+    write /sys/class/vm/mirror 0
+    write /sys/module/lowmemorykiller/parameters/minfree "2048,4096,51200,56320,61440,70400"
+    start usbpm
 
 # adb over network
 on property:service.adb.tcp.port=5555
