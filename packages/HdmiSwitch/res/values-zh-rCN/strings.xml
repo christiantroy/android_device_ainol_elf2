@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>    
+    <string name="app_name">HDMI设置</string>
+    <string name="title_text_str">HDMI 输出选择</string>
+    <string name="hdmi_state_str1">HDMI 已连接</string>
+    <string name="hdmi_state_str2">HDMI 未连接</string>
+    <string name="hdmi_info_str1"></string>
+    <string name="hdmi_info_str2"></string>    
+    <string name="driver_api_err">HDMI 检测错误:请升级程序</string>
+    
+    <string name="mode_str_panel">LCD屏幕</string>
+    <string name="mode_str_480i">HDMI 480i</string>
+    <string name="mode_str_480p">HDMI 480p</string>
+    <string name="mode_str_576i">HDMI 576i</string>
+    <string name="mode_str_576p">HDMI 576p</string>
+    <string name="mode_str_720p">HDMI 720p</string>
+    <string name="mode_str_1080i">HDMI 1080i</string>
+    <string name="mode_str_1080p">HDMI 1080p</string>
+    
+    <string name="Toast_msg_camera_busy">相机程序使用中，请先关闭.</string>    
+    
+    <string name="dialog_title">应用该模式?</string>
+    <string name="dialog_str_ok">确认</string>
+    <string name="dialog_str_cancel">取消</string>    
+    
+</resources>

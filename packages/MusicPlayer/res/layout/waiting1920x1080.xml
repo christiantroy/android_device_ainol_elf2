@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="1920dp"
+	android:layout_height="1080dp">
+   <com.amlogic.pmt.Waiting android:id="@+id/getting"
+   		android:paddingLeft="309dp"
+   		android:paddingRight="309dp"
+		android:paddingTop="187dp" 
+		android:paddingBottom="187dp" 
+		android:visibility="gone"
+		android:layout_width="fill_parent" 
+		android:layout_height="fill_parent" />
+</AbsoluteLayout>

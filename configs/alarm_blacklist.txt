@@ -1,0 +1,4 @@
+com.google.android.gsf:replace
+com.google.android.location:replace
+com.google.android.apps.maps:replace
+com.google.android.partnersetup:replace

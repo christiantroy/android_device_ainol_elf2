@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="hello">Hello World, OOBE!</string>
+    <string name="app_name">OOBE</string>
+    <string name="welcome">Welcome</string>
+    <string name="thanks">Thank you for purchasing a Media Box.</string>
+    <string name="setup_note">Take just a moment to get your new Media Box setup and ready for use.</string>
+    
+    <string name="English">English</string>
+    <string name="France">French</string>
+    <string name="next">Next</string>
+    <string name="back">Back</string>
+    <string name="language_set_title">Press the button below to change the language</string>
+    <string name="licensetitle">End User License Agreement</string>
+    <string name="licensesummary">Amlogic Application Suite End User Licensing Agreement</string>
+    <string name="import_line1">IMPORTANT:PLEASE READ THE TERMS AND</string>
+    <string name="import_line2">CONDITIONS OF THE LICENSE AGREEMENT</string>
+    <string name="import_line3">CAREFULLY BEFORE CONTINUING WITH</string>
+    <string name="import_line4">THIS PROGRAM INSTALLATION</string>
+    <string name="license1">By acceptance of this User Licensing Agreement</string>
+    <string name="license2">or by use of the software on this device, you</string>
+    <string name="license3">agree to the following terms and conditions</string>
+    <string name="license4">(the "Terms and Conditions)."</string>
+    <string name="checkaccept">Check Accept to continue</string>
+    <string name="accept">Accept</string>
+    
+    <string name="setup_finish">Setup Complete</string>
+    <string name="finishsummary">Your Media Box is setup.</string>
+    <string name="finishhelpinfo">Press "finish" to close this wizard.</string>
+    <string name="finish">Finish</string>
+
+	<!--Calibration-->
+    <string name="intro">Touch Screen Calibration: For best results use a blunt and pointed object to tap the calibration points.</string>
+    <string name="instruc">Tap in the middle of the blue cross</string>
+    <string name="cont">Touch the screen to continue.</string>
+    <string name="complete">Calibration is Complete. </string>
+    <string name="quit">Touch the screen to exit.</string>
+    <string name="Confirmation">Save and Quit</string>
+    <string name="QuitCal">Save and quit touch calibration?</string>
+    <string name="BtnYes">Yes</string>
+    <string name="BtnNo">No</string>
+
+	<!--Set Date and Time-->
+	<!--Date&Time setting screen title-->
+    <string name="date_time">Date &amp; time settings</string>
+    <string name="set_date">Set date</string>
+    <string name="select_zone">Select time zone</string>
+    <string name="set_time">Set time</string>
+    <string name="set24hour">Use 24-hour format</string>
+    <string name="select_time_format">Select date format</string>
+    <string name="date_time_12_hour_sample">1:00 pm</string>
+    <string name="date_time_24_hour_sample">13:00</string>
+    <string name="date_time_changeTime_text">Change time</string>
+    <string name="date_time_changeDate_text">Date</string>
+    <string name="date_format_title">Select date format</string>
+
+    <string name="default_date_format"><xliff:g id="default_date_format">MM/dd/yyyy</xliff:g></string>
+    <string name="normal_date_format">Normal (<xliff:g id="date" example="12-31-2009">%s</xliff:g>)</string>
+
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_writeSettings">modify global system settings</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_writeSettings">Allows an application to modify the
+        system\'s settings data. Malicious applications can corrupt your system\'s
+        configuration.</string>
+    
+    <array name="language_choose_dialog">
+    	<item>English</item>
+    	<item>中文（简体）</item>
+    	<item>中文（繁體）</item>
+    	>	
+    </array>
+
+    <array name="language" translatable="false">
+    	<item>en</item>
+    	<item>zh</item>	
+    	<item>zh</item>	
+    </array>
+
+   <array name="country" translatable="false">
+    	<item>US</item>
+    	<item>CN</item>	
+    	<item>TW</item>	
+    </array>
+    
+	<string name="wel_layout">TV Output Mode</string>
+	
+	<string name="choose_outputmode">Press the button below to change the TV output mode</string>
+	<string name="choose_screen_ratio">choose screen ratio   </string>
+	
+	
+
+	<string name="screen_ratio_169">16:9</string>
+	<string name="screen_ratio_43">4:3</string>
+<string name="eth_dev_list">Ethernet Devices:</string>
+<string name="eth_con_type">Connection Type</string>
+<string name="eth_con_type_dhcp">Dhcp</string>
+<string name="eth_con_type_manual">Static IP</string>
+<string name="eth_ipaddr">IP address</string>
+<string name="eth_mask">Netmask</string>
+<string name="eth_dns">DNS address</string>
+<string name="eth_gw">Default Router</string>
+<string name="eth_config_title">Configure Ethernet device</string>
+<string name="menu_save">Save</string>
+<string name="menu_cancel">Discard</string>
+<string name="wel_eth_title">Ethernet configuration</string>
+<string name="eth_configation">Ethernet Configuration</string>
+
+<string name="txt_continue">Click the &quot;Next&quot; button to continue.</string>
+<string name="eth_set_tip">Press the button below to setup Ethernet:</string>
+<string name="wel_language">Language</string>
+
+<string name="eth_radio_ctrl_title">Ethernet configuration</string>
+<string name="eth_quick_toggle_title">Ethernet</string>
+
+<string name="eth_toggle_summary_off">Turn off Ethernet</string>
+<string name="eth_toggle_summary_on">Turn on Ethernet</string>
+<string name="eth_conf_perf_title">Ethernet configuration</string>
+<string name="eth_conf_summary">Configure Ethernet devices</string>
+<string name="airplane_mode">Airplane mode</string>
+<string name="airplane_mode_summary">Disable all wireless connections</string>
+<string name="airplane_mode_turning_on">Disabling wireless connections\u2026</string>
+<string name="airplane_mode_turning_off">Enabling wireless connections\u2026</string>
+<string name="wifi_quick_toggle_title">Wi-Fi</string>
+<string name="wifi_quick_toggle_summary">Turn on Wi-Fi</string>
+<string name="wifi_settings">Wi-Fi settings</string>
+<string name="wifi_settings_category">Wi-Fi settings</string>
+<string name="wifi_settings_summary">Set up &amp; manage wireless access points</string>
+<string name="wifi_starting">Turning on\u2026</string>
+<string name="wifi_stopping">Turning off\u2026</string>
+<string name="wifi_error">Error</string>
+<string name="wifi_in_airplane_mode">In airplane mode</string>
+<string name="wifi_fail_to_scan">Unable to scan for networks</string>
+<string name="wifi_notify_open_networks">Network notification</string>
+<string name="wifi_notify_open_networks_summary">Notify me when an open network is available</string>
+<string name="wifi_add_network">Add Wi-Fi network</string>
+<string name="wifi_access_points">Wi-Fi networks</string>
+<string name="wifi_menu_scan">Scan</string>
+<string name="wifi_menu_advanced">Advanced</string>
+<string name="wifi_menu_connect">Connect to network</string>
+<string name="wifi_menu_forget">Forget network</string>
+<string name="wifi_menu_modify">Modify network</string>
+<string name="tether_settings_title_usb">Tethering</string>
+<string name="tether_settings_summary_usb">Share your MID\'s mobile data connection via USB</string>
+<string name="tether_settings_title_wifi">Portable hotspot</string>
+<string name="tether_settings_summary_wifi">Share your MID\'s mobile connection as a portable Wi-Fi hotspot</string>
+<string name="tether_settings_title_both">Tethering &amp; portable hotspot</string>
+<string name="tether_settings_summary_both">Share your MID\'s mobile data connection via USB or as a portable Wi-Fi hotspot</string>
+<string name="wireless_networks_settings_title">Wireless &amp; network settings</string>
+<string name="wel_wifi_title">Wi-Fi</string>
+<string name="wifi_set_tip">Press the button below to setup Wi-Fi</string>
+<string name="wifi_configation">Wi-Fi Configuration</string>
+
+
+ <!-- Display settings screen, setting option name to change outputmode -->
+    <array name="outputmode_choose_dialog">
+	<item>480i</item>
+	<item>480p</item>
+	<item>576i</item>
+	<item>576p</item>
+	<item>720p</item>
+	<item>1080i</item>
+	<item>1080p</item>
+	>
+	</array>
+
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="BUTTON_YES" value="是"/>
+	<string name="BUTTON_NO" value="否"/>
+	<string name="SET_DEFAULT_INFO" value="您要恢复出厂设置吗？"/>
+	<string name="BUTTON_OK" value="确认"/>
+	<string name="BUTTON_CANCEL" value="取消"/>
+    <string name="SM_STD" value="标准"/>
+    <string name="SM_MUSIC" value="音乐"/>
+	<string name="SM_NEWS" value="新闻"/>
+	<string name="SM_THEATER" value="电影"/>
+	<string name="SM_USER" value="自设"/>
+	<string name="MUSIC" value="音乐"/>
+	<string name="PICTURE" value="图片"/>
+	<string name="TEXT" value="电子书"/>
+</resources>

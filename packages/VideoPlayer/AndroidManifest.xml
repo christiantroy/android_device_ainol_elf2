@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="com.farcore.videoplayer"
+      android:versionCode="1" 
+      android:sharedUserId=  "android.uid.system"
+      android:versionName="1.73">
+      <supports-screens
+      	android:largeScreens="true"
+		android:anyDensity="true" />
+		<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+		<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>    
+		<uses-permission android:name="android.permission.WRITE_SETTINGS" />
+		<uses-permission android:name="android.permission.WAKE_LOCK" />
+		<uses-permission android:name="android.permission.DEVICE_POWER" />
+		<uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <application android:icon="@drawable/icon" android:label="@string/app_name" android:debuggable="false">
+        <activity android:name=".FileList"
+		  android:theme="@style/theme_trans"
+                  android:label="@string/app_name"
+                  >
+			<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+		</activity>
+		<activity android:name="playermenu" 
+			android:label="@string/main_activity"
+			android:configChanges="mnc|mcc|orientation|keyboardHidden|screenSize|screenLayout">
+			<intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="video/*" />
+            </intent-filter>
+		</activity>
+		<service android:exported="true" 
+			android:name="com.farcore.playerservice.AmPlayer">
+		</service>
+	</application>
+
+	<uses-sdk android:minSdkVersion="14"  android:targetSdkVersion="14" />
+</manifest> 

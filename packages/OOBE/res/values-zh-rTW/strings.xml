@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+	<string name="hello">Hello World, OOBE!</string>
+	<string name="app_name">開機設置</string>
+	<string name="welcome">歡迎</string>
+	<string name="thanks">謝謝進入媒體盒設置界面。</string>
+	<string name="setup_note">花幾分鐘配置一下你的媒體盒吧。</string>
+
+	<string name="English">英語</string>
+	<string name="France">法語</string>
+	<string name="next">下一個</string>
+	<string name="back">上一個</string>
+	<string name="language_set_title">語言選擇</string>
+	<string name="licensetitle">End User License Agreement</string>
+	<string name="licensesummary">Amlogic Application Suite End User Licensing
+		Agreement</string>
+	<string name="import_line1">IMPORTANT:PLEASE READ THE TERMS AND</string>
+	<string name="import_line2">CONDITIONS OF THE LICENSE AGREEMENT</string>
+	<string name="import_line3">CAREFULLY BEFORE CONTINUING WITH</string>
+	<string name="import_line4">THIS PROGRAM INSTALLATION</string>
+	<string name="license1">By acceptance of this User Licensing Agreement</string>
+	<string name="license2">or by use of the software on this device,you</string>
+	<string name="license3">agree to the following terms and conditions</string>
+	<string name="license4">(the "Termsand Conditions)."</string>
+	<string name="checkaccept">Check Accept to continue</string>
+	<string name="accept">同意</string>
+
+	<string name="setup_finish">設置完成</string>
+	<string name="finishsummary">你的媒體盒設置完成了</string>
+	<string name="finishhelpinfo">按下“完成”鍵關閉設置嚮導，機器將重新啟動</string>
+	<string name="finish">完成</string>
+
+	<!--Calibration-->
+	<string name="intro">Touch Screen Calibration: For best results use a
+		blunt and pointed object to tap the calibration points.</string>
+	<string name="instruc">Tap in the middle of the blue cross</string>
+	<string name="cont">Touch the screen to continue.</string>
+	<string name="complete">Calibration is Complete. </string>
+	<string name="quit">Touch the screen to exit.</string>
+	<string name="Confirmation">Save and Quit</string>
+	<string name="QuitCal">Save and quit touch calibration?</string>
+	<string name="BtnYes">是</string>
+	<string name="BtnNo">否</string>
+
+	<!--Set Date and Time-->
+	<!--Date&Time setting screen title-->
+	<string name="date_time">Date &amp; time settings</string>
+	<string name="set_date">日期設置</string>
+	<string name="select_zone">Select time zone</string>
+	<string name="set_time">時間設置</string>
+	<string name="set24hour">使用 24-hour 格式</string>
+	<string name="select_time_format">選擇日期格式</string>
+	<string name="date_time_12_hour_sample">1:00 pm</string>
+	<string name="date_time_24_hour_sample">13:00</string>
+	<string name="date_time_changeTime_text">修改時間</string>
+	<string name="date_time_changeDate_text">日期</string>
+	<string name="date_format_title">選擇日期格式</string>
+
+    <string name="default_date_format"><xliff:g id="default_date_format">MM/dd/yyyy</xliff:g></string>
+    <string name="normal_date_format">Normal (<xliff:g id="date" example="12-31-2009">%s</xliff:g>)</string>
+
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_writeSettings">modify global system settings</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_writeSettings">Allows an application to modify the
+        system\'s settings data. Malicious applications can corrupt your system\'s
+        configuration.</string>
+
+	<array name="language_choose_dialog">
+		<item>English</item>
+		<item>中文（简体）</item>
+		<item>中文（繁體）</item>
+	</array>
+	<string name="wel_layout">歡迎進入電視輸出模式參數設置</string>
+
+	<string name="choose_outputmode">選擇電視輸出模式</string>
+	<string name="choose_screen_ratio">選擇 screen ratio  </string>
+
+
+	<string name="output_mode_480I">480i</string>
+	<string name="output_mode_480P">480p</string>
+	<string name="output_mode_576I">576i</string>
+	<string name="output_mode_576P">576p</string>
+	<string name="output_mode_720P">720p</string>
+	<string name="output_mode_1080I">1080i</string>
+	<string name="output_mode_1080P">1080p</string>
+	<string name="screen_ratio_169">16:9</string>
+	<string name="screen_ratio_43">4:3</string>
+	<string name="eth_dev_list">以太網設備:</string>
+	<string name="eth_con_type">鏈接方式</string>
+	<string name="eth_con_type_dhcp">Dhcp</string>
+	<string name="eth_con_type_manual">靜態 IP</string>
+	<string name="eth_ipaddr">IP 地址</string>
+	<string name="eth_mask">掩碼</string>
+	<string name="eth_dns">DNS 地址</string>
+	<string name="eth_gw">默認路由</string>
+	<string name="eth_config_title">設置以太網設備</string>
+	<string name="menu_save">保存</string>
+	<string name="menu_cancel">返回</string>
+	<string name="wel_eth_title">歡迎進入以太網設置界面</string>
+	<string name="eth_configation">以太網設置</string>
+
+	<string name="txt_continue">按“下一個”按鍵將繼續。</string>
+	<string name="eth_set_tip">按下面的按鍵進入以太網設置:</string>
+	<string name="wel_language">歡迎進入語言設置界面</string>
+
+	<string name="eth_radio_ctrl_title">以太網設置</string>
+	<string name="eth_quick_toggle_title">以太網</string>
+
+	<string name="eth_toggle_summary_off">關閉以太網</string>
+	<string name="eth_toggle_summary_on">打開以太網</string>
+	<string name="eth_conf_perf_title">以太網設置</string>
+	<string name="eth_conf_summary">配置以太網設備</string>
+	<string name="airplane_mode">Airplane mode</string>
+	<string name="airplane_mode_summary">Disable all wireless connections</string>
+	<string name="airplane_mode_turning_on">Disabling wireless connections\u2026</string>
+	<string name="airplane_mode_turning_off">Enabling wireless connections\u2026</string>
+	<string name="wifi_quick_toggle_title">Wi-Fi</string>
+	<string name="wifi_quick_toggle_summary">打開 Wi-Fi</string>
+	<string name="wifi_settings">Wi-Fi 設置</string>
+	<string name="wifi_settings_category">Wi-Fi 設置</string>
+	<string name="wifi_settings_summary">設置和管理無線接入點</string>
+	<string name="wifi_starting">打開\u2026</string>
+	<string name="wifi_stopping">關閉\u2026</string>
+	<string name="wifi_error">錯誤</string>
+	<string name="wifi_in_airplane_mode">In airplane mode</string>
+	<string name="wifi_fail_to_scan">Unable to scan for networks</string>
+	<string name="wifi_notify_open_networks">Network notification</string>
+	<string name="wifi_notify_open_networks_summary">當一個打開的網絡生效時，通知我</string>
+	<string name="wifi_add_network">添加 Wi-Fi 網絡</string>
+	<string name="wifi_access_points">Wi-Fi 網絡</string>
+	<string name="wifi_menu_scan">掃描</string>
+	<string name="wifi_menu_advanced">高級設置</string>
+	<string name="wifi_menu_connect">連接到網絡</string>
+	<string name="wifi_menu_forget">Forget network</string>
+	<string name="wifi_menu_modify">Modify network</string>
+	<string name="tether_settings_title_usb">Tethering</string>
+	<string name="tether_settings_summary_usb">Share your MID\'s mobile data connection via USB</string>
+	<string name="tether_settings_title_wifi">Portable hotspot</string>
+	<string name="tether_settings_summary_wifi">Share your MID\'s mobile connection as a portable
+		Wi-Fi hotspot</string>
+	<string name="tether_settings_title_both">Tethering &amp; portable hotspot</string>
+	<string name="tether_settings_summary_both">Share your MID\'s mobile data connection via USB or
+		as a portable Wi-Fi hotspot</string>
+	<string name="wireless_networks_settings_title">無綫網絡設置</string>
+	<string name="wel_wifi_title">歡迎進入wifi設置界面</string>
+	<string name="wifi_set_tip">按下面的按鍵去設置wifi</string>
+	<string name="wifi_configation">wifi 設置</string>
+</resources>

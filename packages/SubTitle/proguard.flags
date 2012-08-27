@@ -1,0 +1,23 @@
+-keep class com.subtitleparser.SubtitleFile {
+  public void appendSubtitle(int, int, int, byte[], java.lang.String);
+}
+-keep class com.subtitleparser.subtypes.RawData {
+  public  RawData(int[] ,int ,int ,int ,int ,java.lang.String );
+}
+
+-keep class com.subtitleparser.SubtitleUtils {
+	public native int getInSubtitleTotalByJni();
+	public native int setInSubtitleNumberByJni(int  );
+	public native int getCurrentInSubtitleIndexByJni();
+	public native void FileChangedByJni(java.lang.String);
+	public native int getCurrentInSubtitleIndexByJni();
+}
+
+-keep class com.subtitleparser.subtypes.IdxSubApi {
+  native static RawData getIdxsubRawdata(int ); 
+	native void setIdxFile(java.lang.String,int);
+}
+-keep class com.subtitleparser.subtypes.InSubApi {
+	native static RawData getrawdata(int ); 
+	native static SubData getdataByJni(int ); 
+}

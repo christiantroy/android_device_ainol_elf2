@@ -1,0 +1,136 @@
+package com.amlogic.pmt;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import org.geometerplus.zlibrary.ui.android.R;
+
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.util.AttributeSet;
+import android.view.View;
+
+public class Waiting  extends View implements Runnable{	 
+	private Bitmap BgBtp = null;
+	private int leftOffset=100;
+	private int topOffset=100;
+    private int src_id_offset = 0; 
+    private List<Bitmap>  BitmapSet;
+    private String infoString=null;
+    private String ok_button_str ;
+    private Bitmap pm;
+    private Bitmap button_ok;
+    public static final int NO_SEARCH_RESULT          = 0x0001 ;
+    public static final int NET_GETTING               = 0x0002 ;
+    public static final int GET_PROGRAM_LIST_FAILED   = 0x0003 ;
+    public static final int NO_BUTTON		          = 0x0001 ;
+    public static final int BUFFRING_BUTTON           = 0x0002 ;
+    public static final int OK_BUTTON                 = 0x0003 ;
+    public static final int OK__CANCEL_BUTTON         = 0x0004 ;
+	Paint paint = new Paint();
+    private int i_button_type = BUFFRING_BUTTON;
+    
+	public Waiting(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		this.setFocusable(true);
+        BitmapSet = new ArrayList<Bitmap>(); 
+        setInfoString(context.getString(R.string.buffing_string) , BUFFRING_BUTTON );
+        pm = BitmapFactory.decodeResource(this.getResources(), R.drawable.loading_ani);         
+        button_ok = BitmapFactory.decodeResource(this.getResources(), R.drawable.button_info_content_sel);       
+        ok_button_str = context.getString(R.string.ok) ;
+        BitmapSet.clear();
+        while(BitmapSet.size()<10)	BitmapSet.add(null);     
+       
+		paint.setColor(Color.WHITE);
+		paint.setAntiAlias(true);
+		paint.setTextSize(40);
+		paint.setTextAlign(Paint.Align.CENTER);
+        new Thread(this).start();
+	}	
+	
+	public void setInfoString( String info , int button_type )
+	{
+		i_button_type = button_type ;
+		infoString=info;	
+	}
+	
+	public String getInfoString()
+	{
+		return infoString ;
+	}
+	
+	public void onDraw(Canvas canvas)	
+	{			
+		//20101205 draw bg
+		if (BitmapSet.get(9) == null)
+			BitmapSet.set(9, BitmapFactory.decodeResource(getResources(),
+					R.drawable.bg_waiting_content));
+		BgBtp = BitmapSet.get(9);
+		canvas.drawBitmap(BgBtp, this.getPaddingLeft(), this.getPaddingTop(),
+				null);
+		
+		//20101205 draw text info
+		
+
+		
+		
+		//20101205 draw animation
+		if( BUFFRING_BUTTON == i_button_type )
+		{
+			canvas.drawText(infoString, 400, 170, paint);
+			src_id_offset++;		
+			src_id_offset = src_id_offset%9 ;
+			if(BitmapSet.get(src_id_offset) == null)
+				BitmapSet.set(src_id_offset, Bitmap.createBitmap(pm, src_id_offset*152, 0, 152, 152));//createReflectionImageWithOrigin(Bitmap.createBitmap(pm, src_id_offset*152, 0, 152, 152))); 		
+			BgBtp = BitmapSet.get(src_id_offset);			
+			canvas.drawBitmap(BgBtp, this.getPaddingLeft()+leftOffset, this.getPaddingTop()+topOffset, null);					
+		}
+		else if( OK_BUTTON == i_button_type )
+		{
+			canvas.drawText(infoString, 320, 150, paint);
+			canvas.drawBitmap( button_ok , 260 , 200 , null  ) ;
+			paint.setColor(Color.WHITE);
+			paint.setAntiAlias(true);
+			paint.setTextSize(40);
+			paint.setTextAlign(Paint.Align.CENTER);			
+			canvas.drawText( ok_button_str , 350, 270, paint);
+		}
+	}
+	
+	public void aniDraw()
+	{
+		this.invalidate(this.getPaddingLeft()+leftOffset, this.getPaddingTop()+topOffset, this.getPaddingLeft()+leftOffset+152, this.getPaddingTop()+topOffset+228);
+	}
+	//20101205  draw shader	
+	
+
+	
+	public void run() {
+		// TODO Auto-generated method stub
+		while(!Thread.currentThread().isInterrupted())
+		{
+			
+			try
+			{
+				Thread.sleep(200);
+			}
+			catch(InterruptedException e)
+			{
+				e.printStackTrace();
+			}
+			
+		    if(this.getVisibility() == View.VISIBLE)
+		    	postInvalidate();
+
+		}
+		
+	}
+	
+}

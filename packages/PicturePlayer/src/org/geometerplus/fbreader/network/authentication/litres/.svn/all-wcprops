@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/network/authentication/litres
+END
+LitResLoginXMLReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/network/authentication/litres/LitResLoginXMLReader.java
+END
+LitResUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/network/authentication/litres/LitResUtil.java
+END
+LitResGenreMap.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/network/authentication/litres/LitResGenreMap.java
+END
+LitResPurchaseXMLReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/network/authentication/litres/LitResPurchaseXMLReader.java
+END
+LitResGenre.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/network/authentication/litres/LitResGenre.java
+END
+LitResNetworkRequest.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/network/authentication/litres/LitResNetworkRequest.java
+END
+LitResAuthenticationXMLReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/network/authentication/litres/LitResAuthenticationXMLReader.java
+END
+LitResXMLReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/network/authentication/litres/LitResXMLReader.java
+END
+LitResPasswordRecoveryXMLReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/network/authentication/litres/LitResPasswordRecoveryXMLReader.java
+END
+LitResRegisterUserXMLReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/network/authentication/litres/LitResRegisterUserXMLReader.java
+END
+LitResAuthenticationManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/network/authentication/litres/LitResAuthenticationManager.java
+END
+LitResBookshelfItem.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/network/authentication/litres/LitResBookshelfItem.java
+END

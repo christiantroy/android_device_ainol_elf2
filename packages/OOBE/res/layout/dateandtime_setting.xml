@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bk"
+    >
+    <LinearLayout
+    	android:id="@+id/btn_set"
+		android:layout_height="fill_parent"
+		android:orientation="vertical" 
+		android:layout_width="fill_parent">
+	<!--Date & time settings title-->
+    <TextView
+			android:id="@+id/tv_datetime_datetime"
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content" 
+		    android:text="@string/date_time"
+		    android:textSize="30sp"
+		    android:textColor="@color/orange_color"
+		    android:paddingLeft="240dip" android:paddingTop="80dip"/>
+			
+	<!--Set date-->		
+	    <LinearLayout
+	    	android:id="@+id/set_date_btn"
+			android:layout_height="wrap_content"
+			android:orientation="vertical" 
+			android:background="@drawable/list_button" 
+			android:layout_width="fill_parent" 
+			android:layout_marginLeft="220dip" android:layout_marginTop="70dip">
+			<TextView
+				android:id="@+id/tv_datetime_setdate"
+			    android:layout_width="fill_parent" 
+			    android:layout_height="wrap_content" 
+			    android:text="@string/set_date"
+			    android:textSize="20sp"
+				android:textColor="@color/balck_color"/>
+
+			<TextView
+				android:id="@+id/tv_datetime_setdate_summary"
+			    android:layout_width="fill_parent" 
+			    android:layout_height="wrap_content" 
+			    android:text="@string/import_line1"
+			    android:textColor="@color/balck_color" 
+			    android:textSize="12sp"/>
+		</LinearLayout>
+
+	<!--Set time-->
+		<LinearLayout
+			android:id="@+id/set_time_btn"
+			android:layout_height="wrap_content"
+			android:orientation="vertical" 
+			android:background="@drawable/list_button" 
+			android:layout_width="fill_parent" 
+			android:layout_marginLeft="220dip" android:layout_marginTop="10dip">
+			<TextView
+				android:id="@+id/tv_datetime_settime"
+			    android:layout_width="fill_parent" 
+			    android:layout_height="wrap_content" 
+			    android:text="@string/set_time"
+			    android:textSize="20sp"
+				android:textColor="@color/balck_color" />
+
+			<TextView
+				android:id="@+id/tv_datetime_settime_summary"
+			    android:layout_width="fill_parent" 
+			    android:layout_height="wrap_content" 
+			    android:text="@string/import_line1"
+			    android:textColor="@color/balck_color"
+				android:textSize="12sp"/>
+		</LinearLayout>
+	
+	<!--Use 24-hour format-->
+	<LinearLayout
+	    	android:id="@+id/hour_format"
+			android:orientation="horizontal"
+			android:layout_height="wrap_content" 
+			android:layout_marginTop="10dip" android:layout_width="fill_parent">
+
+			<LinearLayout
+		    	android:id="@+id/hour_format_txt"
+				android:layout_height="wrap_content"
+				android:orientation="vertical" 
+				android:layout_marginLeft="220dip"
+				android:background="@drawable/list_button" 
+				android:layout_width="wrap_content">
+				<TextView
+					android:id="@+id/tv_datetime_hourformat"
+				    android:layout_width="fill_parent" 
+				    android:layout_height="wrap_content" 
+				    android:text="@string/set24hour"
+				    android:textSize="20sp"
+					android:textColor="@color/balck_color"/>
+
+				<TextView
+					android:id="@+id/tv_datetime_hourformat_summary"
+				    android:layout_width="fill_parent" 
+				    android:layout_height="wrap_content" 
+				    android:text="@string/import_line1"
+				    android:textColor="@color/balck_color"
+					android:textSize="12sp"/>
+			</LinearLayout>
+	
+		    <CheckBox android:id="@+id/cb_datetime_hourformat_checkbox"
+	                android:layout_height="wrap_content"
+	                android:layout_width="wrap_content" 
+		        	android:gravity="center" 
+		        	android:layout_gravity="center"/>
+	</LinearLayout>
+	<!--Select date format-->
+
+			<LinearLayout
+				android:id="@+id/date_format_btn"
+				android:layout_height="wrap_content"
+				android:orientation="vertical" 
+				android:background="@drawable/list_button" 
+				android:layout_width="fill_parent" 
+				android:layout_marginLeft="220dip">
+			
+				<TextView
+					android:id="@+id/tv_datetime_dateformat"
+				    android:layout_width="fill_parent" 
+				    android:layout_height="wrap_content" 
+				    android:text="@string/select_time_format"
+				    android:textSize="20sp"
+					android:textColor="@color/balck_color" />
+
+				<TextView
+					android:id="@+id/tv_datetime_dateformat_summary"
+				    android:layout_width="fill_parent" 
+				    android:layout_height="wrap_content" 
+				    android:text="@string/import_line1"
+				    android:textColor="@color/balck_color"
+					android:textSize="12sp"/>
+			</LinearLayout>
+	</LinearLayout>
+  
+    <LinearLayout
+    	android:id="@+id/buttom_bar"
+		android:orientation="horizontal"
+		android:layout_height="match_parent"
+		android:layout_width="match_parent" 
+		android:layout_gravity="bottom">
+		
+		<LinearLayout
+	    	android:id="@+id/finish_back"
+			android:layout_height="wrap_content"
+			android:layout_gravity="bottom" 
+			android:layout_width="fill_parent" 
+			android:orientation="horizontal" 
+			android:layout_weight="1"
+			android:gravity="bottom|center">
+			
+				<Button
+					android:id="@+id/btn_datetime_back"
+					android:layout_width="wrap_content" 
+			        android:layout_height="wrap_content"
+			        android:background="@drawable/buttom_button"
+			        android:text="@string/back"
+			        android:textColor="@color/balck_color"
+			        android:textSize="20dp"/>	
+		</LinearLayout>
+
+		<LinearLayout
+	    	android:id="@+id/finish_next"
+			android:orientation="horizontal"
+			android:layout_height="wrap_content"
+			android:layout_gravity="bottom" 
+			android:layout_width="fill_parent" 
+			android:layout_weight="1"
+			android:gravity="bottom|center">
+				<Button
+					android:id="@+id/btn_datetime_next"
+					android:layout_width="wrap_content" 
+			        android:layout_height="wrap_content"
+			        android:background="@drawable/buttom_button"
+			        android:text="@string/next"
+			        android:textColor="@color/balck_color"
+			        android:textSize="20dp"/>	
+		</LinearLayout>
+	       
+	</LinearLayout>
+
+</FrameLayout >

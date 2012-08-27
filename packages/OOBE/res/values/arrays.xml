@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+**
+** Copyright 2007 The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Choices for timezone picker first level.
+         These values will be used as search terms for TimeZone displayName
+         strings. --> <skip />
+    <!-- The time zone picker screen has two levels.  The first level allows the user to choose a region. -->
+    <string-array name="timezone_filters">
+    <!-- The next level of the time zoner picker should show time zones from the Americas. -->
+        <item>America</item>
+    <!-- The next level of the time zoner picker should show time zones from Europe. -->
+        <item>Europe</item>
+    <!-- The next level of the time zoner picker should show time zones from Africa. -->
+        <item>Africa</item>
+    <!-- The next level of the time zoner picker should show time zones from Asia. -->
+        <item>Asia</item>
+    <!-- The next level of the time zoner picker should show time zones from Australia. -->
+        <item>Australia</item>
+    <!-- The next level of the time zoner picker should show time zones from Pacific. -->
+        <item>Pacific</item>
+    <!-- The next level of the time zoner picker should show time zones from ALL regions. -->
+        <item>All</item>
+    </string-array>
+
+    <!-- There is a setting to control the format of dates displayed throughout the system.  This is in the Date & Time Settings screen.  These will be adjusted to use punctuation appropriate to the user's locale. -->
+    <string-array name="date_format_values" translatable="false">
+        <!-- The blank item means to use whatever the locale calls for. -->
+        <item></item>
+        <item>MM-dd-yyyy</item>
+        <item>dd-MM-yyyy</item>
+        <item>yyyy-MM-dd</item>
+    </string-array>
+    
+    <!-- Wi-Fi settings -->
+
+    <!-- Match this with the order of NetworkInfo.DetailedState. --> <skip />
+    <!-- Wi-Fi settings. The status messages when the network is unknown. -->
+    <string-array name="wifi_status">
+        <!-- Status message of Wi-Fi when it is idle. -->
+        <item></item>
+        <!-- Status message of Wi-Fi when it is scanning. -->
+        <item>Scanning\u2026</item>
+        <!-- Status message of Wi-Fi when it is connecting. -->
+        <item>Connecting\u2026</item>
+        <!-- Status message of Wi-Fi when it is authenticating. -->
+        <item>Authenticating\u2026</item>
+        <!-- Status message of Wi-Fi when it is obtaining IP address. -->
+        <item>Obtaining IP address\u2026</item>
+        <!-- Status message of Wi-Fi when it is connected. -->
+        <item>Connected</item>
+        <!-- Status message of Wi-Fi when it is suspended. -->
+        <item>Suspended</item>
+        <!-- Status message of Wi-Fi when it is disconnecting. -->
+        <item>Disconnecting\u2026</item>
+        <!-- Status message of Wi-Fi when it is disconnected. -->
+        <item>Disconnected</item>
+        <!-- Status message of Wi-Fi when it is a failure. -->
+        <item>Unsuccessful</item>
+    </string-array>
+
+    <!-- Match this with the order of NetworkInfo.DetailedState. --> <skip />
+    <!-- Wi-Fi settings. The status messages when the network is known. -->
+    <string-array name="wifi_status_with_ssid">
+        <!-- Status message of Wi-Fi when it is idle. -->
+        <item></item>
+        <!-- Status message of Wi-Fi when it is scanning. -->
+        <item>Scanning\u2026</item>
+        <!-- Status message of Wi-Fi when it is connecting to a network. -->
+        <item>Connecting to <xliff:g id="network_name">%1$s</xliff:g>\u2026</item>
+        <!-- Status message of Wi-Fi when it is authenticating with a network. -->
+        <item>Authenticating with <xliff:g id="network_name">%1$s</xliff:g>\u2026</item>
+        <!-- Status message of Wi-Fi when it is obtaining IP address from a network. -->
+        <item>Obtaining IP address from <xliff:g id="network_name">%1$s</xliff:g>\u2026</item>
+        <!-- Status message of Wi-Fi when it is connected to a network. -->
+        <item>Connected to <xliff:g id="network_name">%1$s</xliff:g></item>
+        <!-- Status message of Wi-Fi when it is suspended. -->
+        <item>Suspended</item>
+        <!-- Status message of Wi-Fi when it is disconnecting from a network. -->
+        <item>Disconnecting from <xliff:g id="network_name">%1$s</xliff:g>\u2026</item>
+        <!-- Status message of Wi-Fi when it is disconnected. -->
+        <item>Disconnected</item>
+        <!-- Status message of Wi-Fi when it is a failure. -->
+        <item>Unsuccessful</item>
+    </string-array>
+
+    <!-- Match this with the constants in AccessPoint. --> <skip />
+    <!-- Wi-Fi settings.  The type of security a Wi-Fi network has. -->
+    <string-array name="wifi_security">
+        <!-- The Wi-Fi network does not have any security. -->
+        <item>Open</item>
+        <!-- Do not translate. -->
+        <item>WEP</item>
+        <!-- Do not translate. -->
+        <item>WPA/WPA2 PSK</item>
+        <!-- Do not translate. -->
+        <item>802.1x EAP</item>
+    </string-array>
+
+   <!-- Wi-Fi AP settings.  The type of security a Wi-Fi AP supports. -->
+   <!-- Note that adding/removing/moving the items will need wifi settings code change. -->
+    <string-array name="wifi_ap_security" translatable="false">
+        <item>Open</item>
+        <!-- Do not translate. -->
+        <item>WPA2 PSK</item>
+    </string-array>
+
+    <!-- Match this with the constants in WifiDialog. --> <skip />
+    <!-- Wi-Fi settings.  The type of EAP method a Wi-Fi network has. -->
+    <string-array name="wifi_eap_method">
+        <!-- Do not translate. -->
+        <item>PEAP</item>
+        <!-- Do not translate. -->
+        <item>TLS</item>
+        <!-- Do not translate. -->
+        <item>TTLS</item>
+    </string-array>
+
+    <!-- Match this with drawable.wifi_signal. --> <skip />
+    <!-- Wi-Fi settings. The signal strength a Wi-Fi network has. -->
+    <string-array name="wifi_signal">
+        <item>Poor</item>
+        <item>Fair</item>
+        <item>Good</item>
+        <item>Excellent</item>
+    </string-array>
+
+    <!-- Wi-Fi settings. Presented as a list dialog to the user to choose the Wi-Fi sleep policy. -->
+    <string-array name="wifi_sleep_policy_entries">
+        <!-- Wi-Fi should go to sleep when the screen turns off. -->
+        <item>When screen turns off</item>
+        <!-- When plugged in, never go to sleep.  When on battery, go to sleep when screen turns off. -->
+        <item>Never when plugged in</item>
+        <!-- Never go to sleep. -->
+        <item>Never</item>
+    </string-array>
+
+    <!-- Match with wifi_sleep_policy_entries and the values of the settings in Settings class. --> <skip />
+    <!-- Do not translate. -->
+    <string-array name="wifi_sleep_policy_values">
+        <!-- Do not translate. -->
+        <item>0</item>
+        <!-- Do not translate. -->
+        <item>1</item>
+        <!-- Do not translate. -->
+        <item>2</item>
+    </string-array>
+    
+</resources>

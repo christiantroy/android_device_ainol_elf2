@@ -1,0 +1,66 @@
+    To use the amlogic hardware jpeg decoder.
+1. your kernel should later than 41e5cbc8658c52e48379446eda9daa0c9eb29b9d.
+    
+2. you should have plenty of drivers in your kernel 
+    drivers->amlogic->Amlogic Display Driver->ge2d module (buildin).
+    drivers->amlogic-> AMLOGIC AV Streaming devices->AMLOGIC HW jpeg decoder (buildin).
+    
+    
+3. add path of amlpictureKit.jar to your BOOTCLASSPATH.
+
+4. example of java code.
+    
+    import com.amlogic.graphics.*;
+    ...
+    	DecoderInfo di = new DecoderInfo();
+		di.thumbprefered=1;  /* of need thumbnail of jpeg. */
+		Bitmap ii=PictureKit.loadPicture("/sdcard/test.jpg",di);
+		
+5. for ndk code of amlogic hardware jpeg decoder.
+    
+    #include <amljpeg.h>
+    ...
+    aml_image_info_t* image_info;
+    ...
+    if(amljpeg_init()<0) exit(1);
+    ...
+    image_info = read_jpeg_image((char*)argv[1],width,height,mode,flag,flag);
+    if(image_info){
+        printf("output image width is %d\n", image_info->width);
+        printf("output image height is %d\n", image_info->height);
+        printf("output image depth is %d\n", image_info->depth);
+        printf("output image bytes_per_line is %d\n", image_info->bytes_per_line);
+        printf("output image nbytes   is %d\n", image_info->nbytes);
+    }
+    if(image_info){
+        free(image_info);    
+        image_info = NULL;
+    }
+    amljpeg_exit();
+    
+6. for ndk code of all type of picture.
+
+    #include <pic_app.h>
+    #include <aml_common.h>
+    
+    ...
+    
+    aml_image_info_t image_info = {0};
+    aml_dec_para_t para={0};
+    para.fn= example.jpeg /* jpeg/png/gif/bmp */
+    para.width = width;   /* scale width ,it's pre-defined.*/
+    para.height = height; /* scale height,it's pre-defined.*/
+    para.iwidth =  0;     /* need got through get_pic_info function*/
+    para.iheight = 0;     /* need got through get_pic_info function*/
+    para.mode = mode ;    /* 0/keep ratio  1/crop image 2/stretch image*/
+    para.flag = flag;     /* 0/disable display  1/enable display */
+    get_pic_info(&para);
+    printf("iwidth is %d ; iheight is %d\n", para.iwidth,para.iheight);
+    ret = load_pic(&para,&image_info);
+    
+    ...
+    
+    if(image_info.data){
+        free(image_info.data); 
+        
+    ...

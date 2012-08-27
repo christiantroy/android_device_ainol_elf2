@@ -1,0 +1,185 @@
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/network
+END
+AuthenticationDialog.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/network/AuthenticationDialog.java
+END
+ItemsLoadingService.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/network/ItemsLoadingService.java
+END
+SQLiteNetworkDatabase.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/network/SQLiteNetworkDatabase.java
+END
+NetworkBaseActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/network/NetworkBaseActivity.java
+END
+NetworkCatalogActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/network/NetworkCatalogActivity.java
+END
+RegisterUserDialog.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/network/RegisterUserDialog.java
+END
+SearchItemTree.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/network/SearchItemTree.java
+END
+NetworkCatalogActions.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/network/NetworkCatalogActions.java
+END
+SearchItemActions.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/network/SearchItemActions.java
+END
+ItemsLoadingRunnable.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/network/ItemsLoadingRunnable.java
+END
+BookDownloader.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/network/BookDownloader.java
+END
+NetworkDialog.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/network/NetworkDialog.java
+END
+BookDownloaderServiceConnection.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/network/BookDownloaderServiceConnection.java
+END
+RefillAccountTree.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/network/RefillAccountTree.java
+END
+RefillAccountActions.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/network/RefillAccountActions.java
+END
+ItemsLoadingHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/network/ItemsLoadingHandler.java
+END
+AddCustomCatalogItemTree.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/network/AddCustomCatalogItemTree.java
+END
+AddCustomCatalogItemActions.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/network/AddCustomCatalogItemActions.java
+END
+BookDownloaderInterface.aidl
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/network/BookDownloaderInterface.aidl
+END
+NetworkNotifications.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/network/NetworkNotifications.java
+END
+NetworkView.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/network/NetworkView.java
+END
+NetworkBookActions.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/network/NetworkBookActions.java
+END
+CustomCatalogDialog.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/network/CustomCatalogDialog.java
+END
+BookDownloaderCallback.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/network/BookDownloaderCallback.java
+END
+BookDownloaderService.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/network/BookDownloaderService.java
+END
+NetworkTreeActions.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/network/NetworkTreeActions.java
+END
+NetworkLibraryActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/network/NetworkLibraryActivity.java
+END
+NetworkSearchActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/network/NetworkSearchActivity.java
+END
+NetworkBookInfoActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/network/NetworkBookInfoActivity.java
+END
+LibraryInitializationService.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/network/LibraryInitializationService.java
+END

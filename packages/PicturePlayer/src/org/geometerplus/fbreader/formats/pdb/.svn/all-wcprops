@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/pdb
+END
+MobipocketHtmlBookReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/pdb/MobipocketHtmlBookReader.java
+END
+PalmDocLikeStream.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/pdb/PalmDocLikeStream.java
+END
+PdbStream.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/pdb/PdbStream.java
+END
+PdbUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/pdb/PdbUtil.java
+END
+PdbPlugin.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/pdb/PdbPlugin.java
+END
+MobipocketStream.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/pdb/MobipocketStream.java
+END
+DocDecompressor.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/pdb/DocDecompressor.java
+END
+MobipocketPlugin.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/pdb/MobipocketPlugin.java
+END
+HuffdicDecompressor.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/pdb/HuffdicDecompressor.java
+END
+PdbHeader.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/pdb/PdbHeader.java
+END

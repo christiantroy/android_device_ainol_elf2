@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/fb2
+END
+FB2MetaInfoReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/fb2/FB2MetaInfoReader.java
+END
+FB2TagManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/fb2/FB2TagManager.java
+END
+FB2Tag.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/fb2/FB2Tag.java
+END
+FB2Plugin.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/fb2/FB2Plugin.java
+END
+Base64EncodedImage.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/fb2/Base64EncodedImage.java
+END
+FB2CoverReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/fb2/FB2CoverReader.java
+END
+FB2Reader.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/fb2/FB2Reader.java
+END

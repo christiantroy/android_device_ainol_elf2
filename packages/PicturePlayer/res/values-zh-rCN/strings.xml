@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">图片播放器</string>
+	<string name="empty_string"></string>
+	<string name="music_lyric">无歌词显示</string>
+	<string name="music_info">音乐信息</string>
+	<string name="pic_info">图片信息</string>
+	<string name="txt_info">文本信息</string>
+	<string name="vid_info">视频信息</string>
+	<string name="tips">温馨提示：</string>
+	<string name="folder_empty">文件夹没有数据</string>
+	<string name="not_folder">没有</string>
+	<string name="press_key_return">返回键返回</string>
+	<string name="volume">USB设备</string>
+	<string name="sdcard">SD卡</string>
+	<string name="sata">SATA硬盘</string>
+	<string name="unknown">未知</string>
+	<string name="filename">片名 ：</string>
+	<string name="filesize">大小 ：</string>
+	<string name="filetime">日期：</string>
+	<string name="protect_device">数据保护区</string>
+	<string name="back">返回</string>
+	<string name="not_device">请插入USB存储设备！</string>
+	<string name="music_file">音乐文件。</string>
+	<string name="pic_file">图片文件。</string>
+	<string name="txt_file">文本文件。</string>
+	<string name="buffing_string">搜索文件中...</string>
+	<string name="ok">确定</string>
+	<string name="shortcut_common_play_">播放</string>
+	<string name="shortcut_common_pause_">暂停</string>
+	<string name="shortcut_common_stop_">停止</string>
+	<string name="shortcut_picture_prev_">上一张</string>
+	<string name="shortcut_picture_next_">下一张</string>
+	<string name="shortcut_common_vol_">音量</string>
+	<string name="shortcut_common_playmode_">重复模式</string>
+	<string name="shortcut_common_playmode_normal">不循环</string>
+	<string name="shortcut_common_playmode_single">单个循环</string>
+	<string name="shortcut_common_playmode_folder">目录循环</string>
+	<string name="shortcut_common_playmode_rand">随机播放</string>
+	<string name="shortcut_picture_switch_time_">切换模式</string>
+	<string name="shortcut_picture_switch_time_3s">3 秒</string>
+	<string name="shortcut_picture_switch_time_5s">5 秒</string>
+	<string name="shortcut_picture_switch_time_10s">10 秒</string>
+	<string name="shortcut_picture_switch_time_hand">手动</string>
+	<string name="shortcut_picture_switch_mode_">播放模式</string>
+	<string name="shortcut_picture_switch_mode_1">顺序播放</string>
+	<string name="shortcut_picture_switch_mode_2">随机播放</string>
+	<string name="shortcut_picture_rotate_">旋转镜像</string>
+	<string name="shortcut_picture_rotate_normal">正常</string>
+	<string name="shortcut_picture_rotate_90">90 度</string>
+	<string name="shortcut_picture_rotate_180">180 度</string>
+	<string name="shortcut_picture_rotate_270">270 度</string>
+	<string name="shortcut_common_zoom_">缩放模式</string>
+	<string name="shortcut_common_zoom_big">放大</string>
+	<string name="shortcut_common_zoom_small">缩小</string>
+</resources>
+ 

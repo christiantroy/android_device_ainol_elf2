@@ -1,0 +1,9 @@
+<resources>
+    <style name="theme_trans" parent="android:Theme">
+        <item name="android:windowBackground">@drawable/trans</item>
+        <item name="android:windowTitleBackgroundStyle">@style/TitleBackgroundColor</item>
+    </style>
+    <style name="TitleBackgroundColor">
+    	<item name="android:background">#00000000</item>
+    </style>     
+</resources>

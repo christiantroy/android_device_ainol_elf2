@@ -1,0 +1,209 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/skyworth/!svn/ver/4216/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt
+END
+PMTAnimation.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/PMTAnimation.java
+END
+RelevanceOp.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/skyworth/!svn/ver/4044/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/RelevanceOp.java
+END
+RelevanceState.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/skyworth/!svn/ver/2787/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/RelevanceState.java
+END
+PMTBoardColorAnimation.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/PMTBoardColorAnimation.java
+END
+DisplaySlot.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/skyworth/!svn/ver/3777/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/DisplaySlot.java
+END
+DevStatusDisplay.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/skyworth/!svn/ver/4109/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/DevStatusDisplay.java
+END
+PMTBreatheInOutAnimation.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/skyworth/!svn/ver/3621/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/PMTBreatheInOutAnimation.java
+END
+ID3Tag.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/skyworth/!svn/ver/3950/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/ID3Tag.java
+END
+PMTPathAnimation.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/PMTPathAnimation.java
+END
+GLSlideShowLayout.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/skyworth/!svn/ver/4188/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/GLSlideShowLayout.java
+END
+DataProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/skyworth/!svn/ver/3722/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/DataProvider.java
+END
+DisplayItem.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/skyworth/!svn/ver/3621/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/DisplayItem.java
+END
+updataFilenameListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/skyworth/!svn/ver/4044/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/updataFilenameListener.java
+END
+PMTAnimator.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/skyworth/!svn/ver/3082/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/PMTAnimator.java
+END
+TextureManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/skyworth/!svn/ver/4216/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/TextureManager.java
+END
+GLBaseLayout.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/skyworth/!svn/ver/3722/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/GLBaseLayout.java
+END
+PMTAnimationManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/PMTAnimationManager.java
+END
+PMTTransformAnimation.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/PMTTransformAnimation.java
+END
+LyricParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/skyworth/!svn/ver/3451/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/LyricParser.java
+END
+GLMusicLayout.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/skyworth/!svn/ver/4120/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/GLMusicLayout.java
+END
+GridSet.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/skyworth/!svn/ver/3583/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/GridSet.java
+END
+Waiting.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/skyworth/!svn/ver/4168/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/Waiting.java
+END
+PMTAnimationListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/PMTAnimationListener.java
+END
+GLGridLayout.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/skyworth/!svn/ver/4071/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/GLGridLayout.java
+END
+LyricSentence.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/LyricSentence.java
+END
+RenderView.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/skyworth/!svn/ver/3920/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/RenderView.java
+END
+FileUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/FileUtil.java
+END
+GLEBookLayout.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/skyworth/!svn/ver/3981/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/GLEBookLayout.java
+END
+FileType.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/FileType.java
+END
+DisplaySet.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/skyworth/!svn/ver/3583/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/DisplaySet.java
+END
+GridSlot.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/skyworth/!svn/ver/3583/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/GridSlot.java
+END
+MiscUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/skyworth/!svn/ver/4168/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/MiscUtil.java
+END
+GLPose.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/skyworth/!svn/ver/3082/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/GLPose.java
+END
+LyricTimeWordMap.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/LyricTimeWordMap.java
+END

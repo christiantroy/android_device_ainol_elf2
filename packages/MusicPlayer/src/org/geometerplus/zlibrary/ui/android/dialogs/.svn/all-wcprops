@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/ui/android/dialogs
+END
+ZLAndroidDialogContent.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/ui/android/dialogs/ZLAndroidDialogContent.java
+END
+ZLAndroidDialogManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/ui/android/dialogs/ZLAndroidDialogManager.java
+END
+ZLAndroidStringOptionView.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/ui/android/dialogs/ZLAndroidStringOptionView.java
+END
+ZLAndroidOptionsDialog.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/ui/android/dialogs/ZLAndroidOptionsDialog.java
+END
+ZLAndroidSpinOptionView.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/ui/android/dialogs/ZLAndroidSpinOptionView.java
+END
+ZLAndroidDialogInterface.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/ui/android/dialogs/ZLAndroidDialogInterface.java
+END
+ZLAndroidColorOptionView.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/ui/android/dialogs/ZLAndroidColorOptionView.java
+END
+ZLAndroidOptionsTab.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/ui/android/dialogs/ZLAndroidOptionsTab.java
+END
+ZLAndroidBooleanOptionView.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/ui/android/dialogs/ZLAndroidBooleanOptionView.java
+END
+ZLAndroidComboOptionView.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/ui/android/dialogs/ZLAndroidComboOptionView.java
+END
+ZLAndroidOptionView.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/ui/android/dialogs/ZLAndroidOptionView.java
+END
+DialogActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/ui/android/dialogs/DialogActivity.java
+END
+ZLAndroidBoolean3OptionView.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/ui/android/dialogs/ZLAndroidBoolean3OptionView.java
+END

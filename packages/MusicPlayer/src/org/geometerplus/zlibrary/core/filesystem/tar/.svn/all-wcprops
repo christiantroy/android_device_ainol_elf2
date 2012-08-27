@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/filesystem/tar
+END
+ZLTarHeader.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/filesystem/tar/ZLTarHeader.java
+END
+ZLTarInputStream.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/filesystem/tar/ZLTarInputStream.java
+END
+ZLTarEntryFile.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/filesystem/tar/ZLTarEntryFile.java
+END

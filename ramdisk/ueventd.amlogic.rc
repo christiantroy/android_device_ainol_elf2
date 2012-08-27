@@ -1,0 +1,33 @@
+/dev/graphics/*           0666   root       graphics
+/dev/bus/usb/*            0666   system     usb
+/dev/block/vold/*         0666   system     system
+
+# Amlogic AV streaming devices
+/dev/amvideo              0666   system     system
+/dev/ppmgr                0666   system     system
+/dev/amstream_sub         0666   system     system
+/dev/amstream_rm          0666   system     system
+/dev/amstream_mpps        0666   system     system
+/dev/amstream_mpts        0666   system     system
+/dev/amstream_abuf        0666   system     system
+/dev/amstream_vbuf        0666   system     system
+/dev/audiodsp0            0666   system     system
+/dev/uio0                 0666   system     system
+/dev/video0               0666   system     camera
+/dev/video1               0666   system     camera
+
+/dev/amjpegdec            0666   system     system
+/dev/ge2d                 0666   system     system
+/dev/vdin0                0666   system     system
+/dev/virtmem              0666   system     system
+
+# Mali
+/dev/ump                  0666   system     graphics
+/dev/mali                 0666   system     graphics
+
+#gps
+/dev/ttyS1                0666	 system     system
+/dev/ttya0                0666	 system     system
+/dev/ttya1                0666	 system     system
+/dev/ptya0                0666	 system     system
+/dev/ptya1                0666	 system     system

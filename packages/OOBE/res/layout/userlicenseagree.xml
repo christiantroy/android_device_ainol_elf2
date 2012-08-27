@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bk"
+    >
+    <LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical" android:paddingLeft="220dip">
+
+		<TextView
+			android:id="@+id/tv_userlicense_title"
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content" 
+		    android:text="@string/licensetitle"
+		    android:textSize="30sp"
+		    android:textColor="@color/orange_color"
+		    android:paddingTop="40dip"/>
+		<TextView
+			android:id="@+id/tv_userlicense_product_info"
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content" 
+		    android:text="@string/licensesummary"
+		    android:textSize="20sp"
+			android:textColor="@color/balck_color" android:layout_marginTop="30dip"/>
+			
+		<LinearLayout
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical" android:layout_marginTop="20dip">
+			
+			<TextView
+				android:id="@+id/tv_userlicense_importance_line1"
+			    android:layout_width="fill_parent" 
+			    android:layout_height="wrap_content" 
+			    android:text="@string/import_line1"
+			    android:textSize="16sp"
+				android:textColor="@color/balck_color"/>
+			<TextView
+				android:id="@+id/tv_userlicense_importance_line2"
+			    android:layout_width="fill_parent" 
+			    android:layout_height="wrap_content" 
+			    android:text="@string/import_line2"
+			    android:textSize="16sp"
+				android:textColor="@color/balck_color"  />
+			<TextView
+				android:id="@+id/tv_userlicense_importance_line3"
+			    android:layout_width="fill_parent" 
+			    android:layout_height="wrap_content" 
+			    android:text="@string/import_line3"
+			    android:textSize="16sp"
+				android:textColor="@color/balck_color"  />
+			<TextView
+				android:id="@+id/tv_userlicense_importance_line4"
+			    android:layout_width="fill_parent" 
+			    android:layout_height="wrap_content" 
+			    android:text="@string/import_line4"
+			    android:textSize="16sp"
+				android:textColor="@color/balck_color"  />
+		</LinearLayout>
+		
+
+		<LinearLayout
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical" 
+			android:layout_marginTop="20dip"
+			>
+
+			<TextView
+				android:id="@+id/tv_userlicense_license_line1"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				android:text="@string/license1"
+				android:textColor="@color/balck_color"/>
+
+
+			<TextView
+				android:id="@+id/tv_userlicense_license_line2"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				android:text="@string/license2"
+				android:textColor="@color/balck_color"/>
+
+
+			<TextView
+				android:id="@+id/tv_userlicense_license_line3"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				android:text="@string/license3"
+				android:textColor="@color/balck_color"/>
+
+			<TextView
+				android:id="@+id/tv_userlicense_license_line4"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				android:text="@string/license4"
+				android:textColor="@color/balck_color"/>
+		</LinearLayout>
+
+		<TextView
+			android:id="@+id/tv_userlicense_check_summary"
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:text="@string/checkaccept"
+			android:textColor="@color/balck_color" 
+			android:layout_marginTop="20dip"
+			/>
+
+
+		<LinearLayout
+			android:orientation="horizontal"
+			android:layout_height="wrap_content"
+			android:gravity="center"
+			android:layout_marginRight="10dip"
+			android:layout_width="wrap_content"
+			android:layout_gravity="center" 
+			android:layout_marginTop="10dip" 
+			android:layout_marginLeft="10dip"
+			>
+
+		    <CheckBox 
+		    	android:id="@+id/cb_userlicense_accept"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="66dip"
+                android:background="@drawable/button"
+                android:text="@string/accept"
+                android:textColor="@color/balck_color"
+	        	android:textSize="20dp" 
+	        	android:layout_width="wrap_content" 
+	        	android:gravity="center" 
+	        	android:layout_gravity="center"
+	        	/>
+	        	
+		</LinearLayout>
+	</LinearLayout>
+  
+    <LinearLayout
+		android:orientation="horizontal"
+		android:layout_height="match_parent"
+		android:layout_width="match_parent" 
+		android:layout_gravity="bottom">
+		
+		<LinearLayout
+			android:layout_height="wrap_content"
+			android:layout_gravity="bottom" 
+			android:layout_width="fill_parent" 
+			android:orientation="horizontal" 
+			android:layout_weight="1"
+			android:gravity="bottom|center">
+		
+			<Button
+				android:id="@+id/btn_userlicense_back"
+				android:layout_width="wrap_content" 
+		        android:layout_height="wrap_content"
+		        android:background="@drawable/buttom_button"
+		        android:text="@string/back"
+		        android:textColor="@color/balck_color"
+		        android:textSize="20dp"
+		        />
+		</LinearLayout>
+
+		<LinearLayout
+			android:orientation="horizontal"
+			android:layout_height="wrap_content"
+			android:layout_gravity="bottom" 
+			android:layout_width="fill_parent" 
+			android:layout_weight="1"
+			android:gravity="bottom|center">
+			
+			<Button
+				android:id="@+id/btn_userlicense_next"
+				android:layout_width="wrap_content" 
+		        android:layout_height="wrap_content"
+		        android:background="@drawable/buttom_button"
+		        android:text="@string/next"
+		        android:textColor="@color/balck_color"
+		        android:textSize="20dp"/>	
+		</LinearLayout>
+	       
+	</LinearLayout>
+
+</FrameLayout >

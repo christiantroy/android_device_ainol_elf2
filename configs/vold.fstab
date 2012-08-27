@@ -1,0 +1,19 @@
+## Vold 2.0 fstab
+
+#######################
+## Regular device mount
+##
+## Format: dev_mount <label> <mount_point> <part> <sysfs_path1...>
+## label - Label for the volume
+## mount_point - Where the volume will be mounted
+## part - Partition # (1 based), or 'auto' for first usable partition.
+## <sysfs_path> - List of sysfs paths to source devices
+######################
+
+# Mounts the first usable partition of the specified device
+#use this line to support VIRTUAL CDROM.And you can define the directory where you want to mount
+#loop_mount loop /mnt/VIRTUAL_CDROM 
+dev_mount sdcard /mnt/external_sdcard auto /devices/platform/AMLOGIC_CARD/card_host/memorycard0 /devices/platform/aml_sd_mmc.0
+dev_mount flash /mnt/sdcard auto /devices/virtual/mtd/mtd8/avnftl8 /devices/platform/mtd/mtd8/avnftli
+dev_mount usb /mnt/usb auto /devices/lm
+asec flash

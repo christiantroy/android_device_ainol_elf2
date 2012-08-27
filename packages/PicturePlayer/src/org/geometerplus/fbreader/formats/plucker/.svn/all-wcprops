@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/plucker
+END
+ZCompressedFileImage.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/plucker/ZCompressedFileImage.java
+END
+PluckerBookReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/plucker/PluckerBookReader.java
+END
+PluckerPlugin.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/plucker/PluckerPlugin.java
+END
+PluckerTextStream.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/plucker/PluckerTextStream.java
+END
+PluckerFileImage.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/plucker/PluckerFileImage.java
+END
+DocCompressedFileImage.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/plucker/DocCompressedFileImage.java
+END

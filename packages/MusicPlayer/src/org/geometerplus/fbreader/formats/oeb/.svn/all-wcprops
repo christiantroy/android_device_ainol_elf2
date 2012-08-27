@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/oeb
+END
+OEBBookReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/oeb/OEBBookReader.java
+END
+OEBPlugin.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/oeb/OEBPlugin.java
+END
+OEBCoverReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/oeb/OEBCoverReader.java
+END
+NCXReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/oeb/NCXReader.java
+END
+OEBMetaInfoReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/oeb/OEBMetaInfoReader.java
+END

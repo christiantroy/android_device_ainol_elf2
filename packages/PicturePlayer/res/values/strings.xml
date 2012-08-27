@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">PicturePlayer</string>
+	<string name="empty_string"></string>
+	<string name="music_lyric">No lyrics</string>
+	<string name="music_info">Music info</string>
+	<string name="pic_info">Picture info</string>
+	<string name="txt_info">Text info</string>
+	<string name="vid_info">Video info</string>
+	<string name="tips">Note：</string>
+	<string name="folder_empty">Folder empty</string>
+	<string name="not_folder">No\u0020</string>
+	<string name="press_key_return">Press Back to return</string>
+	<string name="volume">USB</string>
+	<string name="sdcard">SDCard</string>
+	<string name="sata">SATA</string>
+	<string name="unknown">Unknown</string>
+	<string name="filename">name ：</string>
+	<string name="filesize">size ：</string>
+	<string name="filetime">date：</string>
+	<string name="protect_device">Protected device</string>
+	<string name="back">Back</string>
+	<string name="not_device">Please insert your storage device！</string>
+	<string name="music_file">music found.</string>
+	<string name="pic_file">pictures found.</string>
+	<string name="txt_file">texts found.</string>
+	<string name="buffing_string">Searching files...</string>
+	<string name="ok">OK</string>
+	<string name="shortcut_common_play_">Play</string>
+	<string name="shortcut_common_pause_">Pause</string>
+	<string name="shortcut_common_stop_">Stop</string>
+	<string name="shortcut_picture_prev_">Previous</string>
+	<string name="shortcut_picture_next_">Next</string>
+	<string name="shortcut_common_vol_">Volume</string>
+	<string name="shortcut_common_playmode_">Repeat</string>
+	<string name="shortcut_common_playmode_single">Single repeat</string>
+	<string name="shortcut_common_playmode_normal">No repeat</string>
+	<string name="shortcut_common_playmode_folder">Folder repeat</string>
+	<string name="shortcut_common_playmode_rand">Random</string>
+	<string name="shortcut_picture_switch_time_">Switch time</string>
+	<string name="shortcut_picture_switch_time_3s">3 seconds</string>
+	<string name="shortcut_picture_switch_time_5s">5 seconds</string>
+	<string name="shortcut_picture_switch_time_10s">10 seconds</string>
+	<string name="shortcut_picture_switch_time_hand">Manual</string>
+	<string name="shortcut_picture_switch_mode_">Play mode</string>
+	<string name="shortcut_picture_switch_mode_1">Normal</string>
+	<string name="shortcut_picture_switch_mode_2">Random</string>
+	<string name="shortcut_picture_rotate_">Rotation</string>
+	<string name="shortcut_picture_rotate_normal">Normal</string>
+	<string name="shortcut_picture_rotate_90">90 degrees</string>
+	<string name="shortcut_picture_rotate_180">180 degrees</string>
+	<string name="shortcut_picture_rotate_270">270 degrees</string>
+	<string name="shortcut_common_zoom_">Zooming</string>
+	<string name="shortcut_common_zoom_big">Zoom in</string>
+	<string name="shortcut_common_zoom_small">Zoom out</string>
+</resources>
+ 

@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/skyworth/!svn/ver/3425/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/music
+END
+SpectrumUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/skyworth/!svn/ver/3425/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/music/SpectrumUtil.java
+END
+spectrumOp.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/skyworth/!svn/ver/3425/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/music/spectrumOp.java
+END
+mp3Id3V1Info.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/skyworth/!svn/ver/3166/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/music/mp3Id3V1Info.java
+END
+mp3Id3V2Info.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/skyworth/!svn/ver/3166/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/music/mp3Id3V2Info.java
+END
+musiclistener.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/skyworth/!svn/ver/2516/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/music/musiclistener.java
+END
+wavInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/skyworth/!svn/ver/3166/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/music/wavInfo.java
+END
+MusicItemInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/skyworth/!svn/ver/3166/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/music/MusicItemInfo.java
+END
+ParserMusic.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/skyworth/!svn/ver/3166/Skyworth_M1/3DOSD/FBReaderJ/src/com/amlogic/pmt/music/ParserMusic.java
+END

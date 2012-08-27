@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/options
+END
+ZLBoolean3Option.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/options/ZLBoolean3Option.java
+END
+ZLStringOption.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/options/ZLStringOption.java
+END
+ZLSimpleOption.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/options/ZLSimpleOption.java
+END
+ZLIntegerRangeOption.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/options/ZLIntegerRangeOption.java
+END
+ZLIntegerOption.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/options/ZLIntegerOption.java
+END
+ZLColorOption.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/options/ZLColorOption.java
+END
+ZLBooleanOption.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/options/ZLBooleanOption.java
+END
+ZLOption.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/options/ZLOption.java
+END

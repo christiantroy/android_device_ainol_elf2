@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+
+
+
+
+<string name="cfg_language">true</string>
+<string name="cfg_datetime">false</string>
+<string name="cfg_userlicence">false</string>
+<string name="cfg_calibration">false</string>
+<string name="cfg_layout">true</string>
+<string name="cfg_ethnetconfig">true</string>
+<string name="cfg_wificonfig">true</string>
+</resources>

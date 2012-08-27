@@ -1,0 +1,107 @@
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/skyworth/!svn/ver/4001/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/fbreader
+END
+ColorProfile.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/fbreader/ColorProfile.java
+END
+ChangeFontSizeAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/fbreader/ChangeFontSizeAction.java
+END
+ClearFindResultsAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/fbreader/ClearFindResultsAction.java
+END
+ActionCode.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/fbreader/ActionCode.java
+END
+TrackballScrollingAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/fbreader/TrackballScrollingAction.java
+END
+FindPreviousAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/fbreader/FindPreviousAction.java
+END
+FBReaderApp.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/skyworth/!svn/ver/4001/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/fbreader/FBReaderApp.java
+END
+FindNextAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/fbreader/FindNextAction.java
+END
+ScrollingPreferences.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/fbreader/ScrollingPreferences.java
+END
+SwitchProfileAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/fbreader/SwitchProfileAction.java
+END
+QuitAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/fbreader/QuitAction.java
+END
+FBView.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/skyworth/!svn/ver/3655/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/fbreader/FBView.java
+END
+CancelAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/fbreader/CancelAction.java
+END
+FBAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/fbreader/FBAction.java
+END
+FollowHyperlinkAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/fbreader/FollowHyperlinkAction.java
+END
+VolumeKeyScrollingAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/skyworth/!svn/ver/3655/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/fbreader/VolumeKeyScrollingAction.java
+END
+RotateAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/fbreader/RotateAction.java
+END

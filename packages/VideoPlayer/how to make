@@ -1,0 +1,7 @@
+for videoplayer base on the libraries defined in AmPlayer,
+so don't use 'mm' command to build the apk.
+1, . build/envsetup.sh
+2, lunch 4
+3, make VideoPlayer
+
+The VideoPlayer.apk can be found in dir out/target/product/m1ref/data/app.

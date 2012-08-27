@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/util
+END
+ZLMiscUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/util/ZLMiscUtil.java
+END
+ZLCharacterUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/util/ZLCharacterUtil.java
+END
+ZLColor.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/util/ZLColor.java
+END
+ZLInputStreamWithOffset.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/util/ZLInputStreamWithOffset.java
+END
+ZLArrayUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/util/ZLArrayUtils.java
+END
+ZLLanguageUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/util/ZLLanguageUtil.java
+END
+ZLBoolean3.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/util/ZLBoolean3.java
+END
+ZLSearchPattern.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/util/ZLSearchPattern.java
+END
+ZLSearchUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/util/ZLSearchUtil.java
+END
+ZLUnicodeUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/util/ZLUnicodeUtil.java
+END
+ZLNetworkUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/util/ZLNetworkUtil.java
+END

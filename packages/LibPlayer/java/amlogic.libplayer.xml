@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<permissions>
+    <library name="amlogic.libplayer"
+            file="/system/framework/amlogic.libplayer.jar"/>
+</permissions>

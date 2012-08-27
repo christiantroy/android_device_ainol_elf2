@@ -1,0 +1,12 @@
+-keep class com.amlogic.graphics.ImageInfo {
+	*; 
+}
+-keep class com.amlogic.graphics.DecoderInfo {
+	*; 
+}
+-keepclassmembers class com.amlogic.graphics.PictureKit {
+    private static native java.lang.String PictureKitVersion();
+    private static native com.amlogic.graphics.DecoderInfo getPictureInfoNative(java.lang.String);
+    private static native com.amlogic.graphics.ImageInfo loadPictureNative(java.lang.String,com.amlogic.graphics.DecoderInfo);
+    private static native android.graphics.Bitmap    loadPicture2BmNative(java.lang.String,com.amlogic.graphics.DecoderInfo);
+}

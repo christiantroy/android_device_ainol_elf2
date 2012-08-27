@@ -1,0 +1,12 @@
+#######################################################
+# LINKTOP 3G
+
+DefaultVendor= 0x230d
+DefaultProduct=0x000d
+
+TargetClass=0xff
+
+Configuration=3
+
+CheckSuccess=20
+

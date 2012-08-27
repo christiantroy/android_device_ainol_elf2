@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/root_view"
+	android:layout_width="1920dp"
+	android:layout_height="1080dp">
+	<!-- OpenGLView -->
+    <com.amlogic.pmt.RenderView android:id="@+id/glsurfaceview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+            
+   <!--<com.amlogic.pmt.Waiting android:id="@+id/getting"
+		android:layout_x="609dp" 
+		android:layout_y="387dp" 
+		android:visibility="gone"
+		android:layout_width="702dp" 
+		android:layout_height="480dp" />
+	
+		
+	 Customer Menu View -->
+<!--	<ViewFlipper android:id="@+id/controlFlipper"-->
+<!--	        android:layout_width="wrap_content"-->
+<!--	        android:layout_height="wrap_content"  -->
+<!--			android:layout_alignParentBottom="true"-->
+<!--			android:visibility="invisible">-->
+<!---->
+<!--	    <com.amlogic.AmlogicMenu.Menucontrol-->
+<!--	    	android:id="@+id/controlBar"-->
+<!--			android:layout_width="1920px"-->
+<!--			android:layout_height="1080px"-->
+<!--			/>			-->
+<!--	</ViewFlipper>-->
+	<!--org.geometerplus.zlibrary.ui.android.view.ZLAndroidWidget
+		android:id="@+id/main_view"
+		android:layout_width="1920px"
+		android:layout_height="1080px"
+		android:focusable="true"
+		android:scrollbars="vertical"
+		android:scrollbarAlwaysDrawVerticalTrack="true"
+		android:fadeScrollbars="false"
+	/-->
+</AbsoluteLayout>

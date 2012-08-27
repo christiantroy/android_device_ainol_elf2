@@ -1,0 +1,294 @@
+package com.amlogic.pmt;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
+import java.nio.ShortBuffer;
+import com.amlogic.graphics.DecoderInfo;
+import com.amlogic.graphics.PictureKit;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.Paint.Align;
+import android.util.Log;
+import android.widget.TextView;
+
+public class MiscUtil {
+	static String defaultVideoTex;
+	static String defaultAudioTex;
+	static String defaultPictureTex;
+	static String defaultDocTex;
+	static String defaultUnknownTex;
+	static String defaultNotExistTex;
+	static String defaultDirTex;
+	static int defaultVideoTexID = 0;
+	static int defaultAudioTexID = 0;
+	static int defaultPictureTexID = 0;
+	static int defaultDocTexID = 0;
+	static int defaultUnknownTexID = 0;
+	static int defaultNotExistTexID = 0;
+	static int defaultDirTexID = 0;
+
+	public static String getFileExtension(String fileName){
+		final int index = fileName.lastIndexOf('.');
+		return (index == -1)? "": fileName.substring(index + 1).toLowerCase().intern();
+	}
+	public static void setDefaultTexForFiles(
+			String dirTexture,
+			String videoTexture,
+			String audioTexture,
+			String pictureTexture,
+			String docTexture,
+			String unknownTexture,
+			String notexistTexture
+			){
+		defaultDirTex = new String(dirTexture);
+		defaultVideoTex = new String(videoTexture);
+		defaultAudioTex = new String(audioTexture);
+		defaultPictureTex = new String(pictureTexture);
+		defaultDocTex = new String(docTexture);
+		defaultUnknownTex = new String(unknownTexture);
+		defaultNotExistTex = new String(notexistTexture);		
+		
+		//Generate Texture by TextureManager
+		//To do...
+	}
+	
+	public static FileType getFileType(String fileName){
+		File file = new File(fileName);
+		if(file.exists()){
+			if(file.isDirectory()){
+				return FileType.FILE_IS_DIR;
+			}else if( "txt".equalsIgnoreCase(getFileExtension(fileName)) &&
+				"epub".equalsIgnoreCase(getFileExtension(fileName)) &&
+				"fb2".equalsIgnoreCase(getFileExtension(fileName))){
+				return FileType.FILE_IS_DOC;
+				
+			}else if( "jpg".equalsIgnoreCase(getFileExtension(fileName)) &&
+					  "jpeg".equalsIgnoreCase(getFileExtension(fileName)) &&
+					  "jpg".equalsIgnoreCase(getFileExtension(fileName))){
+				return FileType.FILE_IS_PICTURE;
+			}else if( "avi".equalsIgnoreCase(getFileExtension(fileName)) &&
+					  "rmvb".equalsIgnoreCase(getFileExtension(fileName)) &&
+					  "mpeg".equalsIgnoreCase(getFileExtension(fileName))){
+				return FileType.FILE_IS_VIDEO;
+			}else if( "mp3".equalsIgnoreCase(getFileExtension(fileName)) &&
+					  "wav".equalsIgnoreCase(getFileExtension(fileName)) &&
+					  "ogg".equalsIgnoreCase(getFileExtension(fileName))){
+				return FileType.FILE_IS_VIDEO;
+			}else{				
+				return FileType.FILE_IS_UNKNOWN;
+			}
+		}
+		else{
+			return FileType.FILE_NOT_EXIST;
+		}
+	}
+	public static int getFileDefaultTexture(String fileName){
+		FileType ft = getFileType(fileName);
+		if( FileType.FILE_IS_DIR == ft){
+			return defaultDirTexID;
+		}else if( FileType.FILE_IS_AUDIO == ft){
+			return defaultAudioTexID;
+		}else if(FileType.FILE_IS_DOC == ft){
+			return defaultDocTexID;
+		}else if(FileType.FILE_IS_PICTURE == ft){
+			return defaultPictureTexID;
+		}else if(FileType.FILE_IS_VIDEO == ft){
+			return defaultVideoTexID;
+		}else if(FileType.FILE_IS_UNKNOWN == ft){
+			return defaultUnknownTexID;
+		}else{
+			return defaultNotExistTexID;
+		}
+	}
+	public static FloatBuffer makeFloatBuffer(float[] rawData) {
+		ByteBuffer bb = ByteBuffer.allocateDirect(rawData.length*4);
+		bb.order(ByteOrder.nativeOrder());
+		FloatBuffer fb = bb.asFloatBuffer();
+		fb.put(rawData);
+		fb.position(0);
+		return fb;
+	}
+	public static ShortBuffer makeShortBuffer(short[] rawData) {
+		ByteBuffer bb = ByteBuffer.allocateDirect(rawData.length*2);
+		bb.order(ByteOrder.nativeOrder());
+		ShortBuffer sb = bb.asShortBuffer();
+		sb.put(rawData);
+		sb.position(0);
+		return sb;
+	}
+	
+	public static void drawBitmapIcon(Bitmap bitmap, Bitmap icnBmp, int x, int y){
+		Canvas canvas = new Canvas(bitmap);
+		canvas.drawBitmap(icnBmp, x, y, null);
+	}
+	
+	public static void drawBitmapText(Bitmap bitmap, String devname, int x, int y, int fontsize, int clr, Align aln, Rect rcClip){
+		Canvas canvas = new Canvas(bitmap);
+		Paint paint = new Paint();
+		paint.setColor(clr);
+		paint.setTextSize(fontsize);
+		paint.setTextAlign(aln);
+		paint.setAntiAlias(true);
+		
+		if(rcClip != null)
+			canvas.clipRect(rcClip);
+		canvas.drawText(devname, x, y, paint);
+		
+	}
+	
+	public static float getTextWidth(String text, int fontsize){
+		Paint paint = new Paint();
+		paint.setTextSize(fontsize);
+		return paint.measureText(text);
+	}
+	
+	public static String breakText(String text, int fontsize, int width){
+		String t = new String(text);
+		Paint paint = new Paint();
+		paint.setTextSize(fontsize);
+		int len = paint.breakText(t, true, width, null);
+		if(len <= 0)
+			return "";
+		if(len >= text.length())
+			return t;
+		return t.substring(0, len-1) + '~';
+	}
+	
+	static public void getBitmapFileWidthHeight(String filename, int[] wh){
+		BitmapFactory.Options options = new BitmapFactory.Options();
+		options.inJustDecodeBounds = true;
+		options.outHeight = 0;
+		options.outWidth = 0;
+		BitmapFactory.decodeFile(filename, options);
+		wh[0] = options.outWidth;
+		wh[1] = options.outHeight;
+	}
+	
+	static public Bitmap getThumbImage(String filename, int width, int height) {
+		Bitmap bmp = null;
+		Log.i("MiscUtil", "--> getThumbImage(" + filename + ", " + width + ", " + height + ")");
+
+		String PlayFormat[] = {"jpg","jpeg"};
+		if(checkEndsWithInStrings(filename,PlayFormat)) {
+			DecoderInfo di = new DecoderInfo();
+			di.thumbprefered=1;  /* of need thumbnail of jpeg. */
+			di.widthToDecoder = width;
+			di.heightToDecoder = height;			
+			di.decodemode = 3;
+			bmp = PictureKit.loadPicture(filename,di);
+		}
+		
+		if(bmp == null)	{	//software decode.
+			int[] widthHeight = new int[]{0, 0};
+			getBitmapFileWidthHeight(filename, widthHeight);
+			int nw = widthHeight[0] / width;
+			int ny = widthHeight[1] / height;
+			
+			BitmapFactory.Options options = new BitmapFactory.Options();
+			options.inSampleSize = nw > ny ? ny : nw;
+			bmp = BitmapFactory.decodeFile(filename, options);
+		}else{
+			Log.i("MiscUtil", "-- getThumbImage(" + filename + ") hw " + bmp.getWidth() + ", " + bmp.getHeight() + " --");
+		}
+		
+		if(bmp == null){
+			Log.i("MiscUtil", "<-- getThumbImage(" + filename + ")  null");
+			return null;
+		}
+		
+		if(bmp.getWidth() != width || bmp.getHeight() != height){
+			Bitmap thbmp = MiscUtil.getThumbImage(bmp, width, height);
+			Bitmap cpbmp = thbmp.copy(thbmp.getConfig(), true);
+			thbmp.recycle();
+			bmp.recycle();
+			bmp = cpbmp;
+		}
+		
+		if(bmp == null)
+			Log.i("MiscUtil", "<-- getThumbImage(" + filename + ")  Thumb null");
+		else
+			Log.i("MiscUtil", "<-- getThumbImage(" + filename + ")  " + bmp.getWidth() + ", " + bmp.getHeight());
+		return bmp;
+	}
+	
+	static public Bitmap getThumbImage(Bitmap bmp, int width, int height) {
+		Bitmap newBitmap = null;
+		
+		if (bmp != null) {
+			if(!(bmp.getHeight() == height && bmp.getHeight() == width))
+//				newBitmap = Bitmap.createScaledBitmap(bmp, width, height, true);
+				newBitmap = createScaledBitmap(bmp, width, height);
+			else
+				newBitmap = bmp;
+		}
+		return newBitmap;
+	}
+	
+	static private Bitmap createScaledBitmap(Bitmap bmp, int width, int height){
+		Bitmap sclBmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+		
+        Rect srcR = new Rect(0, 0, bmp.getWidth(), bmp.getHeight());
+        RectF dstR = new RectF(0, 0, width, height);
+
+        Canvas canvas = new Canvas(sclBmp);
+        canvas.drawBitmap(bmp, srcR, dstR, null);	
+
+        return sclBmp;
+	}
+	
+	public static String GetFileSize(File file) {
+		float size = 0;
+		String FileSize = "";
+			if(file == null)
+				return FileSize;
+			size = file.length();	
+			if (size < 1024f) {
+				FileSize = String.format("%.2f",size);	//format to 0.00 to prevent error
+				//FileSize = String.valueOf(size);	
+				//int site = FileSize.indexOf('.');
+				//FileSize = FileSize.substring(0, site + 3);
+				FileSize += "B";
+			} else if (size < 1048576f ) {  //1024 * 1024
+				FileSize = String.format("%.2f",size/1024);
+				FileSize += "KB";
+			}
+
+			else if (size < 1073741824f ) {   // 1024 * 1024 * 1024
+				FileSize = String.format("%.2f",size/1024/1024);
+				FileSize += "MB";
+			}
+
+			else if (size < 1099511627776f) {  //1024 * 1024 * 1024 * 1024
+				FileSize = String.format("%.2f",size/1024/1024/1024);
+				FileSize += "GB";
+			}
+		
+		return FileSize;
+	}
+	
+	 static boolean checkEndsWithInStrings(String checkItsEnd, 
+				String[] fileEndings)
+		{
+
+			for(String aEnd : fileEndings)
+			{
+				if(checkItsEnd.toLowerCase().endsWith(aEnd))
+					return true;
+			}
+			return false;
+			
+		}
+}
+

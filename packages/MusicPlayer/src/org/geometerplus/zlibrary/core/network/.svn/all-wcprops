@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/network
+END
+ZLNetworkRequest.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/network/ZLNetworkRequest.java
+END
+ZLX509TrustManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/network/ZLX509TrustManager.java
+END
+ZLNetworkManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/network/ZLNetworkManager.java
+END
+ZLNetworkException.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/network/ZLNetworkException.java
+END

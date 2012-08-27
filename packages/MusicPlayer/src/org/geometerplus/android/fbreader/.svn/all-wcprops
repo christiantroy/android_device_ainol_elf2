@@ -1,0 +1,143 @@
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/skyworth/!svn/ver/4001/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader
+END
+PreferencesAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/PreferencesAction.java
+END
+ControlPanel.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/ControlPanel.java
+END
+TOCActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/TOCActivity.java
+END
+SearchAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/SearchAction.java
+END
+ShowLibraryAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/ShowLibraryAction.java
+END
+BookInfoAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/BookInfoAction.java
+END
+BookmarksActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/BookmarksActivity.java
+END
+ZLTreeAdapter.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/ZLTreeAdapter.java
+END
+LibraryTabActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/LibraryTabActivity.java
+END
+BookmarkSearchActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/BookmarkSearchActivity.java
+END
+FBReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/skyworth/!svn/ver/4001/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/FBReader.java
+END
+ShowNetworkLibraryAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/ShowNetworkLibraryAction.java
+END
+RunActivityAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/RunActivityAction.java
+END
+SearchActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/SearchActivity.java
+END
+BookmarksManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/BookmarksManager.java
+END
+SQLiteBooksDatabase.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/skyworth/!svn/ver/2907/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/SQLiteBooksDatabase.java
+END
+ShowTOCAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/ShowTOCAction.java
+END
+ShowBookmarksAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/ShowBookmarksAction.java
+END
+TextSearchActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/TextSearchActivity.java
+END
+BookmarkEditActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/BookmarkEditActivity.java
+END
+ControlButtonPanel.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/ControlButtonPanel.java
+END
+BookSearchActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/BookSearchActivity.java
+END
+ShowNavigationAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/ShowNavigationAction.java
+END

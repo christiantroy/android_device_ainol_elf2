@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>	
+	<color name="balck_color">#000000</color>	
+	<color name="gray_color">#7D7D7D</color>
+	<color name="white_color">#FFFFFF</color>	
+	<color name="orange_color">#FF8C00</color>
+</resources>

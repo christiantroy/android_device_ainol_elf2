@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/xml
+END
+ZLXMLParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/xml/ZLXMLParser.java
+END
+ZLMutableString.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/xml/ZLMutableString.java
+END
+ZLXMLProcessor.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/xml/ZLXMLProcessor.java
+END
+ZLXMLReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/xml/ZLXMLReader.java
+END
+ZLStringMap.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/xml/ZLStringMap.java
+END
+ZLXMLReaderAdapter.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/xml/ZLXMLReaderAdapter.java
+END
+ZLDTDParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/xml/ZLDTDParser.java
+END

@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/skyworth/!svn/ver/2516/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/library
+END
+BooksDatabase.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/library/BooksDatabase.java
+END
+Author.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/library/Author.java
+END
+RootTree.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/library/RootTree.java
+END
+Library.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/library/Library.java
+END
+Bookmark.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/library/Bookmark.java
+END
+SeriesInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/library/SeriesInfo.java
+END
+FileInfoSet.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/library/FileInfoSet.java
+END
+SeriesTree.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/library/SeriesTree.java
+END
+BookTree.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/library/BookTree.java
+END
+Tag.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/library/Tag.java
+END
+BookInSeriesTree.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/library/BookInSeriesTree.java
+END
+AuthorTree.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/library/AuthorTree.java
+END
+LibraryTree.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/library/LibraryTree.java
+END
+Book.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/skyworth/!svn/ver/2516/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/library/Book.java
+END
+TagTree.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/library/TagTree.java
+END
+FileInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/library/FileInfo.java
+END

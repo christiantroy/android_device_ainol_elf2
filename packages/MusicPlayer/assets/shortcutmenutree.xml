@@ -1,0 +1,573 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SCMenuTree version="1.0.0">
+<!--SCENES:Music|Picture|Txt|MusPic|MusT|PicT|MusPT-->
+	<SCMenu ID="MusicPlayControl" Scenes="Music|MusPic|MusT|MusPT">
+		<!--<SCMenu ID="shortcut_common_mute_" Value="静音" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>-->
+		<SCMenu ID="status" UIType="StatusCommand" Value="播放暂停" Scenes="Music|MusPic|MusT|MusPT">
+			<SCMenu ID="shortcut_common_play_" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+			<SCMenu ID="shortcut_common_pause_" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_common_stop_" Value="停止" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+		<SCMenu ID="status" Value="快退" UIType="StatusCommand" Scenes="Music|MusPic|MusT|MusPT">
+			<SCMenu ID="shortcut_common_fb_" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+			<SCMenu ID="shortcut_common_fb2_" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+			<SCMenu ID="shortcut_common_fb4_" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+			<SCMenu ID="shortcut_common_fb8_" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+		</SCMenu>
+		<SCMenu ID="status" Value="快进" UIType="StatusCommand" Scenes="Music|MusPic|MusT|MusPT">
+			<SCMenu ID="shortcut_common_ff_" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+			<SCMenu ID="shortcut_common_ff2_" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+			<SCMenu ID="shortcut_common_ff4_" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+			<SCMenu ID="shortcut_common_ff8_" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_music_prev_" Value="上一曲" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+		<SCMenu ID="shortcut_music_next_" Value="下一曲" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+		<!--<SCMenu ID="shortcut_common_vol_" Value="音量" UIType="SliderBar" Scenes="Music|MusPic|MusT|MusPT"/>-->
+		<SCMenu ID="shortcut_common_playmode_" Value="重复模式" UIType="SelectBox" Scenes="Music|MusPic|MusT|MusPT">
+			<SCMenu ID="shortcut_common_playmode_single" Value="单曲循环" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+			<SCMenu ID="shortcut_common_playmode_folder" Value="目录循环" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+			<SCMenu ID="shortcut_common_playmode_rand" Value="随机播放" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+		</SCMenu>
+		<!--<SCMenu ID="shortcut_common_sync_control_" Value="菜单切换" UIType="SelectBox" Scenes="MusPic|MusT|MusPT">
+			<SCMenu ID="shortcut_common_sync_control_music" Value="音乐" UIType="Command" Scenes="MusPic|MusT|MusPT"/>
+			<SCMenu ID="shortcut_common_sync_control_picture" Value="图片" UIType="Command" Scenes="MusPic|MusPT"/>
+			<SCMenu ID="shortcut_common_sync_control_txt" Value="电子书" UIType="Command" Scenes="MusT|MusPT"/>
+		</SCMenu>-->
+		<!--<SCMenu ID="shortcut_common_sync_play_" Value="同步播放" UIType="SelectBoxCommand" Scenes="Music|MusPic|MusT|MusPT">
+			<SCMenu ID="shortcut_common_sync_play_music" Value="音乐" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+			<SCMenu ID="shortcut_common_sync_play_picture" Value="图片" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+			<SCMenu ID="shortcut_common_sync_play_txt" Value="电子书" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+		</SCMenu>  -->
+		<!--<SCMenu ID="shortcut_setup_video_picture_mode_" Value="图像模式" UIType="SelectBox" Scenes="Music|MusPic|MusT|MusPT">
+			<SCMenu ID="shortcut_setup_video_picture_mode_std" Value="标准" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+			<SCMenu ID="shortcut_setup_video_picture_mode_vivid" Value="亮丽" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+			<SCMenu ID="shortcut_setup_video_picture_mode_soft" Value="柔和" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+			<SCMenu ID="shortcut_setup_video_picture_mode_user" Value="自设" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_setup_audio_sound_mode_" Value="声音模式" UIType="SelectBox" Scenes="Music|MusPic|MusT|MusPT">
+			<SCMenu ID="shortcut_setup_audio_sound_mode_std" Value="标准" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+			<SCMenu ID="shortcut_setup_audio_sound_mode_music" Value="音乐" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+			<SCMenu ID="shortcut_setup_audio_sound_mode_news" Value="新闻" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+			<SCMenu ID="shortcut_setup_audio_sound_mode_theater" Value="电影" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>	
+      <SCMenu ID="shortcut_setup_audio_sound_mode_user" Value="自设" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+		</SCMenu>
+		
+	 <SCMenu ID="shortcut_setup_audio_mute_panel_" Value="单独听" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+		
+		<SCMenu ID="shortcut_common_source_" Value="通道选择" UIType="SelectBox" Scenes="Music|MusPic|MusT|MusPT">
+			<SCMenu ID="shortcut_common_source_tv" Value="电视" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+			<SCMenu ID="shortcut_common_source_av1" Value="视频" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+			<SCMenu ID="shortcut_common_source_yuv1" Value="分量" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+			<SCMenu ID="shortcut_common_source_hdmi1" Value="HDMI1" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+			<SCMenu ID="shortcut_common_source_hdmi2" Value="HDMI2" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+			<SCMenu ID="shortcut_common_source_hdmi3" Value="HDMI3" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+			<SCMenu ID="shortcut_common_source_vga" Value="电脑" UIType="Command" Scenes="Music|MusPic|MusT|MusPT"/>
+		</SCMenu>-->
+    </SCMenu>
+	<SCMenu ID="PicturePlayControl" Scenes="Picture|MusPic|PicT|MusPT">
+		<SCMenu ID="shortcut_common_mute_" Value="静音" UIType="Command" Scenes="MusPic|MusPT"/>
+		<SCMenu ID="status" UIType="StatusCommand" Value="播放暂停" Scenes="Picture|MusPic|PicT|MusPT">
+			<SCMenu ID="shortcut_common_play_" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+			<SCMenu ID="shortcut_common_pause_" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_common_stop_" Value="停止" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+		<SCMenu ID="shortcut_picture_prev_" Value="上一张" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+		<SCMenu ID="shortcut_picture_next_" Value="下一张" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+		<SCMenu ID="shortcut_common_vol_" Value="音量" UIType="SliderBar" Scenes="MusPic|MusPT"/>
+		<SCMenu ID="shortcut_common_playmode_" Value="重复模式" UIType="SelectBox" Scenes="Picture|MusPic|PicT|MusPT">
+			<SCMenu ID="shortcut_common_playmode_normal" Value="顺序播放" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+			<SCMenu ID="shortcut_common_playmode_folder" Value="目录循环" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+			<SCMenu ID="shortcut_common_playmode_rand" Value="随机播放" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_picture_switch_time_" Value="切换模式" UIType="SelectBox" Scenes="Picture|MusPic|PicT|MusPT">
+			<SCMenu ID="shortcut_picture_switch_time_3s" Value="三秒" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+			<SCMenu ID="shortcut_picture_switch_time_5s" Value="五秒" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+			<SCMenu ID="shortcut_picture_switch_time_10s" Value="十秒" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+			<SCMenu ID="shortcut_picture_switch_time_hand" Value="手动" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_picture_switch_mode_" Value="播放方式" UIType="SelectBox" Scenes="Picture|MusPic|PicT|MusPT">
+			<SCMenu ID="shortcut_picture_switch_mode_1" Value="正常" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+			<SCMenu ID="shortcut_picture_switch_mode_2" Value="随机" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_picture_rotate_" Value="旋转镜像" UIType="SelectBox" Scenes="Picture|MusPic|PicT|MusPT">
+			<SCMenu ID="shortcut_picture_rotate_normal" Value="正常" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+            <SCMenu ID="shortcut_picture_rotate_90" Value="90度" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+			<SCMenu ID="shortcut_picture_rotate_180" Value="180度" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+			<SCMenu ID="shortcut_picture_rotate_270" Value="270度" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_common_zoom_" Value="放大缩小" UIType="SelectBox" Scenes="Picture|MusPic|PicT|MusPT">
+		<SCMenu ID="shortcut_common_zoom_big" Value="放大" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+        <SCMenu ID="shortcut_common_zoom_small" Value="缩小" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+		</SCMenu>
+		<!-- 
+		<SCMenu ID="shortcut_common_sync_control_" Value="菜单切换" UIType="SelectBox" Scenes="MusPic|PicT|MusPT">
+			<SCMenu ID="shortcut_common_sync_control_music" Value="音乐" UIType="Command" Scenes="MusPic|MusPT"/>
+			<SCMenu ID="shortcut_common_sync_control_picture" Value="图片" UIType="Command" Scenes="MusPic|PicT|MusPT"/>
+			<SCMenu ID="shortcut_common_sync_control_txt" Value="电子书" UIType="Command" Scenes="PicT|MusPT"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_common_sync_play_" Value="同步播放" UIType="SelectBoxCommand" Scenes="Picture|MusPic|PicT|MusPT">
+			<SCMenu ID="shortcut_common_sync_play_music" Value="音乐" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+			<SCMenu ID="shortcut_common_sync_play_picture" Value="图片" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+			<SCMenu ID="shortcut_common_sync_play_txt" Value="电子书" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+		</SCMenu>
+				<SCMenu ID="shortcut_setup_video_picture_mode_" Value="图像模式" UIType="SelectBox" Scenes="Picture|MusPic|PicT|MusPT">
+			<SCMenu ID="shortcut_setup_video_picture_mode_std" Value="标准" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+			<SCMenu ID="shortcut_setup_video_picture_mode_vivid" Value="亮丽" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+			<SCMenu ID="shortcut_setup_video_picture_mode_soft" Value="柔和" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+			<SCMenu ID="shortcut_setup_video_picture_mode_user" Value="自设" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_setup_audio_sound_mode_" Value="声音模式" UIType="SelectBox" Scenes="Picture|MusPic|PicT|MusPT">
+			<SCMenu ID="shortcut_setup_audio_sound_mode_std" Value="标准" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+			<SCMenu ID="shortcut_setup_audio_sound_mode_music" Value="音乐" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+			<SCMenu ID="shortcut_setup_audio_sound_mode_news" Value="新闻" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+			<SCMenu ID="shortcut_setup_audio_sound_mode_theater" Value="电影" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>	
+      	<SCMenu ID="shortcut_setup_audio_sound_mode_user" Value="自设" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_common_source_" Value="通道选择" UIType="SelectBox" Scenes="Picture|MusPic|PicT|MusPT">
+			<SCMenu ID="shortcut_common_source_tv" Value="电视" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+			<SCMenu ID="shortcut_common_source_av1" Value="视频" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+			<SCMenu ID="shortcut_common_source_yuv1" Value="分量" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+			<SCMenu ID="shortcut_common_source_hdmi1" Value="HDMI1" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+			<SCMenu ID="shortcut_common_source_hdmi2" Value="HDMI2" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+			<SCMenu ID="shortcut_common_source_hdmi3" Value="HDMI3" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+			<SCMenu ID="shortcut_common_source_vga" Value="电脑" UIType="Command" Scenes="Picture|MusPic|PicT|MusPT"/>
+		</SCMenu>
+		 -->
+    </SCMenu>
+	<SCMenu ID="TxtPlayControl" Scenes="Txt|MusT|PicT|MusPT">
+		<SCMenu ID="shortcut_common_mute_" Value="静音" UIType="Command" Scenes="MusPic|MusPT"/>
+		<SCMenu ID="shortcut_common_stop_" Value="停止" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>
+		<SCMenu ID="shortcut_txt_prev_" Value="上一页" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>
+		<SCMenu ID="shortcut_txt_next_" Value="下一页" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>
+		<SCMenu ID="shortcut_common_vol_" Value="音量" UIType="SliderBar" Scenes="MusT|MusPT"/>
+		<SCMenu ID="shortcut_txt_turn_page_" Value="快速翻页" UIType="SelectBox" Scenes="Txt|MusT|PicT|MusPT">
+			<SCMenu ID="shortcut_txt_turn_page_next_10p" Value="前进10页" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>
+			<SCMenu ID="shortcut_txt_turn_page_next_20p" Value="前进20页" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>
+			<SCMenu ID="shortcut_txt_turn_page_next_50p" Value="前进50页" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>
+			<SCMenu ID="shortcut_txt_turn_page_prve_10p" Value="后退10页" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>
+			<SCMenu ID="shortcut_txt_turn_page_prve_20p" Value="后退20页" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>
+			<SCMenu ID="shortcut_txt_turn_page_prve_50p" Value="后退50页" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_txt_breakpoint_" Value="断点续读" UIType="SelectBox" Scenes="Txt|MusT|PicT|MusPT">
+			<SCMenu ID="shortcut_txt_breakpoint_first" Value="首页" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>
+			<SCMenu ID="shortcut_txt_breakpoint_breakpoint" Value="断点续读" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_txt_fontsize_" Value="字号" UIType="SelectBox" Scenes="Txt|MusT|PicT|MusPT">
+			<SCMenu ID="shortcut_txt_fontsize_big" Value="大" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>
+			<SCMenu ID="shortcut_txt_fontsize_mid" Value="中" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>
+			<SCMenu ID="shortcut_txt_fontsize_small" Value="小" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_common_sync_control_" Value="菜单切换" UIType="SelectBox" Scenes="MusT|PicT|MusPT">
+			<SCMenu ID="shortcut_common_sync_control_music" Value="音乐" UIType="Command" Scenes="MusT|MusPT"/>
+			<SCMenu ID="shortcut_common_sync_control_picture" Value="图片" UIType="Command" Scenes="PicT|MusPT"/>
+			<SCMenu ID="shortcut_common_sync_control_txt" Value="电子书" UIType="Command" Scenes="MusT|PicT|MusPT"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_common_sync_play_" Value="同步播放" UIType="SelectBoxCommand" Scenes="Txt|MusT|PicT|MusPT">
+			<SCMenu ID="shortcut_common_sync_play_music" Value="音乐" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>
+			<SCMenu ID="shortcut_common_sync_play_picture" Value="图片" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>
+			<SCMenu ID="shortcut_common_sync_play_txt" Value="电子书" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>
+		</SCMenu>
+				<SCMenu ID="shortcut_setup_video_picture_mode_" Value="图像模式" UIType="SelectBox" Scenes="Txt|MusT|PicT|MusPT">
+			<SCMenu ID="shortcut_setup_video_picture_mode_std" Value="标准" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>
+			<SCMenu ID="shortcut_setup_video_picture_mode_vivid" Value="亮丽" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>
+			<SCMenu ID="shortcut_setup_video_picture_mode_soft" Value="柔和" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>
+			<SCMenu ID="shortcut_setup_video_picture_mode_user" Value="自设" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_setup_audio_sound_mode_" Value="声音模式" UIType="SelectBox" Scenes="Txt|MusT|PicT|MusPT">
+			<SCMenu ID="shortcut_setup_audio_sound_mode_std" Value="标准" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>
+			<SCMenu ID="shortcut_setup_audio_sound_mode_music" Value="音乐" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>
+			<SCMenu ID="shortcut_setup_audio_sound_mode_news" Value="新闻" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>
+			<SCMenu ID="shortcut_setup_audio_sound_mode_theater" Value="电影" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>	
+      <SCMenu ID="shortcut_setup_audio_sound_mode_user" Value="自设" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_common_source_" Value="通道选择" UIType="SelectBox" Scenes="Txt|MusT|PicT|MusPT">
+			<SCMenu ID="shortcut_common_source_tv" Value="电视" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>
+			<SCMenu ID="shortcut_common_source_av1" Value="视频" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>
+			<SCMenu ID="shortcut_common_source_yuv1" Value="分量" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>
+			<SCMenu ID="shortcut_common_source_hdmi1" Value="HDMI1" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>
+			<SCMenu ID="shortcut_common_source_hdmi2" Value="HDMI2" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>
+			<SCMenu ID="shortcut_common_source_hdmi3" Value="HDMI3" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>
+			<SCMenu ID="shortcut_common_source_vga" Value="电脑" UIType="Command" Scenes="Txt|MusT|PicT|MusPT"/>
+		</SCMenu>
+    </SCMenu>
+<!--SCENES:Local|Xunlei|Voole-->
+	<SCMenu ID="VideoPlayControl" Scenes="Local|Xunlei|Voole">
+		<SCMenu ID="shortcut_video_3d_setup_" Value="3D设置" UIType="Switch" Scenes="Local|Xunlei|Voole"/>
+		<SCMenu ID="shortcut_common_mute_" Value="静音" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+		<SCMenu ID="status" UIType="StatusCommand" Value="播放暂停" Scenes="Local|Xunlei|Voole">
+			<SCMenu ID="shortcut_common_play_" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+			<SCMenu ID="shortcut_common_pause_" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_common_stop_" Value="停止" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+		<SCMenu ID="status" Value="快退" UIType="StatusCommand" Scenes="Local|Xunlei|Voole">
+			<SCMenu ID="shortcut_common_fb_" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+			<SCMenu ID="shortcut_common_fb1_" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+			<SCMenu ID="shortcut_common_fb2_" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+			<SCMenu ID="shortcut_common_fb4_" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+			<SCMenu ID="shortcut_common_fb8_" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+		</SCMenu>
+		<SCMenu ID="status" Value="快进" UIType="StatusCommand" Scenes="Local|Xunlei|Voole">
+			<SCMenu ID="shortcut_common_ff_" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+			<SCMenu ID="shortcut_common_ff1_" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+			<SCMenu ID="shortcut_common_ff2_" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+			<SCMenu ID="shortcut_common_ff4_" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+			<SCMenu ID="shortcut_common_ff8_" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_video_prev_" Value="上一节" UIType="Command" Scenes="Local|Xunlei"/>
+		<SCMenu ID="shortcut_video_next_" Value="下一节" UIType="Command" Scenes="Local|Xunlei"/>
+		<SCMenu ID="shortcut_common_vol_" Value="音量" UIType="SliderBar" Scenes="Local|Xunlei|Voole"/>
+        <SCMenu ID="shortcut_setup_video_picture_mode_" Value="图像模式" UIType="SelectBox" Scenes="Local|Xunlei|Voole">
+			<SCMenu ID="shortcut_setup_video_picture_mode_std" Value="标准" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+			<SCMenu ID="shortcut_setup_video_picture_mode_vivid" Value="亮丽" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+			<SCMenu ID="shortcut_setup_video_picture_mode_soft" Value="柔和" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+			<SCMenu ID="shortcut_setup_video_picture_mode_user" Value="自设" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+		</SCMenu>
+        <SCMenu ID="shortcut_setup_video_display_mode_" Value="显示模式" UIType="SelectBox" Scenes="Local|Xunlei|Voole">
+			<SCMenu ID="shortcut_setup_video_display_mode_169" Value="全屏模式" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+			<SCMenu ID="shortcut_setup_video_display_mode_personal" Value="人物模式" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+			<SCMenu ID="shortcut_setup_video_display_mode_theater" Value="电影模式" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+			<SCMenu ID="shortcut_setup_video_display_mode_subtitle" Value="字幕模式" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+			<SCMenu ID="shortcut_setup_video_display_mode_43" Value="4:3" UIType="Command" Scenes="Local|Xunlei|Voole"/>		
+		</SCMenu>
+        <SCMenu ID="shortcut_setup_audio_sound_mode_" Value="声音模式" UIType="SelectBox" Scenes="Local|Xunlei|Voole">
+			<SCMenu ID="shortcut_setup_audio_sound_mode_std" Value="标准" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+			<SCMenu ID="shortcut_setup_audio_sound_mode_music" Value="音乐" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+			<SCMenu ID="shortcut_setup_audio_sound_mode_news" Value="新闻" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+			<SCMenu ID="shortcut_setup_audio_sound_mode_theater" Value="电影" UIType="Command" Scenes="Local|Xunlei|Voole"/>	
+            <SCMenu ID="shortcut_setup_audio_sound_mode_user" Value="自设" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+		</SCMenu>
+        <SCMenu ID="shortcut_video_subtitle_" Value="字幕选择" UIType="DynamicBox" Scenes="Local"/>
+		<SCMenu ID="shortcut_video_soundtrack_" Value="音频选择" UIType="DynamicBox" Scenes="Local"/>
+		<SCMenu ID="shortcut_common_playmode_" Value="重复模式" UIType="SelectBox" Scenes="Local">
+			<SCMenu ID="shortcut_common_playmode_single" Value="单个循环" UIType="Command" Scenes="Local"/>
+			<SCMenu ID="shortcut_common_playmode_folder" Value="目录循环" UIType="Command" Scenes="Local"/>
+			<SCMenu ID="shortcut_common_playmode_rand" Value="随机播放" UIType="Command" Scenes="Local"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_common_source_" Value="通道选择" UIType="SelectBox" Scenes="Local|Xunlei|Voole">
+			<SCMenu ID="shortcut_common_source_tv" Value="电视" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+			<SCMenu ID="shortcut_common_source_av1" Value="视频" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+			<SCMenu ID="shortcut_common_source_yuv1" Value="分量" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+            <SCMenu ID="shortcut_common_source_hdmi1" Value="HDMI1" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+			<SCMenu ID="shortcut_common_source_hdmi2" Value="HDMI2" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+			<SCMenu ID="shortcut_common_source_hdmi3" Value="HDMI3" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+			<SCMenu ID="shortcut_common_source_vga" Value="电脑" UIType="Command" Scenes="Local|Xunlei|Voole"/>
+		</SCMenu>
+    </SCMenu>
+<!--SCENES:Setup3D-->	
+	<SCMenu ID="Setup3DControl" Scenes="Setup3D|Local">
+		<SCMenu ID="shortcut_video_3d_mode_" Value="3D模式" UIType="SelectBox" Scenes="Setup3D|Local">
+			<SCMenu ID="shortcut_video_3d_mode_off" Value="关" UIType="Command" Scenes="Setup3D|Local"/>
+			<SCMenu ID="shortcut_video_3d_mode_auto" Value="自动" UIType="Command" Scenes="Setup3D|Local"/>
+			<SCMenu ID="shortcut_video_3d_mode_2d3d" Value="2D转3D" UIType="Command" Scenes="Setup3D|Local"/>
+			<SCMenu ID="shortcut_video_3d_mode_lr" Value="左右" UIType="Command" Scenes="Setup3D|Local"/>
+			<SCMenu ID="shortcut_video_3d_mode_ud" Value="上下" UIType="Command" Scenes="Setup3D|Local"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_video_3d_lr_switch_" Value="左右转换" UIType="SelectBox" Scenes="Setup3D|Local">
+			<SCMenu ID="shortcut_video_3d_lr_switch_on" Value="开" UIType="Command" Scenes="Setup3D|Local"/>
+			<SCMenu ID="shortcut_video_3d_lr_switch_off" Value="关" UIType="Command" Scenes="Setup3D|Local"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_video_3d_dof_" Value="景深" UIType="SliderBar" Scenes="Setup3D|Local"/>
+		<SCMenu ID="shortcut_video_3d_3d2d_" Value="3D转2D" UIType="SelectBox" Scenes="Setup3D|Local">
+			<SCMenu ID="shortcut_video_3d_3d2d_off" Value="关" UIType="Command" Scenes="Setup3D|Local"/>
+			<SCMenu ID="shortcut_video_3d_3d2d_left" Value="左" UIType="Command" Scenes="Setup3D|Local"/>
+			<SCMenu ID="shortcut_video_3d_3d2d_right" Value="右" UIType="Command" Scenes="Setup3D|Local"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_video_3d_smart_engine_" Value="智能3D引擎" UIType="SelectBox" Scenes="Setup3D|Local">
+			<SCMenu ID="shortcut_video_3d_smart_engine_on" Value="开" UIType="Command" Scenes="Setup3D|Local"/>
+			<SCMenu ID="shortcut_video_3d_smart_engine_off" Value="关" UIType="Command" Scenes="Setup3D|Local"/>
+		</SCMenu>
+	</SCMenu>
+<!--SCENES:AnalogTV|AV|YUV|HDMI|VGA-->
+	<SCMenu ID="TVControl" Scenes="AnalogTV|AV|YUV|HDMI|VGA">
+        <SCMenu ID="shortcut_setup_video_picture_mode_" Value="图像模式" UIType="SelectBox" Scenes="AnalogTV|AV|YUV|HDMI|VGA">
+			<SCMenu ID="shortcut_setup_video_picture_mode_std" Value="标准" UIType="Command" Scenes="AnalogTV|AV|YUV|HDMI|VGA"/>
+			<SCMenu ID="shortcut_setup_video_picture_mode_vivid" Value="亮丽" UIType="Command" Scenes="AnalogTV|AV|YUV|HDMI|VGA"/>
+			<SCMenu ID="shortcut_setup_video_picture_mode_soft" Value="柔和" UIType="Command" Scenes="AnalogTV|AV|YUV|HDMI|VGA"/>
+			<SCMenu ID="shortcut_setup_video_picture_mode_user" Value="自设" UIType="Command" Scenes="AnalogTV|AV|YUV|HDMI|VGA"/>
+		</SCMenu>
+        <SCMenu ID="shortcut_setup_video_display_mode_" Value="显示模式" UIType="SelectBox" Scenes="AnalogTV|AV|YUV|HDMI|VGA">
+			<SCMenu ID="shortcut_setup_video_display_mode_169" Value="16:9" UIType="Command" Scenes="AnalogTV|AV|YUV|HDMI|VGA"/>
+			<SCMenu ID="shortcut_setup_video_display_mode_43" Value="4:3" UIType="Command" Scenes="AnalogTV|AV|YUV|HDMI|VGA"/>
+			<SCMenu ID="shortcut_setup_video_display_mode_subtitle" Value="字幕模式" UIType="Command" Scenes="AnalogTV|AV|YUV|HDMI|VGA"/>
+			<SCMenu ID="shortcut_setup_video_display_mode_theater" Value="电影模式" UIType="Command" Scenes="AnalogTV|AV|YUV|HDMI|VGA"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_common_vol_" Value="音量" UIType="SliderBar" Scenes="AnalogTV|AV|YUV|HDMI|VGA"/>
+        <SCMenu ID="shortcut_setup_video_brightness_" Value="亮度" UIType="SliderBar" Scenes="AnalogTV|AV|YUV|HDMI|VGA"/>
+        <SCMenu ID="shortcut_setup_video_contrast_" Value="对比度" UIType="SliderBar" Scenes="AnalogTV|AV|YUV|HDMI|VGA"/>
+        <SCMenu ID="shortcut_setup_video_hue_" Value="色调" UIType="SliderBar" Scenes="AnalogTV|AV"/>
+        <SCMenu ID="shortcut_setup_video_color_" Value="色彩" UIType="SliderBar" Scenes="AnalogTV|AV|YUV|HDMI|VGA"/>
+        <SCMenu ID="shortcut_setup_video_sharpness_" Value="清晰度" UIType="SliderBar" Scenes="AnalogTV|AV|YUV"/>
+        <SCMenu ID="shortcut_setup_video_dnr_" Value="降噪" UIType="SelectBox" Scenes="AnalogTV|AV|YUV">
+			<SCMenu ID="shortcut_setup_video_dnr_off" Value="关" UIType="Command" Scenes="AnalogTV|AV|YUV"/>
+			<SCMenu ID="shortcut_setup_video_dnr_weak" Value="弱" UIType="Command" Scenes="AnalogTV|AV|YUV"/>
+			<SCMenu ID="shortcut_setup_video_dnr_mid" Value="中" UIType="Command" Scenes="AnalogTV|AV|YUV"/>
+			<SCMenu ID="shortcut_setup_video_dnr_strong" Value="强" UIType="Command" Scenes="AnalogTV|AV|YUV"/>
+		</SCMenu>
+        <SCMenu ID="shortcut_setup_audio_sound_mode_" Value="声音模式" UIType="SelectBox" Scenes="AnalogTV|AV|YUV|HDMI|VGA">
+			<SCMenu ID="shortcut_setup_audio_sound_mode_std" Value="标准" UIType="Command" Scenes="AnalogTV|AV|YUV|HDMI|VGA"/>
+			<SCMenu ID="shortcut_setup_audio_sound_mode_news" Value="新闻" UIType="Command" Scenes="AnalogTV|AV|YUV|HDMI|VGA"/>
+			<SCMenu ID="shortcut_setup_audio_sound_mode_theater" Value="电影" UIType="Command" Scenes="AnalogTV|AV|YUV|HDMI|VGA"/>
+			<SCMenu ID="shortcut_setup_audio_sound_mode_music" Value="音乐" UIType="Command" Scenes="AnalogTV|AV|YUV|HDMI|VGA"/>
+            <SCMenu ID="shortcut_setup_audio_sound_mode_user" Value="自设" UIType="Command" Scenes="AnalogTV|AV|YUV|HDMI|VGA"/>
+		</SCMenu>
+        <SCMenu ID="shortcut_setup_audio_bass_" Value="低音" UIType="SliderBar" Scenes="AnalogTV|AV|YUV|HDMI|VGA"/>
+        <SCMenu ID="shortcut_setup_audio_treble_" Value="高音" UIType="SliderBar" Scenes="AnalogTV|AV|YUV|HDMI|VGA"/>
+        <SCMenu ID="shortcut_setup_audio_srs_" Value="SRS环绕声" UIType="SelectBox" Scenes="AnalogTV|AV|YUV|HDMI|VGA">
+			<SCMenu ID="shortcut_setup_audio_srs_on" Value="开" UIType="Command" Scenes="AnalogTV|AV|YUV|HDMI|VGA"/>
+			<SCMenu ID="shortcut_setup_audio_srs_off" Value="关" UIType="Command" Scenes="AnalogTV|AV|YUV|HDMI|VGA"/>
+        </SCMenu>
+        <SCMenu ID="shortcut_setup_audio_mute_panel_" Value="单独听" UIType="Dialog" Scenes="AnalogTV|AV|YUV|HDMI|VGA"/>
+        <SCMenu ID="shortcut_program_setup_" Value="频道设置" UIType="Switch" Scenes="AnalogTV"/>
+        <SCMenu ID="shortcut_common_source_" Value="通道选择" UIType="SelectBox" Scenes="AnalogTV|AV|YUV|HDMI|VGA">
+			<SCMenu ID="shortcut_common_source_tv" Value="电视" UIType="Command" Scenes="AnalogTV|AV|YUV|HDMI|VGA"/>
+			<SCMenu ID="shortcut_common_source_av1" Value="视频" UIType="Command" Scenes="AnalogTV|AV|YUV|HDMI|VGA"/>
+			<SCMenu ID="shortcut_common_source_yuv1" Value="分量" UIType="Command" Scenes="AnalogTV|AV|YUV|HDMI|VGA"/>
+            <SCMenu ID="shortcut_common_source_hdmi1" Value="HDMI1" UIType="Command" Scenes="AnalogTV|AV|YUV|HDMI|VGA"/>
+			<SCMenu ID="shortcut_common_source_hdmi2" Value="HDMI2" UIType="Command" Scenes="AnalogTV|AV|YUV|HDMI|VGA"/>
+			<SCMenu ID="shortcut_common_source_hdmi3" Value="HDMI3" UIType="Command" Scenes="AnalogTV|AV|YUV|HDMI|VGA"/>
+			<SCMenu ID="shortcut_common_source_vga" Value="电脑" UIType="Command" Scenes="AnalogTV|AV|YUV|HDMI|VGA"/>
+		</SCMenu>
+    </SCMenu>
+<!--SCENES:AnalogTV-->
+	<SCMenu ID="ProgramControl" Scenes="AnalogTV">
+        <SCMenu ID="shortcut_program_no_" Value="频道号" UIType="DynamicBox" Scenes="AnalogTV"/>
+        <SCMenu ID="shortcut_program_skip_" Value="跳台" UIType="SelectBox" Scenes="AnalogTV">
+			<SCMenu ID="shortcut_program_skip_on" Value="开" UIType="Command" Scenes="AnalogTV"/>
+			<SCMenu ID="shortcut_program_skip_off" Value="关" UIType="Command" Scenes="AnalogTV"/>
+        </SCMenu>
+		<SCMenu ID="shortcut_program_video_sys_" Value="彩色制式" UIType="SelectBox" Scenes="AnalogTV">
+			<SCMenu ID="shortcut_program_video_sys_auto" Value="自动" UIType="Command" Scenes="AnalogTV"/>
+			<SCMenu ID="shortcut_program_video_sys_pal" Value="PAL" UIType="Command" Scenes="AnalogTV"/>
+			<SCMenu ID="shortcut_program_video_sys_ntsc" Value="NTSC" UIType="Command" Scenes="AnalogTV"/>
+        </SCMenu>
+		<SCMenu ID="shortcut_program_sound_sys_" Value="声音制式" UIType="SelectBox" Scenes="AnalogTV">
+			<SCMenu ID="shortcut_program_sound_sys_auto" Value="自动" UIType="Command" Scenes="AnalogTV"/>
+			<SCMenu ID="shortcut_program_sound_sys_dk" Value="DK" UIType="Command" Scenes="AnalogTV"/>
+			<SCMenu ID="shortcut_program_sound_sys_i" Value="I" UIType="Command" Scenes="AnalogTV"/>
+			<SCMenu ID="shortcut_program_sound_sys_bg" Value="BG" UIType="Command" Scenes="AnalogTV"/>
+			<SCMenu ID="shortcut_program_sound_sys_m" Value="M" UIType="Command" Scenes="AnalogTV"/>
+        </SCMenu>
+		<SCMenu ID="shortcut_program_band_" Value="频段" UIType="SelectBox" Scenes="AnalogTV">
+			<SCMenu ID="shortcut_program_band_vhfl" Value="VHFL" UIType="Command" Scenes="AnalogTV"/>
+			<SCMenu ID="shortcut_program_band_vhfh" Value="VHFH" UIType="Command" Scenes="AnalogTV"/>
+			<SCMenu ID="shortcut_program_band_ufh" Value="UHF" UIType="Command" Scenes="AnalogTV"/>
+        </SCMenu>
+		<SCMenu ID="shortcut_program_manual_search_" Value="手动搜台" UIType="TunerDialog" Scenes="AnalogTV"/>
+		<SCMenu ID="shortcut_program_fine_" Value="微调搜台" UIType="TunerDialog" Scenes="AnalogTV"/>
+		<SCMenu ID="shortcut_program_auto_search_" Value="自动搜台" UIType="TunerDialog" Scenes="AnalogTV"/>
+		<SCMenu ID="shortcut_program_edit_" Value="频道编辑" UIType="ProgramEditDialog" Scenes="AnalogTV"/>
+		<SCMenu ID="shortcut_program_vol_correct_" Value="音量补偿" UIType="BalanceBar" Scenes="AnalogTV"/>
+	</SCMenu>
+<!--SCENES:AllMenu-->
+	<SCMenu ID="SourceSwitch" Scenes="AllMenu">
+        <SCMenu ID="shortcut_common_source_" Value="通道选择" UIType="SelectBox" Scenes="AllMenu">
+			<SCMenu ID="shortcut_common_source_tv" Value="电视" UIType="Command" Scenes="AllMenu"/>
+			<SCMenu ID="shortcut_common_source_av1" Value="视频" UIType="Command" Scenes="AllMenu"/>
+			<SCMenu ID="shortcut_common_source_yuv1" Value="分量" UIType="Command" Scenes="AllMenu"/>
+            <SCMenu ID="shortcut_common_source_hdmi1" Value="HDMI1" UIType="Command" Scenes="AllMenu"/>
+			<SCMenu ID="shortcut_common_source_hdmi2" Value="HDMI2" UIType="Command" Scenes="AllMenu"/>
+			<SCMenu ID="shortcut_common_source_hdmi3" Value="HDMI3" UIType="Command" Scenes="AllMenu"/>
+			<SCMenu ID="shortcut_common_source_vga" Value="电脑" UIType="Command" Scenes="AllMenu"/>
+        </SCMenu>
+    </SCMenu>
+<!--SCENES:Setup Net-->
+	<SCMenu ID="NetSetupMenu" Scenes="NetSetupMenu">	
+		<SCMenu ID="shortcut_setup_net_ethernet_" Value="有线网络" UIType="Command" Scenes="NetSetupMenu"/>
+		<SCMenu ID="shortcut_setup_net_wifi_" Value="无线网络" UIType="Command" Scenes="NetSetupMenu"/>
+		<SCMenu ID="shortcut_setup_net_wps_" Value="酷开一键通" UIType="Command" Scenes="NetSetupMenu"/>		
+	</SCMenu>
+<!--SCENES:Setup Picture-->
+<!--<SCMenu ID="shortcut_setup_video_hue_" Value="色调" UIType="SliderBar" Scenes="PicSetupMenu"/>-->
+	<SCMenu ID="PicSetupMenu" Scenes="PicSetupMenu">	
+        <SCMenu ID="shortcut_setup_video_brightness_" Value="亮度" UIType="SliderBar" Scenes="PicSetupMenu"/>
+        <SCMenu ID="shortcut_setup_video_contrast_" Value="对比度" UIType="SliderBar" Scenes="PicSetupMenu"/>
+        <SCMenu ID="shortcut_setup_video_color_" Value="色彩" UIType="SliderBar" Scenes="PicSetupMenu"/>		
+        <SCMenu ID="shortcut_setup_video_sharpness_" Value="清晰度" UIType="SliderBar" Scenes="PicSetupMenu"/>
+		<SCMenu ID="shortcut_setup_video_temperature_" Value="色温" UIType="SelectBox" Scenes="PicSetupMenu">
+			<SCMenu ID="shortcut_setup_video_temperature_cold" Value="冷色" UIType="Command" Scenes="PicSetupMenu"/>
+			<SCMenu ID="shortcut_setup_video_temperature_std" Value="标准" UIType="Command" Scenes="PicSetupMenu"/>
+			<SCMenu ID="shortcut_setup_video_temperature_warm" Value="暖色" UIType="Command" Scenes="PicSetupMenu"/>
+		</SCMenu>		
+        <SCMenu ID="shortcut_setup_video_dnr_" Value="降噪" UIType="SelectBox" Scenes="PicSetupMenu">
+			<SCMenu ID="shortcut_setup_video_dnr_off" Value="关" UIType="Command" Scenes="PicSetupMenu"/>
+			<SCMenu ID="shortcut_setup_video_dnr_weak" Value="弱" UIType="Command" Scenes="PicSetupMenu"/>
+			<SCMenu ID="shortcut_setup_video_dnr_mid" Value="中" UIType="Command" Scenes="PicSetupMenu"/>
+			<SCMenu ID="shortcut_setup_video_dnr_strong" Value="强" UIType="Command" Scenes="PicSetupMenu"/>
+			<SCMenu ID="shortcut_setup_video_dnr_auto" Value="自动" UIType="Command" Scenes="PicSetupMenu"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_setup_video_picture_mode_" Value="图像模式" UIType="SelectBox" Scenes="PicSetupMenu">
+			<SCMenu ID="shortcut_setup_video_picture_mode_std" Value="标准" UIType="Command" Scenes="PicSetupMenu"/>
+			<SCMenu ID="shortcut_setup_video_picture_mode_vivid" Value="亮丽" UIType="Command" Scenes="PicSetupMenu"/>
+			<SCMenu ID="shortcut_setup_video_picture_mode_soft" Value="柔和" UIType="Command" Scenes="PicSetupMenu"/>
+			<SCMenu ID="shortcut_setup_video_picture_mode_user" Value="自设" UIType="Command" Scenes="PicSetupMenu"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_setup_video_display_mode_" Value="显示模式" UIType="SelectBox" Scenes="PicSetupMenu">
+			<SCMenu ID="shortcut_setup_video_display_mode_169" Value="全屏模式" UIType="Command" Scenes="PicSetupMenu"/>
+			<SCMenu ID="shortcut_setup_video_display_mode_personal" Value="人物模式" UIType="Command" Scenes="PicSetupMenu"/>
+			<SCMenu ID="shortcut_setup_video_display_mode_theater" Value="电影模式" UIType="Command" Scenes="PicSetupMenu"/>
+			<SCMenu ID="shortcut_setup_video_display_mode_subtitle" Value="字幕模式" UIType="Command" Scenes="PicSetupMenu"/>
+			<SCMenu ID="shortcut_setup_video_display_mode_43" Value="4:3" UIType="Command" Scenes="PicSetupMenu"/>
+			<SCMenu ID="shortcut_setup_video_display_mode_panorama" Value="全景模式" UIType="Command" Scenes="PicSetupMenu"/>
+		</SCMenu>
+	</SCMenu>
+<!--SCENES:Setup Sound-->
+	<SCMenu ID="SndSetupMenu" Scenes="SndSetupMenu">	
+		<SCMenu ID="shortcut_common_vol_" Value="音量" UIType="SliderBar" Scenes="SndSetupMenu"/>
+		<SCMenu ID="shortcut_setup_audio_equalizer_" Value="均衡器" UIType="Command" Scenes="SndSetupMenu"/>
+		<SCMenu ID="shortcut_setup_audio_balance_" Value="平衡" UIType="SliderBar" Scenes="SndSetupMenu"/>
+        <SCMenu ID="shortcut_setup_audio_srs_" Value="SRS环绕声" UIType="SelectBox" Scenes="SndSetupMenu">
+        <SCMenu ID="shortcut_setup_audio_srs_off" Value="关" UIType="Command" Scenes="SndSetupMenu"/>
+				<SCMenu ID="shortcut_setup_audio_srs_on" Value="开" UIType="Command" Scenes="SndSetupMenu"/>		
+        </SCMenu>
+		<SCMenu ID="shortcut_setup_audio_voice_" Value="清脆人声" UIType="SelectBox" Scenes="SndSetupMenu">
+			<SCMenu ID="shortcut_setup_audio_voice_off" Value="关" UIType="Command" Scenes="SndSetupMenu"/>
+			<SCMenu ID="shortcut_setup_audio_voice_on" Value="开" UIType="Command" Scenes="SndSetupMenu"/>			
+        </SCMenu>
+		<SCMenu ID="shortcut_setup_audio_increase_bass_" Value="低音提升" UIType="SelectBox" Scenes="SndSetupMenu">
+			<SCMenu ID="shortcut_setup_audio_increase_bass_off" Value="关" UIType="Command" Scenes="SndSetupMenu"/>
+			<SCMenu ID="shortcut_setup_audio_increase_bass_on" Value="开" UIType="Command" Scenes="SndSetupMenu"/>	
+        </SCMenu>
+        <SCMenu ID="shortcut_setup_audio_sound_mode_" Value="声音模式" UIType="SelectBox" Scenes="SndSetupMenu">
+			<SCMenu ID="shortcut_setup_audio_sound_mode_std" Value="标准" UIType="Command" Scenes="SndSetupMenu"/>
+			<SCMenu ID="shortcut_setup_audio_sound_mode_music" Value="音乐" UIType="Command" Scenes="SndSetupMenu"/>
+			<SCMenu ID="shortcut_setup_audio_sound_mode_news" Value="新闻" UIType="Command" Scenes="SndSetupMenu"/>
+			<SCMenu ID="shortcut_setup_audio_sound_mode_theater" Value="电影" UIType="Command" Scenes="SndSetupMenu"/>
+            <SCMenu ID="shortcut_setup_audio_sound_mode_user" Value="自设" UIType="Command" Scenes="SndSetupMenu"/>
+		</SCMenu>
+	</SCMenu>
+<!--SCENES:Setup System-->
+	<SCMenu ID="SysSetupMenu" Scenes="SysSetupMenu">	
+		<SCMenu ID="shortcut_setup_sys_poweron_source_" Value="开机通道" UIType="SelectBox" Scenes="SysSetupMenu">
+			<SCMenu ID="shortcut_setup_sys_poweron_source_memory" Value="记忆" UIType="Command" Scenes="SysSetupMenu"/>
+			<SCMenu ID="shortcut_setup_sys_poweron_source_coocaa" Value="主页" UIType="Command" Scenes="SysSetupMenu"/>
+			<SCMenu ID="shortcut_setup_sys_poweron_source_tv" Value="电视" UIType="Command" Scenes="SysSetupMenu"/>
+			<SCMenu ID="shortcut_setup_sys_poweron_source_av1" Value="视频" UIType="Command" Scenes="SysSetupMenu"/>
+			<SCMenu ID="shortcut_setup_sys_poweron_source_yuv1" Value="分量" UIType="Command" Scenes="SysSetupMenu"/>
+			<SCMenu ID="shortcut_setup_sys_poweron_source_hdmi1" Value="HDMI1" UIType="Command" Scenes="SysSetupMenu"/>
+			<SCMenu ID="shortcut_setup_sys_poweron_source_hdmi2" Value="HDMI2" UIType="Command" Scenes="SysSetupMenu"/>
+			<SCMenu ID="shortcut_setup_sys_poweron_source_hdmi3" Value="HDMI3" UIType="Command" Scenes="SysSetupMenu"/>
+			<SCMenu ID="shortcut_setup_sys_poweron_source_vga" Value="电脑" UIType="Command" Scenes="SysSetupMenu"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_setup_sys_sleep_time_" Value="睡眠时间" UIType="SelectBox" Scenes="SysSetupMenu">
+			<SCMenu ID="shortcut_setup_sys_sleep_time_off" Value="关" UIType="Command" Scenes="SysSetupMenu"/>
+			<SCMenu ID="shortcut_setup_sys_sleep_time_5" Value="5分钟" UIType="Command" Scenes="SysSetupMenu"/>
+			<SCMenu ID="shortcut_setup_sys_sleep_time_15" Value="15分钟" UIType="Command" Scenes="SysSetupMenu"/>
+			<SCMenu ID="shortcut_setup_sys_sleep_time_30" Value="30分钟" UIType="Command" Scenes="SysSetupMenu"/>
+			<SCMenu ID="shortcut_setup_sys_sleep_time_60" Value="60分钟" UIType="Command" Scenes="SysSetupMenu"/>
+			<SCMenu ID="shortcut_setup_sys_sleep_time_90" Value="90分钟" UIType="Command" Scenes="SysSetupMenu"/>
+			<SCMenu ID="shortcut_setup_sys_sleep_time_120" Value="120分钟" UIType="Command" Scenes="SysSetupMenu"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_setup_sys_six_color_" Value="六基色" UIType="SelectBox" Scenes="SysSetupMenu">
+			<SCMenu ID="shortcut_setup_sys_six_color_off" Value="关" UIType="Command" Scenes="SysSetupMenu"/>
+			<SCMenu ID="shortcut_setup_sys_six_color_opti" Value="优化" UIType="Command" Scenes="SysSetupMenu"/>
+			<SCMenu ID="shortcut_setup_sys_six_color_enhance" Value="增强" UIType="Command" Scenes="SysSetupMenu"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_setup_sys_matrix_" Value="矩阵背光" UIType="SelectBox" Scenes="SysSetupMenu">
+			<SCMenu ID="shortcut_setup_sys_matrix_off" Value="关" UIType="Command" Scenes="SysSetupMenu"/>
+			<SCMenu ID="shortcut_setup_sys_matrix_on" Value="开" UIType="Command" Scenes="SysSetupMenu"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_setup_sys_back_light_" Value="背光调节" UIType="SliderBar" Scenes="SysSetupMenu"/>
+		<SCMenu ID="shortcut_setup_sys_dream_panel_" Value="屏变" UIType="SelectBox" Scenes="SysSetupMenu">
+			<SCMenu ID="shortcut_setup_sys_dream_panel_off" Value="关" UIType="Command" Scenes="SysSetupMenu"/>
+			<SCMenu ID="shortcut_setup_sys_dream_panel_sensor" Value="光感屏变" UIType="Command" Scenes="SysSetupMenu"/>
+			<SCMenu ID="shortcut_setup_sys_dream_panel_scene" Value="场景屏变" UIType="Command" Scenes="SysSetupMenu"/>
+			<SCMenu ID="shortcut_setup_sys_dream_panel_all" Value="全屏变" UIType="Command" Scenes="SysSetupMenu"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_setup_sys_memc_" Value="屏稳" UIType="SelectBox" Scenes="SysSetupMenu">
+			<SCMenu ID="shortcut_setup_sys_memc_off" Value="关" UIType="Command" Scenes="SysSetupMenu"/>
+			<SCMenu ID="shortcut_setup_sys_memc_weak" Value="弱" UIType="Command" Scenes="SysSetupMenu"/>
+			<SCMenu ID="shortcut_setup_sys_memc_mid" Value="中" UIType="Command" Scenes="SysSetupMenu"/>
+			<SCMenu ID="shortcut_setup_sys_memc_strong" Value="强" UIType="Command" Scenes="SysSetupMenu"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_setup_sys_woofer_switch_" Value="重低音开关" UIType="SelectBox" Scenes="SysSetupMenu">
+			<SCMenu ID="shortcut_setup_sys_woofer_switch_off" Value="关" UIType="Command" Scenes="SysSetupMenu"/>
+			<SCMenu ID="shortcut_setup_sys_woofer_switch_on" Value="开" UIType="Command" Scenes="SysSetupMenu"/>		
+		</SCMenu>
+		<SCMenu ID="shortcut_setup_sys_woofer_vol_" Value="重低音音量" UIType="SliderBar" Scenes="SysSetupMenu"/>
+		<SCMenu ID="shortcut_setup_sys_poweron_music_" Value="开关机音乐" UIType="SelectBox" Scenes="SysSetupMenu">
+			<SCMenu ID="shortcut_setup_sys_poweron_music_off" Value="关" UIType="Command" Scenes="SysSetupMenu"/>
+			<SCMenu ID="shortcut_setup_sys_poweron_music_on" Value="开" UIType="Command" Scenes="SysSetupMenu"/>	
+		</SCMenu>
+		<SCMenu ID="shortcut_setup_sys_wall_effects_" Value="壁挂音效" UIType="SelectBox" Scenes="SysSetupMenu">
+			<SCMenu ID="shortcut_setup_sys_wall_effects_off" Value="关" UIType="Command" Scenes="SysSetupMenu"/>
+			<SCMenu ID="shortcut_setup_sys_wall_effects_on" Value="开" UIType="Command" Scenes="SysSetupMenu"/>			
+		</SCMenu>
+		<SCMenu ID="shortcut_setup_sys_upgrade_local_" Value="本地升级" UIType="Command" Scenes="SysSetupMenu"/>
+		<SCMenu ID="shortcut_setup_sys_upgrade_online_" Value="在线升级" UIType="Command" Scenes="SysSetupMenu"/>	
+		<SCMenu ID="shortcut_setup_sys_filelist_mode_" Value="查看方式" UIType="SelectBox" Scenes="SysSetupMenu">
+			<SCMenu ID="shortcut_setup_sys_filelist_mode_file" Value="文件浏览" UIType="Command" Scenes="SysSetupMenu"/>
+			<SCMenu ID="shortcut_setup_sys_filelist_mode_folder" Value="目录浏览" UIType="Command" Scenes="SysSetupMenu"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_setup_sys_recovery_" Value="恢复出厂设置" UIType="Dialog" Scenes="SysSetupMenu"/>	
+	</SCMenu>
+<!--SCENES:VideoChat-->
+	<SCMenu ID="VideoChatWindow" Scenes="VideoChatWindow">	
+		<SCMenu ID="shortcut_common_vol_" Value="音量" UIType="SliderBar" 	Scenes="VideoChatWindow"/>	
+		<SCMenu ID="shortcut_videochat_hangup_" Value="挂断" UIType="Command" Scenes="VideoChatWindow"/>
+		<SCMenu ID="shortcut_videochat_local_video_" Value="我的视频" UIType="SelectBox" Scenes="VideoChatWindow">
+			<SCMenu ID="shortcut_videochat_local_video_on" Value="开" UIType="Command" Scenes="VideoChatWindow"/>
+			<SCMenu ID="shortcut_videochat_local_video_off" Value="关" UIType="Command" Scenes="VideoChatWindow"/>
+		</SCMenu>
+		<SCMenu ID="shortcut_videochat_remote_video_" Value="好友视频" UIType="SelectBox" Scenes="VideoChatWindow">
+			<SCMenu ID="shortcut_videochat_remote_video_on" Value="开" UIType="Command" Scenes="VideoChatWindow"/>
+			<SCMenu ID="shortcut_videochat_remote_video_off" Value="关" UIType="Command" Scenes="VideoChatWindow"/>
+		</SCMenu>
+		<!--		<SCMenu ID="shortcut_videochat_local_photo_" Value="拍摄照片" UIType="Command" Scenes="VideoChat"/>-->
+<!--		<SCMenu ID="shortcut_videochat_remote_photo_" Value="好友照片" UIType="Command" Scenes="VideoChat"/>-->
+		<SCMenu ID="shortcut_videochat_fullscr_" Value="全屏显示" UIType="SelectBox" Scenes="VideoChatWindow">
+			<SCMenu ID="shortcut_videochat_fullscr_on" Value="开" UIType="Command" Scenes="VideoChatWindow"/>
+			<SCMenu ID="shortcut_videochat_fullscr_off" Value="关" UIType="Command" Scenes="VideoChatWindow"/>
+		</SCMenu>			
+<!--		<SCMenu ID="shortcut_setup_video_picture_mode_" Value="图像模式" UIType="SelectBox" Scenes="VideoChatWindow">-->
+<!--			<SCMenu ID="shortcut_setup_video_picture_mode_std" Value="标准" UIType="Command" Scenes="VideoChatWindow"/>-->
+<!--			<SCMenu ID="shortcut_setup_video_picture_mode_vivid" Value="亮丽" UIType="Command" Scenes="VideoChatWindow"/>-->
+<!--			<SCMenu ID="shortcut_setup_video_picture_mode_soft" Value="柔和" UIType="Command" Scenes="VideoChatWindow"/>-->
+<!--			<SCMenu ID="shortcut_setup_video_picture_mode_user" Value="自设" UIType="Command" Scenes="VideoChatWindow"/>-->
+<!--		</SCMenu>-->
+<!--		<SCMenu ID="shortcut_setup_sys_poweron_source_" Value="开机通道" UIType="SelectBox" Scenes="VideoChatWindow">-->
+<!--			<SCMenu ID="shortcut_setup_sys_poweron_source_tv" Value="电视" UIType="Command" Scenes="VideoChatWindow"/>-->
+<!--			<SCMenu ID="shortcut_setup_sys_poweron_source_av1" Value="视频" UIType="Command" Scenes="VideoChatWindow"/>-->
+<!--			<SCMenu ID="shortcut_setup_sys_poweron_source_yuv1" Value="分量" UIType="Command" Scenes="VideoChatWindow"/>-->
+<!--			<SCMenu ID="shortcut_setup_sys_poweron_source_hdmi1" Value="HDMI1" UIType="Command" Scenes="VideoChatWindow"/>-->
+<!--			<SCMenu ID="shortcut_setup_sys_poweron_source_hdmi2" Value="HDMI2" UIType="Command" Scenes="VideoChatWindow"/>-->
+<!--			<SCMenu ID="shortcut_setup_sys_poweron_source_hdmi3" Value="HDMI3" UIType="Command" Scenes="VideoChatWindow"/>-->
+<!--			<SCMenu ID="shortcut_setup_sys_poweron_source_vga" Value="电脑" UIType="Command" Scenes="VideoChatWindow"/>-->
+<!--		</SCMenu>-->
+	</SCMenu>
+	<SCMenu ID="VideoChatList" Scenes="VideoChatList">	
+<!--		<SCMenu ID="shortcut_videochat_busy_" Value="免打扰" UIType="Command" Scenes="VideoChatList"/>-->
+		<SCMenu ID="shortcut_videochat_editname_" Value="编辑好友昵称" UIType="Command" Scenes="VideoChatList"/>
+		<SCMenu ID="shortcut_videochat_delefri_" Value="删除好友" UIType="Command" Scenes="VideoChatList"/>
+		<SCMenu ID="shortcut_videochat_return_" Value="返回" UIType="Command" Scenes="VideoChatList"/>
+<!--		<SCMenu ID="shortcut_setup_video_picture_mode_" Value="图像模式" UIType="SelectBox" Scenes="VideoChatList">-->
+<!--			<SCMenu ID="shortcut_setup_video_picture_mode_std" Value="标准" UIType="Command" Scenes="VideoChatList"/>-->
+<!--			<SCMenu ID="shortcut_setup_video_picture_mode_vivid" Value="亮丽" UIType="Command" Scenes="VideoChatList"/>-->
+<!--			<SCMenu ID="shortcut_setup_video_picture_mode_soft" Value="柔和" UIType="Command" Scenes="VideoChatList"/>-->
+<!--			<SCMenu ID="shortcut_setup_video_picture_mode_user" Value="自设" UIType="Command" Scenes="VideoChatList"/>-->
+<!--		</SCMenu>-->
+<!--		<SCMenu ID="shortcut_setup_sys_poweron_source_" Value="开机通道" UIType="SelectBox" Scenes="VideoChatList">-->
+<!--			<SCMenu ID="shortcut_setup_sys_poweron_source_tv" Value="电视" UIType="Command" Scenes="VideoChatList"/>-->
+<!--			<SCMenu ID="shortcut_setup_sys_poweron_source_av1" Value="视频" UIType="Command" Scenes="VideoChatList"/>-->
+<!--			<SCMenu ID="shortcut_setup_sys_poweron_source_yuv1" Value="分量" UIType="Command" Scenes="VideoChatList"/>-->
+<!--			<SCMenu ID="shortcut_setup_sys_poweron_source_hdmi1" Value="HDMI1" UIType="Command" Scenes="VideoChatList"/>-->
+<!--			<SCMenu ID="shortcut_setup_sys_poweron_source_hdmi2" Value="HDMI2" UIType="Command" Scenes="VideoChatList"/>-->
+<!--			<SCMenu ID="shortcut_setup_sys_poweron_source_hdmi3" Value="HDMI3" UIType="Command" Scenes="VideoChatList"/>-->
+<!--			<SCMenu ID="shortcut_setup_sys_poweron_source_vga" Value="电脑" UIType="Command" Scenes="VideoChatList"/>-->
+<!--		</SCMenu>-->
+	</SCMenu>
+<!--SCENES:APKManage-->
+	<SCMenu ID="APKManageControl" Scenes="APKManage">
+		<SCMenu ID="shortcut_app_run_" Value="运行应用" UIType="Command" Scenes="APKManage"/>
+		<SCMenu ID="shortcut_app_uninstall_" Value="删除应用" UIType="Command" Scenes="APKManage"/>
+		<SCMenu ID="shortcut_app_update_" Value="升级应用" UIType="Command" Scenes="APKManage"/>
+<!--		<SCMenu ID="shortcut_common_source_" Value="通道选择" UIType="SelectBox" Scenes="APKManage">-->
+<!--			<SCMenu ID="shortcut_common_source_tv" Value="电视" UIType="Command" Scenes="APKManage"/>-->
+<!--			<SCMenu ID="shortcut_common_source_av1" Value="视频" UIType="Command" Scenes="APKManage"/>-->
+<!--			<SCMenu ID="shortcut_common_source_yuv1" Value="分量" UIType="Command" Scenes="APKManage"/>-->
+<!--			<SCMenu ID="shortcut_common_source_hdmi1" Value="HDMI1" UIType="Command" Scenes="APKManage"/>-->
+<!--			<SCMenu ID="shortcut_common_source_hdmi2" Value="HDMI2" UIType="Command" Scenes="APKManage"/>-->
+<!--			<SCMenu ID="shortcut_common_source_hdmi3" Value="HDMI3" UIType="Command" Scenes="APKManage"/>-->
+<!--			<SCMenu ID="shortcut_common_source_vga" Value="电脑" UIType="Command" Scenes="APKManage"/>-->
+<!--		</SCMenu>-->
+	</SCMenu>
+</SCMenuTree>

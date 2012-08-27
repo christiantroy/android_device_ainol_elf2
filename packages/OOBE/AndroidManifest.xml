@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	package="com.amlogic.OOBE" android:sharedUserId="android.uid.system"
+	android:versionCode="1" android:versionName="1.0">
+
+
+	<!-- Allows an application to read or write the system settings. -->
+	<uses-permission android:name="android.permission.REBOOT" />
+	<uses-permission android:name="android.permission.WRITE_SETTINGS" />
+	<uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+	<application android:icon="@drawable/icon" android:label="@string/app_name">
+		<activity android:name=".OOBE" android:theme="@android:style/Theme.NoTitleBar"
+			android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+
+		<activity android:name="LayoutSetting" android:theme="@android:style/Theme.NoTitleBar">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+
+		<activity android:name="EthConfigurationSetting"
+			android:theme="@android:style/Theme.NoTitleBar">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+
+		<activity android:name="WifiConfigurationSetting"
+			android:theme="@android:style/Theme.NoTitleBar">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+
+		<activity android:name="Language" android:theme="@android:style/Theme.NoTitleBar">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+
+		<activity android:name="UserLicenseAgree" android:theme="@android:style/Theme.NoTitleBar">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+
+		<activity android:name="Calibrationoobe" android:theme="@android:style/Theme.NoTitleBar">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+
+		<activity android:name="DateAndTimeSetting" android:theme="@android:style/Theme.NoTitleBar">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+
+		<activity android:name="Finish" android:theme="@android:style/Theme.NoTitleBar">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+
+		<activity android:name="EthernetSettings" android:label="@string/eth_radio_ctrl_title">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<action android:name="android.settings.ETHERNET_SETTINGS" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.VOICE_LAUNCH" />
+			</intent-filter>
+		</activity>
+
+		<activity android:name="WirelessSettings"
+			android:label="@string/wireless_networks_settings_title">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<action android:name="android.settings.WIRELESS_SETTINGS" />
+				<action android:name="android.settings.AIRPLANE_MODE_SETTINGS" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.VOICE_LAUNCH" />
+			</intent-filter>
+		</activity>
+
+		<receiver android:name=".OOBEBroadcastReceiver">
+			<intent-filter>
+				<action android:name="android.intent.action.BOOT_COMPLETED" />
+			</intent-filter>
+		</receiver>
+		
+		<service android:enabled="true" android:name=".SetPpm" />
+
+	</application>
+
+
+</manifest> 

@@ -1,0 +1,25 @@
+-keep class com.farcore.playerservice.AmPlayer {
+  public void onUpdateState(int, int, int, int, int, int,int);
+}
+-keep class com.subtitleparser.SubtitleFile {
+  public void appendSubtitle(int, int, int, byte[], java.lang.String);
+}
+
+
+-keep class com.subtitleparser.subtypes.RawData {
+  public  RawData(int[] ,int ,int ,int ,int ,java.lang.String );
+  public  RawData(byte[] ,int, java.lang.String );
+}
+
+-keep class com.subtitleparser.SubtitleUtils {
+	public native int getInSubtitleTotalByJni();
+}
+-keep class com.subtitleparser.subtypes.IdxSubApi {
+    native static com.subtitleparser.subtypes.RawData getIdxsubRawdata(int ); 
+	native void setIdxFile(java.lang.String);
+}
+-keep class com.subtitleparser.subtypes.InSubApi {
+	native static com.subtitleparser.subtypes.RawData getrawdata(int ); 
+	native int setInSubtitleNumberByJni(int,java.lang.String  );
+	native void closeInSub();
+}

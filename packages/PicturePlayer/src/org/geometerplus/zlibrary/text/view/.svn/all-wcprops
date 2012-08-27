@@ -1,0 +1,155 @@
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/skyworth/!svn/ver/3697/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/text/view
+END
+ZLTextFixedPosition.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/text/view/ZLTextFixedPosition.java
+END
+PaintStateEnum.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/text/view/PaintStateEnum.java
+END
+ZLTextParagraphCursorCache.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/text/view/ZLTextParagraphCursorCache.java
+END
+ZLTextElement.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/text/view/ZLTextElement.java
+END
+ZLTextAlignmentOptionEntry.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/text/view/ZLTextAlignmentOptionEntry.java
+END
+ZLTextControlElement.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/text/view/ZLTextControlElement.java
+END
+ZLTextImageElement.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/text/view/ZLTextImageElement.java
+END
+ZLTextFixedHSpaceElement.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/text/view/ZLTextFixedHSpaceElement.java
+END
+ZLTextHyperlinkArea.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/text/view/ZLTextHyperlinkArea.java
+END
+ZLTextStyle.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/text/view/ZLTextStyle.java
+END
+ZLTextLineInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/text/view/ZLTextLineInfo.java
+END
+ZLTextParagraphCursor.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/text/view/ZLTextParagraphCursor.java
+END
+ZLTextPosition.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/text/view/ZLTextPosition.java
+END
+ZLTextHyperlink.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/text/view/ZLTextHyperlink.java
+END
+ZLTextElementAreaVector.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/text/view/ZLTextElementAreaVector.java
+END
+ZLTextViewBase.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/text/view/ZLTextViewBase.java
+END
+ZLTextSelectionModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/text/view/ZLTextSelectionModel.java
+END
+ZLTextWordCursor.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/text/view/ZLTextWordCursor.java
+END
+ZLTextFontFamilyWithBaseOptionEntry.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/text/view/ZLTextFontFamilyWithBaseOptionEntry.java
+END
+ZLTextView.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/skyworth/!svn/ver/3181/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/text/view/ZLTextView.java
+END
+ZLTextWord.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/text/view/ZLTextWord.java
+END
+ZLTextPage.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/text/view/ZLTextPage.java
+END
+ZLTextLineSpaceOptionEntry.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/text/view/ZLTextLineSpaceOptionEntry.java
+END
+ZLTextHyperlinkControlElement.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/text/view/ZLTextHyperlinkControlElement.java
+END
+ZLTextElementArea.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/text/view/ZLTextElementArea.java
+END

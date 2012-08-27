@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/preferences
+END
+ZLChoicePreference.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/preferences/ZLChoicePreference.java
+END
+ZLIntegerRangePreference.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/preferences/ZLIntegerRangePreference.java
+END
+ZLPreferenceActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/preferences/ZLPreferenceActivity.java
+END
+BookInfoActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/preferences/BookInfoActivity.java
+END
+ZLBooleanPreference.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/preferences/ZLBooleanPreference.java
+END
+ZLPreference.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/preferences/ZLPreference.java
+END
+ZLStringOptionPreference.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/preferences/ZLStringOptionPreference.java
+END
+ZLStringListPreference.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/preferences/ZLStringListPreference.java
+END
+BatteryLevelToTurnScreenOffPreference.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/preferences/BatteryLevelToTurnScreenOffPreference.java
+END
+InfoPreference.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/preferences/InfoPreference.java
+END
+PreferenceActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/preferences/PreferenceActivity.java
+END
+ZLStringPreference.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/preferences/ZLStringPreference.java
+END
+ZLSimplePreference.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/android/fbreader/preferences/ZLSimplePreference.java
+END

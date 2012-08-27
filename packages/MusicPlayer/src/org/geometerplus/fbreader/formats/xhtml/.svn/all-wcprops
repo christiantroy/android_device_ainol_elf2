@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/xhtml
+END
+XHTMLReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/xhtml/XHTMLReader.java
+END
+XHTMLTagRestartParagraphAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/xhtml/XHTMLTagRestartParagraphAction.java
+END
+XHTMLTagBodyAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/xhtml/XHTMLTagBodyAction.java
+END
+XHTMLTagItemAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/xhtml/XHTMLTagItemAction.java
+END
+XHTMLTagAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/xhtml/XHTMLTagAction.java
+END
+XHTMLTagControlAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/xhtml/XHTMLTagControlAction.java
+END
+XHTMLTagImageAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/xhtml/XHTMLTagImageAction.java
+END
+XHTMLTagParagraphWithControlAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/xhtml/XHTMLTagParagraphWithControlAction.java
+END
+XHTMLTagHyperlinkAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/xhtml/XHTMLTagHyperlinkAction.java
+END
+XHTMLTagParagraphAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/xhtml/XHTMLTagParagraphAction.java
+END
+XHTMLTagPreAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/formats/xhtml/XHTMLTagPreAction.java
+END

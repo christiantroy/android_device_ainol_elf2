@@ -1,0 +1,113 @@
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/network
+END
+NetworkCatalogItem.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/network/NetworkCatalogItem.java
+END
+NetworkOperationData.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/network/NetworkOperationData.java
+END
+SearchResult.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/network/SearchResult.java
+END
+NetworkException.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/network/NetworkException.java
+END
+BookReference.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/network/BookReference.java
+END
+Base64EncodedImage.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/network/Base64EncodedImage.java
+END
+NetworkTree.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/network/NetworkTree.java
+END
+NetworkBookItemComparator.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/network/NetworkBookItemComparator.java
+END
+ICustomNetworkLink.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/network/ICustomNetworkLink.java
+END
+NetworkLibrary.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/network/NetworkLibrary.java
+END
+NetworkDatabase.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/network/NetworkDatabase.java
+END
+INetworkLink.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/network/INetworkLink.java
+END
+NetworkBookItem.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/network/NetworkBookItem.java
+END
+DecoratedBookReference.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/network/DecoratedBookReference.java
+END
+BuyBookReference.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/network/BuyBookReference.java
+END
+AbstractNetworkLink.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/network/AbstractNetworkLink.java
+END
+NetworkImage.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/network/NetworkImage.java
+END
+NetworkLibraryItem.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/fbreader/network/NetworkLibraryItem.java
+END

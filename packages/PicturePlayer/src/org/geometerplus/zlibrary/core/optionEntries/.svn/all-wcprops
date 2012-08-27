@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/optionEntries
+END
+ZLSimpleStringOptionEntry.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/optionEntries/ZLSimpleStringOptionEntry.java
+END
+ZLToggleBooleanOptionEntry.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/optionEntries/ZLToggleBooleanOptionEntry.java
+END
+ZLColorOptionBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/optionEntries/ZLColorOptionBuilder.java
+END
+ZLSimpleSpinOptionEntry.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/optionEntries/ZLSimpleSpinOptionEntry.java
+END
+ZLFontFamilyOptionEntry.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/optionEntries/ZLFontFamilyOptionEntry.java
+END
+ZLSimpleBooleanOptionEntry.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/optionEntries/ZLSimpleBooleanOptionEntry.java
+END
+ZLSimpleBoolean3OptionEntry.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/skyworth/!svn/ver/2431/Skyworth_M1/3DOSD/FBReaderJ/src/org/geometerplus/zlibrary/core/optionEntries/ZLSimpleBoolean3OptionEntry.java
+END
