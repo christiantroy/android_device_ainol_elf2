@@ -1,2 +1,2 @@
-packages := LibPlayer SubTitle VideoPlayer
+packages := devlistener HdmiSwitch libamplayerjni LibPlayer SubTitle
 include $(call all-named-subdir-makefiles,$(packages))

@@ -26,8 +26,10 @@ PRODUCT_COPY_FILES += \
 
 # init.d scripts
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/init.d/02modules:system/etc/init.d/02modules \
     $(LOCAL_PATH)/init.d/03kernel:system/etc/init.d/03kernel \
-    $(LOCAL_PATH)/init.d/05wifi:system/etc/init.d/05wifi
+    $(LOCAL_PATH)/init.d/05wifi:system/etc/init.d/05wifi \
+    $(LOCAL_PATH)/init.d/10devlistener:system/etc/init.d/10devlistener
 
 # Prebuilt configs
 PRODUCT_COPY_FILES += \
@@ -51,15 +53,12 @@ PRODUCT_COPY_FILES += \
 
 # Prebuilt kernel modules
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/modules/dhd.ko:system/lib/modules/dhd.ko
+	$(call find-copy-subdir-files,*,device/ainol/elf2/modules,system/lib/modules)
 
 # Prebuilt proprietary stuff
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/wifi-config/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
     $(LOCAL_PATH)/proprietary/android_I2C_Calibrate_V1_0:system/bin/android_I2C_Calibrate_V1_0 \
-    $(LOCAL_PATH)/proprietary/libmediaplayerservice.so:system/lib/libmediaplayerservice.so \
-    $(LOCAL_PATH)/proprietary/libstagefright.so:system/lib/libstagefright.so \
-    $(LOCAL_PATH)/proprietary/liboptimization.so:system/lib/liboptimization.so \
     $(LOCAL_PATH)/proprietary/gralloc.default.so:system/lib/hw/gralloc.default.so \
     $(LOCAL_PATH)/proprietary/battery/0.rot270.bmp:system/resource/battery_pic/0.bmp \
     $(LOCAL_PATH)/proprietary/battery/1.rot270.bmp:system/resource/battery_pic/1.bmp \
@@ -142,7 +141,9 @@ PRODUCT_PACKAGES += \
 
 # AML Misc
 PRODUCT_PACKAGES += \
+    HdmiSwitch \
     libamplayerjni \
+    libsubjni \
     amlogic.subtitle.xml \
     amlogic.libplayer.xml \
     remotecfg
@@ -154,6 +155,10 @@ PRODUCT_PACKAGES += \
     usbtestpm_mx \
     usbtestpm_mx_iddq \
     usbpower_mx_iddq
+
+# manage bluetooth permissions
+PRODUCT_PACKAGES += \
+    devlistener
 
 # libemoji for Webkit
 PRODUCT_PACKAGES += libemoji

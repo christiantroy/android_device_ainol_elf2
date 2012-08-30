@@ -24,7 +24,7 @@ BOARD_USES_ALSA_AUDIO := true
 BUILD_WITH_ALSA_UTILS := true
 
 # Bluetooth
-BOARD_HAVE_BLUETOOTH := false
+BOARD_HAVE_BLUETOOTH := true
 
 # Sensors
 BOARD_USES_SENSOR_BMA250 :=true
@@ -67,9 +67,14 @@ TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_SMP := true
 TARGET_ARCH_VARIANT := armv7-a-neon
+ARCH_ARM_HAVE_VFP := true
 TARGET_ARCH_VARIANT_CPU := cortex-a9
+TARGET_ARCH_VARIANT_FPU := neon
 ARCH_ARM_HAVE_NEON := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
+ARCH_ARM_HAVE_ARMV7A := true
+TARGET_GLOBAL_CFLAGS += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp
+TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp
 
 TARGET_BOARD_PLATFORM := meson6
 TARGET_BOOTLOADER_BOARD_NAME := g06ref
@@ -86,6 +91,10 @@ BOARD_USE_SKIA_LCDTEXT := true
 
 TARGET_RECOVERY_INITRC := device/ainol/elf2/recovery.init.rc
 BOARD_HAS_NO_SELECT_BUTTON := true
-BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun/file"
+BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun0/file"
 
 TARGET_BOOTANIMATION_PRELOAD := true
+
+TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/usb_mass_storage/lun%d/file"
+
+COMMON_GLOBAL_CFLAGS += -DSURFACEFLINGER_FORCE_SCREEN_RELEASE
