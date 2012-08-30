@@ -12,22 +12,23 @@
 # limitations under the License.
 #
 
-#LOCAL_PATH := $(call my-dir)
-#include $(CLEAR_VARS)
+LOCAL_PATH := $(call my-dir)
+include $(CLEAR_VARS)
 
-#LOCAL_SRC_FILES := $(call all-java-files-under, src)
+LOCAL_SRC_FILES := $(call all-java-files-under, src)
 
-#LOCAL_SDK_VERSION := current
+LOCAL_SDK_VERSION := current
 
-#LOCAL_PACKAGE_NAME := VideoPlayer
-#LOCAL_CERTIFICATE := platform
-#LOCAL_STATIC_JAVA_LIBRARIES := amlogic.subtitle
+LOCAL_PACKAGE_NAME := VideoPlayer
+LOCAL_CERTIFICATE := platform
+LOCAL_STATIC_JAVA_LIBRARIES := amlogic.subtitle
 
-#LOCAL_REQUIRED_MODULES := libamplayerjni libsubjni
+LOCAL_REQUIRED_MODULES := libamplayerjni libsubjni
 
-#LOCAL_PROGUARD_ENABLED := disabled
+LOCAL_PROGUARD_ENABLED := disabled
+#LOCAL_PROGUARD_FLAGS := -include $(LOCAL_PATH)/proguard.flags
 
-#include $(BUILD_PACKAGE)
+include $(BUILD_PACKAGE)
 ##################################################
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
