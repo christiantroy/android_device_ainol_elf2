@@ -529,6 +529,7 @@ on boot
 # Run sysinit
     exec /system/bin/sysinit
 
+    class_start first
     class_start core
     class_start main
 
@@ -679,6 +680,10 @@ on property:init.svc.bootanim=stopped
 
 ## Daemon processes to be run by init.
 ##
+service sysinit /system/bin/sysinit
+    class first
+    oneshot
+
 service ueventd /sbin/ueventd
     class core
     critical
