@@ -2,6 +2,7 @@
 # system.prop
 #
 ro.opengles.version=131072
+hwui.render_dirty_regions=false
 ro.sf.lcd_density=160
 keyguard.no_require_sim=1
 hw.nopm=false
