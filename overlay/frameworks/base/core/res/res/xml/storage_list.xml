@@ -50,4 +50,12 @@
                  android:allowMassStorage="true"
                  android:mtpReserve="100"
                  android:maxFileSize="0" />
+		 
+    <storage android:mountPoint="/mnt/usb"
+    		 android:storageDescription="@string/storage_usb"
+                 android:primary="false"
+                 android:emulated="false"
+    		 android:removable="true"
+                 android:mtpReserve="100"
+                 android:maxFileSize="0" />
 </StorageList>

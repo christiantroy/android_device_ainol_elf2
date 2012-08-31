@@ -53,6 +53,7 @@ loglevel 3
     mkdir /mnt/sdcard 0000 system system
     symlink /mnt/sdcard /sdcard
     mkdir /mnt/external_sdcard 0000 system system
+    mkdir /mnt/usb 0000 system system
 
     # Directory for putting things only root should see.
     mkdir /mnt/secure 0700 root root
