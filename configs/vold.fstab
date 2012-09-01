@@ -13,7 +13,7 @@
 # Mounts the first usable partition of the specified device
 #use this line to support VIRTUAL CDROM.And you can define the directory where you want to mount
 #loop_mount loop /mnt/VIRTUAL_CDROM 
-dev_mount sdcard /mnt/external_sdcard auto /devices/platform/AMLOGIC_CARD/card_host/memorycard0 /devices/platform/aml_sd_mmc.0
-dev_mount flash /mnt/sdcard auto /devices/virtual/mtd/mtd8/avnftl8 /devices/platform/mtd/mtd8/avnftli
-dev_mount usb /mnt/usb auto /devices/lm
-asec flash
+dev_mount sdcard /storage/sdcard1 auto /devices/platform/AMLOGIC_CARD/card_host/memorycard0 /devices/platform/aml_sd_mmc.0
+dev_mount flash /storage/sdcard0 auto /devices/virtual/mtd/mtd8/avnftl8 /devices/platform/mtd/mtd8/avnftli
+dev_mount usb /storage/usbdisk0 auto /devices/lm
+#asec flash
