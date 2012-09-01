@@ -15,7 +15,9 @@
 #include <net/if_arp.h>
 #include <net/if.h>
 
-#include "wireless_copy.h"
+#include <linux/wireless.h>
+#include "android_drv.h"
+
 #include "common.h"
 #include "driver.h"
 #include "eloop.h"

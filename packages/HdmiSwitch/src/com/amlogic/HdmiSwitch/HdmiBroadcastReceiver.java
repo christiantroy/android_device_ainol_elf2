@@ -20,6 +20,8 @@ import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemClock;
 
+import android.hardware.input.InputManager;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -178,7 +180,7 @@ public class HdmiBroadcastReceiver extends BroadcastReceiver {
     private void sendKeyEvent(int keyCode) {
         int eventCode = keyCode;
         long now = SystemClock.uptimeMillis();
-        try {
+        /*try {
             KeyEvent down = new KeyEvent(now, now, KeyEvent.ACTION_DOWN, eventCode, 0);
             KeyEvent up = new KeyEvent(now, now, KeyEvent.ACTION_UP, eventCode, 0);
             (IWindowManager.Stub
@@ -189,7 +191,12 @@ public class HdmiBroadcastReceiver extends BroadcastReceiver {
                 .injectInputEventNoWait(up);
         } catch (RemoteException e) {
             Log.i(TAG, "DeadOjbectException");
-        }
+        }*/
+	InputManager im = InputManager.getInstance();
+	KeyEvent down = new KeyEvent(now, now, KeyEvent.ACTION_DOWN, eventCode, 0);
+        KeyEvent up = new KeyEvent(now, now, KeyEvent.ACTION_UP, eventCode, 0);
+	im.injectInputEvent(down, InputManager.INJECT_INPUT_EVENT_MODE_ASYNC);
+	im.injectInputEvent(up, InputManager.INJECT_INPUT_EVENT_MODE_ASYNC);
     }
 
 }

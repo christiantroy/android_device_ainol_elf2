@@ -88,7 +88,7 @@ extern "C" int android_init(struct aml_audio_dec* audec)
                         AUDIO_FORMAT_PCM_16_BIT,
                         (audec->channels == 1) ? AUDIO_CHANNEL_OUT_MONO : AUDIO_CHANNEL_OUT_STEREO,
                         0,       // frameCount
-                        0,       // flags
+                        AUDIO_OUTPUT_FLAG_NONE,       // flags
                         audioCallback,
                         audec,    // user when callback
                         0,       // notificationFrames
