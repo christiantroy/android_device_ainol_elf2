@@ -1,0 +1,3 @@
+#!/system/bin/sh
+
+chown system.sdcard_r /storage
