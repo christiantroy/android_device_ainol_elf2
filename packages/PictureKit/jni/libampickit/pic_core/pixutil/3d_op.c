@@ -41,7 +41,7 @@ aml_image_info_t* insert_lr_frame(aml_dec_para_t* para,aml_image_info_t* input_i
 		rdelta=(para->image_3d_lr_offset>>1)&0x3f;
 		right_width=(input_image_info->dest_w>>1)-rdelta;
 	}
-	//LOGD("-ls:%d,rs:%d,lw:%d,rw:%d\n",left_start,right_start,left_width,right_width);	
+	//ALOGD("-ls:%d,rs:%d,lw:%d,rw:%d\n",left_start,right_start,left_width,right_width);	
 	
 	if(ldelta>rdelta) {
 		ldelta=ldelta-rdelta;
@@ -52,10 +52,10 @@ aml_image_info_t* insert_lr_frame(aml_dec_para_t* para,aml_image_info_t* input_i
 		left_start+=ldelta;
 		left_width-=ldelta;
 	}
-	//LOGD("-ls:%d,rs:%d,lw:%d,rw:%d\n",left_start,right_start,left_width,right_width);
+	//ALOGD("-ls:%d,rs:%d,lw:%d,rw:%d\n",left_start,right_start,left_width,right_width);
 	
 	min_width=left_width<right_width?left_width:right_width;
-	//LOGD("-ls:%d,rs:%d,mw:%d\n",left_start,right_start,min_width);
+	//ALOGD("-ls:%d,rs:%d,mw:%d\n",left_start,right_start,min_width);
 	
 	/* start to copy. */
 	left_start+= input_image_info->dest_x;
@@ -65,22 +65,22 @@ aml_image_info_t* insert_lr_frame(aml_dec_para_t* para,aml_image_info_t* input_i
 		right_start+=(input_image_info->width>>1);
 	
 	if(min_width<=0) {
-		//LOGD("========fail========\n");
+		//ALOGD("========fail========\n");
 		min_width = input_image_info->dest_w>>1;
 		left_start=0;
 		right_start= min_width;
 	}
 	
-	//LOGD("-ls:%d,rs:%d,mw:%d\n",left_start,right_start,min_width);
+	//ALOGD("-ls:%d,rs:%d,mw:%d\n",left_start,right_start,min_width);
 	
 	output_image_info->width = min_width*2;
 	output_image_info->bytes_per_line = ((output_image_info->width * output_image_info->depth + 31) >> 5 ) << 2 ;
 	output_image_info->nbytes = output_image_info->bytes_per_line * para->height;
-	//LOGD("===%d===\n",para->height);
+	//ALOGD("===%d===\n",para->height);
 	output_image_info->data  = malloc(output_image_info->nbytes);
-    //LOGD("--ii---ls:%d,rs:%d,mw:%d\n",left_start,right_start,min_width);
+    //ALOGD("--ii---ls:%d,rs:%d,mw:%d\n",left_start,right_start,min_width);
 	if(!output_image_info->data){
-		LOGD("err alloc output_image_info->data\n");
+		ALOGD("err alloc output_image_info->data\n");
 		free(output_image_info);
 		return NULL;   
 	}
@@ -90,11 +90,11 @@ aml_image_info_t* insert_lr_frame(aml_dec_para_t* para,aml_image_info_t* input_i
 
 	alignedwidth=min_width&(~0x3);
 	extrabits=min_width&0x3;
-	//LOGD("====alignedwidth:%d==extrabits:%d==\n",alignedwidth,extrabits);
+	//ALOGD("====alignedwidth:%d==extrabits:%d==\n",alignedwidth,extrabits);
 	for(i = input_image_info->dest_y,dest_y=input_image_info->dest_y; i < input_image_info->height ; i++,dest_y++) {
 		input_data =   scan_line(input_image_info , i);
 		output_data =  scan_line(output_image_info , dest_y); 
-        //if(i>718) LOGD("===i:%x===o:%x\n",input_data,output_data);
+        //if(i>718) ALOGD("===i:%x===o:%x\n",input_data,output_data);
 		cnt_left=left_start;
 		cnt_right= right_start;
 		asm volatile(
@@ -117,8 +117,8 @@ aml_image_info_t* insert_lr_frame(aml_dec_para_t* para,aml_image_info_t* input_i
 		cnt_left=left_start+(alignedwidth<<2);
 		cnt_right= right_start+(alignedwidth<<2);
 		/*if(i>718) {
-            LOGD("h:%dj:%d,cl:%d,cr:%d\n",i,j/4,cnt_left/4,cnt_right/4);
-            LOGD("===i:%x===o:%x\n",input_data,output_data);
+            ALOGD("h:%dj:%d,cl:%d,cr:%d\n",i,j/4,cnt_left/4,cnt_right/4);
+            ALOGD("===i:%x===o:%x\n",input_data,output_data);
         }*/
 		if(extrabits) {
 			input_data =   scan_line(input_image_info , i);
@@ -164,14 +164,14 @@ aml_image_info_t* insert_tb_frame(aml_dec_para_t* para,aml_image_info_t* input_i
 	output_image_info->nbytes = output_image_info->bytes_per_line * para->height;
 	output_image_info->data  = malloc(output_image_info->nbytes);
 	if(!output_image_info->data){
-		LOGD("err alloc output_image_info->data\n");
+		ALOGD("err alloc output_image_info->data\n");
 		free(output_image_info);
 		return NULL;   
 	}
 
 	left_start= input_image_info->dest_y;
 	right_start= left_start+(input_image_info->dest_h>>1);
-	LOGD("d_y:%d,d_h:%d,o_h:%d\n",input_image_info->dest_y,input_image_info->dest_h,input_image_info->height);
+	ALOGD("d_y:%d,d_h:%d,o_h:%d\n",input_image_info->dest_y,input_image_info->dest_h,input_image_info->height);
 #if 1
 	for(i = input_image_info->dest_y ; i < input_image_info->dest_h ; i+=2,right_start++,left_start++) {
 		input_data =   scan_line(input_image_info , left_start);
@@ -223,7 +223,7 @@ aml_image_info_t* insert_lr_frame2(aml_dec_para_t* para,aml_image_info_t* input_
 		rdelta=(para->image_3d_lr_offset>>1)&0x3f;
 		right_width=(input_image_info->dest_w>>1)-rdelta;
 	}
-	LOGD("-ls:%d,rs:%d,lw:%d,rw:%d\n",left_start,right_start,left_width,right_width);	
+	ALOGD("-ls:%d,rs:%d,lw:%d,rw:%d\n",left_start,right_start,left_width,right_width);	
 	
 	if(ldelta>rdelta) {
 		ldelta=ldelta-rdelta;
@@ -234,10 +234,10 @@ aml_image_info_t* insert_lr_frame2(aml_dec_para_t* para,aml_image_info_t* input_
 		left_start+=ldelta;
 		left_width-=ldelta;
 	}
-	LOGD("-ls:%d,rs:%d,lw:%d,rw:%d\n",left_start,right_start,left_width,right_width);
+	ALOGD("-ls:%d,rs:%d,lw:%d,rw:%d\n",left_start,right_start,left_width,right_width);
 	
 	min_width=left_width<right_width?left_width:right_width;
-	LOGD("-ls:%d,rs:%d,mw:%d\n",left_start,right_start,min_width);
+	ALOGD("-ls:%d,rs:%d,mw:%d\n",left_start,right_start,min_width);
 	
 	/* start to copy. */
 	left_start+= input_image_info->dest_x;
@@ -247,18 +247,18 @@ aml_image_info_t* insert_lr_frame2(aml_dec_para_t* para,aml_image_info_t* input_
 		right_start+=(input_image_info->width>>1);
 	
 	if(min_width<=0) {
-		//LOGD("========fail========\n");
+		//ALOGD("========fail========\n");
 		min_width = input_image_info->dest_w>>1;
 		left_start=0;
 		right_start= min_width;
 	}
 	
-	LOGD("-ls:%d,rs:%d,mw:%d\n",left_start,right_start,min_width);
+	ALOGD("-ls:%d,rs:%d,mw:%d\n",left_start,right_start,min_width);
 	
 	char* out_img  = malloc(input_image_info->nbytes);
-    LOGD("--ii---ls:%d,rs:%d,mw:%d\n",left_start,right_start,min_width);
+    ALOGD("--ii---ls:%d,rs:%d,mw:%d\n",left_start,right_start,min_width);
 	if(!out_img){
-		LOGD("err alloc output_image_info->data\n");
+		ALOGD("err alloc output_image_info->data\n");
 		return NULL;   
 	}
 
@@ -267,12 +267,12 @@ aml_image_info_t* insert_lr_frame2(aml_dec_para_t* para,aml_image_info_t* input_
 
 	alignedwidth=min_width&(~0x3);
 	extrabits=min_width&0x3;
-	LOGD("====alignedwidth:%d==extrabits:%d==\n",alignedwidth,extrabits);
+	ALOGD("====alignedwidth:%d==extrabits:%d==\n",alignedwidth,extrabits);
 	for(i = input_image_info->dest_y,dest_y=input_image_info->dest_y; i < input_image_info->height ; i++,dest_y++) {
 		input_data =   scan_line(input_image_info , i);
 		output_data =  out_img+input_image_info->bytes_per_line*dest_y;
 		output_data += input_image_info->dest_x*4; 
-        //if(i>718) LOGD("===i:%x===o:%x\n",input_data,output_data);
+        //if(i>718) ALOGD("===i:%x===o:%x\n",input_data,output_data);
 		cnt_left=left_start;
 		cnt_right= right_start;
 		asm volatile(
@@ -295,8 +295,8 @@ aml_image_info_t* insert_lr_frame2(aml_dec_para_t* para,aml_image_info_t* input_
 		cnt_left=left_start+(alignedwidth<<2);
 		cnt_right= right_start+(alignedwidth<<2);
 		/*if(i>718) {
-            LOGD("h:%dj:%d,cl:%d,cr:%d\n",i,j/4,cnt_left/4,cnt_right/4);
-            LOGD("===i:%x===o:%x\n",input_data,output_data);
+            ALOGD("h:%dj:%d,cl:%d,cr:%d\n",i,j/4,cnt_left/4,cnt_right/4);
+            ALOGD("===i:%x===o:%x\n",input_data,output_data);
         }*/
 		if(extrabits) {
 			input_data =   scan_line(input_image_info , i);
@@ -342,13 +342,13 @@ aml_image_info_t* insert_tb_frame2(aml_dec_para_t* para,aml_image_info_t* input_
 
 	char* out_img  = malloc(input_image_info->nbytes);
 	if(!out_img){
-		LOGD("err alloc output_image_info->data\n");
+		ALOGD("err alloc output_image_info->data\n");
 		return NULL;   
 	}
 
 	left_start= input_image_info->dest_y;
 	right_start= left_start+(input_image_info->dest_h>>1);
-	LOGD("d_y:%d,d_h:%d,o_h:%d\n",input_image_info->dest_y,input_image_info->dest_h,input_image_info->height);
+	ALOGD("d_y:%d,d_h:%d,o_h:%d\n",input_image_info->dest_y,input_image_info->dest_h,input_image_info->height);
 
 	for(i = input_image_info->dest_y ; i < input_image_info->dest_h ; i+=2,right_start++,left_start++) {
 		input_data =   scan_line(input_image_info , left_start);

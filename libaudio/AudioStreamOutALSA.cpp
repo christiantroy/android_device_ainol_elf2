@@ -182,18 +182,18 @@ uint32_t AudioStreamOutALSA::latency() const
 	snd_pcm_status_alloca(&status);
 
     if(mHandle->handle == NULL) {
-        LOGV("handle is null, error !");
+        ALOGV("handle is null, error !");
         return 0;
     }
 	
 	if ((err = snd_pcm_status(mHandle->handle, status)) < 0) {
-	 LOGV("stream status error :%s\n", snd_strerror(err));
+	 ALOGV("stream status error :%s\n", snd_strerror(err));
         return USEC_TO_MSEC (mHandle->latency);
 	}
 
     t = snd_pcm_status_get_delay(status);
-    LOGV("snd_pcm_status_get_delay = %d", t);
-    LOGV("AudioStreamOutALSA::latency = %d, sampleRate = %d", 
+    ALOGV("snd_pcm_status_get_delay = %d", t);
+    ALOGV("AudioStreamOutALSA::latency = %d, sampleRate = %d", 
         (t * 1000) / sampleRate(),
         sampleRate());
     return (t * 1000) / sampleRate();

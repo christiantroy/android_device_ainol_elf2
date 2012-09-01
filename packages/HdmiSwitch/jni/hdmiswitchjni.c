@@ -28,40 +28,40 @@ int freeScale(int mode) {
 	int x = 0, y = 0, w = 0, h = 0;
 	int find_flag = 0;
 	
-	//LOGI("freeScale: mode=%d", mode);
+	//ALOGI("freeScale: mode=%d", mode);
 	if((fd0 = open("/dev/graphics/fb0", O_RDWR)) < 0) {
-		LOGI("open /dev/graphics/fb0 fail.");
+		ALOGI("open /dev/graphics/fb0 fail.");
 		goto exit;
 	}
 	if((fd1 = open("/dev/graphics/fb1", O_RDWR)) < 0) {
-		LOGI("open /dev/graphics/fb1 fail.");
+		ALOGI("open /dev/graphics/fb1 fail.");
 		goto exit;		
 	}
 	if((fd_vaxis = open("/sys/class/video/axis", O_RDWR)) < 0) {
-		LOGI("open /sys/class/video/axis fail.");
+		ALOGI("open /sys/class/video/axis fail.");
 		goto exit;	
 	}
 		
 	if((fd_daxis = open("/sys/class/display/axis", O_RDWR)) < 0) {
-		LOGI("open /sys/class/display/axis fail.");
+		ALOGI("open /sys/class/display/axis fail.");
 		goto exit;	
 	}	
 
 	if((fd_fb = open("/dev/graphics/fb0", O_RDWR)) < 0) {
-		LOGI("open /dev/graphics/fb0 fail.");
+		ALOGI("open /dev/graphics/fb0 fail.");
 		goto exit;
 	}
 	
 	if((fd_video = open("/sys/class/video/disable_video", O_RDWR)) < 0) {
-		LOGI("open /sys/class/video/disable_video fail.");
+		ALOGI("open /sys/class/video/disable_video fail.");
 	}	
 		
 	if((fd_ppmgr = open("/sys/class/ppmgr/ppscaler", O_RDWR)) < 0) {
-		LOGI("open /sys/class/ppmgr/ppscaler fail.");	
+		ALOGI("open /sys/class/ppmgr/ppscaler fail.");	
 	}
 
 	if((fd_ppmgr_rect = open("/sys/class/ppmgr/ppscaler_rect", O_RDWR)) < 0) {
-		LOGI("open /sys/class/ppmgr/ppscaler_rect fail.");	
+		ALOGI("open /sys/class/ppmgr/ppscaler_rect fail.");	
 	}
 
 	memset(vaxis_str,0,80);	
@@ -72,7 +72,7 @@ int freeScale(int mode) {
 				w = w -x + 1;
 				h = h -y + 1;
 				find_flag = 1;	
-				LOGI("set mode: vaxis: x:%d, y:%d, w:%d, h:%d.",x,y,w,h);
+				ALOGI("set mode: vaxis: x:%d, y:%d, w:%d, h:%d.",x,y,w,h);
 			}
 		}
 	}
@@ -83,15 +83,15 @@ int freeScale(int mode) {
 		osd_height = vinfo.yres;
 		sprintf(daxis_str, "0 0 %d %d 0 0 18 18", vinfo.xres, vinfo.yres);
 																									
-		//LOGI("osd_width = %d", osd_width);
-		//LOGI("osd_height = %d", osd_height);
+		//ALOGI("osd_width = %d", osd_width);
+		//ALOGI("osd_height = %d", osd_height);
 	} else {
-		LOGI("get FBIOGET_VSCREENINFO fail.");
+		ALOGI("get FBIOGET_VSCREENINFO fail.");
 		goto exit;
 	}
 			
 	switch(mode) {
-		//LOGI("set mid mode=%d", mode);
+		//ALOGI("set mid mode=%d", mode);
 
 		case 0:	//panel
 			if (fd_ppmgr >= 0) 	write(fd_ppmgr, "0", strlen("0"));
@@ -214,38 +214,38 @@ int DisableFreeScale(int mode) {
 	int x = 0, y = 0, w = 0, h = 0;
 	int find_flag = 0;
 	
-	//LOGI("DisableFreeScale: mode=%d", mode);	
+	//ALOGI("DisableFreeScale: mode=%d", mode);	
 	if(mode == 0) return 0;		
 		
 	if((fd0 = open("/dev/graphics/fb0", O_RDWR)) < 0) {
-		LOGI("open /dev/graphics/fb0 fail.");
+		ALOGI("open /dev/graphics/fb0 fail.");
 		goto exit;
 	}
 	if((fd1 = open("/dev/graphics/fb1", O_RDWR)) < 0) {
-		LOGI("open /dev/graphics/fb1 fail.");
+		ALOGI("open /dev/graphics/fb1 fail.");
 		goto exit;	
 	}
 	if((fd_vaxis = open("/sys/class/video/axis", O_RDWR)) < 0) {
-		LOGI("open /sys/class/video/axis fail.");
+		ALOGI("open /sys/class/video/axis fail.");
 		goto exit;	
 	}
 		
 	if((fd_daxis = open("/sys/class/display/axis", O_RDWR)) < 0) {
-		LOGI("open /sys/class/display/axis fail.");
+		ALOGI("open /sys/class/display/axis fail.");
 		goto exit;
 	}	
 	
 	if((fd_fb = open("/dev/graphics/fb0", O_RDWR)) < 0) {
-		LOGI("open /dev/graphics/fb0 fail.");
+		ALOGI("open /dev/graphics/fb0 fail.");
 		goto exit;
 	}		
 
 	if((fd_video = open("/sys/class/video/disable_video", O_RDWR)) < 0) {
-		LOGI("open /sys/class/video/disable_video fail.");
+		ALOGI("open /sys/class/video/disable_video fail.");
 	}
 
 	if((fd_ppmgr = open("/sys/class/ppmgr/ppscaler", O_RDWR)) < 0) {
-		LOGI("open /sys/class/ppmgr/ppscaler fail.");	
+		ALOGI("open /sys/class/ppmgr/ppscaler fail.");	
 	}
 
 
@@ -257,7 +257,7 @@ int DisableFreeScale(int mode) {
 				w = w -x + 1;
 				h = h -y + 1;
 				find_flag = 1;	
-				LOGI("disable mode: vaxis: x:%d, y:%d, w:%d, h:%d.",x,y,w,h);
+				ALOGI("disable mode: vaxis: x:%d, y:%d, w:%d, h:%d.",x,y,w,h);
 			}
 		}
 	}
@@ -267,15 +267,15 @@ int DisableFreeScale(int mode) {
 		osd_width = vinfo.xres;
 		osd_height = vinfo.yres;
 
-		//LOGI("osd_width = %d", osd_width);
-		//LOGI("osd_height = %d", osd_height);
+		//ALOGI("osd_width = %d", osd_width);
+		//ALOGI("osd_height = %d", osd_height);
 	} else {
-		LOGI("get FBIOGET_VSCREENINFO fail.");
+		ALOGI("get FBIOGET_VSCREENINFO fail.");
 		goto exit;
 	}
 		
 	switch(mode) {
-		//LOGI("set mid mode=%d", mode);
+		//ALOGI("set mid mode=%d", mode);
 
 		case 0:	//panel			
 			ret = 0;
@@ -357,42 +357,42 @@ int EnableFreeScale(int mode) {
 	int x = 0, y = 0, w = 0, h = 0;
 	int find_flag = 0;	
 
-	//LOGI("EnableFreeScale: mode=%d", mode);	
+	//ALOGI("EnableFreeScale: mode=%d", mode);	
 	if(mode == 0) return 0;		
 		
 	if((fd0 = open("/dev/graphics/fb0", O_RDWR)) < 0) {
-		LOGI("open /dev/graphics/fb0 fail.");
+		ALOGI("open /dev/graphics/fb0 fail.");
 		goto exit;
 	}
 	if((fd1 = open("/dev/graphics/fb1", O_RDWR)) < 0) {
-		LOGI("open /dev/graphics/fb1 fail.");
+		ALOGI("open /dev/graphics/fb1 fail.");
 		goto exit;	
 	}
 	if((fd_vaxis = open("/sys/class/video/axis", O_RDWR)) < 0) {
-		LOGI("open /sys/class/video/axis fail.");
+		ALOGI("open /sys/class/video/axis fail.");
 		goto exit;		
 	}
 		
 	if((fd_daxis = open("/sys/class/display/axis", O_RDWR)) < 0) {
-		LOGI("open /sys/class/display/axis fail.");
+		ALOGI("open /sys/class/display/axis fail.");
 		goto exit;
 	}		
 	
 	if((fd_fb = open("/dev/graphics/fb0", O_RDWR)) < 0) {
-		LOGI("open /dev/graphics/fb0 fail.");
+		ALOGI("open /dev/graphics/fb0 fail.");
 		goto exit;
 	}
 
 	if((fd_video = open("/sys/class/video/disable_video", O_RDWR)) < 0) {
-		LOGI("open /sys/class/video/disable_video fail.");
+		ALOGI("open /sys/class/video/disable_video fail.");
 	}
 
 	if((fd_ppmgr = open("/sys/class/ppmgr/ppscaler", O_RDWR)) < 0) {
-		LOGI("open /sys/class/ppmgr/ppscaler fail.");	
+		ALOGI("open /sys/class/ppmgr/ppscaler fail.");	
 	}
 		
 	if((fd_ppmgr_rect = open("/sys/class/ppmgr/ppscaler_rect", O_RDWR)) < 0) {
-		LOGI("open /sys/class/ppmgr/ppscaler_rect fail.");	
+		ALOGI("open /sys/class/ppmgr/ppscaler_rect fail.");	
 	}
 
 	memset(vaxis_str,0,80);	
@@ -403,7 +403,7 @@ int EnableFreeScale(int mode) {
 				w = w -x + 1;
 				h = h -y + 1;
 				find_flag = 1;	
-				LOGI("enable mode: vaxis: x:%d, y:%d, w:%d, h:%d.",x,y,w,h);
+				ALOGI("enable mode: vaxis: x:%d, y:%d, w:%d, h:%d.",x,y,w,h);
 			}
 		}
 	}
@@ -413,15 +413,15 @@ int EnableFreeScale(int mode) {
 		osd_height = vinfo.yres;
 		sprintf(daxis_str, "0 0 %d %d 0 0 18 18", vinfo.xres, vinfo.yres);
 		
-		//LOGI("osd_width = %d", osd_width);
-		//LOGI("osd_height = %d", osd_height);
+		//ALOGI("osd_width = %d", osd_width);
+		//ALOGI("osd_height = %d", osd_height);
 	} else {
-		LOGI("get FBIOGET_VSCREENINFO fail.");
+		ALOGI("get FBIOGET_VSCREENINFO fail.");
 		goto exit;
 	}
 		
 	switch(mode) {
-		//LOGI("set mid mode=%d", mode);
+		//ALOGI("set mid mode=%d", mode);
 
 		case 0:	//panel
 			if (fd_ppmgr >= 0) 	write(fd_ppmgr, "0", strlen("0"));

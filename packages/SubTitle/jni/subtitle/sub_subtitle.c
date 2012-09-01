@@ -74,8 +74,8 @@ typedef struct _DivXSubPictHdr_HD
 
 
 #define  LOG_TAG    "sub_subtitle"
-#define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
-#define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
+#define  ALOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
+#define  ALOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
 #define SUBTITLE_READ_DEVICE    "/dev/amstream_sub_read"
 #define SUBTITLE_FILE "/tmp/subtitle.db"
 #define VOB_SUBTITLE_FRAMW_SIZE   (4+1+4+4+2+2+2+2+2+4+VOB_SUB_SIZE)
@@ -249,7 +249,7 @@ int get_spu(AML_SPUVAR *spu, int read_sub_fd)
 	ret = subtitle_poll_sub_fd(read_sub_fd, 10);
 	
 	if (ret == 0){
-	    //LOGI("codec_poll_sub_fd fail \n\n");
+	    //ALOGI("codec_poll_sub_fd fail \n\n");
 	    ret = -1;
 		goto error; 
 	}
@@ -273,10 +273,10 @@ int get_spu(AML_SPUVAR *spu, int read_sub_fd)
 	if(get_subtitle_subtype() == 1){
 		//pgs subtitle
 		size = subtitle_get_sub_size_fd(read_sub_fd);
-		LOGI("start pgs sub buffer size %d\n", size);
+		ALOGI("start pgs sub buffer size %d\n", size);
 		int ret_spu = get_pgs_spu(spu,read_sub_fd);
 		size = subtitle_get_sub_size_fd(read_sub_fd);
-		LOGI("end pgs sub buffer size %d\n", size);
+		ALOGI("end pgs sub buffer size %d\n", size);
 		return 0;
 	}
 	
@@ -285,11 +285,11 @@ int get_spu(AML_SPUVAR *spu, int read_sub_fd)
 	
 	if (size <= 0){
     	ret = -1;
-    	LOGI("\n player get sub size less than zero \n\n");
+    	ALOGI("\n player get sub size less than zero \n\n");
 		goto error; 
 	}
 	else{
-    	LOGI("\n malloc subtitle size %d \n\n",size);
+    	ALOGI("\n malloc subtitle size %d \n\n",size);
 		spu_buf = malloc(size);	
 	}
 	int sizeflag=size;
@@ -297,11 +297,11 @@ int get_spu(AML_SPUVAR *spu, int read_sub_fd)
 	char* spu_buf_piece=spu_buf_piece;
 	while(sizeflag>30)
 	{
-		LOGI("\n sizeflag =%u  \n\n",sizeflag);
+		ALOGI("\n sizeflag =%u  \n\n",sizeflag);
 
 		if (sizeflag <= 16){
 	    	ret = -1;
-	    	LOGI("\n sizeflag is too little \n\n");
+	    	ALOGI("\n sizeflag is too little \n\n");
 			goto error; 
 		}
 	    char* spu_buf_piece= spu_buf_tmp;
@@ -313,16 +313,16 @@ int get_spu(AML_SPUVAR *spu, int read_sub_fd)
 		if ((spu_buf_piece[rd_oft++]!=0x41)||(spu_buf_piece[rd_oft++]!=0x4d)||
 			(spu_buf_piece[rd_oft++]!=0x4c)||(spu_buf_piece[rd_oft++]!=0x55)|| (spu_buf_piece[rd_oft++]!=0xaa))
 		{
-			LOGI("\n wrong subtitle header :%x %x %x %x    %x %x %x %x    %x %x %x %x \n",spu_buf_piece[0],spu_buf_piece[1],spu_buf_piece[2],spu_buf_piece[3],spu_buf_piece[4],spu_buf_piece[5],
+			ALOGI("\n wrong subtitle header :%x %x %x %x    %x %x %x %x    %x %x %x %x \n",spu_buf_piece[0],spu_buf_piece[1],spu_buf_piece[2],spu_buf_piece[3],spu_buf_piece[4],spu_buf_piece[5],
 									spu_buf_piece[6],spu_buf_piece[7],spu_buf_piece[8],spu_buf_piece[9],spu_buf_piece[10],spu_buf_piece[11]);
 			ret = subtitle_read_sub_data_fd(read_sub_fd, spu_buf_piece,sizeflag );
 			sizeflag=0;
-			LOGI("\n\n ******* find wrong subtitle header!! ******\n\n");
+			ALOGI("\n\n ******* find wrong subtitle header!! ******\n\n");
 	
 			ret = -1;
 			goto error; 		// wrong head
 		}
-	LOGI("\n\n ******* find correct subtitle header ******\n\n");
+	ALOGI("\n\n ******* find correct subtitle header ******\n\n");
 		current_type = spu_buf_piece[rd_oft++]<<16;
 		current_type |= spu_buf_piece[rd_oft++]<<8;
 		current_type |= spu_buf_piece[rd_oft++];
@@ -336,16 +336,16 @@ int get_spu(AML_SPUVAR *spu, int read_sub_fd)
 		current_pts |= spu_buf_piece[rd_oft++]<<16;
 		current_pts |= spu_buf_piece[rd_oft++]<<8;
 		current_pts |= spu_buf_piece[rd_oft++];
-	  	LOGI("current_pts is %d\n",current_pts);
-		LOGI("current_length is %d\n",current_length);
+	  	ALOGI("current_pts is %d\n",current_pts);
+		ALOGI("current_length is %d\n",current_length);
 		
 
 		
-		LOGI("\n sizeflag =%u  \n\n",sizeflag);
+		ALOGI("\n sizeflag =%u  \n\n",sizeflag);
 
 		if(current_length >sizeflag)
 		{
-			  	LOGI("current_length >size");
+			  	ALOGI("current_length >size");
 			ret = subtitle_read_sub_data_fd(read_sub_fd, spu_buf_piece, sizeflag);
 			sizeflag=0;
 			ret=-1;
@@ -353,7 +353,7 @@ int get_spu(AML_SPUVAR *spu, int read_sub_fd)
 		}
 		if(current_type==0x17000)
 		{
-			LOGI("current_type=0x17000\n");
+			ALOGI("current_type=0x17000\n");
 //			ret = subtitle_read_sub_data_fd(read_sub_fd, spu_buf_piece+16, current_length);
 			ret = subtitle_read_sub_data_fd(read_sub_fd, spu_buf_piece+16, sizeflag);
 
@@ -363,7 +363,7 @@ int get_spu(AML_SPUVAR *spu, int read_sub_fd)
 		}
 		else
 		{
-			LOGI("current_type!!=0x17000\n");
+			ALOGI("current_type!!=0x17000\n");
 	        ret = subtitle_read_sub_data_fd(read_sub_fd, spu_buf_piece+16, current_length+4);
 		 	sizeflag-=(current_length+4);
 		    spu_buf_tmp+=(current_length+4);
@@ -372,14 +372,14 @@ int get_spu(AML_SPUVAR *spu, int read_sub_fd)
 		//FFT: i dont know why we throw the first sub, when pts == 0. remove these codes first. 
 		/*
 		if ((current_pts==0)&&(current_type!=0x17009)){
-			LOGI("current_pts==0\n");
+			ALOGI("current_pts==0\n");
 
 			ret = -1;
 			continue;
 		}
 		*/
 		
-	  	LOGI("current_type is 0x%x\n",current_type);
+	  	ALOGI("current_type is 0x%x\n",current_type);
 
 		switch (current_type) {
 			case 0x17003:	//XSUB		
@@ -388,7 +388,7 @@ int get_spu(AML_SPUVAR *spu, int read_sub_fd)
 				duration_pts |= spu_buf_piece[rd_oft++]<<16;
 				duration_pts |= spu_buf_piece[rd_oft++]<<8;
 				duration_pts |= spu_buf_piece[rd_oft++];
-				LOGI("duration_pts is %d, current_length=%d  ,rd_oft is %d\n",duration_pts,current_length,rd_oft);
+				ALOGI("duration_pts is %d, current_length=%d  ,rd_oft is %d\n",duration_pts,current_length,rd_oft);
 				
 				avihandle=(DivXSubPictHdr*)(spu_buf_piece+rd_oft);
 	
@@ -406,7 +406,7 @@ int get_spu(AML_SPUVAR *spu, int read_sub_fd)
 				}
 				spu->spu_width = avihandle->width;
 				spu->spu_height = avihandle->height;
-				LOGI(" spu->spu_width is 0x%x,  spu->spu_height=0x%x\n  spu->spu_width is %u,  spu->spu_height=%u\n",avihandle->width,avihandle->height,spu->spu_width,spu->spu_height);
+				ALOGI(" spu->spu_width is 0x%x,  spu->spu_height=0x%x\n  spu->spu_width is %u,  spu->spu_height=%u\n",avihandle->width,avihandle->height,spu->spu_width,spu->spu_height);
 
 				spu->rgba_enable = 1;	// XSUB
 				//FFT:The background pixels are 100% transparent 
@@ -414,8 +414,8 @@ int get_spu(AML_SPUVAR *spu, int read_sub_fd)
 				spu->rgba_pattern1 = (unsigned)avihandle->pattern1.red<<16 | (unsigned)avihandle->pattern1.green<<8 | (unsigned)avihandle->pattern1.blue | 0xff<<24;
 				spu->rgba_pattern2 = (unsigned)avihandle->pattern2.red<<16 | (unsigned)avihandle->pattern2.green<<8 | (unsigned)avihandle->pattern2.blue | 0xff<<24;
 				spu->rgba_pattern3 = (unsigned)avihandle->pattern3.red<<16 | (unsigned)avihandle->pattern3.green<<8 | (unsigned)avihandle->pattern3.blue | 0xff<<24;
-				LOGI(" spu->rgba_background == 0x%x,  spu->rgba_pattern1 == 0x%x\n", spu->rgba_background, spu->rgba_pattern1);
-				LOGI(" spu->rgba_pattern2 == 0x%x,  spu->rgba_pattern3 == 0x%x\n", spu->rgba_pattern2, spu->rgba_pattern3);
+				ALOGI(" spu->rgba_background == 0x%x,  spu->rgba_pattern1 == 0x%x\n", spu->rgba_background, spu->rgba_pattern1);
+				ALOGI(" spu->rgba_pattern2 == 0x%x,  spu->rgba_pattern3 == 0x%x\n", spu->rgba_pattern2, spu->rgba_pattern3);
 					
 	
 				ptrPXDRead = (unsigned short *)&(avihandle->rleData);
@@ -432,7 +432,7 @@ int get_spu(AML_SPUVAR *spu, int read_sub_fd)
 				duration_pts |= spu_buf_piece[rd_oft++]<<16;
 				duration_pts |= spu_buf_piece[rd_oft++]<<8;
 				duration_pts |= spu_buf_piece[rd_oft++];
-				LOGI("duration_pts is %d, current_length=%d  ,rd_oft is %d\n",duration_pts,current_length,rd_oft);
+				ALOGI("duration_pts is %d, current_length=%d  ,rd_oft is %d\n",duration_pts,current_length,rd_oft);
 				
 				avihandle_hd=(DivXSubPictHdr_HD*)(spu_buf_piece+rd_oft);
 	
@@ -450,7 +450,7 @@ int get_spu(AML_SPUVAR *spu, int read_sub_fd)
 				}
 				spu->spu_width = avihandle_hd->width;
 				spu->spu_height = avihandle_hd->height;
-				LOGI(" spu->spu_width is 0x%x,  spu->spu_height=0x%x\n  spu->spu_width is %u,  spu->spu_height=%u\n",avihandle_hd->width,avihandle_hd->height,spu->spu_width,spu->spu_height);
+				ALOGI(" spu->spu_width is 0x%x,  spu->spu_height=0x%x\n  spu->spu_width is %u,  spu->spu_height=%u\n",avihandle_hd->width,avihandle_hd->height,spu->spu_width,spu->spu_height);
 
 				spu->rgba_enable = 1;	// XSUB
 				spu->rgba_background = (unsigned)avihandle_hd->background.red<<16 | (unsigned)avihandle_hd->background.green<<8 | (unsigned)avihandle_hd->background.blue | avihandle_hd->background_transparency<<24; 
@@ -458,20 +458,20 @@ int get_spu(AML_SPUVAR *spu, int read_sub_fd)
 				spu->rgba_pattern2 = (unsigned)avihandle_hd->pattern2.red<<16 | (unsigned)avihandle_hd->pattern2.green<<8 | (unsigned)avihandle_hd->pattern2.blue | avihandle_hd->pattern2_transparency<<24;
 				spu->rgba_pattern3 = (unsigned)avihandle_hd->pattern3.red<<16 | (unsigned)avihandle_hd->pattern3.green<<8 | (unsigned)avihandle_hd->pattern3.blue | avihandle_hd->pattern3_transparency<<24;
 
-				LOGI(" avihandle_hd->background.red == 0x%x,  avihandle_hd->background.green == 0x%x\n", avihandle_hd->background.red, avihandle_hd->background.green);
-				LOGI(" avihandle_hd->background.blue == 0x%x,  avihandle_hd->background_transparency == 0x%x\n\n", avihandle_hd->background.blue, avihandle_hd->background_transparency);
+				ALOGI(" avihandle_hd->background.red == 0x%x,  avihandle_hd->background.green == 0x%x\n", avihandle_hd->background.red, avihandle_hd->background.green);
+				ALOGI(" avihandle_hd->background.blue == 0x%x,  avihandle_hd->background_transparency == 0x%x\n\n", avihandle_hd->background.blue, avihandle_hd->background_transparency);
 
-				LOGI(" avihandle_hd->pattern1.red == 0x%x,  avihandle_hd->pattern1.green == 0x%x\n", avihandle_hd->pattern1.red, avihandle_hd->pattern1.green);
-				LOGI(" avihandle_hd->pattern1.blue == 0x%x,	avihandle_hd->pattern1_transparency == 0x%x\n\n", avihandle_hd->pattern1.blue, avihandle_hd->pattern1_transparency);
+				ALOGI(" avihandle_hd->pattern1.red == 0x%x,  avihandle_hd->pattern1.green == 0x%x\n", avihandle_hd->pattern1.red, avihandle_hd->pattern1.green);
+				ALOGI(" avihandle_hd->pattern1.blue == 0x%x,	avihandle_hd->pattern1_transparency == 0x%x\n\n", avihandle_hd->pattern1.blue, avihandle_hd->pattern1_transparency);
 
-				LOGI(" avihandle_hd->pattern2.red == 0x%x,  avihandle_hd->pattern2.green == 0x%x\n", avihandle_hd->pattern2.red, avihandle_hd->pattern2.green);
-				LOGI(" avihandle_hd->pattern2.blue == 0x%x,	avihandle_hd->pattern@_transparency == 0x%x\n\n", avihandle_hd->pattern2.blue, avihandle_hd->pattern2_transparency);
+				ALOGI(" avihandle_hd->pattern2.red == 0x%x,  avihandle_hd->pattern2.green == 0x%x\n", avihandle_hd->pattern2.red, avihandle_hd->pattern2.green);
+				ALOGI(" avihandle_hd->pattern2.blue == 0x%x,	avihandle_hd->pattern@_transparency == 0x%x\n\n", avihandle_hd->pattern2.blue, avihandle_hd->pattern2_transparency);
 
-				LOGI(" avihandle_hd->pattern3.red == 0x%x,  avihandle_hd->pattern3.green == 0x%x\n", avihandle_hd->pattern3.red, avihandle_hd->pattern3.green);
-				LOGI(" avihandle_hd->pattern3.blue == 0x%x,	avihandle_hd->pattern3_transparency == 0x%x\n\n", avihandle_hd->pattern3.blue, avihandle_hd->pattern3_transparency);
+				ALOGI(" avihandle_hd->pattern3.red == 0x%x,  avihandle_hd->pattern3.green == 0x%x\n", avihandle_hd->pattern3.red, avihandle_hd->pattern3.green);
+				ALOGI(" avihandle_hd->pattern3.blue == 0x%x,	avihandle_hd->pattern3_transparency == 0x%x\n\n", avihandle_hd->pattern3.blue, avihandle_hd->pattern3_transparency);
 
-				LOGI(" spu->rgba_background == 0x%x,  spu->rgba_pattern1 == 0x%x\n", spu->rgba_background, spu->rgba_pattern1);
-				LOGI(" spu->rgba_pattern2 == 0x%x,  spu->rgba_pattern3 == 0x%x\n", spu->rgba_pattern2, spu->rgba_pattern3);
+				ALOGI(" spu->rgba_background == 0x%x,  spu->rgba_pattern1 == 0x%x\n", spu->rgba_background, spu->rgba_pattern1);
+				ALOGI(" spu->rgba_pattern2 == 0x%x,  spu->rgba_pattern3 == 0x%x\n", spu->rgba_pattern2, spu->rgba_pattern3);
 								
 				ptrPXDRead = (unsigned short *)&(avihandle_hd->rleData);
 				FillPixel(ptrPXDRead,spu->spu_data,1,spu,avihandle_hd->field_offset);
@@ -486,7 +486,7 @@ int get_spu(AML_SPUVAR *spu, int read_sub_fd)
 				duration_pts |= spu_buf_piece[rd_oft++]<<16;
 				duration_pts |= spu_buf_piece[rd_oft++]<<8;
 				duration_pts |= spu_buf_piece[rd_oft++];
-				LOGI("duration_pts is %d\n",duration_pts);
+				ALOGI("duration_pts is %d\n",duration_pts);
 			case 0x17000://vob internel image
 	     		spu->subtitle_type = SUBTITLE_VOB;
 	     		spu->buffer_size  = VOB_SUB_SIZE;
@@ -518,7 +518,7 @@ int get_spu(AML_SPUVAR *spu, int read_sub_fd)
 				spu->pts = current_pts;
 				spu->m_delay = duration_pts;
 				memcpy( spu->spu_data,spu_buf_piece+rd_oft, current_length );
-				LOGI("CODEC_ID_SSA   size is:    %u ,data is:    %s\n",spu->buffer_size,spu->spu_data);
+				ALOGI("CODEC_ID_SSA   size is:    %u ,data is:    %s\n",spu->buffer_size,spu->spu_data);
 				ret = 0;
 				break;
 	
@@ -579,7 +579,7 @@ int add_pgs_end_time(int end_time)
 {
 	if(DEC_SUBTITLE_POSITION(file_position) >= 0 && inter_subtitle_data[DEC_SUBTITLE_POSITION(file_position)].data){
 		inter_subtitle_data[DEC_SUBTITLE_POSITION(file_position)].subtitle_delay_pts = end_time;
-		LOGI("add file_position %d read_position is %d\n",
+		ALOGI("add file_position %d read_position is %d\n",
 			DEC_SUBTITLE_POSITION(file_position), read_position);
 	}
 	//if(read_position > DEC_SUBTITLE_POSITION(file_position))
@@ -621,7 +621,7 @@ int write_subtitle_file(AML_SPUVAR *spu)
 	}
 	if( spu->pts < inter_subtitle_data[DEC_SUBTITLE_POSITION(file_position)].subtitle_pts )
 	{
-		LOGI("inter_subtitle_data[%d].subtitle_pts %d",
+		ALOGI("inter_subtitle_data[%d].subtitle_pts %d",
 			DEC_SUBTITLE_POSITION(file_position), inter_subtitle_data[DEC_SUBTITLE_POSITION(file_position)].subtitle_pts);
 		close_subtitle();
 	}	
@@ -647,7 +647,7 @@ int write_subtitle_file(AML_SPUVAR *spu)
 	inter_subtitle_data[file_position].rgba_pattern2= spu->rgba_pattern2;
 	inter_subtitle_data[file_position].rgba_pattern3= spu->rgba_pattern3;
 	
-	LOGI(" write_subtitle_file[%d] subtitle_type is 0x%x size: %d  subtitle_pts =%u,subtitle_delay_pts=%u \n",file_position,inter_subtitle_data[read_position].subtitle_type,
+	ALOGI(" write_subtitle_file[%d] subtitle_type is 0x%x size: %d  subtitle_pts =%u,subtitle_delay_pts=%u \n",file_position,inter_subtitle_data[read_position].subtitle_type,
 					inter_subtitle_data[file_position].data_size,inter_subtitle_data[file_position].subtitle_pts,inter_subtitle_data[file_position].subtitle_delay_pts);
 	if(spu->subtitle_type == SUBTITLE_PGS)
 		file_position = ADD_SUBTITLE_POSITION(file_position);
@@ -656,17 +656,17 @@ int write_subtitle_file(AML_SPUVAR *spu)
 
 int read_subtitle_file()
 {
-	LOGI("subtitle data address is %x\n\n",(int)inter_subtitle_data[file_position].data);
+	ALOGI("subtitle data address is %x\n\n",(int)inter_subtitle_data[file_position].data);
 	return 0;
 }
 
 int get_inter_spu_packet(int pts)
 {
-	LOGI(" search pts %d , s %d \n",pts,pts/90);
+	ALOGI(" search pts %d , s %d \n",pts,pts/90);
 	
 	int storenumber=(file_position>=read_position)?file_position-read_position:MAX_SUBTITLE_PACKET_WRITE+file_position-1-read_position;
 	
-	LOGI("inter_subtitle_data[%d].subtitle_pts is %d storenumber=%d end_time %d\n",
+	ALOGI("inter_subtitle_data[%d].subtitle_pts is %d storenumber=%d end_time %d\n",
 		read_position,inter_subtitle_data[read_position].subtitle_pts,storenumber,
 		inter_subtitle_data[read_position].subtitle_delay_pts);
 
@@ -683,13 +683,13 @@ int get_inter_spu_packet(int pts)
 	if(inter_subtitle_data[read_position].subtitle_pts > pts ||	inter_subtitle_data[read_position].subtitle_pts < (pts - 10*90000))
 		return -1;
 
-	LOGI("get_inter_spu_packet  read_position is %d  file_position is %d  ,time is %d\n",read_position,file_position,inter_subtitle_data[read_position].subtitle_pts);
+	ALOGI("get_inter_spu_packet  read_position is %d  file_position is %d  ,time is %d\n",read_position,file_position,inter_subtitle_data[read_position].subtitle_pts);
 	return read_position;
 	}
 
 int get_inter_spu_type()
 {
-	LOGI(" inter_subtitle_data[%d] subtitle_type is 0x%x\n",read_position,inter_subtitle_data[read_position].subtitle_type);
+	ALOGI(" inter_subtitle_data[%d] subtitle_type is 0x%x\n",read_position,inter_subtitle_data[read_position].subtitle_type);
 	return inter_subtitle_data[read_position].subtitle_type;
 }
 
@@ -707,18 +707,18 @@ int get_inter_spu_size()
 		if(subtitle_width * subtitle_height == 0)
 			return 0;
 		int buffer_width = (subtitle_width+63)&0xffffffc0;
-		LOGI("buffer width is %d\n",buffer_width);
-		LOGI("buffer height is %d\n",subtitle_height);
+		ALOGI("buffer width is %d\n",buffer_width);
+		ALOGI("buffer height is %d\n",subtitle_height);
 		return buffer_width*subtitle_height;
 	}
 	else if(get_inter_spu_type()==SUBTITLE_SSA)
 	{
-		LOGI(" inter_subtitle_data[%d] data_size is 0x%x\n",read_position,inter_subtitle_data[read_position].data_size);
+		ALOGI(" inter_subtitle_data[%d] data_size is 0x%x\n",read_position,inter_subtitle_data[read_position].data_size);
 		return inter_subtitle_data[read_position].data_size;
 	}
 	else if(get_inter_spu_type()==SUBTITLE_PGS)
 	{
-		LOGI(" inter_subtitle_data[%d] data_size is 0x%x\n",read_position,inter_subtitle_data[read_position].data_size);
+		ALOGI(" inter_subtitle_data[%d] data_size is 0x%x\n",read_position,inter_subtitle_data[read_position].data_size);
 		return inter_subtitle_data[read_position].data_size/4;
 	}
 	return 0;
@@ -755,7 +755,7 @@ int get_inter_spu_resize_size()
 int add_read_position()
 {
 	read_position = ADD_SUBTITLE_POSITION(read_position);
-	LOGI("read_position is %d\n\n",read_position);
+	ALOGI("read_position is %d\n\n",read_position);
 	return 0;
 }
 
@@ -785,7 +785,7 @@ int fill_resize_data(int *dst_data, int *src_data)
 
 int *parser_inter_spu(int *buffer)
 {
-	LOGI("enter parser_inter_sup \n\n");
+	ALOGI("enter parser_inter_sup \n\n");
 	
 	unsigned short i=0,j=0;
 	unsigned char *data = NULL, *data2 = NULL;
@@ -800,11 +800,11 @@ int *parser_inter_spu(int *buffer)
 	int resize_width = buffer_width, resize_height;
 	int x_start = buffer_width, x_end = 0;
     unsigned data_byte = (((buffer_width*2)+15)>>4)<<1;
-	//LOGI("data_byte is %d\n\n",data_byte);
+	//ALOGI("data_byte is %d\n\n",data_byte);
 	int buffer_width_size = (buffer_width+63)&0xffffffc0;
-	//LOGI("buffer_width is %d\n\n",buffer_width_size);
+	//ALOGI("buffer_width is %d\n\n",buffer_width_size);
 	unsigned short subtitle_alpha = inter_subtitle_data[read_position].sub_alpha;
-	LOGI("subtitle_alpha is %x\n\n",subtitle_alpha);
+	ALOGI("subtitle_alpha is %x\n\n",subtitle_alpha);
 	unsigned int RGBA_Pal[4];
 	RGBA_Pal[0] = RGBA_Pal[1] = RGBA_Pal[2] = RGBA_Pal[3] = 0;
 	#if 0
@@ -847,8 +847,8 @@ int *parser_inter_spu(int *buffer)
 		RGBA_Pal[2] = inter_subtitle_data[read_position].rgba_pattern2;
 		RGBA_Pal[3] = inter_subtitle_data[read_position].rgba_pattern3;
 		
-		LOGI(" RGBA_Pal[0] == 0x%x, RGBA_Pal[1] == 0x%x\n", RGBA_Pal[0] ,RGBA_Pal[1]);
-		LOGI(" RGBA_Pal[2] == 0x%x,	RGBA_Pal[3] == 0x%x\n", RGBA_Pal[2] ,RGBA_Pal[3]);
+		ALOGI(" RGBA_Pal[0] == 0x%x, RGBA_Pal[1] == 0x%x\n", RGBA_Pal[0] ,RGBA_Pal[1]);
+		ALOGI(" RGBA_Pal[2] == 0x%x,	RGBA_Pal[3] == 0x%x\n", RGBA_Pal[2] ,RGBA_Pal[3]);
 	}
 	else if(subtitle_alpha&0xf000 && subtitle_alpha&0x0f00 &&\
 		subtitle_alpha&0x00f0){
@@ -902,10 +902,10 @@ int *parser_inter_spu(int *buffer)
 	inter_subtitle_data[read_position].resize_height = end_height - start_height + 1;
 	inter_subtitle_data[read_position].resize_size = inter_subtitle_data[read_position].resize_height * \
 							inter_subtitle_data[read_position].resize_width;
-	LOGI("resize startx is %d\n\n",inter_subtitle_data[read_position].resize_xstart);
-	LOGI("resize starty is %d\n\n",inter_subtitle_data[read_position].resize_ystart);
-	LOGI("resize height is %d\n\n",inter_subtitle_data[read_position].resize_height);
-	LOGI("resize_width is %d\n\n",inter_subtitle_data[read_position].resize_width);
+	ALOGI("resize startx is %d\n\n",inter_subtitle_data[read_position].resize_xstart);
+	ALOGI("resize starty is %d\n\n",inter_subtitle_data[read_position].resize_ystart);
+	ALOGI("resize height is %d\n\n",inter_subtitle_data[read_position].resize_height);
+	ALOGI("resize_width is %d\n\n",inter_subtitle_data[read_position].resize_width);
 	return (result_buf+start_height*buffer_width_size);
 	//ADD_SUBTITLE_POSITION(read_position);
 	return NULL;
@@ -913,13 +913,13 @@ int *parser_inter_spu(int *buffer)
 
 int get_inter_spu()
 {  
-	LOGI("get_inter_spu\n");
+	ALOGI("get_inter_spu\n");
 	
 	if(aml_sub_handle < 0){
 		aml_sub_handle = open(SUBTITLE_READ_DEVICE,O_RDONLY);
 	}
 	if(aml_sub_handle < 0){
-		LOGI("subtitle read device open fail\n");
+		ALOGI("subtitle read device open fail\n");
 		return 0;
 	}
 	int read_sub_fd=0;
@@ -936,16 +936,16 @@ int get_inter_spu()
 //	write_subtitle_file(&spu);
 //	free(spu.spu_data);
 //	file_position = ADD_SUBTITLE_POSITION(file_position);
-	LOGI("file_position is %d\n\n",file_position);
+	ALOGI("file_position is %d\n\n",file_position);
 
-	LOGI("end parser subtitle success\n");
+	ALOGI("end parser subtitle success\n");
 
 	return 0;
 }
 
 int close_subtitle()
 {
-	LOGI("----------------------close_subtitle------------------------------");
+	ALOGI("----------------------close_subtitle------------------------------");
 
 	int i=0;
 	for(i=0; i<MAX_SUBTITLE_PACKET_WRITE; i++){

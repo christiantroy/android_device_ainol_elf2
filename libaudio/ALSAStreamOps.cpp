@@ -131,7 +131,7 @@ status_t ALSAStreamOps::set(int      *format,
                 break;
 
             default:
-                LOGE("Unknown PCM format %i. Forcing default", *format);
+                ALOGE("Unknown PCM format %i. Forcing default", *format);
                 break;
         }
 
@@ -158,7 +158,7 @@ status_t ALSAStreamOps::setParameters(const String8& keyValuePairs)
     String8 key = String8(AudioParameter::keyRouting);
     status_t status = NO_ERROR;
     int device;
-    LOGV("setParameters() %s", keyValuePairs.string());
+    ALOGV("setParameters() %s", keyValuePairs.string());
 
     if (param.getInt(key, device) == NO_ERROR) {
         AutoMutex lock(mLock);
@@ -182,7 +182,7 @@ String8 ALSAStreamOps::getParameters(const String8& keys)
         param.addInt(key, (int)mHandle->curDev);
     }
 
-    LOGV("getParameters() %s", param.toString().string());
+    ALOGV("getParameters() %s", param.toString().string());
     return param.toString();
 }
 

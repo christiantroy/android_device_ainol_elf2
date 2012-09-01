@@ -35,7 +35,7 @@ int  amsysfs_get_sysfs_str(const char *path, char *valstr, int size)
         sprintf(valstr, "%s", "fail");
         return -1;
     };
-    LOGI("get_sysfs_str=%s\n", valstr);
+    ALOGI("get_sysfs_str=%s\n", valstr);
     return 0;
 }
 

@@ -118,16 +118,16 @@ int fh_amljpeg_load(aml_dec_para_t* para , aml_image_info_t* image)
 		output_image = read_jpeg_image(para);
 		if(output_image){
 			if(1){
-				LOGD("output image width is %d\n", output_image->width);
-				LOGD("output image height is %d\n", output_image->height);
-				LOGD("output image depth is %d\n", output_image->depth);
-				LOGD("output image bytes_per_line is %d\n", output_image->bytes_per_line);
-				LOGD("output image nbytes   is %d\n", output_image->nbytes);
+				ALOGD("output image width is %d\n", output_image->width);
+				ALOGD("output image height is %d\n", output_image->height);
+				ALOGD("output image depth is %d\n", output_image->depth);
+				ALOGD("output image bytes_per_line is %d\n", output_image->bytes_per_line);
+				ALOGD("output image nbytes   is %d\n", output_image->nbytes);
 			}        
 			memcpy((char*)image , (char*)output_image, sizeof(aml_image_info_t)) ;
 			free(output_image);   
 		} else {
-			LOGD("decoding error\n");
+			ALOGD("decoding error\n");
 			ret = FH_ERROR_HWDEC_FAIL;
 		}
 	}

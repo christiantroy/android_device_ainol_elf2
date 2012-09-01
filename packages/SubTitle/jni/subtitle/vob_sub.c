@@ -22,8 +22,8 @@
 #include <android/log.h>
 
 #define  LOG_TAG    "sub_jni"
-#define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
-#define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
+#define  ALOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
+#define  ALOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
 static int dbg_level = 0;
 
 
@@ -385,7 +385,7 @@ mpeg_open(const char *filename)
 	res->stream = rar_open(filename, "rb");
 	err = res->stream == NULL;
 	if (err)
-        LOGI("fopen Vobsub file failed");
+        ALOGI("fopen Vobsub file failed");
 	if (err)
         free(res);
     }
@@ -1745,7 +1745,7 @@ static int SubtitleVOBSub_ShowSubtitle(subtitlevobsub_t *subtitlevobsub,int pts 
                                             subtitlevobsub->vob_ptrPXDRead = (unsigned short *)((unsigned)(rawsubdata)+subtitlevobsub->VobSPU.bottom_pxd_addr);
                                             vob_fill_pixel(subtitlevobsub,2);        // 1 for odd, 2 for even
                                             show_vob_subtitle(subtitlevobsub);
-											LOGI("get subtitle ----------------yes\n");
+											ALOGI("get subtitle ----------------yes\n");
                                             ret=1;
                                         }
                                     }
@@ -1904,12 +1904,12 @@ void idxsub_parser_data( const unsigned char * source,long length,int linewidth,
 //    int fd =open("/sdcard/subfrom", O_WRONLY|O_CREAT);
 //    if (fd==NULL)
 //    {
-//		LOGE("fd ================NULL");
+//		ALOGE("fd ================NULL");
 //    }
 //    long bytes = write(fd, source,length );
 //    close(fd);
 //
-//	LOGE("write bytes %d  / %d ",bytes, length);
+//	ALOGE("write bytes %d  / %d ",bytes, length);
 //	
 
     for( i=0; i< length; i+=2)
@@ -1942,11 +1942,11 @@ void idxsub_parser_data( const unsigned char * source,long length,int linewidth,
 //    int fdto =open("/sdcard/subto", O_WRONLY|O_CREAT);
 //    if (fdto==NULL)
 //    {
-//		LOGE("fd ================NULL");
+//		ALOGE("fd ================NULL");
 //    }
 //    bytes = write(fdto, dist,length*16 );
 //    close(fdto);
 //
-//	LOGE("write bytes %d  / %d ",bytes, length*16);    
+//	ALOGE("write bytes %d  / %d ",bytes, length*16);    
     
 }

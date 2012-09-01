@@ -17,8 +17,8 @@
 #include "sub_vob_sub.h"
 
 #define  LOG_TAG    "sub_jni"
-#define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
-#define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
+#define  ALOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
+#define  ALOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
 
 unsigned short doDCSQC(unsigned char *pdata,unsigned char *pend)
 {
@@ -99,7 +99,7 @@ static int get_spu_cmd(AML_SPUVAR *sub_frame)
 
 
     if(sub_frame->cmd_offset >= sub_frame->length){
-        LOGI("cmd_offset bigger than frame_size\n\n");
+        ALOGI("cmd_offset bigger than frame_size\n\n");
         return -1;		//cmd offset > frame size
     }
     
@@ -191,20 +191,20 @@ static int get_spu_cmd(AML_SPUVAR *sub_frame)
                     if((sub_frame->m_delay = doDCSQC(pCmdData,pCmdEnd-6))>0)
                         sub_frame->m_delay = sub_frame->m_delay*1024+sub_frame->pts;
                 }
-                LOGI("get_spu_cmd parser to the end\n\n");
+                ALOGI("get_spu_cmd parser to the end\n\n");
                 return 0;
                 break;
             default:
                 return -1;
     	 }
     }
-    LOGI("get_spu_cmd can not parser complete\n\n");
+    ALOGI("get_spu_cmd can not parser complete\n\n");
     return -1;
 }
 
 int get_vob_spu(char *spu_buf, unsigned length, AML_SPUVAR *spu)
 {
-//	LOGI("spubuf  %x %x %x %x %x %x %x %x   %x %x %x %x %x %x %x %x  \n %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x\n",
+//	ALOGI("spubuf  %x %x %x %x %x %x %x %x   %x %x %x %x %x %x %x %x  \n %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x\n",
 //	    spu_buf[0], spu_buf[1],spu_buf[2],spu_buf[3],spu_buf[4],spu_buf[5],spu_buf[6],spu_buf[7],
 //	    spu_buf[8],spu_buf[9],spu_buf[10],spu_buf[11],spu_buf[12],spu_buf[13],spu_buf[14],spu_buf[15],
 //	    spu_buf[16],spu_buf[17],spu_buf[18],spu_buf[19],spu_buf[20],spu_buf[21],spu_buf[22],spu_buf[23],
@@ -227,7 +227,7 @@ int get_vob_spu(char *spu_buf, unsigned length, AML_SPUVAR *spu)
 	
 	while (spu->length-rd_oft > 0){
 		if (!current_length) {
-      		LOGI("current_length is zero\n\n");
+      		ALOGI("current_length is zero\n\n");
 			if ((spu_buf[rd_oft++]!=0x41)||(spu_buf[rd_oft++]!=0x4d)||
 				(spu_buf[rd_oft++]!=0x4c)||(spu_buf[rd_oft++]!=0x55)|| (spu_buf[rd_oft++]!=0xaa))
 				goto error; 		// wrong head				
@@ -255,21 +255,21 @@ int get_vob_spu(char *spu_buf, unsigned length, AML_SPUVAR *spu)
 
 
 	// if one frame data is ready, decode it.
-	LOGI("spu->frame_rdy is %d\n\n",spu->frame_rdy);
+	ALOGI("spu->frame_rdy is %d\n\n",spu->frame_rdy);
 	if (spu->frame_rdy == 1){
 		pixDataOdd = malloc(VOB_SUB_SIZE/2);
-		LOGI("pixDataOdd is %x\n\n",pixDataOdd);
+		ALOGI("pixDataOdd is %x\n\n",pixDataOdd);
 		if (!pixDataOdd){
-		LOGI("pixDataOdd malloc fail\n\n");
+		ALOGI("pixDataOdd malloc fail\n\n");
 			goto error; 		//not enough memory
 		}
 		ptrPXDRead = (unsigned short *)(spu->spu_data + spu->top_pxd_addr);
 		spu_fill_pixel(ptrPXDRead, pixDataOdd, spu, 1);	
 
 		pixDataEven = malloc(VOB_SUB_SIZE/2);
-		LOGI("pixDataEven is %x\n\n",pixDataEven);
+		ALOGI("pixDataEven is %x\n\n",pixDataEven);
 		if (!pixDataEven){
-      	LOGI("pixDataEven malloc fail\n\n");
+      	ALOGI("pixDataEven malloc fail\n\n");
 			goto error; 		//not enough memory
     }
 		ptrPXDRead = (unsigned short *)(spu->spu_data + spu->bottom_pxd_addr);
@@ -290,14 +290,14 @@ int get_vob_spu(char *spu_buf, unsigned length, AML_SPUVAR *spu)
 
 error:
 	if (pixDataOdd){
-    	LOGI("start free pixDataOdd\n\n");
+    	ALOGI("start free pixDataOdd\n\n");
 		free(pixDataOdd);
-		LOGI("end free pixDataOdd\n\n");
+		ALOGI("end free pixDataOdd\n\n");
 	}
 	if (pixDataEven){
-    	LOGI("start free pixDataEven\n\n");
+    	ALOGI("start free pixDataEven\n\n");
 		free(pixDataEven);
-		LOGI("end free pixDataEven\n\n");
+		ALOGI("end free pixDataEven\n\n");
 	}
 	return ret;
 }

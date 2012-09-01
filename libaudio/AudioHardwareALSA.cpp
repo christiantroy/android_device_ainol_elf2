@@ -91,9 +91,9 @@ AudioHardwareALSA::AudioHardwareALSA() :
             mALSADevice = (alsa_device_t *)device;
             mALSADevice->init(mALSADevice, mDeviceList);
         } else
-            LOGE("ALSA Module could not be opened!!!");
+            ALOGE("ALSA Module could not be opened!!!");
     } else
-        LOGE("ALSA Module not found!!!");
+        ALOGE("ALSA Module not found!!!");
 
     err = hw_get_module(ACOUSTICS_HARDWARE_MODULE_ID,
             (hw_module_t const**)&module);
@@ -104,7 +104,7 @@ AudioHardwareALSA::AudioHardwareALSA() :
         if (err == 0)
             mAcousticDevice = (acoustic_device_t *)device;
         else
-            LOGE("Acoustics Module not found.");
+            ALOGE("Acoustics Module not found.");
     }
 }
 
@@ -123,7 +123,7 @@ status_t AudioHardwareALSA::initCheck()
         return NO_INIT;
 
     if (!mMixer || !mMixer->isValid())
-        LOGW("ALSA Mixer is not valid. AudioFlinger will do software volume control.");
+        ALOGW("ALSA Mixer is not valid. AudioFlinger will do software volume control.");
 
     return NO_ERROR;
 }
@@ -179,14 +179,14 @@ AudioHardwareALSA::openOutputStream(uint32_t devices,
                                     uint32_t *sampleRate,
                                     status_t *status)
 {
-    LOGD("openOutputStream called for devices: 0x%08x", devices);
+    ALOGD("openOutputStream called for devices: 0x%08x", devices);
 
     status_t err = BAD_VALUE;
     AudioStreamOutALSA *out = 0;
 
     if (devices & (devices - 1)) {
         if (status) *status = err;
-        LOGD("openOutputStream called with bad devices");
+        ALOGD("openOutputStream called with bad devices");
         return out;
     }
 
@@ -236,7 +236,7 @@ AudioHardwareALSA::openInputStream(uint32_t devices,
             if (err) {
               // check if usb-audio
               if(strcmp((char*)it->modPrivate, "usb-audio") == 0){
-                LOGE("open usb-audio error, to try builtin-audio\n");
+                ALOGE("open usb-audio error, to try builtin-audio\n");
                 continue;
               }
 
@@ -291,15 +291,15 @@ size_t AudioHardwareALSA::getInputBufferSize(uint32_t sampleRate, int format, in
     	sampleRate!= 12000 &&sampleRate!=16000 &&
     	sampleRate!=22050&&sampleRate!=24000&&
     	sampleRate!=32000&&sampleRate!=44100&&sampleRate!=48000) {
-        LOGW("getInputBufferSize bad sampling rate: %d", sampleRate);
+        ALOGW("getInputBufferSize bad sampling rate: %d", sampleRate);
         return 0;
     }
     if (format != AudioSystem::PCM_16_BIT) {
-        LOGW("getInputBufferSize bad format: %d", format);
+        ALOGW("getInputBufferSize bad format: %d", format);
         return 0;
     }
     if (channelCount != 1 && channelCount!=2) {
-        LOGW("getInputBufferSize bad channel count: %d", channelCount);
+        ALOGW("getInputBufferSize bad channel count: %d", channelCount);
         return 0;
     }
 
@@ -316,12 +316,12 @@ size_t AudioHardwareALSA::getInputBufferSize(uint32_t sampleRate, int format, in
             if(iter->handle == 0){
 
             }
-            LOGD("audio-in handle=%p", iter->handle);
+            ALOGD("audio-in handle=%p", iter->handle);
 			if(iter->devices == AudioSystem::DEVICE_IN_ALL)
 			{
 				devicebuffersize = iter->bufferSize;
 				devicesampelrate = iter->sampleRate;
-				LOGD("devicebuffersize = %d,devicesampelrate=%d",devicebuffersize,devicesampelrate);
+				ALOGD("devicebuffersize = %d,devicesampelrate=%d",devicebuffersize,devicesampelrate);
 				break;
 			}
 			iter ++;
@@ -329,10 +329,10 @@ size_t AudioHardwareALSA::getInputBufferSize(uint32_t sampleRate, int format, in
 
 		const int samplesize = 2;
 		minbufsize = (devicebuffersize*sampleRate/devicesampelrate+1)*samplesize*channelCount;
-		LOGD("minbufsize %d",minbufsize);
+		ALOGD("minbufsize %d",minbufsize);
 	}
 	else
-		LOGE("AudioHardwareALSA device list is null!");
+		ALOGE("AudioHardwareALSA device list is null!");
     return minbufsize;}
 
 }       // namespace android

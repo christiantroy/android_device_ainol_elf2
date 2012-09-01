@@ -126,7 +126,7 @@ int fh_jpeg_load(aml_dec_para_t* para , aml_image_info_t* image)
     
     int dx = para->width ;
 	int dy = para->height ; 
-	LOGD("dx is %d , dy is %d\n",  dx ,dy);   
+	ALOGD("dx is %d , dy is %d\n",  dx ,dy);   
     memset((char*)&simp_scaler ,0 , sizeof(simp_scaler_t));
     ciptr=&cinfo;
     if(!(fh=fopen(filename,"rb"))) return(FH_ERROR_FILE);

@@ -13,9 +13,9 @@ int setPpmDisp(int width, int height) {
 	int fb_disp;
 	char ppmDisp_str[32];
 
-	LOGI("setPpmDisp: width=%d height=%d", width, height);
+	ALOGI("setPpmDisp: width=%d height=%d", width, height);
 	if((fb_disp = open("/sys/class/ppmgr/disp", O_RDWR)) < 0) {
-		LOGI("open /sys/class/ppmgr/disp fail.");
+		ALOGI("open /sys/class/ppmgr/disp fail.");
 	}
 	
 	memset(ppmDisp_str,0,32);	

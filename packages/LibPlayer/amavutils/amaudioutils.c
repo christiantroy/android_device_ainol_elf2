@@ -22,7 +22,7 @@ typedef enum
 #define	AUDIODSP_CODEC_MIPS_OUT "/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq"
 #define AUDIODSP_CLK81_FRQ_LEVEL "/sys/class/aml_clk81/clk81_freq_level"
 
-#define LOG_FUNCTION_NAME LOGI("%s-%d\n",__FUNCTION__,__LINE__);
+#define LOG_FUNCTION_NAME ALOGI("%s-%d\n",__FUNCTION__,__LINE__);
 ///#define LOG_FUNCTION_NAME
 
 static int set_audiodsp_frelevel(int m1_flag, int coeff)
@@ -33,9 +33,9 @@ static int set_audiodsp_frelevel(int m1_flag, int coeff)
 		if(val > 0 && coeff > 0){
 			val = coeff * val;
 			set_sys_int(AUDIODSP_CODEC_MIPS_OUT,val);
-			LOGI("m1:set_cpu_freq_scaling_based_auido %d\n",val);
+			ALOGI("m1:set_cpu_freq_scaling_based_auido %d\n",val);
 		}else{
-			LOGI("m1:set_cpu_freq_scaling_based_auido failed\n");
+			ALOGI("m1:set_cpu_freq_scaling_based_auido failed\n");
 			return -1;
 		}
 	}
@@ -68,7 +68,7 @@ int amaudio_utils_set_dsp_freqlevel(audiodsp_freqlevel_t level, int val)
 			break;
 
 		default:
-			LOGI("level not in range! level=%d\n", level);
+			ALOGI("level not in range! level=%d\n", level);
 	}
 
 	return 0;

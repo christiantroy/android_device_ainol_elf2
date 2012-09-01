@@ -18,7 +18,7 @@ int set_sys_int(const char *path,int val)
         	sprintf(bcmd,"%d",val);
         	write(fd,bcmd,strlen(bcmd));
         	close(fd);
-        	LOGI("\n switch %s clk81 freq\n", val?"high":"low");
+        	ALOGI("\n switch %s clk81 freq\n", val?"high":"low");
         	return 0;
         }
 

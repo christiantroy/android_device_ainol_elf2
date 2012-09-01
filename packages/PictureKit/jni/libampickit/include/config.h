@@ -113,6 +113,6 @@
 #ifndef _LINUX
 #include <cutils/log.h>
 #else
-#define LOGD printf
+#define ALOGD printf
 #endif
 #endif

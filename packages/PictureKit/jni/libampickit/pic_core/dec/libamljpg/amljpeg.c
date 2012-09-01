@@ -64,7 +64,7 @@ unsigned decoder_opt;
 int sMode;
 
 #ifndef JPEG_DBG
-#define LOGD
+#define ALOGD
 #endif
 
 //to get a valid image for jpeg.
@@ -76,11 +76,11 @@ inline int nextMulOf8(int n)
 int amljpeg_init()
 {
 	int i = 0;  
-	LOGD("last fd_amport is (%d).\n",fd_amport);  
+	ALOGD("last fd_amport is (%d).\n",fd_amport);  
 	fd_amport = open(FILE_NAME_AMPORT, O_WRONLY);
 	if(fd_amport<0) {    
-		LOGD("error:hwjpeg initing,can't access %s.\n",FILE_NAME_AMPORT);
-		LOGD(" error no %d\n",errno);
+		ALOGD("error:hwjpeg initing,can't access %s.\n",FILE_NAME_AMPORT);
+		ALOGD(" error no %d\n",errno);
 		return -1;
 	}
 
@@ -92,7 +92,7 @@ int amljpeg_init()
 		usleep(10000);
 		i++;
 		if(i>20)  {
-			LOGD("hw jpeg init decoder error---hw jpeg device access error\n");	
+			ALOGD("hw jpeg init decoder error---hw jpeg device access error\n");	
 			return -1;
 		}
 	}
@@ -104,7 +104,7 @@ void amljpeg_exit()
 	if(fd_amport>=0)
 	{
 		close(fd_amport);
-		LOGD("fd_amport (%d) closed.\n",fd_amport);
+		ALOGD("fd_amport (%d) closed.\n",fd_amport);
 		fd_amport=-1;
 	}
 }
@@ -123,7 +123,7 @@ unsigned int  ImgFormat2Ge2dFormat(int img_format)
 		format = GE2D_FORMAT_S32_ABGR;
 		break;
 	default:
-		LOGD("blit_32(): Image format %d not supported!", img_format);
+		ALOGD("blit_32(): Image format %d not supported!", img_format);
 		format = GE2D_FORMAT_S32_ARGB;
 		break;
 	}
@@ -139,10 +139,10 @@ int clear_plane(int index,jpegdec_config_t *config,int format)
 	memset((char*)&ge2d_config,0,sizeof(config_para_t));
 	fd_ge2d= open(FILE_NAME_GE2D, O_RDWR);
 	if(fd_ge2d<0) {
-		LOGD("can't open framebuffer device" );
+		ALOGD("can't open framebuffer device" );
 		goto exit;
 	}
-	LOGD("start clean plane buffer %d!!!!!\n", index);
+	ALOGD("start clean plane buffer %d!!!!!\n", index);
 	ge2d_config.src_dst_type = ALLOC_ALLOC;
 
 	switch(index) {
@@ -234,7 +234,7 @@ exit:
 		close(fd_ge2d);
 		fd_ge2d = -1;
 	}
-	LOGD("finish clean plane buffer %d!!!!!\n", index);
+	ALOGD("finish clean plane buffer %d!!!!!\n", index);
 	return 0;
 }
 
@@ -315,14 +315,14 @@ int compute_keep_ratio_by_expanding(jpeg_data_t  *jpeg_data,jpegdec_config_t *co
 		h_limit = 1920;      
 	}
 	if((target_width > w_limit)||(target_height > h_limit)){       
-		LOGD("crop area exceed %d*%d!!!!!\n", target_width, target_height);       
+		ALOGD("crop area exceed %d*%d!!!!!\n", target_width, target_height);       
 		return -1;       
 	}
 	if((image_width <= frame_width)&&(image_height <= frame_height)){        
 		config->dec_w = image_width;
 		config->dec_h = image_height;
 	} else if ((image_width < frame_width)||(image_height < frame_height)){    
-		LOGD("crop function disable %d*%d!!!!!\n", image_width, image_height);          
+		ALOGD("crop function disable %d*%d!!!!!\n", image_width, image_height);          
 		return -1;
 	}
 	return 0;
@@ -345,7 +345,7 @@ int rebuild_jpg_config_para(jpeg_data_t  *jpeg_data,jpegdec_config_t *config)
 		break;
 	}  
 	if(config->dec_h<2) {
-		LOGD("too small to decode with hwjpeg decoder.\n");
+		ALOGD("too small to decode with hwjpeg decoder.\n");
 		return -1;
 	}
 	return 0;
@@ -360,7 +360,7 @@ int set_jpeg_dec_mem(jpeg_data_t *jpeg_data,jpegdec_config_t *config) {
 	planes[3] = ((unsigned long) planes[3] +0xffff)&0xffff0000; 
 	if ((planes[3]+CANVAS_ALIGNED(config->canvas_width) *config->dec_h*4) > 
 		(jpeg_dec_mem.canv_addr+jpeg_dec_mem.canv_len)) {
-		LOGD("Not enough system memory\n");
+		ALOGD("Not enough system memory\n");
 		return -1;
 	}
 	config->addr_y = planes[0];
@@ -409,22 +409,22 @@ int read_jpeg_data(FILE* fd,jpeg_data_t  *jpeg_data,int op_max,jpegdec_config_t 
 	int time_cur;
 	int time_poll;
     
-	LOGD("decoder start\n");
+	ALOGD("decoder start\n");
 	while(op_step < op_max) {
 		decState=get_decoder_state( fd_jpegdec);
 		result = decState;
 		if (decState & JPEGDEC_STAT_ERROR) {
-			LOGD("jpegdec error\n");
+			ALOGD("jpegdec error\n");
 			break;
 		}
 
 		if (decState & JPEGDEC_STAT_UNSUPPORT) {
-			LOGD("jpegdec unsupported format\n");
+			ALOGD("jpegdec unsupported format\n");
 			break;
 		}
 
 		if (decState & JPEGDEC_STAT_DONE) {
-			LOGD("jpegdec done\n");	
+			ALOGD("jpegdec done\n");	
 			break;
 		}
 		ioctl(fd_amport, AMSTREAM_IOC_VB_STATUS,&vb_info);
@@ -437,7 +437,7 @@ int read_jpeg_data(FILE* fd,jpeg_data_t  *jpeg_data,int op_max,jpegdec_config_t 
 			total_size += read_num;
 			if(read_num<0)
 			{
-				LOGD("can't read data from jpeg device");  
+				ALOGD("can't read data from jpeg device");  
 				result= 0;
 				break;
 			}
@@ -458,7 +458,7 @@ int read_jpeg_data(FILE* fd,jpeg_data_t  *jpeg_data,int op_max,jpegdec_config_t 
 		case DEC_STAT_INFO:
 			if (decState & JPEGDEC_STAT_INFO_READY) {
 				ioctl( fd_jpegdec, JPEGDEC_IOC_INFO, &jpeg_data->info);
-				LOGD("++jpeg informations:w:%d,h:%d\r\n",jpeg_data->info.width,jpeg_data->info.height);			
+				ALOGD("++jpeg informations:w:%d,h:%d\r\n",jpeg_data->info.width,jpeg_data->info.height);			
 				op_step=DEC_STAT_DECCONFIG;
 				
 			} else {
@@ -467,22 +467,22 @@ int read_jpeg_data(FILE* fd,jpeg_data_t  *jpeg_data,int op_max,jpegdec_config_t 
 					wait_info_count = 0;
 					time_cur = time((time_t*)NULL) ;
 					wait_timeout = time_cur - time_start;
-					//LOGD("current timeout is %d!!!\n",wait_timeout);
+					//ALOGD("current timeout is %d!!!\n",wait_timeout);
 				}
 				if(wait_timeout > 1) {
 					op_step = op_max;
-					LOGD("timeout for get jpeg info!!!\n");	
+					ALOGD("timeout for get jpeg info!!!\n");	
 					result =0;
 					break;
 				}
-				//LOGD("in jpeg decoding process\n");
+				//ALOGD("in jpeg decoding process\n");
 				result =0;
 			}
 			break;
 		case DEC_STAT_DECCONFIG:
 			if(config) {
 				if (rebuild_jpg_config_para(jpeg_data,config)<0) {
-					LOGD("get mem info failed\n");
+					ALOGD("get mem info failed\n");
 					op_step = op_max;
 					result =0;
 					continue;
@@ -491,13 +491,13 @@ int read_jpeg_data(FILE* fd,jpeg_data_t  *jpeg_data,int op_max,jpegdec_config_t 
 				jpeg_dec_mem.dec_w=config->dec_w;
 				jpeg_dec_mem.dec_h=config->dec_h;
 				if(ioctl(fd_jpegdec, JPEGDEC_G_MEM_INFO, &jpeg_dec_mem)<0) {
-					LOGD("get mem info failed\n");
+					ALOGD("get mem info failed\n");
 					op_step = op_max;
 					result =0;
 					continue;
 				}
 				if (set_jpeg_dec_mem(jpeg_data,config)<0||ioctl(fd_jpegdec, JPEGDEC_IOC_DECCONFIG, config)<0) {			    
-					LOGD("decoder config failed\n");
+					ALOGD("decoder config failed\n");
 					op_step = op_max;
 					result =0;
 					continue;
@@ -512,12 +512,12 @@ int read_jpeg_data(FILE* fd,jpeg_data_t  *jpeg_data,int op_max,jpegdec_config_t 
 		time_poll = time((time_t*)NULL) ;
 		if((time_poll - time_start) > 3){
 			op_step = op_max;
-			LOGD("it's a corrupted jpeg\n");
+			ALOGD("it's a corrupted jpeg\n");
 			result =0;
 		}
 	}
-	LOGD("decoder exit\n");
-	LOGD("total read bytes is %d",total_size);
+	ALOGD("decoder exit\n");
+	ALOGD("total read bytes is %d",total_size);
 	
 	return result;
 }
@@ -584,24 +584,24 @@ aml_image_info_t* decode_jpeg(aml_dec_para_t* para,FILE* fd,int c_flag,
 
 	if(!(JPEGDEC_STAT_DONE & 
 			read_jpeg_data(fd, &jpeg_data, DEC_STAT_MAX, &config, para->thumbpref))) {    
-		LOGD("can't decode jpg pic\n");
+		ALOGD("can't decode jpg pic\n");
 		goto exit;
 	} 
 
 	input_image_info = (aml_image_info_t*)malloc(sizeof(aml_image_info_t));
 	
 	if(!input_image_info) {
-		LOGD("amljpeg: info mem get error\n");
+		ALOGD("amljpeg: info mem get error\n");
 		goto exit;
 	}
 
-	LOGD("deocde jpg pic completed\n");
+	ALOGD("deocde jpg pic completed\n");
 	input_image_width = CANVAS_ALIGNED(scale_w);
 
 	//open fb device to handle ge2d op FILE_NAME_GE2D
 	fd_ge2d= open(FILE_NAME_GE2D, O_RDWR); 
 	if(fd_ge2d<0) {
-		LOGD("can't open framebuffer device\n" );  			
+		ALOGD("can't open framebuffer device\n" );  			
 		goto exit;
 	}
 
@@ -612,11 +612,11 @@ aml_image_info_t* decode_jpeg(aml_dec_para_t* para,FILE* fd,int c_flag,
 		ioctl(fd_ge2d,FBIOPUT_GE2D_ANTIFLICKER_ENABLE,0);
 
 	if(format == 0) {
-		LOGD("default data!\n" );
+		ALOGD("default data!\n" );
 		if(jpeg_data.info.comp_num==3 ||jpeg_data.info.comp_num==4)
 			format = COLOR_S32_ARGB;
 		else {
-			LOGD("unsupported color format\n" );
+			ALOGD("unsupported color format\n" );
 			goto exit;
 		}
 	} 
@@ -624,14 +624,14 @@ aml_image_info_t* decode_jpeg(aml_dec_para_t* para,FILE* fd,int c_flag,
 	if(c_flag) 
 		clear_plane(3,&config,format);
 
-	LOGD("start ge2d image format convert!!!!!\n");
+	ALOGD("start ge2d image format convert!!!!!\n");
 	ge2d_config.src_dst_type = ALLOC_ALLOC;
 	ge2d_config.alu_const_color=0xff0000ff;
 	ge2d_config.src_format = GE2D_FORMAT_M24_YUV420;
 	ge2d_config.dst_format = ImgFormat2Ge2dFormat(format);
 	if(0xffffffff==ge2d_config.dst_format)
 	{
-		LOGD("can't get proper ge2d format\n" );
+		ALOGD("can't get proper ge2d format\n" );
 		goto exit;
 	}
 
@@ -686,7 +686,7 @@ aml_image_info_t* decode_jpeg(aml_dec_para_t* para,FILE* fd,int c_flag,
 		}
 		break;
 	case  SCRETCHFULLSCREEN:
-		LOGD("full screen mode. \n");
+		ALOGD("full screen mode. \n");
 		op_para.src1_rect.x = 0;
 		op_para.src1_rect.y = 0;
 		op_para.src1_rect.w = config.dec_w;
@@ -742,17 +742,17 @@ aml_image_info_t* decode_jpeg(aml_dec_para_t* para,FILE* fd,int c_flag,
 		op_para.dst_rect.y= op_para.dst_rect.h+op_para.dst_rect.y;
 	}
 
-	LOGD("alloc_alloc:srcx :%d  : srcy :%d srcw :%d srch :%d\n" ,op_para.src1_rect.x,op_para.src1_rect.y,op_para.src1_rect.w,op_para.src1_rect.h);	
-	LOGD("alloc_alloc:dstx :%d  : dsty :%d dstw :%d dsth :%d\n" ,op_para.dst_rect.x,op_para.dst_rect.y,op_para.dst_rect.w,op_para.dst_rect.h);	
+	ALOGD("alloc_alloc:srcx :%d  : srcy :%d srcw :%d srch :%d\n" ,op_para.src1_rect.x,op_para.src1_rect.y,op_para.src1_rect.w,op_para.src1_rect.h);	
+	ALOGD("alloc_alloc:dstx :%d  : dsty :%d dstw :%d dsth :%d\n" ,op_para.dst_rect.x,op_para.dst_rect.y,op_para.dst_rect.w,op_para.dst_rect.h);	
 	ioctl(fd_ge2d, FBIOPUT_GE2D_STRETCHBLIT_NOALPHA, &op_para); 
 	//bpl = nextMulOf8(bytesPerPixel(format) *scale_w);
 
-	LOGD("start generate output image\n");
+	ALOGD("start generate output image\n");
 
 	hwjpeg_mmap_p= mmap(0,jpeg_dec_mem.canv_len, 
 			PROT_READ , MAP_PRIVATE, fd_jpegdec, 0);
 	if ((int)hwjpeg_mmap_p == -1) {
-		LOGD("Error: failed to map framebuffer device to memory.\n");
+		ALOGD("Error: failed to map framebuffer device to memory.\n");
 		goto exit;
 	}
 	input_image_info->data= hwjpeg_mmap_p+(planes[3]-planes[0]); 
@@ -834,25 +834,25 @@ aml_image_info_t* decode_jpeg_cross(aml_dec_para_t* para,FILE* fd,int whichparts
 	if(!(JPEGDEC_STAT_DONE & 
 		read_jpeg_data(fd, &jpeg_data, DEC_STAT_MAX, &config,para->thumbpref)))
 	{    
-		LOGD("can't decode jpg pic\n");			
+		ALOGD("can't decode jpg pic\n");			
 		goto exit;
 	} 
 
 	input_image_info = (aml_image_info_t*)malloc(sizeof(aml_image_info_t));
 
 	if(!input_image_info) {
-		LOGD("amljpeg: info mem get error\n");
+		ALOGD("amljpeg: info mem get error\n");
 		goto exit;
 	}
 
-	LOGD("deocde jpg pic completed\n");
+	ALOGD("deocde jpg pic completed\n");
 	input_image_width = CANVAS_ALIGNED(scale_w);
 
 	//open fb device to handle ge2d op FILE_NAME_GE2D
 	fd_ge2d= open(FILE_NAME_GE2D, O_RDWR); 
 	if(fd_ge2d<0)
 	{    
-		LOGD("can't open framebuffer device\n" );
+		ALOGD("can't open framebuffer device\n" );
 		goto exit;
 	}
 	
@@ -863,23 +863,23 @@ aml_image_info_t* decode_jpeg_cross(aml_dec_para_t* para,FILE* fd,int whichparts
 		ioctl(fd_ge2d,FBIOPUT_GE2D_ANTIFLICKER_ENABLE,0);
 	
 	if(format==0) {
-		LOGD("default data!\n" );
+		ALOGD("default data!\n" );
 		if(jpeg_data.info.comp_num==3 ||jpeg_data.info.comp_num==4)
 			format = COLOR_S32_ARGB;
 		else {
-			LOGD("unsupported color format\n" );
+			ALOGD("unsupported color format\n" );
 			goto exit;
 		}
 	} 
 	clear_plane(3,&config,format);
-	LOGD("start ge2d image format convert!!!!!\n");
+	ALOGD("start ge2d image format convert!!!!!\n");
 	ge2d_config.src_dst_type = ALLOC_ALLOC;
 	ge2d_config.alu_const_color=0xff0000ff;
 	ge2d_config.src_format = GE2D_FORMAT_M24_YUV420;
 	ge2d_config.dst_format = ImgFormat2Ge2dFormat(format);
 	if(0xffffffff==ge2d_config.dst_format)
 	{
-		LOGD("can't get proper ge2d format\n" );
+		ALOGD("can't get proper ge2d format\n" );
 		goto exit;
 	}
 
@@ -934,7 +934,7 @@ aml_image_info_t* decode_jpeg_cross(aml_dec_para_t* para,FILE* fd,int whichparts
 		}
 		break;
 	case  SCRETCHFULLSCREEN:
-		LOGD("====================full screen mode. \n");
+		ALOGD("====================full screen mode. \n");
 		op_para.src1_rect.x = 0;
 		op_para.src1_rect.y = 0;
 		op_para.src1_rect.w = config.dec_w;
@@ -970,22 +970,22 @@ aml_image_info_t* decode_jpeg_cross(aml_dec_para_t* para,FILE* fd,int whichparts
 		op_para.dst_rect.x = para->dest_x;
 		op_para.dst_rect.y = para->dest_y;
 		op_para.dst_rect.h = op_para.dst_rect.h/2;
-		LOGD("alloc_alloc:srcx :%d  : srcy :%d srcw :%d srch :%d\n" ,op_para.src1_rect.x,op_para.src1_rect.y,op_para.src1_rect.w,op_para.src1_rect.h);	
-		LOGD("alloc_alloc:dstx :%d  : dsty :%d dstw :%d dsth :%d\n" ,op_para.dst_rect.x,op_para.dst_rect.y,op_para.dst_rect.w,op_para.dst_rect.h);	
+		ALOGD("alloc_alloc:srcx :%d  : srcy :%d srcw :%d srch :%d\n" ,op_para.src1_rect.x,op_para.src1_rect.y,op_para.src1_rect.w,op_para.src1_rect.h);	
+		ALOGD("alloc_alloc:dstx :%d  : dsty :%d dstw :%d dsth :%d\n" ,op_para.dst_rect.x,op_para.dst_rect.y,op_para.dst_rect.w,op_para.dst_rect.h);	
 		ioctl(fd_ge2d, FBIOPUT_GE2D_STRETCHBLIT_NOALPHA, &op_para); 
 		op_para.src1_rect.x = op_para.src1_rect.w;
 		op_para.dst_rect.y = para->dest_y+op_para.dst_rect.h;
-		LOGD("alloc_alloc:srcx :%d  : srcy :%d srcw :%d srch :%d\n" ,op_para.src1_rect.x,op_para.src1_rect.y,op_para.src1_rect.w,op_para.src1_rect.h);	
-		LOGD("alloc_alloc:dstx :%d  : dsty :%d dstw :%d dsth :%d\n" ,op_para.dst_rect.x,op_para.dst_rect.y,op_para.dst_rect.w,op_para.dst_rect.h);	
+		ALOGD("alloc_alloc:srcx :%d  : srcy :%d srcw :%d srch :%d\n" ,op_para.src1_rect.x,op_para.src1_rect.y,op_para.src1_rect.w,op_para.src1_rect.h);	
+		ALOGD("alloc_alloc:dstx :%d  : dsty :%d dstw :%d dsth :%d\n" ,op_para.dst_rect.x,op_para.dst_rect.y,op_para.dst_rect.w,op_para.dst_rect.h);	
 		ioctl(fd_ge2d, FBIOPUT_GE2D_STRETCHBLIT_NOALPHA, &op_para); 
 	} 
 
-	LOGD("start generate output image\n");
+	ALOGD("start generate output image\n");
 
 	hwjpeg_mmap_p= mmap(0,jpeg_dec_mem.canv_len, 
 			PROT_READ , MAP_PRIVATE, fd_jpegdec, 0);
 	if ((int)hwjpeg_mmap_p == -1) {
-		LOGD("Error: failed to map framebuffer device to memory.\n");
+		ALOGD("Error: failed to map framebuffer device to memory.\n");
 		goto exit;
 	}
 	input_image_info->data= hwjpeg_mmap_p+(planes[3]-planes[0]); 
@@ -1016,19 +1016,19 @@ aml_image_info_t* read_jpeg_image(aml_dec_para_t* para)
 	
 	FILE* fd = fopen(para->fn,"rb") ; 
 	if(fd == NULL) {
-		LOGD("amljpeg:source file:%s open error\n",para->fn);
+		ALOGD("amljpeg:source file:%s open error\n",para->fn);
 		goto exit;   
 	}
 
 	fd_jpegdec= open(FILE_NAME_JPEGDEC, O_RDWR); 
 	if(fd_jpegdec <0 ){
-		LOGD("open amjpec device error\r\n");
+		ALOGD("open amjpec device error\r\n");
 		goto exit; 
 	}
 	
 	output_image_info = (aml_image_info_t*)malloc(sizeof(aml_image_info_t));
 	if(!output_image_info) {
-		LOGD("decoding error,mem error\n");
+		ALOGD("decoding error,mem error\n");
 		goto exit;
 	}
 	if(para->image_3d_mode_pref<3) /* force 3d mode. */
@@ -1052,7 +1052,7 @@ aml_image_info_t* read_jpeg_image(aml_dec_para_t* para)
 		output_image_info->nbytes = output_image_info->bytes_per_line * para->height;
 		output_image_info->data  = malloc(output_image_info->nbytes);
 		if(!output_image_info->data){
-			LOGD("err alloc output_image_info->data\n");
+			ALOGD("err alloc output_image_info->data\n");
 			goto umap_exit;    
 		}
 		
@@ -1068,7 +1068,7 @@ aml_image_info_t* read_jpeg_image(aml_dec_para_t* para)
 		output_image_info=insert_tb_frame(para,input_image_info,output_image_info);
 umap_exit:
 	if(munmap(hwjpeg_mmap_p,jpeg_dec_mem.canv_len)<0) {
-		LOGD("#####%d######\n",errno);
+		ALOGD("#####%d######\n",errno);
 	}
     
 exit:
@@ -1098,24 +1098,24 @@ aml_image_info_t* read_2_frame_image(aml_dec_para_t* para)
 	char* output_data;
 	FILE* fd = fopen(para->fn,"rb" ) ; 
 	if(!fd){
-		LOGD("amljpeg:source file:%s open error\n",para->fn);
+		ALOGD("amljpeg:source file:%s open error\n",para->fn);
 		goto exit;
 	}
 	
 	/* decode the first frame. */
 	if(fseek(fd,para->image_3d_info.frame[0],SEEK_SET)) {
-		LOGD("amljpeg:source file:%s seek error\n",para->fn);
+		ALOGD("amljpeg:source file:%s seek error\n",para->fn);
 		goto exit;   
 	}
 	if(fd_jpegdec>=0) close(fd_jpegdec);
 	fd_jpegdec= open(FILE_NAME_JPEGDEC, O_RDWR); 
 	if(fd_jpegdec <0 ){
-		LOGD("open amjpec device error %d \n",errno);
+		ALOGD("open amjpec device error %d \n",errno);
 		goto exit; 
 	}
 	output_image_info = (aml_image_info_t*)malloc(sizeof(aml_image_info_t));
 	if(!output_image_info) {
-		LOGD("decoding error,mem error\n");
+		ALOGD("decoding error,mem error\n");
 		goto exit;
 	}
 	para->thumbpref=0;
@@ -1123,7 +1123,7 @@ aml_image_info_t* read_2_frame_image(aml_dec_para_t* para)
 		input_image_info=decode_jpeg(para,fd,1,0);
 		memset((char*)output_image_info , 0 , sizeof(aml_image_info_t));
 		if(!input_image_info)  {
-			LOGD("hwjpeg decod error\n");
+			ALOGD("hwjpeg decod error\n");
 			goto exit;
 		}
 		output_image_info->width = input_image_info->width;
@@ -1133,7 +1133,7 @@ aml_image_info_t* read_2_frame_image(aml_dec_para_t* para)
 		output_image_info->nbytes = output_image_info->bytes_per_line * para->height;
 		output_image_info->data  = malloc(output_image_info->nbytes);
 		if(!output_image_info->data){
-			LOGD("err alloc output_image_info->data\n");
+			ALOGD("err alloc output_image_info->data\n");
 		} else {
 			for(i = 0 ; i < output_image_info->height ; i++){
 				input_data =   scan_line(input_image_info , i);
@@ -1150,13 +1150,13 @@ aml_image_info_t* read_2_frame_image(aml_dec_para_t* para)
 		
 		input_image_info=decode_jpeg(para,fd,1,decode_parts);
 		if(!input_image_info)  {
-			LOGD("hwjpeg decod error\n");
+			ALOGD("hwjpeg decod error\n");
 			goto exit;
 		}
     
 		/* clear content for decode the second frame. */
 		if(munmap(hwjpeg_mmap_p,jpeg_dec_mem.canv_len)<0) {
-			LOGD("#####%d######\n",errno);
+			ALOGD("#####%d######\n",errno);
 			goto exit;
 		}
 		free(input_image_info);
@@ -1168,12 +1168,12 @@ aml_image_info_t* read_2_frame_image(aml_dec_para_t* para)
 		/* start to decode the second frame. */
 		if(amljpeg_init()<0) goto exit;
 		if(fseek(fd,para->image_3d_info.frame[1],SEEK_SET)) {
-			LOGD("amljpeg:source file:%s seek error\n",para->fn);
+			ALOGD("amljpeg:source file:%s seek error\n",para->fn);
 			goto exit;   
 		}
 		fd_jpegdec= open(FILE_NAME_JPEGDEC, O_RDWR); 
 		if(fd_jpegdec <0 ){
-			LOGD("open amjpec device error\r\n");
+			ALOGD("open amjpec device error\r\n");
 			goto exit;
 		}
 		if(para->image_3d_mode_pref<3) 
@@ -1198,7 +1198,7 @@ aml_image_info_t* read_2_frame_image(aml_dec_para_t* para)
 
 umap_exit:
     if(munmap(hwjpeg_mmap_p,jpeg_dec_mem.canv_len)<0) {
-		LOGD("#####%d######\n",errno);
+		ALOGD("#####%d######\n",errno);
 	}
 exit:
 	if(input_image_info)
@@ -1222,12 +1222,12 @@ aml_image_info_t* read_lr_in_one_image(aml_dec_para_t* para)
 	
 	FILE* fd = fopen(para->fn,"rb" ) ; 
 	if(!fd){
-		LOGD("amljpeg:source file:%s open error\n",para->fn);
+		ALOGD("amljpeg:source file:%s open error\n",para->fn);
 		goto exit;   
 	}
 	
 	if(fseek(fd,para->image_3d_info.frame[0],SEEK_SET)) {
-		LOGD("amljpeg:source file:%s seek error\n",para->fn);
+		ALOGD("amljpeg:source file:%s seek error\n",para->fn);
 		goto exit;   
 	}
 	
@@ -1239,7 +1239,7 @@ aml_image_info_t* read_lr_in_one_image(aml_dec_para_t* para)
 	
 	output_image_info = (aml_image_info_t*)malloc(sizeof(aml_image_info_t));
 	if(!output_image_info) {
-		LOGD("decoding error,mem error\n");
+		ALOGD("decoding error,mem error\n");
 		goto exit;
 	}
 	para->thumbpref=0;
@@ -1263,7 +1263,7 @@ aml_image_info_t* read_lr_in_one_image(aml_dec_para_t* para)
 		output_image_info->nbytes = output_image_info->bytes_per_line * para->height;
 		output_image_info->data  = malloc(output_image_info->nbytes);
 		if(!output_image_info->data){
-			LOGD("err alloc output_image_info->data\n");
+			ALOGD("err alloc output_image_info->data\n");
 			goto umap_exit;    
 		}
 		
@@ -1279,7 +1279,7 @@ aml_image_info_t* read_lr_in_one_image(aml_dec_para_t* para)
 		output_image_info=insert_tb_frame(para,input_image_info,output_image_info);
 umap_exit:
 	if(munmap(hwjpeg_mmap_p,jpeg_dec_mem.canv_len)<0) {
-		LOGD("#####%d######\n",errno);
+		ALOGD("#####%d######\n",errno);
 	}
 exit:
 	if(input_image_info){

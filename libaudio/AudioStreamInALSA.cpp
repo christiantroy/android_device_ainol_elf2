@@ -103,7 +103,7 @@ ssize_t AudioStreamInALSA::read(void *buffer, ssize_t bytes)
 				    {
 						ALSARecoveryFrames = (ALSAStreamOps::bufferSize()>>1)/AudioSystem::popCount(ALSAStreamOps::channels());
 				    }	
-                    //LOGE("ALSA RECOVER %d, time delay %lld",ALSARecoveryFrames,systemTime()/1000-lastreadtime);
+                    //ALOGE("ALSA RECOVER %d, time delay %lld",ALSARecoveryFrames,systemTime()/1000-lastreadtime);
 	            	mFramesLost+=ALSARecoveryFrames;
                     if (aDev && aDev->recover) aDev->recover(aDev, n);
                 } else
@@ -181,7 +181,7 @@ unsigned int AudioStreamInALSA::getInputFramesLost() const
     unsigned int count = mFramesLost;
     // Stupid interface wants us to have a side effect of clearing the count
     // but is defined as a const to prevent such a thing.
-    //LOGD("lost frames %d",mFramesLost);
+    //ALOGD("lost frames %d",mFramesLost);
     ((AudioStreamInALSA *)this)->resetFramesLost();
     return count;
 }

@@ -21,7 +21,7 @@
 #include <dlfcn.h>
 
 
-#define TRACE() LOGI("[%s::%d]\n",__FUNCTION__,__LINE__)
+#define TRACE() ALOGI("[%s::%d]\n",__FUNCTION__,__LINE__)
 using namespace android;
 
 ///namespace android{
@@ -78,23 +78,23 @@ int com_amlogic_libplayer_amavjni_notify(struct amplayer_mgt * player, int msg, 
     int ret = -1;
     ret = fields.gJavaVM->GetEnv((void**)&env, JNI_VERSION_1_4);
     if (ret < 0) {
-        //LOGE("callback handler:failed to get java env by native thread");
+        //ALOGE("callback handler:failed to get java env by native thread");
         ret = (fields.gJavaVM)->AttachCurrentThread(&env, NULL);
         if (ret < 0) {
-            LOGE("notifly handler:failed to attach current thread");
+            ALOGE("notifly handler:failed to attach current thread");
             return -2;
         }
         isAttached = 1;
 
     }
     if (env == NULL || player->mClass == NULL || fields.post_event == NULL) {
-        LOGI("com_amlogic_libplayer_amavjni_notify,env=%p,class=%p,post=%p\n", env, player->mClass, fields.post_event);
+        ALOGI("com_amlogic_libplayer_amavjni_notify,env=%p,class=%p,post=%p\n", env, player->mClass, fields.post_event);
         return -3;
     }
 
     env->CallStaticVoidMethod(player->mClass, fields.post_event, player->mObject, msg, ext1, ext2, 0);
     if (isAttached > 0) {
-        LOGI("callback handler:detach current thread");
+        ALOGI("callback handler:detach current thread");
         (fields.gJavaVM)->DetachCurrentThread();
     }
     return ret;
@@ -118,7 +118,7 @@ static int player_notify_handle(int pid, int msg, unsigned long ext1, unsigned l
         break;
     }
 
-    LOGI("pi=%d-msg=%d,ext1=%ld,ext2=%ld\n", pid, msg, ext1, ext2);
+    ALOGI("pi=%d-msg=%d,ext1=%ld,ext2=%ld\n", pid, msg, ext1, ext2);
     return 0;
 }
 static jint com_amlogic_libplayer_amavjni_newplayer(JNIEnv* env, jobject thiz, jobject weak_thiz)
@@ -143,21 +143,21 @@ static jint com_amlogic_libplayer_amavjni_newplayer(JNIEnv* env, jobject thiz, j
 
     jclass clazz = env->GetObjectClass(thiz);
     if (clazz == NULL) {
-        LOGE("Can't find amplayer");
+        ALOGE("Can't find amplayer");
         free(player);
         jniThrowException(env, "java/lang/Exception", NULL);
         return -1;
     }
     player->mClass = (jclass)env->NewGlobalRef(clazz);
     if (clazz == NULL) {
-        LOGE("Can't find mClass");
+        ALOGE("Can't find mClass");
         free(player);
         jniThrowException(env, "java/lang/Exception", NULL);
         return -1;
     }
     player->mObject  = env->NewGlobalRef(weak_thiz);
     if (clazz == NULL) {
-        LOGE("Can't find mObject");
+        ALOGE("Can't find mObject");
         free(player);
         jniThrowException(env, "java/lang/Exception", NULL);
         return -1;
@@ -199,7 +199,7 @@ static int player_sysfs_set(struct amplayer_mgt *player, const char * props)
     char path[1024] = "";
     char val[1024] = "";
     char *pstr;
-    LOGI("player_sysfs_set:%s\n", props);
+    ALOGI("player_sysfs_set:%s\n", props);
     if (props == NULL) {
         return -1;
     }
@@ -212,7 +212,7 @@ static int player_sysfs_set(struct amplayer_mgt *player, const char * props)
     if (path[0] == '\0' || val[0] == '\0') {
         return -1;
     }
-    LOGI("set sysfs:%s=%s\n", path, val);
+    ALOGI("set sysfs:%s=%s\n", path, val);
     set_sysfs_str(path, val);
     return 0;
 }
@@ -429,14 +429,14 @@ JNI_OnLoad(JavaVM* vm, void* reserved)
     JNIEnv* env = NULL;
     TRACE();
     if (vm->GetEnv((void**)&env, JNI_VERSION_1_4) != JNI_OK || NULL == env) {
-        LOGE("GetEnv failed!");
+        ALOGE("GetEnv failed!");
         return -1;
     }
     fields.gJavaVM = vm;
     fields.env = env;
     TRACE();
     ret = register_amplayer_amavjni(env);
-    LOGI("register_amplayer_amavjni=%d\n", ret);
+    ALOGI("register_amplayer_amavjni=%d\n", ret);
     if (ret == 0) {
         return JNI_VERSION_1_4;
     } else {

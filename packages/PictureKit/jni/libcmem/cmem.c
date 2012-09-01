@@ -64,8 +64,8 @@ CMEM_AllocParams CMEM_DEFAULTPARAMS = {
 /*
 #undef __D
 #undef __E
-#define __D(fmt, args...) LOGD("CMEM Debug: " fmt, ## args)
-#define __E(fmt, args...) LOGD("CMEM Error: " fmt, ## args)
+#define __D(fmt, args...) ALOGD("CMEM Debug: " fmt, ## args)
+#define __E(fmt, args...) ALOGD("CMEM Error: " fmt, ## args)
 */
 struct block_struct {
     unsigned long addr;

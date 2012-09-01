@@ -227,7 +227,7 @@ static int poll__poll(struct sensors_poll_device_t *device,
 			
 		
 #ifdef DEBUG_SENSOR
-			LOGD("Sensor data: t x,y,x: %f %f, %f, %f\n",
+			ALOGD("Sensor data: t x,y,x: %f %f, %f, %f\n",
 					data->timestamp / 1000000000.0,
 							data->acceleration.x,
 							data->acceleration.y,
@@ -328,7 +328,7 @@ static int open_input_device(void)
 
 		if (!strcmp(name, SENSOR_NAME)) {
 #ifdef DEBUG_SENSOR
-		LOGD("devname is %s \n", devname);
+		ALOGD("devname is %s \n", devname);
 #endif
 		} else {
 			close(fd);
@@ -408,7 +408,7 @@ static int open_sensors(const struct hw_module_t* module, const char* name,
 
 
 	if(sensor_get_class_path(dev) < 0) {
-		LOGD("g sensor get class path error \n");
+		ALOGD("g sensor get class path error \n");
 		return -1;
 	}
 	

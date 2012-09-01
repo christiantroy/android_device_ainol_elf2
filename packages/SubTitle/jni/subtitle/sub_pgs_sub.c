@@ -16,8 +16,8 @@
 
 
 #define  LOG_TAG    "sub_pgs"
-#define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
-#define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
+#define  ALOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
+#define  ALOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
 VOB_SPUVAR uVobSPU;
 
 static unsigned SPU_RD_HOLD_SIZE=0x20;
@@ -27,11 +27,11 @@ static subtitlepgs_t subtitle_pgs;
 
 int init_pgs_subtitle()
 {
-	LOGI("init pgs_subtitle info\n");
+	ALOGI("init pgs_subtitle info\n");
 	memset(&subtitle_pgs, 0x0, sizeof(subtitlepgs_t));
 	subtitle_pgs.pgs_info = malloc(sizeof(pgs_info_t));
 	if(subtitle_pgs.pgs_info == NULL){
-		LOGE("malloc pgs_info failed\n");
+		ALOGE("malloc pgs_info failed\n");
 		return -1;
 	}
 	memset(subtitle_pgs.pgs_info, 0x0, sizeof(pgs_info_t));
@@ -47,7 +47,7 @@ static int read_spu_byte(int read_handle, char* byte)
     }
     else{
         if((subtitle_get_sub_size_fd(read_handle)) < SPU_RD_HOLD_SIZE){
-			LOGI("current pgs sub buffer size %d\n", (subtitle_get_sub_size_fd(read_handle)));
+			ALOGI("current pgs sub buffer size %d\n", (subtitle_get_sub_size_fd(read_handle)));
 			ret = 0;
         }
         else{
@@ -88,9 +88,9 @@ static unsigned char read_time_header(unsigned char** buf_start_ptr, int* size_i
         *start_time = (buf[2]<<24)|(buf[3]<<16)|(buf[4]<<8)|(buf[5]);
         *end_time = (buf[6]<<24)|(buf[7]<<16)|(buf[8]<<8)|(buf[9]);
         type = buf[10];
-		//LOGI("type is %d\n", type);
+		//ALOGI("type is %d\n", type);
         size = (buf[11]<<8)|buf[12];
-		//LOGI("size is %d\n", size);
+		//ALOGI("size is %d\n", size);
         *buf_start_ptr = buf+13+size;
         *size_i=size;
         return type;
@@ -204,7 +204,7 @@ static unsigned char read_bitmap(unsigned char* buf, int size, pgs_info_t* pgs_i
         object_size = (buf[4]<<16)|(buf[5]<<8)|(buf[6]);
         pgs_info->image_width = (buf[7]<<8)|(buf[8]);
         pgs_info->image_height = (buf[9]<<8)|(buf[10]);
-		LOGI("read_bitmap values are %d,%d,%d\n",object_size,
+		ALOGI("read_bitmap values are %d,%d,%d\n",object_size,
 			pgs_info->image_width,pgs_info->image_height);
         if(pgs_info->rle_buf)
             free(pgs_info->rle_buf);
@@ -341,7 +341,7 @@ int parser_one_pgs(AML_SPUVAR *spu)
 		return -1;
 	subtitle_pgs.showdata.result_buf = malloc(buffer_size);
 	if(subtitle_pgs.showdata.result_buf == NULL){
-		LOGE("malloc pgs result buf failed \n");
+		ALOGE("malloc pgs result buf failed \n");
 		return -1;
 	}
 	memset(subtitle_pgs.showdata.result_buf, 0x0, buffer_size);
@@ -360,7 +360,7 @@ int parser_one_pgs(AML_SPUVAR *spu)
 			subtitle_pgs.showdata.image_height /= 4;
 		}
 		else
-			LOGI("malloc cut buffer failed \n ");		
+			ALOGI("malloc cut buffer failed \n ");		
 	}
 
 	spu->subtitle_type = SUBTITLE_PGS;
@@ -374,7 +374,7 @@ int parser_one_pgs(AML_SPUVAR *spu)
 		write_subtitle_file(spu);
 	}
 	else{
-		LOGI("spu buffer size %d, spu->spu_data %x\n", spu->buffer_size,
+		ALOGI("spu buffer size %d, spu->spu_data %x\n", spu->buffer_size,
 		spu->spu_data);
 		free(subtitle_pgs.showdata.result_buf);
 	}
@@ -393,11 +393,11 @@ static int pgs_decode(AML_SPUVAR *spu, unsigned char* buf)
     switch(type){
         case 0x16: 
             if(size==0x13){ //subpicture header
-            	LOGI("enter type 0x16,0x13, %d\n",read_pgs_byte);
+            	ALOGI("enter type 0x16,0x13, %d\n",read_pgs_byte);
                 read_subpictureHeader(cur_buf-size, size, pgs_info);
             }
             else if(size==0xb){ //clearSubpictureHeader
-            	LOGI("enter type 0x16,0xb, %d %d\n", start_time,end_time);
+            	ALOGI("enter type 0x16,0xb, %d %d\n", start_time,end_time);
             	add_pgs_end_time(start_time);
                 //subtitle_pgs_send_msg_bplay_show_subtitle(subtitle_pgs.cntl, BROADCAST_ALL, SUBTITLE_TYPE_PGS, 0);
             }
@@ -407,20 +407,20 @@ static int pgs_decode(AML_SPUVAR *spu, unsigned char* buf)
             break;
         case 0x17: //window        	
             if(size==0xa){
-				LOGI("enter type 0x17, %d\n",read_pgs_byte);
+				ALOGI("enter type 0x17, %d\n",read_pgs_byte);
                 read_windowHeader(cur_buf-size, size, pgs_info);
             }
             else{
             }
             break;
         case 0x14: //color table
-        	LOGI("enter type 0x14 %d\n",read_pgs_byte);
+        	ALOGI("enter type 0x14 %d\n",read_pgs_byte);
             read_color_table(cur_buf-size, size, pgs_info);
             break;
         case 0x15: //bitmap
-        	LOGI("enter type 0x15 %d\n", read_pgs_byte);
+        	ALOGI("enter type 0x15 %d\n", read_pgs_byte);
             if(read_bitmap(cur_buf-size, size, pgs_info)){
-				LOGI("success read_bitmap \n ");
+				ALOGI("success read_bitmap \n ");
                 //render it
                 subtitle_pgs.showdata.x                       =subtitle_pgs.pgs_info->x;
                 subtitle_pgs.showdata.y                       =subtitle_pgs.pgs_info->y;                    
@@ -435,13 +435,13 @@ static int pgs_decode(AML_SPUVAR *spu, unsigned char* buf)
                 subtitle_pgs.showdata.palette                 =subtitle_pgs.pgs_info->palette;              
                 subtitle_pgs.showdata.rle_buf                 =subtitle_pgs.pgs_info->rle_buf;              
                 subtitle_pgs.showdata.rle_buf_size            =subtitle_pgs.pgs_info->rle_buf_size;
-                LOGI("decoder pgs data to show\n\n");
+                ALOGI("decoder pgs data to show\n\n");
 				parser_one_pgs(spu);
 				return 0;
             }
             break;
         case 0x80: //trailer
-        	LOGI("enter type 0x80\n");
+        	ALOGI("enter type 0x80\n");
             break;
         default:
             break;
@@ -454,10 +454,10 @@ static int pgs_decode(AML_SPUVAR *spu, unsigned char* buf)
 int get_pgs_spu(AML_SPUVAR *spu, int read_handle)
 {
 	read_pgs_byte = 0;
-	LOGI("enter get_pgs_spu\n");
+	ALOGI("enter get_pgs_spu\n");
 	int pgs_ret = 0;
 	if(subtitle_pgs.pgs_info == NULL){
-		LOGI("pgs_info is NULL \n");
+		ALOGI("pgs_info is NULL \n");
 		return 0;
 	}
 		
@@ -470,7 +470,7 @@ int get_pgs_spu(AML_SPUVAR *spu, int read_handle)
         char skip_packet_flag=0;
 		
 		if((subtitle_get_sub_size_fd(read_handle)) < SPU_RD_HOLD_SIZE){
-			LOGI("current pgs sub buffer size %d\n", (subtitle_get_sub_size_fd(read_handle)));
+			ALOGI("current pgs sub buffer size %d\n", (subtitle_get_sub_size_fd(read_handle)));
 			break;
 		}
 
@@ -481,7 +481,7 @@ int get_pgs_spu(AML_SPUVAR *spu, int read_handle)
                 break;
         }
         if(packet_header==0x000001bd){  
-			//LOGI("find header 0x000001bd\n");
+			//ALOGI("find header 0x000001bd\n");
             if(read_spu_buf(read_handle, tmpbuf, 2)==2){
                 pgs_packet_length=(tmpbuf[0]<<8)|tmpbuf[1];
 #if 0
@@ -568,14 +568,14 @@ int get_pgs_spu(AML_SPUVAR *spu, int read_handle)
                 else if((pgs_pts)&&(pgs_packet_length>0)){
                     char* buf=NULL;
                     if((8+2+pgs_packet_length)>(OSD_HALF_SIZE*4)){
-                        LOGE("pgs packet is too big\n\n"); 
+                        ALOGE("pgs packet is too big\n\n"); 
                         break;
                     }
                     else if((uVobSPU.spu_decoding_start_pos+8+2+pgs_packet_length)>(OSD_HALF_SIZE*4)){
                         uVobSPU.spu_decoding_start_pos=0;
                     }
                     buf = malloc(8+2+pgs_packet_length);
-					LOGI("pgs_packet_length is %d\n",pgs_packet_length);
+					ALOGI("pgs_packet_length is %d\n",pgs_packet_length);
 					subtitle_pgs.showdata.pts = pgs_dts;
                     if(buf){                   
 						memset(buf, 0x0, 8+2+pgs_packet_length);
@@ -583,7 +583,7 @@ int get_pgs_spu(AML_SPUVAR *spu, int read_handle)
                         buf[2]=(pgs_pts>>24)&0xff; buf[3]=(pgs_pts>>16)&0xff; buf[4]=(pgs_pts>>8)&0xff; buf[5]=pgs_pts&0xff;
                         buf[6]=(pgs_pts>>24)&0xff; buf[7]=(pgs_pts>>16)&0xff; buf[8]=(pgs_pts>>8)&0xff; buf[9]=pgs_pts&0xff;
                         if(read_spu_buf(read_handle, buf+10, pgs_packet_length)==pgs_packet_length){
-							LOGI("start decode pgs subtitle\n\n");
+							ALOGI("start decode pgs subtitle\n\n");
 							pgs_ret = pgs_decode(spu,buf);
                         }
 						free(buf);                        
@@ -593,7 +593,7 @@ int get_pgs_spu(AML_SPUVAR *spu, int read_handle)
             }
         }
 		else{
-			LOGI("header is not 0x000001bd\n");
+			ALOGI("header is not 0x000001bd\n");
         	break;
 		}
     }

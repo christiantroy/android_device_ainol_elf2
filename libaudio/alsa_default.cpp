@@ -225,32 +225,32 @@ static int getDeviceNum(snd_pcm_stream_t stream, char* card_name)
 	
 	if (strcmp(prop, "null") != 0)
 		default_card = strtol(prop, NULL, 0);	
-	LOGE("prop =  %s, default_card = %d", prop, default_card);
+	ALOGE("prop =  %s, default_card = %d", prop, default_card);
 	
 	snd_ctl_card_info_alloca(&info);
 	snd_pcm_info_alloca(&pcminfo);
 	if (snd_card_next(&card) < 0 || card < 0) {
-		LOGE("no soundcards found...");
+		ALOGE("no soundcards found...");
 		return -1;
 	}
 	while (card >= 0) {
 		char name[32];
 		sprintf(name, "hw:%d", card);
 		if ((err = snd_ctl_open(&handle, name, 0)) < 0) {
-			LOGE("control open (%i): %s", card, snd_strerror(err));
+			ALOGE("control open (%i): %s", card, snd_strerror(err));
 			goto next_card;
 		}
 		if ((err = snd_ctl_card_info(handle, info)) < 0) {
-			LOGE("control hardware info (%i): %s", card, snd_strerror(err));
+			ALOGE("control hardware info (%i): %s", card, snd_strerror(err));
 			snd_ctl_close(handle);
 			goto next_card;
 		}
 		dev = -1;
 		while (1) {
 			if (snd_ctl_pcm_next_device(handle, &dev)<0)
-				LOGE("snd_ctl_pcm_next_device");
+				ALOGE("snd_ctl_pcm_next_device");
 			if (dev < 0){
-				LOGE("(dev < 0)");
+				ALOGE("(dev < 0)");
 				break;
 			}
 			snd_pcm_info_set_device(pcminfo, dev);
@@ -258,7 +258,7 @@ static int getDeviceNum(snd_pcm_stream_t stream, char* card_name)
 			snd_pcm_info_set_stream(pcminfo, stream);
 			if ((err = snd_ctl_pcm_info(handle, pcminfo)) < 0) {
 				if (err != -ENOENT)
-					LOGE("control digital audio info (%i): %s", card, snd_strerror(err));
+					ALOGE("control digital audio info (%i): %s", card, snd_strerror(err));
 				continue;
 			}
 			/*
@@ -266,10 +266,10 @@ static int getDeviceNum(snd_pcm_stream_t stream, char* card_name)
 			* if default_card <  0 , enable USB audio first, if found
 			* else, enable builtin-audio
 			*/
-			LOGE("heming add snd_ctl_card_info_get_id=%s, default_card=%d, card=%d",snd_ctl_card_info_get_id(info), default_card, card);
+			ALOGE("heming add snd_ctl_card_info_get_id=%s, default_card=%d, card=%d",snd_ctl_card_info_get_id(info), default_card, card);
 			// save card name
 			strcpy(card_name, snd_ctl_card_info_get_id(info));
-			LOGD("saved card name: %s\n", card_name);
+			ALOGD("saved card name: %s\n", card_name);
 			if ((default_card>=0) && (default_card==card))
 				return card;
 			else if ((strncmp(snd_ctl_card_info_get_id(info),"AML",3)==0) && (stream == SND_PCM_STREAM_PLAYBACK)&&(default_card==-1)) //set aml as default playback
@@ -282,7 +282,7 @@ static int getDeviceNum(snd_pcm_stream_t stream, char* card_name)
 		snd_ctl_close(handle);
 		next_card:
 		if (snd_card_next(&card) < 0) {
-			LOGE("snd_card_next");
+			ALOGE("snd_card_next");
 			break;
 		}
 	}
@@ -315,7 +315,7 @@ status_t setHardwareParams(alsa_handle_t *handle)
 
     err = snd_pcm_hw_params_any(handle->handle, hardwareParams);
     if (err < 0) {
-        LOGE("Unable to configure hardware: %s", snd_strerror(err));
+        ALOGE("Unable to configure hardware: %s", snd_strerror(err));
         goto done;
     }
 
@@ -323,7 +323,7 @@ status_t setHardwareParams(alsa_handle_t *handle)
     err = snd_pcm_hw_params_set_access(handle->handle, hardwareParams,
             SND_PCM_ACCESS_RW_INTERLEAVED);
     if (err < 0) {
-        LOGE("Unable to configure PCM read/write format: %s",
+        ALOGE("Unable to configure PCM read/write format: %s",
                 snd_strerror(err));
         goto done;
     }
@@ -331,39 +331,39 @@ status_t setHardwareParams(alsa_handle_t *handle)
     err = snd_pcm_hw_params_set_format(handle->handle, hardwareParams,
             handle->format);
     if (err < 0) {
-        LOGE("Unable to configure PCM format %s (%s): %s",
+        ALOGE("Unable to configure PCM format %s (%s): %s",
                 formatName, formatDesc, snd_strerror(err));
         goto done;
     }
 
-    LOGW("Set %s PCM format to %s (%s)", streamName(handle), formatName, formatDesc);
+    ALOGW("Set %s PCM format to %s (%s)", streamName(handle), formatName, formatDesc);
 
     err = snd_pcm_hw_params_set_channels(handle->handle, hardwareParams,
             handle->channels);
     if (err < 0) {
-        LOGE("Unable to set channel count to %i: %s",
+        ALOGE("Unable to set channel count to %i: %s",
                 handle->channels, snd_strerror(err));
         goto done;
     }
 
-    LOGW("Using %i %s for %s.", handle->channels,
+    ALOGW("Using %i %s for %s.", handle->channels,
             handle->channels == 1 ? "channel" : "channels", streamName(handle));
 
-    LOGW("requestedRate=%d\n", requestedRate);
+    ALOGW("requestedRate=%d\n", requestedRate);
     err = snd_pcm_hw_params_set_rate_near(handle->handle, hardwareParams,
             &requestedRate, 0);
-    LOGW("returned Rate=%d, handle->rate=%d\n", requestedRate, handle->sampleRate);
+    ALOGW("returned Rate=%d, handle->rate=%d\n", requestedRate, handle->sampleRate);
     if (err < 0)
-        LOGE("Unable to set %s sample rate to %u: %s",
+        ALOGE("Unable to set %s sample rate to %u: %s",
                 streamName(handle), handle->sampleRate, snd_strerror(err));
     else if (requestedRate != handle->sampleRate)
         // Some devices have a fixed sample rate, and can not be changed.
         // This may cause resampling problems; i.e. PCM playback will be too
         // slow or fast.
-        LOGW("Requested rate (%u HZ) does not match actual rate (%u HZ)",
+        ALOGW("Requested rate (%u HZ) does not match actual rate (%u HZ)",
                 handle->sampleRate, requestedRate);
     else
-        LOGI("Set %s sample rate to %u HZ", streamName(handle), requestedRate);
+        ALOGI("Set %s sample rate to %u HZ", streamName(handle), requestedRate);
 
 #ifdef DISABLE_HARWARE_RESAMPLING
     // Disable hardware re-sampling.
@@ -371,7 +371,7 @@ status_t setHardwareParams(alsa_handle_t *handle)
             hardwareParams,
             static_cast<int>(resample));
     if (err < 0) {
-        LOGE("Unable to %s hardware resampling: %s",
+        ALOGE("Unable to %s hardware resampling: %s",
                 resample ? "enable" : "disable",
                 snd_strerror(err));
         goto done;
@@ -383,7 +383,7 @@ status_t setHardwareParams(alsa_handle_t *handle)
             &bufferSize);
 
     if (err < 0) {
-        LOGE("Unable to set buffer size to %d:  %s",
+        ALOGE("Unable to set buffer size to %d:  %s",
                 (int)bufferSize, snd_strerror(err));
         goto done;
     }
@@ -397,14 +397,14 @@ status_t setHardwareParams(alsa_handle_t *handle)
         err = snd_pcm_hw_params_set_period_time_near(handle->handle,
                 hardwareParams, &periodTime, NULL);
         if (err < 0) {
-            LOGE("Unable to set the period time for latency: %s", snd_strerror(err));
+            ALOGE("Unable to set the period time for latency: %s", snd_strerror(err));
             goto done;
         }
         snd_pcm_uframes_t periodSize;
         err = snd_pcm_hw_params_get_period_size(hardwareParams, &periodSize,
                 NULL);
         if (err < 0) {
-            LOGE("Unable to get the period size for latency: %s", snd_strerror(err));
+            ALOGE("Unable to get the period size for latency: %s", snd_strerror(err));
             goto done;
         }
         bufferSize = periodSize * 4;
@@ -412,40 +412,40 @@ status_t setHardwareParams(alsa_handle_t *handle)
         err = snd_pcm_hw_params_set_buffer_size_near(handle->handle,
                 hardwareParams, &bufferSize);
         if (err < 0) {
-            LOGE("Unable to set the buffer size for latency: %s", snd_strerror(err));
+            ALOGE("Unable to set the buffer size for latency: %s", snd_strerror(err));
             goto done;
         }
     } else {
         // OK, we got buffer time near what we expect. See what that did for bufferSize.
         err = snd_pcm_hw_params_get_buffer_size(hardwareParams, &bufferSize);
         if (err < 0) {
-            LOGE("Unable to get the buffer size for latency: %s", snd_strerror(err));
+            ALOGE("Unable to get the buffer size for latency: %s", snd_strerror(err));
             goto done;
         }
         // Does set_buffer_time_near change the passed value? It should.
         err = snd_pcm_hw_params_get_buffer_time(hardwareParams, &latency, NULL);
         if (err < 0) {
-            LOGE("Unable to get the buffer time for latency: %s", snd_strerror(err));
+            ALOGE("Unable to get the buffer time for latency: %s", snd_strerror(err));
             goto done;
         }
         unsigned int periodTime = latency / 4;
         err = snd_pcm_hw_params_set_period_time_near(handle->handle,
                 hardwareParams, &periodTime, NULL);
         if (err < 0) {
-            LOGE("Unable to set the period time for latency: %s", snd_strerror(err));
+            ALOGE("Unable to set the period time for latency: %s", snd_strerror(err));
             goto done;
         }
     }
 
-    LOGI("Buffer size: %d", (int)bufferSize);
-    LOGI("Latency: %d", (int)latency);
+    ALOGI("Buffer size: %d", (int)bufferSize);
+    ALOGI("Latency: %d", (int)latency);
 
     handle->bufferSize = bufferSize;
     handle->latency = latency;
 
     // Commit the hardware parameters back to the device.
     err = snd_pcm_hw_params(handle->handle, hardwareParams);
-    if (err < 0) LOGE("Unable to set hardware parameters: %s", snd_strerror(err));
+    if (err < 0) ALOGE("Unable to set hardware parameters: %s", snd_strerror(err));
 
     done:
     snd_pcm_hw_params_free(hardwareParams);
@@ -470,7 +470,7 @@ status_t setSoftwareParams(alsa_handle_t *handle)
     // Get the current software parameters
     err = snd_pcm_sw_params_current(handle->handle, softwareParams);
     if (err < 0) {
-        LOGE("Unable to get software parameters: %s", snd_strerror(err));
+        ALOGE("Unable to get software parameters: %s", snd_strerror(err));
         goto done;
     }
 
@@ -492,7 +492,7 @@ status_t setSoftwareParams(alsa_handle_t *handle)
     err = snd_pcm_sw_params_set_start_threshold(handle->handle, softwareParams,
             startThreshold);
     if (err < 0) {
-        LOGE("Unable to set start threshold to %lu frames: %s",
+        ALOGE("Unable to set start threshold to %lu frames: %s",
                 startThreshold, snd_strerror(err));
         goto done;
     }
@@ -500,7 +500,7 @@ status_t setSoftwareParams(alsa_handle_t *handle)
     err = snd_pcm_sw_params_set_stop_threshold(handle->handle, softwareParams,
             stopThreshold);
     if (err < 0) {
-        LOGE("Unable to set stop threshold to %lu frames: %s",
+        ALOGE("Unable to set stop threshold to %lu frames: %s",
                 stopThreshold, snd_strerror(err));
         goto done;
     }
@@ -510,14 +510,14 @@ status_t setSoftwareParams(alsa_handle_t *handle)
     err = snd_pcm_sw_params_set_avail_min(handle->handle, softwareParams,
             periodSize);
     if (err < 0) {
-        LOGE("Unable to configure available minimum to %lu: %s",
+        ALOGE("Unable to configure available minimum to %lu: %s",
                 periodSize, snd_strerror(err));
         goto done;
     }
 
     // Commit the software parameters back to the device.
     err = snd_pcm_sw_params(handle->handle, softwareParams);
-    if (err < 0) LOGE("Unable to configure software parameters: %s",
+    if (err < 0) ALOGE("Unable to configure software parameters: %s",
             snd_strerror(err));
 
     done:
@@ -551,7 +551,7 @@ static status_t s_init(alsa_device_t *module, ALSAHandleList &list)
 	    _defaultsUSBIn.bufferSize = bufferSize;
         _defaultsUSBIn.modPrivate = (void*)usbAudio;
 	    list.push_back(_defaultsUSBIn);
-        LOGW("use USB audio in as default");
+        ALOGW("use USB audio in as default");
 
 
 	    bufferSize = _defaultsIn.bufferSize;
@@ -563,7 +563,7 @@ static status_t s_init(alsa_device_t *module, ALSAHandleList &list)
 	    _defaultsIn.bufferSize = bufferSize;
         _defaultsIn.modPrivate = (void*)builtinAudio;
 	    list.push_back(_defaultsIn);
-        LOGW("use AML audio in as default");
+        ALOGW("use AML audio in as default");
 
 	        return NO_ERROR;
 }
@@ -575,7 +575,7 @@ static status_t s_open(alsa_handle_t *handle, uint32_t devices, int mode)
 	// changes, but we might be recovering from an error or manipulating
     // mixer settings (see asound.conf).
     //
-    LOGD("open called for devices %08x in mode %d...", devices, mode);
+    ALOGD("open called for devices %08x in mode %d...", devices, mode);
     if( devices == 0 ){
     	return BAD_VALUE;
 	}
@@ -587,11 +587,11 @@ static status_t s_open(alsa_handle_t *handle, uint32_t devices, int mode)
     const char *devName = deviceName(handle, devices, mode);
     int err,card;
     char prop[20],dev_Name[20],card_name[32]; 
- LOGD("input handle: %s, devName = %s \n", (char*)handle->modPrivate, devName);
+ ALOGD("input handle: %s, devName = %s \n", (char*)handle->modPrivate, devName);
 #if 1 
     if ((direction(handle) == SND_PCM_STREAM_CAPTURE)/*||(direction(handle) == SND_PCM_STREAM_PLAYBACK)*/){
         card = getDeviceNum(direction(handle), card_name);
-	LOGD("card : %d\n", card);
+	ALOGD("card : %d\n", card);
 
         if(card >= 0){
            // sprintf(dev_Name,"plug:SLAVE='hw:%d,0'",card);
@@ -600,18 +600,18 @@ static status_t s_open(alsa_handle_t *handle, uint32_t devices, int mode)
         }
         // if we want usb-audio, but returned builtin-audio, return error.
         // audiopolicymanager should try next card
-        LOGD("card name: %s\n", card_name);
-        LOGD("devName: %s\n", devName);
+        ALOGD("card name: %s\n", card_name);
+        ALOGD("devName: %s\n", devName);
         if(strncmp(card_name,"AML", 3) == 0 && strcmp((char*)handle->modPrivate, "usb-audio") == 0){
           
           pthread_mutex_unlock(&handle->mLock);
-          LOGD("You are request usb-audio with usb's params, but returned builtin-audio card\n");
+          ALOGD("You are request usb-audio with usb's params, but returned builtin-audio card\n");
           return NO_INIT;
         }
    }
     if(direction(handle) == SND_PCM_STREAM_PLAYBACK){
 		card = snd_card_get_aml_card();
-		LOGD("SND_PCM_STREAM_PLAYBACK  card : %d\n", card);
+		ALOGD("SND_PCM_STREAM_PLAYBACK  card : %d\n", card);
 
 		sprintf(dev_Name, "hw:%d", card);
 		devName = dev_Name;
@@ -628,7 +628,7 @@ static status_t s_open(alsa_handle_t *handle, uint32_t devices, int mode)
         // The PCM stream is opened in blocking mode, per ALSA defaults.  The
         // AudioFlinger seems to assume blocking mode too, so asynchronous mode
         // should not be used.
-         LOGD("---- devName = %s \n", devName);
+         ALOGD("---- devName = %s \n", devName);
 
         err = snd_pcm_open(&handle->handle, devName, direction(handle),
                 SND_PCM_ASYNC);
@@ -644,13 +644,13 @@ static status_t s_open(alsa_handle_t *handle, uint32_t devices, int mode)
     if (err < 0) {
         // None of the Android defined audio devices exist. Open a generic one.
         devName = "default";
-         LOGD("-r-- devName = %s \n", devName);
+         ALOGD("-r-- devName = %s \n", devName);
 
         err = snd_pcm_open(&handle->handle, devName, direction(handle), 0);
     }
 
     if (err < 0) {
-        LOGE("Failed to Initialize any ALSA %s device: %s",
+        ALOGE("Failed to Initialize any ALSA %s device: %s",
                 stream, strerror(err));
 	 pthread_mutex_unlock(&handle->mLock);
         return NO_INIT;
@@ -660,7 +660,7 @@ static status_t s_open(alsa_handle_t *handle, uint32_t devices, int mode)
 
     if (err == NO_ERROR) err = setSoftwareParams(handle);
 
-    LOGI("Initialized ALSA %s device %s", stream, devName);
+    ALOGI("Initialized ALSA %s device %s", stream, devName);
 
     handle->curDev = devices;
     handle->curMode = mode;
@@ -689,7 +689,7 @@ static status_t s_close(alsa_handle_t *handle)
 
 static status_t s_route(alsa_handle_t *handle, uint32_t devices, int mode)
 {
-    LOGD("route called for devices %08x in mode %d...", devices, mode);
+    ALOGD("route called for devices %08x in mode %d...", devices, mode);
 
     if (handle->handle && handle->curDev == devices && handle->curMode == mode) return NO_ERROR;
 

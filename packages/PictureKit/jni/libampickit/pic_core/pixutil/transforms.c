@@ -93,13 +93,13 @@ unsigned char * color_average32_resize(unsigned char * orgin,int ox,int oy,int d
     int i,j,k,l,xa,xb,ya,yb;
     int sq,r,g,b,a;
 	if(!orgin)  {
-		LOGD(" source memory invalid!\n");
+		ALOGD(" source memory invalid!\n");
 		return NULL;
 	}
     cr=(unsigned char*) malloc(dx*dy*4); 
-	LOGD(" doing %d x %d --> %d x %d\n",ox,oy,dx,dy);
+	ALOGD(" doing %d x %d --> %d x %d\n",ox,oy,dx,dy);
 	if(!cr) {
-		LOGD(" memory alloc fail!\n");
+		ALOGD(" memory alloc fail!\n");
 		return NULL;
 	}
 	p=cr;

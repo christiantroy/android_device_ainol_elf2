@@ -49,7 +49,7 @@ ALSAControl::~ALSAControl()
 status_t ALSAControl::get(const char *name, unsigned int &value, int index)
 {
     if (!mHandle) {
-        LOGE("Control not initialized");
+        ALOGE("Control not initialized");
         return NO_INIT;
     }
 
@@ -67,13 +67,13 @@ status_t ALSAControl::get(const char *name, unsigned int &value, int index)
 
     int ret = snd_ctl_elem_info(mHandle, info);
     if (ret < 0) {
-        LOGE("Control '%s' cannot get element info: %d", name, ret);
+        ALOGE("Control '%s' cannot get element info: %d", name, ret);
         return BAD_VALUE;
     }
 
     int count = snd_ctl_elem_info_get_count(info);
     if (index >= count) {
-        LOGE("Control '%s' index is out of range (%d >= %d)", name, index, count);
+        ALOGE("Control '%s' index is out of range (%d >= %d)", name, index, count);
         return BAD_VALUE;
     }
 
@@ -82,7 +82,7 @@ status_t ALSAControl::get(const char *name, unsigned int &value, int index)
 
     ret = snd_ctl_elem_read(mHandle, control);
     if (ret < 0) {
-        LOGE("Control '%s' cannot read element value: %d", name, ret);
+        ALOGE("Control '%s' cannot read element value: %d", name, ret);
         return BAD_VALUE;
     }
 
@@ -113,7 +113,7 @@ status_t ALSAControl::get(const char *name, unsigned int &value, int index)
 status_t ALSAControl::set(const char *name, unsigned int value, int index)
 {
     if (!mHandle) {
-        LOGE("Control not initialized");
+        ALOGE("Control not initialized");
         return NO_INIT;
     }
 
@@ -129,13 +129,13 @@ status_t ALSAControl::set(const char *name, unsigned int value, int index)
 
     int ret = snd_ctl_elem_info(mHandle, info);
     if (ret < 0) {
-        LOGE("Control '%s' cannot get element info: %d", name, ret);
+        ALOGE("Control '%s' cannot get element info: %d", name, ret);
         return BAD_VALUE;
     }
 
     int count = snd_ctl_elem_info_get_count(info);
     if (index >= count) {
-        LOGE("Control '%s' index is out of range (%d >= %d)", name, index, count);
+        ALOGE("Control '%s' index is out of range (%d >= %d)", name, index, count);
         return BAD_VALUE;
     }
 
@@ -180,7 +180,7 @@ status_t ALSAControl::set(const char *name, unsigned int value, int index)
 status_t ALSAControl::set(const char *name, const char *value)
 {
     if (!mHandle) {
-        LOGE("Control not initialized");
+        ALOGE("Control not initialized");
         return NO_INIT;
     }
 
@@ -196,7 +196,7 @@ status_t ALSAControl::set(const char *name, const char *value)
 
     int ret = snd_ctl_elem_info(mHandle, info);
     if (ret < 0) {
-        LOGE("Control '%s' cannot get element info: %d", name, ret);
+        ALOGE("Control '%s' cannot get element info: %d", name, ret);
         return BAD_VALUE;
     }
 
@@ -209,7 +209,7 @@ status_t ALSAControl::set(const char *name, const char *value)
             return set(name, i, -1);
     }
 
-    LOGE("Control '%s' has no enumerated value of '%s'", name, value);
+    ALOGE("Control '%s' has no enumerated value of '%s'", name, value);
 
     return BAD_VALUE;
 }

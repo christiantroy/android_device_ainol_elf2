@@ -13,11 +13,11 @@
 #define LOG_TAG "AMPLAYER_JNI"
 
 #if 0
-#define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
-#define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
+#define  ALOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
+#define  ALOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
 #else
-#define  LOGI(...)
-#define  LOGE(...)
+#define  ALOGI(...)
+#define  ALOGE(...)
 #endif
 
 
@@ -71,14 +71,14 @@ jclass DivxInfo_getClass(JNIEnv *env){
 int onUpdate_player_info_java( JNIEnv *env,int pid,player_info_t * info)
 {
     if(gMplayerClazz!=NULL &&gPostMid!=NULL){
-        LOGI("call java update method in JNI env 1");  
+        ALOGI("call java update method in JNI env 1");  
         (*env)->CallStaticVoidMethod(env, gMplayerClazz, gPostMid, pid,
             info->status, info->full_time, info->current_ms,info->last_time,
             info->error_no, info->drm_rental);
-        LOGI("call java update method in JNI env 2");    
+        ALOGI("call java update method in JNI env 2");    
         return 0;
     }
-    LOGE("never get java media player obj");
+    ALOGE("never get java media player obj");
     return -1;
     
 }
@@ -87,17 +87,17 @@ int update_player_info(int pid,player_info_t * info)
     JNIEnv *env;
     int isAttached = -1;
     int ret = -1;
-    //LOGI("callback handler:current time:%d",time(NULL));
+    //ALOGI("callback handler:current time:%d",time(NULL));
     if(NULL ==info){
-        LOGE("info is null,drop it");
+        ALOGE("info is null,drop it");
         return -1;
     }
     ret = (*gJavaVm)->GetEnv(gJavaVm, (void**) &env, JNI_VERSION_1_4);
     if(ret <0){
-        //LOGE("callback handler:failed to get java env by native thread");
+        //ALOGE("callback handler:failed to get java env by native thread");
         ret = (*gJavaVm)->AttachCurrentThread(gJavaVm,&env,NULL);
         if(ret <0){
-            LOGE("callback handler:failed to attach current thread");
+            ALOGE("callback handler:failed to attach current thread");
             return -2;
         }
         isAttached = 1;
@@ -107,61 +107,61 @@ int update_player_info(int pid,player_info_t * info)
     ret = onUpdate_player_info_java(env,pid,info);
         
     if(isAttached >0){
-        LOGI("callback handler:detach current thread");
+        ALOGI("callback handler:detach current thread");
         (*gJavaVm)->DetachCurrentThread(gJavaVm);
     }   
-    //LOGI("callback handler:end time:%d",time(NULL));    
-    LOGI("pid:%d,status:0x%x,current ms:%d,total:%d,errcode:-0x%x\n",pid,info->status,info->current_ms,info->full_time,-(info->error_no));
+    //ALOGI("callback handler:end time:%d",time(NULL));    
+    ALOGI("pid:%d,status:0x%x,current ms:%d,total:%d,errcode:-0x%x\n",pid,info->status,info->current_ms,info->full_time,-(info->error_no));
     return 0;
 }
 
 int _media_info_dump(media_info_t* minfo)
 {
     int i = 0;
-    LOGI("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
-    LOGI("======||file size:%lld\n",minfo->stream_info.file_size);
-    LOGI("======||file type:%d\n",minfo->stream_info.type); 
-    LOGI("======||has internal subtitle?:%s\n",minfo->stream_info.has_sub>0?"YES!":"NO!");
-    LOGI("======||internal subtile counts:%d\n",minfo->stream_info.total_sub_num);
-    LOGI("======||has video track?:%s\n",minfo->stream_info.has_video>0?"YES!":"NO!");
-    LOGI("======||has audio track?:%s\n",minfo->stream_info.has_audio>0?"YES!":"NO!");    
-    LOGI("======||duration:%d\n",minfo->stream_info.duration);
-    LOGI("======||seekable:%d\n",minfo->stream_info.seekable);
+    ALOGI("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+    ALOGI("======||file size:%lld\n",minfo->stream_info.file_size);
+    ALOGI("======||file type:%d\n",minfo->stream_info.type); 
+    ALOGI("======||has internal subtitle?:%s\n",minfo->stream_info.has_sub>0?"YES!":"NO!");
+    ALOGI("======||internal subtile counts:%d\n",minfo->stream_info.total_sub_num);
+    ALOGI("======||has video track?:%s\n",minfo->stream_info.has_video>0?"YES!":"NO!");
+    ALOGI("======||has audio track?:%s\n",minfo->stream_info.has_audio>0?"YES!":"NO!");    
+    ALOGI("======||duration:%d\n",minfo->stream_info.duration);
+    ALOGI("======||seekable:%d\n",minfo->stream_info.seekable);
     if(minfo->stream_info.has_video && minfo->stream_info.total_video_num>0)
     {        
-        LOGI("======||video counts:%d\n",minfo->stream_info.total_video_num);
-        LOGI("======||video width:%d\n",minfo->video_info[0]->width);
-        LOGI("======||video height:%d\n",minfo->video_info[0]->height);
-        LOGI("======||video bitrate:%d\n",minfo->video_info[0]->bit_rate);
-        LOGI("======||video format:%d\n",minfo->video_info[0]->format);
+        ALOGI("======||video counts:%d\n",minfo->stream_info.total_video_num);
+        ALOGI("======||video width:%d\n",minfo->video_info[0]->width);
+        ALOGI("======||video height:%d\n",minfo->video_info[0]->height);
+        ALOGI("======||video bitrate:%d\n",minfo->video_info[0]->bit_rate);
+        ALOGI("======||video format:%d\n",minfo->video_info[0]->format);
 
     }
     if(minfo->stream_info.has_audio &&minfo->stream_info.total_audio_num> 0)
     {
-        LOGI("======||audio counts:%d\n",minfo->stream_info.total_audio_num);
+        ALOGI("======||audio counts:%d\n",minfo->stream_info.total_audio_num);
         
         if(NULL !=minfo->audio_info[0]->audio_tag)
         {
-            LOGI("======||track title:%s",minfo->audio_info[0]->audio_tag->title!=NULL?minfo->audio_info[0]->audio_tag->title:"unknow");   
-            LOGI("\n======||track album:%s",minfo->audio_info[0]->audio_tag->album!=NULL?minfo->audio_info[0]->audio_tag->album:"unknow"); 
-            LOGI("\n======||track author:%s\n",minfo->audio_info[0]->audio_tag->author!=NULL?minfo->audio_info[0]->audio_tag->author:"unknow");
-            LOGI("\n======||track year:%s\n",minfo->audio_info[0]->audio_tag->year!=NULL?minfo->audio_info[0]->audio_tag->year:"unknow");
-            LOGI("\n======||track comment:%s\n",minfo->audio_info[0]->audio_tag->comment!=NULL?minfo->audio_info[0]->audio_tag->comment:"unknow"); 
-            LOGI("\n======||track genre:%s\n",minfo->audio_info[0]->audio_tag->genre!=NULL?minfo->audio_info[0]->audio_tag->genre:"unknow");
-            LOGI("\n======||track copyright:%s\n",minfo->audio_info[0]->audio_tag->copyright!=NULL?minfo->audio_info[0]->audio_tag->copyright:"unknow");  
-            LOGI("\n======||track track:%d\n",minfo->audio_info[0]->audio_tag->track);  
+            ALOGI("======||track title:%s",minfo->audio_info[0]->audio_tag->title!=NULL?minfo->audio_info[0]->audio_tag->title:"unknow");   
+            ALOGI("\n======||track album:%s",minfo->audio_info[0]->audio_tag->album!=NULL?minfo->audio_info[0]->audio_tag->album:"unknow"); 
+            ALOGI("\n======||track author:%s\n",minfo->audio_info[0]->audio_tag->author!=NULL?minfo->audio_info[0]->audio_tag->author:"unknow");
+            ALOGI("\n======||track year:%s\n",minfo->audio_info[0]->audio_tag->year!=NULL?minfo->audio_info[0]->audio_tag->year:"unknow");
+            ALOGI("\n======||track comment:%s\n",minfo->audio_info[0]->audio_tag->comment!=NULL?minfo->audio_info[0]->audio_tag->comment:"unknow"); 
+            ALOGI("\n======||track genre:%s\n",minfo->audio_info[0]->audio_tag->genre!=NULL?minfo->audio_info[0]->audio_tag->genre:"unknow");
+            ALOGI("\n======||track copyright:%s\n",minfo->audio_info[0]->audio_tag->copyright!=NULL?minfo->audio_info[0]->audio_tag->copyright:"unknow");  
+            ALOGI("\n======||track track:%d\n",minfo->audio_info[0]->audio_tag->track);  
         }
             
 
         
         for(i = 0;i<minfo->stream_info.total_audio_num;i++)
         {
-            LOGI("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n");
-            LOGI("======||%d 'st audio track codec type:%d\n",i,minfo->audio_info[i]->aformat);
-            LOGI("======||%d 'st audio track audio_channel:%d\n",i,minfo->audio_info[i]->channel);
-            LOGI("======||%d 'st audio track bit_rate:%d\n",i,minfo->audio_info[i]->bit_rate);
-            LOGI("======||%d 'st audio track audio_samplerate:%d\n",i,minfo->audio_info[i]->sample_rate);
-            LOGI("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n");
+            ALOGI("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n");
+            ALOGI("======||%d 'st audio track codec type:%d\n",i,minfo->audio_info[i]->aformat);
+            ALOGI("======||%d 'st audio track audio_channel:%d\n",i,minfo->audio_info[i]->channel);
+            ALOGI("======||%d 'st audio track bit_rate:%d\n",i,minfo->audio_info[i]->bit_rate);
+            ALOGI("======||%d 'st audio track audio_samplerate:%d\n",i,minfo->audio_info[i]->sample_rate);
+            ALOGI("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n");
             
         }
         
@@ -170,19 +170,19 @@ int _media_info_dump(media_info_t* minfo)
         for(i = 0;i<minfo->stream_info.total_sub_num;i++)
         {
             if(0 == minfo->sub_info[i]->internal_external){
-                LOGI("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n");
-                LOGI("======||%d 'st internal subtitle pid:%d\n",i,minfo->sub_info[i]->id);   
-                LOGI("======||%d 'st internal subtitle language:%s\n",i,minfo->sub_info[i]->sub_language?minfo->sub_info[i]->sub_language:"unknow"); 
-                LOGI("======||%d 'st internal subtitle width:%d\n",i,minfo->sub_info[i]->width); 
-                LOGI("======||%d 'st internal subtitle height:%d\n",i,minfo->sub_info[i]->height); 
-                LOGI("======||%d 'st internal subtitle resolution:%d\n",i,minfo->sub_info[i]->resolution); 
-                LOGI("======||%d 'st internal subtitle subtitle size:%lld\n",i,minfo->sub_info[i]->subtitle_size); 
-                LOGI("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n");       
+                ALOGI("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n");
+                ALOGI("======||%d 'st internal subtitle pid:%d\n",i,minfo->sub_info[i]->id);   
+                ALOGI("======||%d 'st internal subtitle language:%s\n",i,minfo->sub_info[i]->sub_language?minfo->sub_info[i]->sub_language:"unknow"); 
+                ALOGI("======||%d 'st internal subtitle width:%d\n",i,minfo->sub_info[i]->width); 
+                ALOGI("======||%d 'st internal subtitle height:%d\n",i,minfo->sub_info[i]->height); 
+                ALOGI("======||%d 'st internal subtitle resolution:%d\n",i,minfo->sub_info[i]->resolution); 
+                ALOGI("======||%d 'st internal subtitle subtitle size:%lld\n",i,minfo->sub_info[i]->subtitle_size); 
+                ALOGI("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n");       
             }
         }
     }
     
-    LOGI("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+    ALOGI("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
     return 0;
 }
 
@@ -190,7 +190,7 @@ jobject DivxInfoContext_create(JNIEnv *env, drm_t* info){
 
   jclass meta_cls = DivxInfo_getClass(env);
   if(NULL == meta_cls){
-    LOGE("failed to get DivxInfo class");
+    ALOGE("failed to get DivxInfo class");
     return NULL;
   }
   
@@ -214,11 +214,11 @@ jobject MediaInfoContext_create(JNIEnv *env,media_info_t *msgt){
     int index = 0;
     jclass meta_cls = MediaInfo_getClass(env);
     if(NULL == meta_cls){            
-        LOGE("failed to get MediaInfo class");
+        ALOGE("failed to get MediaInfo class");
         return NULL;
     }
     if(NULL==msgt){
-        LOGE("set invalid msg info");
+        ALOGE("set invalid msg info");
         return NULL;
     }
    
@@ -245,12 +245,12 @@ jobject MediaInfoContext_create(JNIEnv *env,media_info_t *msgt){
         jclass ainfo_cls = AudioMediaInfo_getClass(env);
         jmethodID amid = (*env)->GetMethodID(env,ainfo_cls, "<init>", "()V");
         if(!amid){                
-         LOGE("failed to get audio info constructor");
+         ALOGE("failed to get audio info constructor");
          return meta_obj;
         }
         jobjectArray ainfoArray = (*env)->NewObjectArray(env,msgt->stream_info.total_audio_num,ainfo_cls, NULL);  
         if(NULL == ainfoArray){                 
-        LOGE("failed to get audio info object");              
+        ALOGE("failed to get audio info object");              
         return meta_obj;       
         }
 
@@ -258,7 +258,7 @@ jobject MediaInfoContext_create(JNIEnv *env,media_info_t *msgt){
         jobject aobj = (*env)->NewObject(env,ainfo_cls, amid);
         if(NULL ==aobj){
             (*env)->DeleteLocalRef(env,ainfoArray);  
-            LOGE("failed to get audio info object");                 
+            ALOGE("failed to get audio info object");                 
             return meta_obj;      
         }
         (*env)->SetIntField(env,aobj,\
@@ -281,7 +281,7 @@ jobject MediaInfoContext_create(JNIEnv *env,media_info_t *msgt){
     //for insub num;
     if(msgt->stream_info.total_sub_num>0)
     {
-        LOGI("================== 'in internal subtitle num:%d\n", msgt->stream_info.total_sub_num);
+        ALOGI("================== 'in internal subtitle num:%d\n", msgt->stream_info.total_sub_num);
         jclass sub_cls =Intersub_getClass(env);
         (*env)->SetStaticIntField(env,sub_cls,(*env)->GetStaticFieldID(env, sub_cls, "insub_num", "I"),(int)(msgt->stream_info.total_sub_num));
     }
@@ -291,12 +291,12 @@ jobject MediaInfoContext_create(JNIEnv *env,media_info_t *msgt){
             jclass tag_cls = AudioTagInfo_getClass(env);
             jmethodID tagmid = (*env)->GetMethodID(env,tag_cls, "<init>", "()V");
             if(NULL == tagmid){                
-                LOGE("failed to get tag info constructor"); 
+                ALOGE("failed to get tag info constructor"); 
                 return meta_obj;
             }
             jobject tagobj = (*env)->NewObject(env,tag_cls, tagmid);
             if(NULL ==tagobj){
-                LOGE("failed to get tag info object");   
+                ALOGE("failed to get tag info object");   
                 return meta_obj;      
             }        
             jstring title = (*env)->NewStringUTF(env,msgt->audio_info[0]->audio_tag->title);                                
@@ -322,12 +322,12 @@ jobject MediaInfoContext_create(JNIEnv *env,media_info_t *msgt){
         jclass sub_cls =Intersub_getClass(env);
         jmethodID submid = (*env)->GetMethodID(env,sub_cls, "<init>", "()V");
         if(NULL == submid){
-            LOGE("failed to get sub info constructor");  
+            ALOGE("failed to get sub info constructor");  
             return meta_obj;
         }
         jobjectArray subArray = (*env)->NewObjectArray(env,msgt->stream_info.total_sub_num,sub_cls, NULL);  
         if(NULL == subArray){                   
-            LOGI("failed to get audio info object");
+            ALOGI("failed to get audio info object");
             return meta_obj;       
         }
 
@@ -335,7 +335,7 @@ jobject MediaInfoContext_create(JNIEnv *env,media_info_t *msgt){
          
             jobject subobj = (*env)->NewObject(env,sub_cls, submid);
             if(NULL ==subobj){
-                LOGE("failed to get sub info object");
+                ALOGE("failed to get sub info object");
                 return meta_obj;      
             }                        
             (*env)->SetIntField(env,subobj,
@@ -367,9 +367,9 @@ JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_setMedia
 
     gMplayerClazz =(*env)->NewGlobalRef(env,clazz);
     if(gMplayerClazz){
-        LOGI("get mediaplayer class");
+        ALOGI("get mediaplayer class");
     }else{
-        LOGE("can't get mediaplayer class");
+        ALOGE("can't get mediaplayer class");
         return -100;
     }
     
@@ -377,15 +377,15 @@ JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_setMedia
     
     gPostMid = (*env)->GetStaticMethodID(env, gMplayerClazz, "onUpdateState", "(IIIIIII)V");
     if(gPostMid){
-        LOGI("get update state object id");
+        ALOGI("get update state object id");
     }else{
-        LOGE("failed to get update object id");
+        ALOGE("failed to get update object id");
         return -101;
     }        
     const char * pname = (*env)->GetStringUTFChars(env,url, NULL);     
     if(NULL == pname)
     {
-        LOGE("failed to change jstring to standard string");    
+        ALOGE("failed to change jstring to standard string");    
         return -1;
     }
 
@@ -404,13 +404,13 @@ JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_setMedia
     if(pMode == 1){
         _plCtrl.nosound = 1;
         SYS_set_tsync_enable(0);//if no sound,can set to be 0
-        LOGI("disable sound");
+        ALOGI("disable sound");
     }else if(pMode ==2){
         _plCtrl.novideo = 1;
-        LOGI("disable video");
+        ALOGI("disable video");
     }
     if(st>0){
-        LOGI("play start position:%d",st);
+        ALOGI("play start position:%d",st);
         _plCtrl.t_pos = st;
     }
     
@@ -418,14 +418,14 @@ JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_setMedia
 
     if(isloop>0){
         _plCtrl.loop_mode =1;
-        LOGI("set loop mode");
+        ALOGI("set loop mode");
     }
     _plCtrl.need_start = 1;
-    LOGI("set a media file to play,but need start it using start interface");
+    ALOGI("set a media file to play,but need start it using start interface");
     pid=player_start(&_plCtrl,0);
     if(pid<0)
     {
-        LOGI("player start failed!error=%d\n",pid);
+        ALOGI("player start failed!error=%d\n",pid);
         return -1;
     }
     
@@ -452,9 +452,9 @@ JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_playMedia
 
     gMplayerClazz =(*env)->NewGlobalRef(env,clazz);
     if(gMplayerClazz){
-        LOGI("get mediaplayer class");
+        ALOGI("get mediaplayer class");
     }else{
-        LOGE("can't get mediaplayer class");
+        ALOGE("can't get mediaplayer class");
         return -100;
     }
     
@@ -462,16 +462,16 @@ JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_playMedia
     
     gPostMid = (*env)->GetStaticMethodID(env, gMplayerClazz, "onUpdateState", "(IIIIIII)V");
     if(gPostMid){
-        LOGI("get update state object id");
+        ALOGI("get update state object id");
     }else{
-        LOGE("failed to get update object id");
+        ALOGE("failed to get update object id");
         return -101;
     }
 
     const char * pname = (*env)->GetStringUTFChars(env,url, NULL);     
     if(NULL == pname)
     {
-        LOGE("failed to change jstring to standard string");    
+        ALOGE("failed to change jstring to standard string");    
         return -1;
     }
 
@@ -490,28 +490,28 @@ JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_playMedia
     if(pMode == 1){
         _plCtrl.nosound = 1;
         SYS_set_tsync_enable(0);//if no sound,can set to be 0
-        LOGI("disable sound");
+        ALOGI("disable sound");
     }else if(pMode ==2){
         _plCtrl.novideo = 1;
-        LOGI("disable video");
+        ALOGI("disable video");
     }
     
     SYS_set_tsync_enable(1);//if no sound,can set to be 0
 
     if(isloop>0){
         _plCtrl.loop_mode =1;
-        LOGI("set loop mode");
+        ALOGI("set loop mode");
     }
     if(st>0){
-        LOGI("play start position:%d",st);
+        ALOGI("play start position:%d",st);
         _plCtrl.t_pos = st;
     }    
-    LOGI("add a media file to play");
+    ALOGI("add a media file to play");
     
     pid=player_start(&_plCtrl,0);
     if(pid<0)
     {
-        LOGI("player start failed!error=%d\n",pid);
+        ALOGI("player start failed!error=%d\n",pid);
         return -1;
     }
     
@@ -552,7 +552,7 @@ JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_start
     
     return ret;
 #else
-    LOGI("player start play");
+    ALOGI("player start play");
     player_start_play(pid);
     return 0;
 #endif
@@ -565,7 +565,7 @@ JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_start
  */
 JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_pause
   (JNIEnv *env, jobject obj, jint pid){
-    LOGI("player pause");
+    ALOGI("player pause");
     player_pause(pid);
     return 0;
 }
@@ -577,7 +577,7 @@ JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_pause
  */
 JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_resume
   (JNIEnv *env, jobject obj, jint pid){
-    LOGI("player resume");
+    ALOGI("player resume");
     player_resume(pid);
     return 0;
 }
@@ -600,7 +600,7 @@ JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_seek
  */
 JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_set3Dmode
   (JNIEnv *env, jobject obj, jint pid, jint mode){
-    LOGI("JNI Set 3D mode:%d,player pid:%d\n",mode,pid);
+    ALOGI("JNI Set 3D mode:%d,player pid:%d\n",mode,pid);
     int ret = SYS_set_3D_mode((SYS_3D_MODE_SET)mode);
     return ret;
 }
@@ -615,14 +615,14 @@ JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_set3Dviewmode
 JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_set3Daspectfull
   (JNIEnv *env, jobject obj, jint aspect){
     int ret = -1; 
-    LOGI("set 3d aspect full,value:%d\n",aspect);
+    ALOGI("set 3d aspect full,value:%d\n",aspect);
 		ret = SYS_set_3D_aspect_full(aspect);
     return ret;
 }
 JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_set3Dswitch
   (JNIEnv *env, jobject obj, jint isOn){
     int ret = -1; 
-    LOGI("set 3d switch:%d\n",isOn);
+    ALOGI("set 3d switch:%d\n",isOn);
     ret = SYS_set_3D_switch(isOn);
 		
     return ret;
@@ -630,7 +630,7 @@ JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_set3Dswitch
 JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_set3Dgrating
   (JNIEnv *env, jobject obj, jint isOn){
 	int ret = -1;
-	LOGI("set 3d grating,%s\n",isOn>0?"enable":"disable");
+	ALOGI("set 3d grating,%s\n",isOn>0?"enable":"disable");
 	ret = SYS_set_3D_grating(isOn);
 	return ret;
   
@@ -643,7 +643,7 @@ JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_set3Dgrating
 JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_stop
   (JNIEnv *env, jobject obj, jint pid){
     int ret = -1; 
-    LOGI("player stop");
+    ALOGI("player stop");
     ret =player_stop(pid);
     return ret;
 }
@@ -661,10 +661,10 @@ JNIEXPORT jobject JNICALL Java_com_farcore_playerservice_AmPlayer_getMetaInfo
     media_info_t minfo;
     int ret = -1;
     jobject meta_obj =NULL;  
-    LOGI("Get media info");
+    ALOGI("Get media info");
     ret = player_get_media_info(pid,&minfo);
     if(ret<0){
-        LOGE("can't get media info");
+        ALOGE("can't get media info");
         return NULL;
     }
         
@@ -682,7 +682,7 @@ JNIEXPORT jobject JNICALL Java_com_farcore_playerservice_AmPlayer_getDivxInfo
 (JNIEnv* env, jobject obj, jint pid){
   drm_t *info;
   jobject meta_obj = NULL;
-  LOGI("Get Divx Info");
+  ALOGI("Get Divx Info");
   info = drm_get_info();
   
   meta_obj = DivxInfoContext_create(env, info);
@@ -793,10 +793,10 @@ JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_setRepeat
   (JNIEnv *env, jobject obj, jint pid, jint isRepeat){
     jint ret = -1;
     if(isRepeat>0){
-        LOGI("set loop play");
+        ALOGI("set loop play");
         ret = player_loop(pid);
     }else{
-        LOGI("stop to play looply");
+        ALOGI("stop to play looply");
         ret = player_noloop(pid);
 
     }     
@@ -836,7 +836,7 @@ JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_native_init
     memset((void*)&_plCtrl,0,sizeof(play_control_t)); 
     _plCtrl.file_name = NULL;    
    
-    LOGI("player init ok"); 
+    ALOGI("player init ok"); 
     return ret;
 }
 
@@ -858,11 +858,11 @@ JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_native_uninit
     }
     
     if(_plCtrl.file_name !=NULL){
-        LOGI("collect memory for player para\n");
+        ALOGI("collect memory for player para\n");
         free(_plCtrl.file_name);
         _plCtrl.file_name = NULL;
     }
-    LOGI("player uninit ok"); 
+    ALOGI("player uninit ok"); 
     return 0;
 
 }
@@ -886,27 +886,27 @@ Java_com_farcore_playerservice_AmPlayer_disablecolorkey(JNIEnv *env, jclass claz
 JNIEXPORT jint Java_com_farcore_playerservice_AmPlayer_setglobalalpha(JNIEnv *env, jclass clazz, jint alpha){
     int ret = -1;
     ret = SYS_set_global_alpha(alpha);
-    LOGI("set global alpha is %d",alpha);
+    ALOGI("set global alpha is %d",alpha);
     return ret;
 }
 JNIEXPORT jint Java_com_farcore_playerservice_AmPlayer_getosdbpp(JNIEnv *env, jclass clazz){
     jint ret = -1;
     ret = SYS_get_osdbpp();
-    LOGI("get osd bpp:%d",ret);
+    ALOGI("get osd bpp:%d",ret);
     return ret;
 }
 
 JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_enable_1freescale(JNIEnv *env, jclass class, jint cfg){
     jint ret = -1;
     ret = enable_freescale(cfg);
-    LOGI("enable freeacale:%d\n", ret);
+    ALOGI("enable freeacale:%d\n", ret);
     return ret;
 }
 
 JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_disable_1freescale(JNIEnv *env, jclass class, jint cfg){
     jint ret = -1;
     ret = disable_freescale(cfg);
-    LOGI("disable freeacale:%d\n", ret);
+    ALOGI("disable freeacale:%d\n", ret);
     return ret;
 }
 
@@ -914,10 +914,10 @@ JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_getProductType(JN
 {
     int ret;
 #ifdef ENABLE_FREE_SCALE
-    LOGI("ENABLE_FREE_SCALE defined!\n");
+    ALOGI("ENABLE_FREE_SCALE defined!\n");
     ret = 1;
 #else
-    LOGI("ENABLE_FREE_SCALE not define!\n");
+    ALOGI("ENABLE_FREE_SCALE not define!\n");
     ret = 0;
 #endif
     return ret;
@@ -926,42 +926,42 @@ JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_getProductType(JN
 JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_disableFreescaleMBX(JNIEnv *env, jclass class){
     jint ret = -1;
     ret = disable_freescale_MBX();
-    LOGI("disable freeacale:%d\n", ret);
+    ALOGI("disable freeacale:%d\n", ret);
     return ret;
 }
 
 JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_enable2XScale(JNIEnv *env, jclass class){
     jint ret = -1;
     ret = enable_2Xscale();
-    LOGI("enable2XScale:%d\n", ret);
+    ALOGI("enable2XScale:%d\n", ret);
     return ret;
 }
 
 JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_enable2XYScale(JNIEnv *env, jclass class){
     jint ret = -1;
     ret = enable_2XYscale();
-    LOGI("enable2XYScale:%d\n", ret);
+    ALOGI("enable2XYScale:%d\n", ret);
     return ret;
 }
 
 JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_enableFreescaleMBX(JNIEnv *env, jclass class){
     jint ret = -1;
     ret = enable_freescale_MBX();
-    LOGI("enableFreescaleMBX:%d\n", ret);
+    ALOGI("enableFreescaleMBX:%d\n", ret);
     return ret;
 }
 
 JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_disable2X2XYScale(JNIEnv *env, jclass class){
     jint ret = -1;
     ret = disable_2X_2XYscale();
-    LOGI("disable2X2XYScale:%d\n", ret);
+    ALOGI("disable2X2XYScale:%d\n", ret);
     return ret;
 }
 
 JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_GL2XScale(JNIEnv *env, jclass class, jint mSwitch){
     jint ret = -1;
     ret = GL_2X_scale(mSwitch);
-    LOGI("GL2XScale:%d\n", ret);
+    ALOGI("GL2XScale:%d\n", ret);
     return ret;
 }
 
@@ -1010,14 +1010,14 @@ int jniRegisterNativeMethods(JNIEnv* env,
 {
     jclass clazz;
 
-    LOGI("Registering %s natives\n", className);
+    ALOGI("Registering %s natives\n", className);
     clazz = (*env)->FindClass(env,className);
     if (clazz == NULL) {
-        LOGE("Native registration unable to find class '%s'\n", className);
+        ALOGE("Native registration unable to find class '%s'\n", className);
     return -1;
     }
     if ((*env)->RegisterNatives(env,clazz, gMethods, numMethods) < 0) {
-        LOGE("RegisterNatives failed for '%s'\n", className);
+        ALOGE("RegisterNatives failed for '%s'\n", className);
     return -1;
     }
     return 0;
@@ -1036,12 +1036,12 @@ jint JNI_OnLoad(JavaVM* vm, void* reserved){
     JNIEnv* env = NULL;
        
     if ((*vm)->GetEnv(vm, (void**) &env, JNI_VERSION_1_4) != JNI_OK) { 
-        LOGE("GetEnv failed!");        
+        ALOGE("GetEnv failed!");        
         return -1;  
     }
     gJavaVm = vm;//    
     
-    LOGI("GetEnv ok");    /* success -- return valid version number */   
+    ALOGI("GetEnv ok");    /* success -- return valid version number */   
     result = JNI_VERSION_1_4;   
     register_com_farcore_playerservice_mediaplayer(env); 
     return result;
@@ -1052,7 +1052,7 @@ void JNI_OnUnload(JavaVM* vm, void* reserved)
     JNIEnv* env = NULL;
 
     if ((*vm)->GetEnv(vm, (void**) &env, JNI_VERSION_1_4) != JNI_OK) {
-        LOGE("GetEnv failed!");
+        ALOGE("GetEnv failed!");
         return;
     }
     if(gMplayerClazz != NULL)

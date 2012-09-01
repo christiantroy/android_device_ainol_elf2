@@ -15,7 +15,7 @@
 #define SCALE_REQUEST 	 "/sys/class/graphics/fb0/request2XScale"
 #define SYSCMD_BUFSIZE 40
 
-//#define LOG_FUNCTION_NAME LOGI("%s-%d\n",__FUNCTION__,__LINE__);
+//#define LOG_FUNCTION_NAME ALOGI("%s-%d\n",__FUNCTION__,__LINE__);
 #define LOG_FUNCTION_NAME
 
 int amdisplay_utils_get_size(int *width, int *height)
@@ -30,7 +30,7 @@ int amdisplay_utils_get_size(int *width, int *height)
         return ret;
     }
     if (sscanf(buf, "%d,%d", &disp_w, &disp_h) == 2) {
-        LOGI("disp resolution %dx%d\n", disp_w, disp_h);
+        ALOGI("disp resolution %dx%d\n", disp_w, disp_h);
         disp_h = disp_h / 2;
     } else {
         return -2;/*format unknow*/
@@ -50,7 +50,7 @@ int amdisplay_utils_set_scale_mode(int scale_wx, int scale_hx)
 
     /*scale mode only support x2,x1*/
     if ((scale_wx != 1 && scale_wx != 2) || (scale_hx != 1 && scale_hx != 2)) {
-		LOGI("unsupport scaling mode,x1,x2 only\n", scale_wx, scale_hx);
+		ALOGI("unsupport scaling mode,x1,x2 only\n", scale_wx, scale_hx);
         return -1;
     }
 	if(scale_wx==2)
@@ -59,7 +59,7 @@ int amdisplay_utils_set_scale_mode(int scale_wx, int scale_hx)
 	    ret = amsysfs_set_sysfs_str(SCALE_REQUEST, "2");   
 	     
     if (ret < 0) {
-        LOGI("set [%s]=[%s] failed\n", SCALE_AXIS_PATH, buf);
+        ALOGI("set [%s]=[%s] failed\n", SCALE_AXIS_PATH, buf);
         return -2;
     }
     return ret;

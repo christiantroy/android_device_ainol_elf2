@@ -36,7 +36,7 @@
 
 static bool hasException(JNIEnv *env) {
     if (env->ExceptionCheck() != 0) {
-        LOGE("*** Uncaught exception returned from Java call!\n");
+        ALOGE("*** Uncaught exception returned from Java call!\n");
         env->ExceptionDescribe();
         return true;
     }
@@ -140,7 +140,7 @@ JNIEXPORT jobject JNICALL Java_com_amlogic_graphics_PictureKit_loadPicture2BmNat
 	dec_info.image_3d_mode_pref = env->GetIntField(dec_obj, gdecoderInfo_3DPrefID);
 	dec_info.image_3d_lr_offset = env->GetIntField(dec_obj, gdecoderInfo_3DParam1ID);
 	dec_info.image_3d_preserv = env->GetIntField(dec_obj, gdecoderInfo_3DParam2ID);
-	/*LOGD("%d===%d==%d=======\n",dec_info.image_3d_mode_pref,
+	/*ALOGD("%d===%d==%d=======\n",dec_info.image_3d_mode_pref,
 			dec_info.image_3d_info.l_or_r_first,
 			dec_info.image_3d_info.image_offset);*/
 	
@@ -279,12 +279,12 @@ static int registerNativeMethods(JNIEnv* env, const char* className,
     jclass clazz;
     clazz = env->FindClass(className);
     if (clazz == NULL) {
-        LOGE("Native registration unable to find class '%s'\n", className);
+        ALOGE("Native registration unable to find class '%s'\n", className);
         return -1;
     }
 	rc = env->RegisterNatives(clazz, methods, numMethods);
     if (rc==JNI_ERR) {
-        LOGE("RegisterNatives failed for '%s' %d\n", className, rc);
+        ALOGE("RegisterNatives failed for '%s' %d\n", className, rc);
         return -1;
     }
     return 0;
@@ -297,13 +297,13 @@ JNI_OnLoad(JavaVM* vm, void* reserved)
     jclass * localClass;
 
     if (vm->GetEnv((void**) &env, JNI_VERSION_1_4) != JNI_OK) {
-        LOGE("GetEnv failed!\n");
+        ALOGE("GetEnv failed!\n");
         return -1;
     }
  
     if (android::AndroidRuntime::registerNativeMethods(env, this_class_name,
                               gMethods, NELEM(gMethods)) < 0) {
-		LOGE("register Native failed\n");
+		ALOGE("register Native failed\n");
         return -1;
 	}
 	
@@ -319,12 +319,12 @@ JNI_OnUnload(JavaVM* vm, void* reserved)
 	JNIEnv* env = NULL;
     jclass clazz;
     if (vm->GetEnv((void**) &env, JNI_VERSION_1_4) != JNI_OK) {
-        LOGE("GetEnv failed!\n");
+        ALOGE("GetEnv failed!\n");
         return;
     }
     clazz = env->FindClass(this_class_name);
     if (clazz == NULL) {
-        LOGE("Native registration unable to find class '%s'\n", this_class_name);
+        ALOGE("Native registration unable to find class '%s'\n", this_class_name);
         return ;
     }
 	env->UnregisterNatives(clazz);

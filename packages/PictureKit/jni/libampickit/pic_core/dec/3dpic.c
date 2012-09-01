@@ -206,7 +206,7 @@ static int ParserThird3DFile(aml_dec_para_t* para)
 /* parse [3D][FULL] OR [3D][HALF] */
 int parse_ThirdParty_3d_jpeg(aml_dec_para_t* para) {
 	if(para->image_3d_mode_pref>2) {
-		LOGD("not initalized yet!\n");
+		ALOGD("not initalized yet!\n");
 		return 0;
 	}
 	char *jpegname = basename(para->fn);
@@ -268,7 +268,7 @@ int fh_3d_load(aml_dec_para_t* para , aml_image_info_t* image) {
     aml_image_info_t* output_image=NULL;
     
     if(para->image_3d_info.type!=2) {
-		LOGD("wrong file format!\n");
+		ALOGD("wrong file format!\n");
 		goto exit;
 	}
     
@@ -283,13 +283,13 @@ int fh_3d_load(aml_dec_para_t* para , aml_image_info_t* image) {
 				||para->image_3d_info.style==IMAGE_3D_STYLE_H_HEIGHT) {  /* l & r */
 		output_image = read_lr_in_one_image(para);
 	} else if(para->image_3d_info.style==IMAGE_3D_STYLE_TB) { /* top & bottom. */
-		LOGD("not initalized yet!\n");
+		ALOGD("not initalized yet!\n");
 		goto exit;
 	} else if(para->image_3d_info.style==IMAGE_3D_STYLE_2FRAME) {  /* two jpeg stream mode. */
 		output_image = read_2_frame_image(para);
 	}
 	if(!output_image) {
-		LOGD("decoding failed#1.\n");
+		ALOGD("decoding failed#1.\n");
 		goto exit;
 	}
 	memcpy((char*)image , (char*)output_image, sizeof(aml_image_info_t)) ;

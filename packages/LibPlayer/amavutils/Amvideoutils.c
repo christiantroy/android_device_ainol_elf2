@@ -27,7 +27,7 @@ static int rotation = 0;
 static int disp_width = 1920;
 static int disp_height = 1080;
 
-//#define LOG_FUNCTION_NAME LOGI("%s-%d\n",__FUNCTION__,__LINE__);
+//#define LOG_FUNCTION_NAME ALOGI("%s-%d\n",__FUNCTION__,__LINE__);
 #define LOG_FUNCTION_NAME
 
 
@@ -42,7 +42,7 @@ int  amvideo_utils_get_global_offset(void)
         return offset;
     }
     if (sscanf(buf, "%d", &offset) == 1) {
-        LOGI("video global_offset %d\n", offset);
+        ALOGI("video global_offset %d\n", offset);
     }
     return offset;
 }
@@ -58,7 +58,7 @@ int amvideo_utils_set_virtual_position(int32_t x, int32_t y, int32_t w, int32_t 
     int ret = -1;
     int axis[4];
 
-    LOGI("amvideo_utils_set_virtual_position:: x=%d y=%d w=%d h=%d\n", x, y, w, h);
+    ALOGI("amvideo_utils_set_virtual_position:: x=%d y=%d w=%d h=%d\n", x, y, w, h);
 
     bzero(buf, SYSCMD_BUFSIZE);
 
@@ -80,7 +80,7 @@ int amvideo_utils_set_virtual_position(int32_t x, int32_t y, int32_t w, int32_t 
     read(dev_fd, buf, SYSCMD_BUFSIZE);
 
     if (sscanf(buf, "%dx%d", &dev_w, &dev_h) == 2) {
-        LOGI("device resolution %dx%d\n", dev_w, dev_h);
+        ALOGI("device resolution %dx%d\n", dev_w, dev_h);
     } else {
         ret = -2;
         goto OUT;
@@ -115,7 +115,7 @@ int amvideo_utils_set_virtual_position(int32_t x, int32_t y, int32_t w, int32_t 
     angle_fd = open(ANGLE_PATH, O_WRONLY);
     if (angle_fd >= 0) {
         ioctl(angle_fd, PPMGR_IOC_SET_ANGLE, (rotation/90) & 3);
-        LOGI("set ppmgr angle %d\n", (rotation/90) & 3);
+        ALOGI("set ppmgr angle %d\n", (rotation/90) & 3);
     }
 
     /* this is unlikely and only be used when ppmgr does not exist
@@ -136,7 +136,7 @@ int amvideo_utils_set_virtual_position(int32_t x, int32_t y, int32_t w, int32_t 
                 dst_w = dev_w;
                 dst_h = dev_h;
 
-                LOGI("centered overlay expansion");
+                ALOGI("centered overlay expansion");
             }
         }
     }
@@ -162,7 +162,7 @@ OUT:
     if (angle_fd >= 0) {
         close(angle_fd);
     }
-    LOGI("amvideo_utils_set_virtual_position (corrected):: x=%d y=%d w=%d h=%d\n", dst_x, dst_y, dst_w, dst_h);
+    ALOGI("amvideo_utils_set_virtual_position (corrected):: x=%d y=%d w=%d h=%d\n", dst_x, dst_y, dst_w, dst_h);
 
     return ret;
 }
@@ -174,7 +174,7 @@ int amvideo_utils_set_absolute_position(int32_t x, int32_t y, int32_t w, int32_t
     int angle_fd = -1;
     int axis[4];
 
-    LOGI("amvideo_utils_set_absolute_position:: x=%d y=%d w=%d h=%d\n", x, y, w, h);
+    ALOGI("amvideo_utils_set_absolute_position:: x=%d y=%d w=%d h=%d\n", x, y, w, h);
 
     video_fd = open(VIDEO_PATH, O_RDWR);
     if (video_fd < 0) {
@@ -184,7 +184,7 @@ int amvideo_utils_set_absolute_position(int32_t x, int32_t y, int32_t w, int32_t
     angle_fd = open(ANGLE_PATH, O_WRONLY);
     if (angle_fd >= 0) {
         ioctl(angle_fd, PPMGR_IOC_SET_ANGLE, (rotation/90) & 3);
-        LOGI("set ppmgr angle %d\n", (rotation/90) & 3);
+        ALOGI("set ppmgr angle %d\n", (rotation/90) & 3);
         close(angle_fd);
     }
 

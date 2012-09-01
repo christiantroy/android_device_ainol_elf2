@@ -11,8 +11,8 @@
 #include <android/log.h>
 #include "amstream.h"
 #define  LOG_TAG    "sub_control"
-#define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
-#define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
+#define  ALOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
+#define  ALOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
 
 int subtitle_poll_sub_fd(int sub_fd, int timeout)
 {
@@ -65,13 +65,13 @@ int subtitle_read_sub_data_fd(int sub_fd, char *buf, unsigned int length)
 int update_read_pointer(int sub_handle, int flag)
 {
 	if(sub_handle < 0){
-		LOGE("pgs handle invalid\n\n");
+		ALOGE("pgs handle invalid\n\n");
 		return sub_handle;
 	}
 	int r=ioctl(sub_handle,AMSTREAM_IOC_UPDATE_POINTER,flag);		
 	if(r<0)
 	{
-		LOGE("send AMSTREAM_IOC_UPDATE_POINTER failed\n");
+		ALOGE("send AMSTREAM_IOC_UPDATE_POINTER failed\n");
 		return r;
 	}
 	return 0;
@@ -101,7 +101,7 @@ int subtitle_read_sub_data_fd_update(int sub_fd,unsigned int *length)
             data_size -= r;
             read_done += r;
 			if(data_size >0){
-				LOGI("still data_size %d, %d\n\n\n",data_size, read_done);
+				ALOGI("still data_size %d, %d\n\n\n",data_size, read_done);
 			}
         }
     }

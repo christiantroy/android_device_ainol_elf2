@@ -6,8 +6,8 @@
 #include <string.h>
 #include <log_print.h>
 #define  LOG_TAG    "amplayer"
-#define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
-#define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
+#define  ALOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
+#define  ALOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
 
 #define LEVEL_SETING_PATH "media.amplayer.loglevel"
 
@@ -35,7 +35,7 @@ void log_lprint(const int level, const char *fmt, ...)
     va_end(ap);
 
     if (buf) {
-        LOGI("%s", buf);
+        ALOGI("%s", buf);
         free(buf);
     }
 }
