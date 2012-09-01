@@ -73,6 +73,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/vold/ntfs-3g:system/bin/ntfs-3g \
     $(LOCAL_PATH)/proprietary/vold/ntfs-3g.probe:system/bin/ntfs-3g.probe \
     $(LOCAL_PATH)/proprietary/vold/mkntfs:system/bin/mkntfs \
+    $(LOCAL_PATH)/proprietary/acoustics.default.so:system/lib/hw/acoustics.default.so \
+    $(LOCAL_PATH)/proprietary/alsa.default.so:system/lib/hw/alsa.default.so \
+    $(LOCAL_PATH)/proprietary/audio.primary.amlogic.so:system/lib/hw/audio.primary.amlogic.so \
+    $(LOCAL_PATH)/proprietary/lights.amlogic.so:system/lib/hw/lights.amlogic.so \
+    $(LOCAL_PATH)/proprietary/sensors.amlogic.so:system/lib/hw/sensors.amlogic.so
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml \
@@ -96,8 +101,6 @@ DEVICE_PACKAGE_OVERLAYS := device/ainol/elf2/overlay
 # AML HAL
 PRODUCT_PACKAGES += \
     camera.amlogic.so \
-    sensors.amlogic \
-    lights.amlogic \
     hwcomposer.amlogic
 
 # Mali GPU OpenGL libraries
@@ -131,9 +134,6 @@ PRODUCT_PACKAGES += \
 # ALSA
 PRODUCT_PACKAGES += \
     audio_policy.default \
-    audio.primary.amlogic \
-    alsa.default \
-    acoustics.default \
     libasound \
     alsa_aplay \
     alsa_ctl \
