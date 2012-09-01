@@ -89,7 +89,7 @@ USE_OPENGL_RENDERER := true
 ENABLE_WEBGL := true
 BOARD_USE_SKIA_LCDTEXT := true
 
-TARGET_RECOVERY_INITRC := device/ainol/elf2/recovery.init.rc
+#TARGET_RECOVERY_INITRC := device/ainol/elf2/recovery.init.rc
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun0/file"
 
