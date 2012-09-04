@@ -162,8 +162,9 @@ PRODUCT_PACKAGES += \
     usbtestpm_mx_iddq \
     usbpower_mx_iddq
 
-# manage bluetooth permissions
+# Bluetooth
 PRODUCT_PACKAGES += \
+    audio.a2dp.default \
     devlistener
 
 # libemoji for Webkit
