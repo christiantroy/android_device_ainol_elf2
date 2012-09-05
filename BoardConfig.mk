@@ -94,6 +94,7 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun0/file"
 
 TARGET_BOOTANIMATION_PRELOAD := true
+TARGET_BOOTANIMATION_SLIDE_HORIZONTAL := true
 
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun%d/file"
 
