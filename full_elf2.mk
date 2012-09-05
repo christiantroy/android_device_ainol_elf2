@@ -171,10 +171,6 @@ PRODUCT_PACKAGES += \
     audio.a2dp.default \
     devlistener
 
-# ICS Camera
-PRODUCT_PACKAGES += \
-    LegacyCamera
-
 # libemoji for Webkit
 PRODUCT_PACKAGES += libemoji
     
