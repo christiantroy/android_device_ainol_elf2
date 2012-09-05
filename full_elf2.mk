@@ -171,6 +171,10 @@ PRODUCT_PACKAGES += \
     audio.a2dp.default \
     devlistener
 
+# usb_modeswitch
+PRODUCT_PACKAGES += \
+    usb_modeswitch
+
 # libemoji for Webkit
 PRODUCT_PACKAGES += libemoji
     
