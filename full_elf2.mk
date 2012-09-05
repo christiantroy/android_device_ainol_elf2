@@ -170,6 +170,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     devlistener
 
+# usb_modeswitch
+PRODUCT_PACKAGES += \
+    usb_modeswitch
+
 # libemoji for Webkit
 PRODUCT_PACKAGES += libemoji
     
