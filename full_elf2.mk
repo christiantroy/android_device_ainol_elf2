@@ -190,7 +190,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.setupwizard.enable_bypass=1 \
     dalvik.vm.execution-mode=int:jit \
     dalvik.vm.lockprof.threshold=500 \
-    dalvik.vm.dexopt-flags=m=y
+    dalvik.vm.dexopt-flags=m=y \
+    dalvik.vm.dexopt-data-only=1
 
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.timezone=Europe/Rome \
