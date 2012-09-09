@@ -673,7 +673,7 @@ public class HdmiSwitch extends Activity {
             } else {
                 writeSysfs(VIDEO2_FRAME_WIDTH_PATH, "0");
             }
-            writeSysfs(VIDEO2_ZOOM_PATH, "100");
+            writeSysfs(VIDEO2_ZOOM_PATH, "105");
             
             if (getDualDisplayState() == 1) {
                 writeSysfs(VIDEO2_SCREEN_MODE_PATH, "1");
@@ -717,7 +717,7 @@ public class HdmiSwitch extends Activity {
                 writeSysfs(VIDEO2_FRAME_WIDTH_PATH, "0");
             }
             
-            writeSysfs(VIDEO2_ZOOM_PATH, "100");
+            writeSysfs(VIDEO2_ZOOM_PATH, "105");
             
             if (dualEnabled) {
                 writeSysfs(VIDEO2_SCREEN_MODE_PATH, "1");
