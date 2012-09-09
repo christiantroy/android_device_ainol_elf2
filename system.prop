@@ -38,5 +38,5 @@ ro.cpumode.maxfreq=1200000,1200000,800000
 ro.usbstorage.cpumode=performance
 ro.usbstorage.maxfreq=600000
 virtualsd.enable=true
-#ro.vout.dualdisplay2=true
+ro.vout.dualdisplay2=true
 persist.sys.usb.config=mass_storage,adb
