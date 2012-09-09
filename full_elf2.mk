@@ -170,6 +170,7 @@ PRODUCT_PACKAGES += \
 
 # manage bluetooth permissions
 PRODUCT_PACKAGES += \
+    audio.a2dp.default \
     devlistener
 
 # usb_modeswitch
