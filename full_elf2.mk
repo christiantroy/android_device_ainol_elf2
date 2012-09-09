@@ -168,9 +168,8 @@ PRODUCT_PACKAGES += \
     usbtestpm_mx_iddq \
     usbpower_mx_iddq
 
-# Bluetooth
+# manage bluetooth permissions
 PRODUCT_PACKAGES += \
-    audio.a2dp.default \
     devlistener
 
 # usb_modeswitch
