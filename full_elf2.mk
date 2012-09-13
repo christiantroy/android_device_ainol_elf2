@@ -77,7 +77,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/vold/ntfs-3g:system/bin/ntfs-3g \
     $(LOCAL_PATH)/proprietary/vold/ntfs-3g.probe:system/bin/ntfs-3g.probe \
     $(LOCAL_PATH)/proprietary/vold/mkntfs:system/bin/mkntfs \
-    $(LOCAL_PATH)/proprietary/fbset:system/xbin/fbset
+    $(LOCAL_PATH)/proprietary/fbset:system/xbin/fbset \
+    $(LOCAL_PATH)/prebuilt/ToggleBar.apk:system/app/ToggleBar.apk
 
 PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml \
