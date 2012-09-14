@@ -74,6 +74,4 @@
         <item>0</item>
         <item>9</item>
     </integer-array>
-    
-    <integer name="config_deviceHardwareKeys">1</integer>
 </resources>
