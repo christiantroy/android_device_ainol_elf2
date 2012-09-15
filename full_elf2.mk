@@ -45,7 +45,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/alarm_blacklist.txt:/system/etc/alarm_blacklist.txt \
     $(LOCAL_PATH)/configs/asound.conf:system/etc/asound.conf \
     $(LOCAL_PATH)/configs/asound.state:system/etc/asound.state \
-    $(LOCAL_PATH)/configs/audio_effects.conf:system/etc/audio_effects.conf \
     $(LOCAL_PATH)/configs/calibration.sh:system/bin/calibration.sh \
     $(LOCAL_PATH)/configs/ft5x06.idc:system/usr/idc/ft5x06.idc \
     $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml \
