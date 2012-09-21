@@ -65,7 +65,7 @@ static void ALSAErrorHandler(const char *file,
     l = snprintf(buf, BUFSIZ, "%s:%i:(%s) ", file, line, function);
     vsnprintf(buf + l, BUFSIZ - l, fmt, arg);
     buf[BUFSIZ-1] = '\0';
-    ALOGE("ALSALib", "%s", buf);
+    ALOGE("ALSALib %s", buf);
     va_end(arg);
 }
 
