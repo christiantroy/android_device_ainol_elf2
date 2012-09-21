@@ -374,7 +374,7 @@ static struct hw_module_methods_t sensors_module_methods = {
 	open : open_sensors
 };
 
-extern "C" const struct sensors_module_t HAL_MODULE_INFO_SYM = {
+extern "C" struct sensors_module_t HAL_MODULE_INFO_SYM = {
 	common :{
 		tag : HARDWARE_MODULE_TAG,
 		version_major : 1,

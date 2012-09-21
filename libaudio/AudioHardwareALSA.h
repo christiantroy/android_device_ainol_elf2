@@ -30,7 +30,9 @@ using namespace android;
 
 namespace android_audio_legacy
 {
-
+using android::List;
+using android::Mutex;
+using android::Condition;
 class AudioHardwareALSA;
 
 /**
@@ -158,7 +160,7 @@ protected:
     AudioHardwareALSA *     mParent;
     alsa_handle_t *         mHandle;
 
-    Mutex                   mLock;
+    Mutex	            mLock;
     bool                    mPowerLock;
 };
 

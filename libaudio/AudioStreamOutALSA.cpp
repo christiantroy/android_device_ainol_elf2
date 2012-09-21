@@ -71,7 +71,7 @@ status_t AudioStreamOutALSA::setVolume(float left, float right)
 
 ssize_t AudioStreamOutALSA::write(const void *buffer, size_t bytes)
 {
-    AutoMutex lock(mLock);
+    Mutex::Autolock lock(mLock);
 
     if (!mPowerLock) {
         acquire_wake_lock (PARTIAL_WAKE_LOCK, "AudioOutLock");
@@ -130,14 +130,14 @@ status_t AudioStreamOutALSA::dump(int fd, const Vector<String16>& args)
 
 status_t AudioStreamOutALSA::open(int mode)
 {
-    AutoMutex lock(mLock);
+    Mutex::Autolock lock(mLock);
 
     return ALSAStreamOps::open(mode);
 }
 
 status_t AudioStreamOutALSA::close()
 {
-    AutoMutex lock(mLock);
+    Mutex::Autolock lock(mLock);
 
     snd_pcm_drain (mHandle->handle);
     ALSAStreamOps::close();
@@ -152,7 +152,7 @@ status_t AudioStreamOutALSA::close()
 
 status_t AudioStreamOutALSA::standby()
 {
-    AutoMutex lock(mLock);
+    Mutex::Autolock lock(mLock);
 
     if (mHandle->module->standby)
     // allow hw specific modules to imlement unique standby
