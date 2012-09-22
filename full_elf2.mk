@@ -28,10 +28,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/bootanimation.zip:system/media/bootanimation.zip
 
-# Prebuilt "old" libsurfaceflinger
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/libsurfaceflinger.so:system/lib/libsurfaceflinger.so
-
 # init.d scripts
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/init.d/01cpu:system/etc/init.d/01cpu \
