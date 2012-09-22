@@ -102,7 +102,9 @@ DEVICE_PACKAGE_OVERLAYS := device/ainol/elf2/overlay
 # AML HAL
 PRODUCT_PACKAGES += \
     camera.amlogic.so \
-    hwcomposer.amlogic
+    hwcomposer.amlogic \
+    sensors.amlogic \
+    lights.amlogic
 
 # Mali GPU OpenGL libraries
 PRODUCT_PACKAGES += \
@@ -135,6 +137,9 @@ PRODUCT_PACKAGES += \
 # ALSA
 PRODUCT_PACKAGES += \
     audio_policy.default \
+    audio.primary.amlogic \
+    alsa.default \
+    acoustics.default \
     libasound \
     alsa_aplay \
     alsa_ctl \
