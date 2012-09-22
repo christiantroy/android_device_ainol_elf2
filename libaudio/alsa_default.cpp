@@ -31,7 +31,7 @@
         strcat(x, y);
 
 #ifndef ALSA_DEFAULT_SAMPLE_RATE
-#define ALSA_DEFAULT_SAMPLE_RATE 48000	 // in Hz
+#define ALSA_DEFAULT_SAMPLE_RATE 44100	 // in Hz
 #endif
 
 namespace android_audio_legacy
@@ -109,7 +109,7 @@ static alsa_handle_t _defaultsOut = {
     channels    : 2,
     sampleRate  : DEFAULT_SAMPLE_RATE,
     latency     : 100000, // Desired Delay in usec
-    bufferSize  : DEFAULT_SAMPLE_RATE / 10, // Desired Number of samples
+    bufferSize  : 8192*2, // Desired Number of samples
     mLock       : PTHREAD_MUTEX_INITIALIZER,
     modPrivate  : 0,
 };
