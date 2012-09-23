@@ -137,6 +137,9 @@ PRODUCT_PACKAGES += \
     ip-up \
     chat
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/libril/rild:system/bin/rild
+
 # ALSA
 PRODUCT_PACKAGES += \
     audio_policy.default \
