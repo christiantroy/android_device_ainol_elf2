@@ -40,4 +40,3 @@ ro.usbstorage.maxfreq=600000
 virtualsd.enable=true
 ro.vout.dualdisplay2=true
 persist.sys.usb.config=mass_storage,adb
-media.libplayer.seek.fwdsearch=1
