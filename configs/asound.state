@@ -8,8 +8,8 @@ state.AMLWM8960 {
 		comment.dbmax -6550
 		iface MIXER
 		name 'Capture Volume'
-		value.0 36
-		value.1 36
+		value.0 53
+		value.1 53
 	}
 	control.2 {
 		comment.access 'read write'
