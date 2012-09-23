@@ -24,9 +24,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ramdisk/init:root/init \
     $(LOCAL_PATH)/ramdisk/ueventd.rc:root/ueventd.rc
 
-# Prebuilt boot animation
+# Prebuilt boot animation & SuperSu
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/bootanimation.zip:system/media/bootanimation.zip
+    $(LOCAL_PATH)/prebuilt/Superuser.apk:system/media/Superuser.apk
+    $(LOCAL_PATH)/prebuilt/su:system/xbin/su
 
 # init.d scripts
 PRODUCT_COPY_FILES += \
