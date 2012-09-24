@@ -1,0 +1,13 @@
+#!/system/bin/sh
+#
+
+if [ -b "/dev/block/cardblksd2" ]
+then
+	if [ -d "/data/sdext2" ]
+	then
+		/system/xbin/mount -t auto /dev/block/cardblksd2  /data/sdext2
+	else
+		mkdir /data/sdext2
+		/system/xbin/mount -t auto /dev/block/cardblksd2  /data/sdext2
+	fi
+fi
