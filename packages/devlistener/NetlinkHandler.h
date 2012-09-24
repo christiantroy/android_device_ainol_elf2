@@ -27,6 +27,7 @@ public:
 
     void handleBluetoothEvent(NetlinkEvent *evt);
     void handleInputEvent(NetlinkEvent *evt);
+    void handleUsbEvent(NetlinkEvent *evt);
 
     int start(void);
     int stop(void);

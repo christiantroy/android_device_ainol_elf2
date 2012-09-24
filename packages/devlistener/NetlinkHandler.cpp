@@ -18,10 +18,10 @@
 #include <stdlib.h>
 #include <errno.h>
 
-//#include <string.h>
-//#include <fcntl.h>
+#include <string.h>
+#include <fcntl.h>
 #include <sys/stat.h>
-//#include <sys/types.h>
+#include <sys/types.h>
 //#include <sys/mount.h>
 
 #define LOG_TAG "DevListener"
@@ -58,6 +58,8 @@ void NetlinkHandler::onEvent(NetlinkEvent *evt) {
         handleBluetoothEvent(evt);
     } else if (!strcmp(subsys, "input")) {
         handleInputEvent(evt);
+    } else if (!strcmp(subsys, "usb")) {
+      handleUsbEvent(evt);
     }
 }
 
@@ -97,3 +99,39 @@ void NetlinkHandler::handleInputEvent(NetlinkEvent *evt) {
     }
 }
 
+void NetlinkHandler::handleUsbEvent(NetlinkEvent *evt) {
+    const char *devpath = evt->findParam("DEVPATH");
+    const char *devtype = evt->findParam("DEVTYPE");
+    const char *productStr = evt->findParam("PRODUCT");
+       
+    if (productStr != NULL && !strcmp(devtype, "usb_interface") && NetlinkEvent::NlActionAdd == evt->getAction()) {
+	if (devpath != NULL) {
+	    int vid = 0;
+	    int pid = 0;
+	    sscanf(productStr, "%x/%x/", &vid, &pid);
+	    char supported[128] = {0};
+	    snprintf(supported, sizeof(supported), "/system/etc/usb_modeswitch.d/%.4x_%.4x", vid, pid);
+	    if (access(supported, F_OK) == 0) {
+		SLOGD("%.4x:%.4x modem requires usb_modeswith", vid, pid);
+		char callModeSwitch[256] = {0};
+		strncpy(callModeSwitch, "/system/bin/usb_modeswitch -I -W -c ", sizeof(callModeSwitch));
+		strcat(callModeSwitch, supported);
+		if (system(callModeSwitch) == 0) {
+		    SLOGD("Called usb_modeswitch");
+		    char vidpid[28];
+		    const char *RIL_FIFO = "/data/system/RIL_FIFO" ;
+		    snprintf(vidpid, sizeof(vidpid), "%x/%x/", vid, pid);
+		    int fd = open(RIL_FIFO, O_NONBLOCK|O_WRONLY);
+		    if (fd != -1) {
+			write(fd, vidpid, strlen(vidpid));
+			close(fd);
+		    }
+		} else {
+		    SLOGE("Call usb_modeswitch FAILED");
+		}
+	    } else {
+	      SLOGD("%.4x:%.4x device doesn't require usb_modeswitch", vid, pid);
+	    }
+	}
+    }
+}
