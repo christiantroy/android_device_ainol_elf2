@@ -40,3 +40,9 @@ ro.usbstorage.maxfreq=600000
 virtualsd.enable=true
 ro.vout.dualdisplay2=true
 persist.sys.usb.config=mass_storage,adb
+# hardware info
+ro.device.cpu=1.5GHz dual-core Amlogic AML8726M-MX
+ro.device.gpu=ARM Mali 400
+ro.device.rear_cam=None
+ro.device.front_cam=2.0 MP
+ro.device.screen_res=600x1024
