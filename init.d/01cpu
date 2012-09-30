@@ -4,3 +4,17 @@
 #echo 1320000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
 #echo performance2 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 
+# reset governors settings like stock roms (if you prefered the "1.5ghz kernel" governors parameters remove these lines)
+
+echo 8 > /sys/devices/system/cpu/cpufreq/conservative/freq_step
+echo 80 > /sys/devices/system/cpu/cpufreq/conservative/up_threshold
+echo 50 > /sys/devices/system/cpu/cpufreq/conservative/down_threshold
+
+echo 5 > /sys/devices/system/cpu/cpufreq/performance2/freq_step
+echo 60 > /sys/devices/system/cpu/cpufreq/performance2/up_threshold
+echo 30 > /sys/devices/system/cpu/cpufreq/performance2/down_threshold
+
+# set 1GHz as max cpu speed with display turned OFF
+
+echo 1008000 > /sys/devices/system/cpu/cpufreq/conservative/screen_off_max
+echo 1008000 > /sys/devices/system/cpu/cpufreq/performance2/screen_off_max
