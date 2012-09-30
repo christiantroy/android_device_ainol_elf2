@@ -106,7 +106,8 @@ PRODUCT_PACKAGES += \
     camera.amlogic.so \
     hwcomposer.amlogic \
     sensors.amlogic \
-    lights.amlogic
+    lights.amlogic \
+    power.amlogic
 
 # Mali GPU OpenGL libraries
 PRODUCT_PACKAGES += \
