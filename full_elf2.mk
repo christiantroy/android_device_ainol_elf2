@@ -24,9 +24,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ramdisk/init:root/init \
     $(LOCAL_PATH)/ramdisk/ueventd.rc:root/ueventd.rc
 
-# Prebuilt boot animation
+# Prebuilt boot animation & PPP Widget
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/bootanimation.zip:system/media/bootanimation.zip
+    $(LOCAL_PATH)/prebuilt/PPPWidget.apk:system/app/PPPWidget.apk
 
 # init.d scripts
 PRODUCT_COPY_FILES += \
