@@ -40,3 +40,8 @@ ro.usbstorage.maxfreq=600000
 virtualsd.enable=true
 ro.vout.dualdisplay2=true
 persist.sys.usb.config=mass_storage,adb
+# power hal
+ro.sys.min_cpu_on=408000
+ro.sys.min_cpu_off=96000
+ro.sys.max_cpu_on=1320000
+ro.sys.max_cpu_off=1008000
