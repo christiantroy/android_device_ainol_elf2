@@ -19,14 +19,6 @@
 
 #include <sysutils/NetlinkListener.h>
 
-#define  VENDOR_SPEC_CLASS_ID "255"
-
-#define RIL_PROP_USBMODEM_VID                 "ril.usbmodem.vid"
-#define RIL_PROP_USBMODEM_PID                 "ril.usbmodem.pid"
-
-#define MODEM_TTYUSB (0)
-#define MODEM_TTYACM (1)
-
 class NetlinkHandler: public NetlinkListener {
 
 public:
@@ -35,13 +27,6 @@ public:
 
     void handleBluetoothEvent(NetlinkEvent *evt);
     void handleInputEvent(NetlinkEvent *evt);
-    
-    int isEnabled;
-    int isKnownModem(int vid, int pid);
-    int checkModem(void);
-    void call_rild(int vid, int pid);
-    int switchMode(int vid, int pid);
-    void handleUsbEvent(NetlinkEvent *evt);
 
     int start(void);
     int stop(void);
