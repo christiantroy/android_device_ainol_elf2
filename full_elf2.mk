@@ -26,7 +26,7 @@ PRODUCT_COPY_FILES += \
 
 # Prebuilt boot animation & PPP Widget
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/bootanimation.zip:system/media/bootanimation.zip
+    $(LOCAL_PATH)/prebuilt/bootanimation.zip:system/media/bootanimation.zip \
     $(LOCAL_PATH)/prebuilt/PPPWidget.apk:system/app/PPPWidget.apk
 
 # init.d scripts
