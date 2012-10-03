@@ -1,0 +1,15 @@
+/dev/ttyS20
+115200
+debug
+nocrtscts
+novj
+nodetach
+noipdefault
+noauth
+usepeerdns
+defaultroute
+lcp-echo-failure 4
+ipcp-accept-local
+ipcp-accept-remote
+
+
