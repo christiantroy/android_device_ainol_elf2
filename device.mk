@@ -53,7 +53,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/vold.fstab:system/etc/vold.fstab \
     $(LOCAL_PATH)/configs/wififix.sh:system/bin/wififix.sh \
     $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
-    $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf
+    $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf \
+    $(LOCAL_PATH)/configs/mcli-cdma:system/etc/ppp/peers/mcli-cdma \
+    $(LOCAL_PATH)/configs/mcli-gsm:system/etc/ppp/peers/mcli-gsm
 
 # USB ModeSwitch
 PRODUCT_COPY_FILES += \

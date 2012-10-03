@@ -1,0 +1,13 @@
+/dev/ttyS20
+460800
+debug
+nocrtscts
+modem
+nodetach
+usepeerdns
+noipdefault
+defaultroute
+user "card"
+password "card"
+0.0.0.0:0.0.0.0
+
