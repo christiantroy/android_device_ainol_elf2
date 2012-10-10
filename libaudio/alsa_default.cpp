@@ -43,6 +43,7 @@ static int s_device_close(hw_device_t*);
 static status_t s_init(alsa_device_t *, ALSAHandleList &);
 static status_t s_open(alsa_handle_t *, uint32_t, int);
 static status_t s_close(alsa_handle_t *);
+static status_t s_standby(alsa_handle_t *);
 static status_t s_route(alsa_handle_t *, uint32_t, int);
 
 static hw_module_methods_t s_module_methods = {
@@ -78,6 +79,7 @@ static int s_device_open(const hw_module_t* module, const char* name,
     dev->init = s_init;
     dev->open = s_open;
     dev->close = s_close;
+    dev->standby = s_standby;
     dev->route = s_route;
 
     *device = &dev->common;
@@ -685,6 +687,24 @@ static status_t s_close(alsa_handle_t *handle)
     }
 
     pthread_mutex_unlock(&handle->mLock);
+    return err;
+}
+
+static status_t s_standby(alsa_handle_t *handle)
+{
+    int ret;
+    status_t err = NO_ERROR;  
+    snd_pcm_t *h = handle->handle;
+    handle->handle = 0;
+
+    if (h) {
+        ALOGE("s_standby handle h %p\n", h);
+        err = snd_pcm_close(h);
+        if(err != NO_ERROR) {
+            ALOGE("s_standby: pcm_close failed for handle with err %d", err);
+        }
+    }
+
     return err;
 }
 

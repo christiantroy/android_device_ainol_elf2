@@ -72,6 +72,16 @@ status_t AudioStreamOutALSA::setVolume(float left, float right)
 ssize_t AudioStreamOutALSA::write(const void *buffer, size_t bytes)
 {
     Mutex::Autolock lock(mLock);
+    
+    if (mHandle->handle == NULL) {
+	mHandle->module->open(mHandle, mHandle->curDev, mHandle->curMode);
+    }
+    
+    if(mHandle->handle == NULL) {
+	ALOGE("write:: device open failed");
+	Mutex::Autolock unlock(mLock);
+	return 0;
+    }
 
     if (!mPowerLock) {
         acquire_wake_lock (PARTIAL_WAKE_LOCK, "AudioOutLock");
@@ -154,15 +164,12 @@ status_t AudioStreamOutALSA::standby()
 {
     Mutex::Autolock lock(mLock);
 
-#if 0
     if (mHandle->module->standby)
     // allow hw specific modules to imlement unique standby
     // if needed
         mHandle->module->standby(mHandle);
     else
         snd_pcm_drain (mHandle->handle);
-#endif
-    snd_pcm_drop (mHandle->handle);
 
     if (mPowerLock) {
         release_wake_lock ("AudioOutLock");
