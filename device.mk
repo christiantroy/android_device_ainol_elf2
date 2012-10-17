@@ -209,7 +209,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.use_dithering=0 \
     persist.sys.purgeable_assets=0 \
     view.touch_slop=2 \
-    view.minimum_fling_velocity=25
+    view.minimum_fling_velocity=25 \
+    ro.additionalmounts=/storage/sdcard1 \
+    ro.vold.switchablepair=/storage/sdcard0,/storage/sdcard1 \
+    persist.sys.vold.switchexternal=0
    
 PRODUCT_AAPT_CONFIG := normal large tvdpi hdpi
 PRODUCT_AAPT_PREF_CONFIG := mdpi
