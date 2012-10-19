@@ -225,6 +225,6 @@ TARGET_BOOTANIMATION_NAME := horizontal-1024x600
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
-$(call inherit-product, frameworks/native/build/tablet-dalvik-heap.mk)
+$(call inherit-product, frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk)
 $(call inherit-product, build/target/product/full_base.mk)
 $(call inherit-product-if-exists, vendor/ainol/elf2/elf2-vendor.mk)
