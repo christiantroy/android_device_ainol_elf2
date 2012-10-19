@@ -74,4 +74,6 @@
         <item>0</item>
         <item>9</item>
     </integer-array>
+    
+    <string translatable="false" name="config_ethernet_iface_regex">eth\\d|usbnet\\d</string>
 </resources>
