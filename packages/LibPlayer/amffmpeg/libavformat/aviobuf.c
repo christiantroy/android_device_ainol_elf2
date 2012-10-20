@@ -995,9 +995,8 @@ int ffio_fdopen(AVIOContext **s, URLContext *h)
     if(h->prot) {
         (*s)->read_pause = (int (*)(void *, int))h->prot->url_read_pause;
         (*s)->read_seek  = (int64_t (*)(void *, int, int64_t, int))h->prot->url_read_seek;
-	  if(h->support_time_seek>0){	
-	 	(*s)->exseek  = (int64_t (*)(void *, int, int64_t, int))h->prot->url_exseek;	
-
+	  if(NULL==(*s)->exseek ){	
+	 	(*s)->exseek  = (int64_t (*)(void *, int, int64_t, int))h->prot->url_exseek;
 	  }
     }
     return 0;
@@ -1048,8 +1047,10 @@ int ffio_rewind_with_probe_data(AVIOContext *s, unsigned char *buf, int buf_size
     buffer_size = s->buf_end - s->buffer;
     if(s->enabled_lp_buffer){/*have lowlevel lpbuf,can seek back here*/
 		ret=avio_seek(s,0,SEEK_SET);
-		if(ret==0)
-			return ret;
+		if(ret==0){
+			av_free(buf);
+			return 0;//let uplevel free buf,return 0.don't free
+		}
     }
     /* the buffers must touch or overlap */
     if ((buffer_start = s->pos - buffer_size) > buf_size)

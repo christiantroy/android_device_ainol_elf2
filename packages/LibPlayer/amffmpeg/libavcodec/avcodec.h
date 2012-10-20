@@ -1294,6 +1294,7 @@ typedef struct AVCodecContext {
     /* audio only */
     int sample_rate; ///< samples per second
     int channels;    ///< number of audio channels
+    int audio_profile;      ///<audio profile
 
     /**
      * audio sample format

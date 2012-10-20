@@ -193,25 +193,37 @@ static int player_mate_thread_cmd_proxy(play_para_t *player,struct player_mate *
 }
 
 
-static int player_mate_thread_run_ll(play_para_t *player,struct player_mate *mate)
+static int player_mate_thread_run_per100ms(play_para_t *player,struct player_mate *mate)
 {
 	mate_print("[MATE]player's mate start do a day work now\n ");
 	player_mate_thread_cmd_proxy(player,mate);/**/
 	mate_print("[MATE]player's mate finixhed cmd proxy\n ");
 	update_playing_info(player);
 	mate_print("[MATE]player's mate finished update playing info\n ");
-    update_player_states(player, 0);
+    	update_player_states(player, 0);
 	mate_print("[MATE]player's mate finished one day work now\n ");
 	return 0;
 }
-
+static int player_mate_thread_run_ll_everytime(play_para_t *player,struct player_mate *mate)
+{
+	player_hwbuflevel_update(player);
+	return 0;
+}
 static int player_mate_thread_run_l(play_para_t *player,struct player_mate *mate)
 {
 	int worktimenum=0;
+	int runll=101/(mate->work_intervals/1000);/*work_intervals is less than 100ms?*/
+	int runlldelay=0;
+	runll=(runll>0 && runll<100)?runll:0;
+	runlldelay=runll;
 	mate_print("[MATE]player's mate start work now!\n ");
 	while(!mate->mate_should_sleep && !mate->mate_should_exit){
 		worktimenum++;
-		player_mate_thread_run_ll(player,mate);
+		if(--runlldelay<=0){/*run once delay about  100ms...*/
+			player_mate_thread_run_per100ms(player,mate);
+			runlldelay=runll;
+		}
+		player_mate_thread_run_ll_everytime(player,mate);
 		mate_print("[MATE]player's mate sleep now %d\n ",worktimenum);
 		player_mate_thread_wait(mate,mate->work_intervals);
 		mate_print("[MATE]player's mate wake and try get next day work\n ");

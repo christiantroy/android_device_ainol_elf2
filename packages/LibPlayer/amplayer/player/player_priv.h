@@ -202,6 +202,7 @@ int message_pool_init(play_para_t *para);
 codec_para_t *get_video_codec(play_para_t *para);
 //audio
 codec_para_t *get_audio_codec(play_para_t *para);
+int player_hwbuflevel_update(play_para_t *player);
 
 int send_message(play_para_t *para, player_cmd_t *cmd);
 int send_message_by_pid(int pid, player_cmd_t *cmd);

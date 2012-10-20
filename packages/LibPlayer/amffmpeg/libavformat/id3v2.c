@@ -290,7 +290,7 @@ static void ff_id3v2_parse(AVFormatContext *s, int len, uint8_t version, uint8_t
             tag[3] = 0;
             tlen = avio_rb24(s->pb);
         }
-        if (tlen > (1<<28) || !tlen)
+        if (tlen > (1<<28) )
             break;
         len -= taghdrlen + tlen;
 

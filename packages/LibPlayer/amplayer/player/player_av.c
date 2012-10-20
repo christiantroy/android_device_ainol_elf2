@@ -47,6 +47,7 @@ static const media_type media_array[] = {
     {"aac", AAC_FILE, STREAM_AUDIO},
     {"ac3", AC3_FILE, STREAM_AUDIO},
     {"mp3", MP3_FILE, STREAM_AUDIO},
+    {"mp2", MP3_FILE, STREAM_AUDIO},
     {"wav", WAV_FILE, STREAM_AUDIO},
     {"dts", DTS_FILE, STREAM_AUDIO},
     {"flac", FLAC_FILE, STREAM_AUDIO},
@@ -58,6 +59,7 @@ static const media_type media_array[] = {
     {"m4v", MP4_FILE, STREAM_ES},
     {"rtsp", STREAM_FILE, STREAM_ES},
     {"ape", APE_FILE, STREAM_ES},
+    {"DRMdemux", MP4_FILE, STREAM_ES},
 };
 
 aformat_t audio_type_convert(enum CodecID id, pfile_type File_type)
@@ -1090,7 +1092,7 @@ int time_search(play_para_t *am_p)
     unsigned int temp = 0;
     int stream_index = -1;
     int64_t ret;
-    int seek_flags = AVSEEK_FLAG_BACKWARD;
+    int seek_flags =am_getconfig_bool("media.libplayer.seek.fwdsearch")?0: AVSEEK_FLAG_BACKWARD;
 	int sample_size;
     /* If swith audio, then use audio stream index */
     if (am_p->playctrl_info.seek_base_audio) {       
@@ -1123,7 +1125,8 @@ int time_search(play_para_t *am_p)
             am_p->file_type == FLV_FILE ||
             am_p->file_type == MOV_FILE ||
             am_p->file_type == P2P_FILE ||
-            am_p->file_type == ASF_FILE) {
+            am_p->file_type == ASF_FILE || 
+            am_p->file_type == STREAM_FILE) {
             if (am_p->file_type == AVI_FILE && !s->seekable) {
                 time_point = am_p->state.current_time;
             }
@@ -1840,7 +1843,7 @@ int set_header_info(play_para_t *para)
             }
         } else if (pkt->type == CODEC_AUDIO) {
             if ((!para->playctrl_info.raw_mode) &&
-                para->astream_info.audio_format == AFORMAT_AAC) {
+                (para->astream_info.audio_format == AFORMAT_AAC||para->astream_info.audio_format == AFORMAT_AAC_LATM)) {
                 if (pkt->hdr == NULL) {
                     pkt->hdr = MALLOC(sizeof(hdr_buf_t));
 		    memset(pkt->hdr,0,sizeof(hdr_buf_t));

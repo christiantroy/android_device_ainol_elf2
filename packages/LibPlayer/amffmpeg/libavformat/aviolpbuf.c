@@ -81,7 +81,7 @@ Can seek back size:
 
 
 #define LP_ASSERT(x)	 do{if(!(x)) av_log(NULL,AV_LOG_INFO,"****\t\tERROR at line file%s=%d\n\n\n",__FILE__,__LINE__);}while(0)
-#define MAX_READ_SEEK (16*1024*1024)
+#define DEF_MAX_READ_SEEK (1024*512)
 int url_lpopen(URLContext *s,int size)
 {
 	url_lpbuf_t *lp;
@@ -90,6 +90,14 @@ int url_lpopen(URLContext *s,int size)
 	float value=0.0;
 	int bufsize=0;
 	
+	if(size==0){
+		ret=am_getconfig_float("libplayer.ffmpeg.lpbufsizemax",&value);
+		if(ret<0 || value < 1024*32)
+			size=IO_LP_BUFFER_SIZE;
+		else{
+			size=(int)value;
+		}
+	}
 	lp_bprint( AV_LOG_INFO,"url_lpopen=%d\n",size);
 	if(!s)
 		return -1;
@@ -141,6 +149,15 @@ int url_lpopen(URLContext *s,int size)
 	if(lp->cache_id!=0)
 		lp->cache_enable=1;
 	lp_bprint( AV_LOG_INFO,"url_lpopen4%d\n",bufsize);
+
+	ret=am_getconfig_float("libplayer.ffmpeg.maxreadseek",&value);
+	if(ret>=0 && value>=0)
+	{
+		lp->max_read_seek=value;
+	}else
+	{
+		lp->max_read_seek=DEF_MAX_READ_SEEK;
+	}
 	return 0;
 }
 
@@ -370,7 +387,7 @@ int64_t url_lpseek(URLContext *s, int64_t offset, int whence)
 		
 	}else if( (s->is_streamed && offset1>0) || /*can't suport seek,and can support read seek.*/
 			((offset1>0 &&  s->is_slowmedia) && 	/*is slowmedia and seek formard*/
-			(offset1<lp->buffer_size-lp->block_read_size && offset1<MAX_READ_SEEK) &&/*don't do too big size seek*/ 
+			(offset1<lp->buffer_size-lp->block_read_size && offset1<=lp->max_read_seek) &&/*don't do too big size seek*/ 
 			(lp->file_size<=0 || (lp->file_size>0 && offset1<lp->file_size/2))))/*if offset1>filesize/2,thendo first seek end,don't buffer*/
 	{/*seek to buffer end,but buffer is not full,do read seek*/
 		int read_offset,ret;

@@ -126,6 +126,7 @@ void av_register_all(void)
     REGISTER_MUXDEMUX (MMF, mmf);
     REGISTER_MUXDEMUX (MOV, mov);
     REGISTER_MUXER    (MP2, mp2);
+    REGISTER_DEMUXER  (MP2, mp2); // AMLogic add
     REGISTER_MUXDEMUX (MP3, mp3);
     REGISTER_MUXER    (MP4, mp4);
     REGISTER_DEMUXER  (MPC, mpc);

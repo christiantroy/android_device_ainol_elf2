@@ -618,7 +618,7 @@ static int set_decode_para(play_para_t*am_p)
     if (am_p->astream_info.has_audio) {
 
         if (!am_p->playctrl_info.raw_mode &&
-            am_p->astream_info.audio_format == AFORMAT_AAC) {
+            (am_p->astream_info.audio_format == AFORMAT_AAC||am_p->astream_info.audio_format == AFORMAT_AAC_LATM)) {
             adts_header_t *adts_hdr;
             adts_hdr = MALLOC(sizeof(adts_header_t));
             if (adts_hdr == NULL) {
@@ -965,6 +965,9 @@ int player_dec_init(play_para_t *p_para)
     int ret = 0;
     int full_time = 0;
     int full_time_ms = 0;
+    int i;
+    int wvenable= 0;
+    AVStream *st;
 
     ret = ffmpeg_parse_file(p_para);
     if (ret != FFMPEG_SUCCESS) {
@@ -972,7 +975,7 @@ int player_dec_init(play_para_t *p_para)
         return ret;
     }
     dump_format(p_para->pFormatCtx, 0, p_para->file_name, 0);
-
+    
     ret = set_file_type(p_para->pFormatCtx->iformat->name, &file_type, &stream_type);
     if (ret != PLAYER_SUCCESS) {
         set_player_state(p_para, PLAYER_ERROR);
@@ -1093,6 +1096,7 @@ int player_dec_init(play_para_t *p_para)
 
 init_fail:
     ffmpeg_close_file(p_para);
+     log_print("[player_dec_init]failed, ret=%x\n", ret);
     return ret;
 }
 

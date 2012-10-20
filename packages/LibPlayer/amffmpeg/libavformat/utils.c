@@ -31,6 +31,7 @@
 #include "libavutil/pixdesc.h"
 #include "metadata.h"
 #include "id3v2.h"
+#include "id3v1.h"
 #include "libavutil/avstring.h"
 #include "riff.h"
 #include "audiointerleave.h"
@@ -342,6 +343,8 @@ AVInputFormat *av_probe_input_format3(AVProbeData *pd, int is_opened, int *score
             fmt = NULL;
     }
     *score_ret= score_max;
+     if(lpd.pads[0] != 0) 
+        memcpy(pd->pads, lpd.pads, sizeof(lpd.pads));
     return fmt;
 }
 
@@ -501,7 +504,7 @@ int av_probe_input_buffer(AVIOContext *pb, AVInputFormat **fmt,
                           const char *filename, void *logctx,
                           unsigned int offset, unsigned int max_probe_size)
 {
-    AVProbeData pd = { filename ? filename : "", NULL, -offset };
+    AVProbeData pd = { filename ? filename : "", NULL, -offset,pb,0,0,0 };
     unsigned char *buf = NULL;
     int ret = 0, probe_size;
 	int data_offset = 0;
@@ -615,7 +618,7 @@ retry_probe:
     /* rewind. reuse probe buffer to avoid seeking */
     if ((ret = ffio_rewind_with_probe_data(pb, buf, pd.buf_size)) < 0)
         av_free(buf);
-
+    memcpy(pb->proppads,pd.pads,sizeof(pd.pads));
     return ret;
 }
 
@@ -696,7 +699,7 @@ static auto_switch_protol_t *try_get_mached_new_prot(ByteIOContext *pb,const cha
 static int init_input(AVFormatContext *s, const char *filename,const char * headers)
 {
     int ret;
-    AVProbeData pd = {filename, NULL, 0};
+    AVProbeData pd = {filename, NULL, 0,NULL};
     auto_switch_protol_t* newp=NULL;
     if (s->pb) {
         s->flags |= AVFMT_FLAG_CUSTOM_IO;
@@ -782,8 +785,15 @@ int avformat_open_input_header(AVFormatContext **ps, const char *filename, AVInp
     }
 
     /* e.g. AVFMT_NOFILE formats will not have a AVIOContext */
-    if (s->pb)
-        ff_id3v2_read(s, ID3v2_DEFAULT_MAGIC);
+    if (s->pb){
+        ff_id3v2_read(s, ID3v2_DEFAULT_MAGIC); 
+	 if(!av_dict_get(s->metadata, "title"  , NULL, 0)||!av_dict_get(s->metadata, "artist" , NULL, 0)||
+	  !av_dict_get(s->metadata, "album"  , NULL, 0)||!av_dict_get(s->metadata, "date"  , NULL, 0)||
+	  !av_dict_get(s->metadata, "comment" , NULL, 0)||!av_dict_get(s->metadata, "track"  , NULL, 0)||
+	  !av_dict_get(s->metadata, "genre"  , NULL, 0)){
+	         ff_id3v1_read(s);	
+	 }
+    }
 
     if (!(s->flags&AVFMT_FLAG_PRIV_OPT) && s->iformat->read_header)
         if ((ret = s->iformat->read_header(s, &ap)) < 0)
@@ -2575,7 +2585,7 @@ static int av_estimate_timings(AVFormatContext *ic, int64_t old_offset)
 
     if ((!strcmp(ic->iformat->name, "mpeg") ||
          !strcmp(ic->iformat->name, "mpegts")) &&
-        file_size && ic->pb->seekable) {
+        file_size>0 && ic->pb->seekable && !ic->pb->is_slowmedia && !ic->pb->is_streamed) {
         /* get accurate estimate from the PTSes */
         av_estimate_timings_from_pts(ic, old_offset);
     } else if (av_has_duration(ic)) {
@@ -2777,6 +2787,10 @@ int av_find_stream_info(AVFormatContext *ic)
     AVPacket pkt1, *pkt;
     int64_t old_offset = avio_tell(ic->pb);
 	
+    if(!strcmp(ic->iformat->name, "DRMdemux")) {
+        av_log(NULL, AV_LOG_INFO, "]av_find_stream_info]DRMdemux, do not check stream info ,return directly\n");
+        return 0;
+    }
     for(i=0;i<ic->nb_streams;i++) {
         AVCodec *codec;
         st = ic->streams[i];
@@ -2841,6 +2855,8 @@ int av_find_stream_info(AVFormatContext *ic)
             st = ic->streams[i];
             if (!has_codec_parameters(st->codec))
                 break;
+	     if(ic->pb &&ic->pb->fastdetectedinfo)	
+		continue;
             /* if the timebase is coarse (like the usual millisecond precision
                of mkv), we need to analyze more frames to reliably arrive at
                the correct fps */

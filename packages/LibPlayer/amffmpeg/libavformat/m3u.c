@@ -31,6 +31,7 @@
 #include "file_list.h"
 #include "internal.h"
 #include "libavutil/intreadwrite.h"
+#include "amconfigutils.h"
 
 #define EXTM3U						"#EXTM3U"
 #define EXTINF						"#EXTINF"
@@ -46,7 +47,7 @@
 #define EXT_X_DISCONTINUITY		"#EXT-X-DISCONTINUITY"
 
 #define is_TAG(l,tag)	(!strncmp(l,tag,strlen(tag)))
-#define is_NET_URL(url)		(!strncmp(url,"http://",7) || !strncmp(url,"shttp://",8))
+#define is_NET_URL(url)		(!strncmp(url,"http://",7) || !strncmp(url,"shttp://",8)||!strncmp(url,"shttps://",9))
 
 struct m3u_info{
 	int duration;
@@ -149,6 +150,9 @@ static void free_variant_list(struct list_mgt *mgt)
 }
 
 #define TRICK_LOGIC_BASE 200
+#ifndef INT_MAX
+#define INT_MAX   2147483647
+#endif
 static int m3u_parser_line(struct list_mgt *mgt,unsigned char *line,struct list_item*item)
 {
 	unsigned char *p=line; 
@@ -170,6 +174,9 @@ static int m3u_parser_line(struct list_mgt *mgt,unsigned char *line,struct list_
 			item->duration=duration;
 			
 		}
+	} else if (av_strstart(line, "#EXT-X-TARGETDURATION:", &ptr)) {            	
+		mgt->target_duration = atoi(ptr);
+		av_log(NULL, AV_LOG_INFO, "get target duration:%ld\n",mgt->target_duration);
 	}else if(is_TAG(p,EXT_X_ALLOW_CACHE)){
 		item->flags|=ALLOW_CACHE_FLAG;
 	}else if(is_TAG(p,EXT_X_MEDIA_SEQUENCE)){
@@ -179,10 +186,15 @@ static int m3u_parser_line(struct list_mgt *mgt,unsigned char *line,struct list_
 		if(seq>0){
 			if(seq>mgt->seq){
 				mgt->seq = seq;
-			mgt->flags |=REAL_STREAMING_FLAG;
-			av_log(NULL, AV_LOG_INFO, "get new sequence number:%ld\n",seq);
+				mgt->flags |=REAL_STREAMING_FLAG;
+				if(mgt->cur_seq_no>=mgt->seq){
+					mgt->jump_item_num = mgt->cur_seq_no - mgt->seq+1;
+					av_log(NULL,AV_LOG_INFO,"need jump item num:%d\n",mgt->jump_item_num);
+				}
+				av_log(NULL, AV_LOG_INFO, "get new sequence number:%ld\n",seq);
 			}else{
-				//av_log(NULL, AV_LOG_INFO, "drop this list,sequence number:%ld\n",seq);
+				av_log(NULL, AV_LOG_INFO, "drop this list,sequence number:%ld\n",seq);
+				mgt->jump_item_num = INT_MAX;
 				return 0;
 
 			}
@@ -194,7 +206,7 @@ static int m3u_parser_line(struct list_mgt *mgt,unsigned char *line,struct list_
 		}
 	}
 	
-	else if(is_TAG(p,EXT_X_STREAM_INF)){
+	else if(av_strstart(p,"#EXT-X-STREAM-INF:",&ptr)){
 		struct variant_info info = {{0}};           
 		ff_parse_key_value(p, (ff_parse_key_val_cb) handle_variant_args,
 		           &info);
@@ -210,12 +222,16 @@ static int m3u_parser_line(struct list_mgt *mgt,unsigned char *line,struct list_
 		uint8_t iv[16] = "";
 		ff_parse_key_value(ptr, (ff_parse_key_val_cb) handle_key_args,
 		                   &info);
+		#if 0
 		av_log(NULL,AV_LOG_INFO,"==========start dump a aes key===========\n");
 		av_log(NULL,AV_LOG_INFO,"==========key location : %s\n",info.uri);
 		av_log(NULL,AV_LOG_INFO,"==========key iv : %s\n",info.iv);
 		av_log(NULL,AV_LOG_INFO,"==========key method : %s\n",info.method);
 		av_log(NULL,AV_LOG_INFO,"==========end dump a aes key===========\n");
+		
+		#endif
 		struct encrypt_key_priv_t* key_priv_info = av_mallocz(sizeof(struct encrypt_key_priv_t));
+		
 		if(NULL == key_priv_info){
 			av_log(NULL,AV_LOG_ERROR,"no memory for key_info\n");
 			return -1;
@@ -304,17 +320,17 @@ static int m3u_format_parser(struct list_mgt *mgt,ByteIOContext *s)
 		char *tail,*tailex,*extoptions;
 		extoptions=strchr(oprefix,'?');/*ext options is start with ? ,we don't need in nested*/
 		if(is_NET_URL(oprefix)){
-			tail=strchr(oprefix+9,'/');/*skip Http:// and shttp:,and to first '/'*/
+			tail=strchr(oprefix+10,'/');/*skip Http:// and shttp:,and to first '/'*/
 			if(!extoptions)// no ?
-				tailex=strrchr(oprefix+9,'/');/*skip Http:// and shttp:,start to  last '/'*/
+				tailex=strrchr(oprefix+10,'/');/*skip Http:// and shttp:,start to  last '/'*/
 			else
-				tailex=memrchr(oprefix+9,'/',extoptions-oprefix-9);/*skip Http:// and shttp:,start to  last '/',between http-->? */
+				tailex=memrchr(oprefix+10,'/',extoptions-oprefix-10);/*skip Http:// and shttp:,start to  last '/',between http-->? */
 		}else{
 			tail=strchr(oprefix,'/'); /*first '/'*/
 			if(!extoptions)//no ?
 				tailex=strrchr(oprefix,'/'); /*to last '/' */
 			else
-				tailex=memrchr(oprefix+9,'/',extoptions-oprefix-9);/*skip Http:// and shttp:,start to  last '/',between http-->? */
+				tailex=memrchr(oprefix+10,'/',extoptions-oprefix-10);/*skip Http:// and shttp:,start to  last '/',between http-->? */
 		}
 		
 		if(tail!=NULL){
@@ -337,9 +353,11 @@ static int m3u_format_parser(struct list_mgt *mgt,ByteIOContext *s)
 	memset(&tmpitem,0,sizeof(tmpitem));
 	av_log(NULL, AV_LOG_INFO, "m3u_format_parser get prefix=%s\n",prefix);
 	av_log(NULL, AV_LOG_INFO, "m3u_format_parser get prefixex=%s\n",prefixex);
+	#if 0
 	if(mgt->n_variants>0){
 		free_variant_list(mgt);
 	}
+	#endif
 	while(m3u_format_get_line(s,line,1024)>=0)
 	{
 		ret = m3u_parser_line(mgt,line,&tmpitem);
@@ -349,7 +367,7 @@ static int m3u_format_parser(struct list_mgt *mgt,ByteIOContext *s)
 			int need_prefix=0;
 			int size_file=tmpitem.file?(strlen(tmpitem.file)+32):4;
 			tmpitem.start_time=start_time;
-			start_time+=tmpitem.duration;
+			
 			if(tmpitem.file && 
 				(is_NET_URL(prefix)) && /*net protocal*/
 				!(is_NET_URL(tmpitem.file)))/*if item is not net protocal*/
@@ -370,8 +388,15 @@ static int m3u_format_parser(struct list_mgt *mgt,ByteIOContext *s)
 						strcpy(item->file,prefix);
 						strcpy(item->file+prefix_len,tmpitem.file+1);/*don't copy two '/',we have left before*/
 					}else{/*no '/', some I save the full path frefix*/
-						strcpy(item->file,prefixex);
-						strcpy(item->file+prefixex_len,tmpitem.file);
+						if(!strncmp(prefixex,"shttps://",9)){
+							strcpy(item->file,"http");
+							strcpy(item->file+4,prefixex+6);
+							strcpy(item->file+4+prefixex_len -6,tmpitem.file);
+						}else{
+							strcpy(item->file,prefixex);
+							strcpy(item->file+prefixex_len,tmpitem.file);	
+						}
+						
 					}
 				}
 				else{
@@ -399,10 +424,15 @@ static int m3u_format_parser(struct list_mgt *mgt,ByteIOContext *s)
 				item->ktype = mgt->key_tmp->key_type;
 
 			}
-			if(mgt->flags&REAL_STREAMING_FLAG){
+			if(mgt->flags&REAL_STREAMING_FLAG){			
 				ret =list_test_and_add_item(mgt,item);
+				if(ret==0){
+					start_time+=item->duration;
+				}
+				
 			}else{
 				ret = list_add_item(mgt,item);
+				start_time+=item->duration;
 
 			}
 			if(item->flags &ENDLIST_FLAG)
@@ -450,6 +480,11 @@ static int m3u_format_parser(struct list_mgt *mgt,ByteIOContext *s)
 		else{
 			if(tmpitem.flags&ALLOW_CACHE_FLAG)
 				mgt->flags|=ALLOW_CACHE_FLAG;
+			if(mgt->flags&REAL_STREAMING_FLAG&&mgt->jump_item_num==INT_MAX){
+				mgt->jump_item_num = 0;
+				av_log(NULL, AV_LOG_INFO, "drop this list,sequence number:%ld\n",mgt->seq);
+				break;
+			}
 		}
 		
 	}
@@ -457,11 +492,22 @@ static int m3u_format_parser(struct list_mgt *mgt,ByteIOContext *s)
 		av_free(mgt->key_tmp);
 		mgt->key_tmp = NULL;
 	}
-	if(mgt->n_variants>1){//just choose  middle definition;
-		mgt->ctype = MIDDLE_BANDWIDTH;
+	if(mgt->n_variants>0){//just choose  middle definition;
+ 		float value;
+		ret=am_getconfig_float("libplayer.hls.level",&value);
+		if(ret==0&&value<1){
+			mgt->ctype =LOW_BANDWIDTH;
+		}else if(ret==0&&value>0&&value<2){
+			mgt->ctype =MIDDLE_BANDWIDTH;
+		}else if(ret==0&&value>1){
+			mgt->ctype =HIGH_BANDWIDTH;
+		}else{
+			mgt->ctype =MIDDLE_BANDWIDTH;
+		}
 	}
 	mgt->file_size=AVERROR_STREAM_SIZE_NOTVALID;
 	mgt->full_time=start_time;
+	mgt->last_load_time = av_gettime();
 	av_log(NULL, AV_LOG_INFO, "m3u_format_parser end num =%d,fulltime=%d\n",getnum,start_time);
 	return getnum;
 }
