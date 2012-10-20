@@ -96,6 +96,8 @@ typedef struct {
 	int enabled_lp_buffer;
 	int support_time_seek;
 	int is_encrypted_media;
+
+	unsigned long proppads[8];//data copyed from probed.
 } AVIOContext;
 
 /* unbuffered I/O */

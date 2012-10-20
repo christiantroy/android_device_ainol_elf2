@@ -214,6 +214,7 @@ int update_player_states(play_para_t *para, int force)
         }
         send_event(para, PLAYER_EVENTS_PLAYER_INFO, &state, 0);
         para->state.error_no = 0;
+	 player_hwbuflevel_update(para);
     }
     return 0;
 }

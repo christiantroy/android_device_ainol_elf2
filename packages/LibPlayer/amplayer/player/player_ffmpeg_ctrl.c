@@ -53,7 +53,20 @@ static int basic_init = 0;
 static int ffmpeg_interrupt_callback(void)
 {
     int pid = pthread_self();
-    return itemlist_have_match_data(&kill_item_list, pid);
+    int interrupted;
+    static int dealock_detected_cnt=0;
+    interrupted=itemlist_have_match_data(&kill_item_list, pid);
+    if(!interrupted){
+        dealock_detected_cnt=0;
+        return 0;	
+    }
+    if(dealock_detected_cnt++<1000){
+        return 1;
+    } 
+    /*player maybe locked,kill my self now*/
+    log_error("DETECTED AMPLAYER DEADLOCK,kill it\n");
+    abort();	
+    return 1;	
 }
 void ffmpeg_interrupt(pthread_t thread_id)
 {

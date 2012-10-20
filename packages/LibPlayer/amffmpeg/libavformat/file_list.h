@@ -88,7 +88,7 @@ typedef struct list_item
 	struct AES128KeyContext* key_ctx; //just store key info.
 	struct AESCryptoContext* crypto;
 	struct list_item * prev;
-	struct list_item * next;
+	struct list_item * next;	
 }list_item_t;
 struct variant{
 	char url[MAX_URL_SIZE];
@@ -105,24 +105,29 @@ typedef enum _ClarityType{
 typedef struct list_mgt
 {
 	char *filename;
-	char *location;
+	char *location;	
 	int flags;
 	lock_t mutex;
-	struct list_item *item_list;
+	struct list_item *item_list;	
 	int item_num;
 	struct list_item *current_item;
 	int64_t file_size;
 	int 	full_time;
 	int 	have_list_end;
 	int  seq;  
+	int cur_seq_no;	
+	int jump_item_num;
+	int target_duration;
+	int64_t last_load_time;
 	//added for Playlist file with encrypted media segments
 	ClarityType ctype; //default is HIGH_BANDWIDTH
 	int n_variants;
-	struct variant ** variants;
+	struct variant ** variants;	
 	int is_variant;
 	int has_iv;
 	int bandwidth;
 	char* prefix; //	
+	struct variant* playing_variant;
 	struct encrypt_key_priv_t* key_tmp; //just for parsing using,if ended parsing,just free this pointer.
 	//end.
 	ByteIOContext	*cur_uio;

@@ -802,7 +802,7 @@ void *player_thread(play_para_t *player)
     set_player_state(player, PLAYER_START);
     update_playing_info(player);
     update_player_states(player, 1);
-	player_mate_init(player,1000*100);
+	player_mate_init(player,1000*10);
     if (player->vstream_info.video_format == VFORMAT_SW) {
         log_print("Use SW video decoder\n");
 

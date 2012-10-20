@@ -1469,7 +1469,8 @@ char *player_status2str(player_status status)
         return "DIVX_RENTAL";
     case PLAYER_DIVX_RENTAL_EXPIRED:
         return "DIVX_EXPIRED";
-
+    case PLAYER_HTTP_WV:
+        return "PLAYER_HTTP_WV";
     default:
         return "UNKNOW_STATE";
     }

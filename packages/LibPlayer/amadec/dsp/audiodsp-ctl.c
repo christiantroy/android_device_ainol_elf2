@@ -196,6 +196,8 @@ int audiodsp_init(dsp_operations_t *dsp_ops)
  * \return 0 on success otherwise negative code error
  */
  static err_count = 0;
+
+#define PARSER_WAIT_MAX 100
 int audiodsp_start(aml_audio_dec_t *audec)
 {
     int m_fmt;
@@ -228,8 +230,8 @@ int audiodsp_start(aml_audio_dec_t *audec)
             ret = ioctl(dsp_ops->dsp_file_fd, AUDIODSP_WAIT_FORMAT, 0);
 	    if(ret!=0 && !audec->need_stop){
                 err_count++;			
-                usleep(10000);
-                if (err_count > 10) // dead loop ? never 
+                usleep(1000*20);
+                if (err_count > PARSER_WAIT_MAX) // dead loop ? never 
                     return -4;					
 	    }
         }while(!audec->need_stop && (ret!=0));

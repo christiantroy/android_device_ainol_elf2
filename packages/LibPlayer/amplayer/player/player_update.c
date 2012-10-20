@@ -676,7 +676,7 @@ static void update_current_time(play_para_t *p_para)
 	    if (p_para->playctrl_info.f_step > 0) {
 	        time = (unsigned int)p_para->playctrl_info.time_point;
 	        p_para->state.current_time = time;
-	        p_para->state.current_ms = time * 1000;
+	        p_para->state.current_ms = (unsigned int)(p_para->playctrl_info.time_point * 1000);
 	        log_print("[update_current_time]ff/fb:time=%d\n", time);
 #ifdef DEBUG_VARIABLE_DUR
 	        if (p_para->playctrl_info.info_variable) {
@@ -759,7 +759,7 @@ static void update_current_time(play_para_t *p_para)
 
 	    if (p_para->state.current_time == 0 && p_para->playctrl_info.time_point > 0) {
 	        p_para->state.current_time = p_para->playctrl_info.time_point;
-	        p_para->state.current_ms = p_para->state.current_time * 1000;
+	        p_para->state.current_ms = p_para->playctrl_info.time_point * 1000;
 	        log_print("[update_current_time:%d]curtime: 0->%d\n", __LINE__, p_para->playctrl_info.time_point);
 	    }
 	    if ((p_para->state.current_time > p_para->state.full_time) && (p_para->state.full_time > 0)) {
@@ -898,9 +898,9 @@ static void check_force_end(play_para_t *p_para, struct buf_status *vbuf, struct
 
         if (check_flag) {
 			int dec_unit=1;
-			float total_level=(p_para->state.video_bufferlevel+p_para->state.audio_bufferlevel)+0.0001;
-			while(total_level*dec_unit<0.02 && dec_unit<8)
-				dec_unit++;
+			float total_level=(p_para->state.video_bufferlevel+p_para->state.audio_bufferlevel)+0.000001;
+			while(total_level*dec_unit<0.02 && dec_unit<9)
+				dec_unit*=2;
             p_para->check_end.end_count -=dec_unit;
 			if	(!p_para->playctrl_info.reset_flag){
 				player_thread_wait(p_para, 100 * 1000);	//40ms
@@ -1212,5 +1212,40 @@ int check_audio_ready_time(int *first_time)
     }
 
     return 0;
+}
+
+
+int player_hwbuflevel_update(play_para_t *player)
+{
+	struct buf_status vbuf, abuf;
+	struct vdec_status vdec;
+	struct adec_status adec;
+	player_status sta;
+	int ret;
+	hwbufstats_t hwbufs;
+	
+
+	sta = get_player_state(player);	
+	if(sta < PLAYER_INITOK || sta == PLAYER_SEARCHING || sta >= PLAYER_ERROR)
+		return 0;
+	MEMSET(&vbuf, 0, sizeof(struct buf_status));
+	MEMSET(&abuf, 0, sizeof(struct buf_status));
+	ret = update_codec_info(player, &vbuf, &abuf, &vdec, &adec);
+	if(ret==0){
+		hwbufs.vbufused=player->media_info.stream_info.has_video;
+		hwbufs.abufused=player->media_info.stream_info.has_audio;
+		hwbufs.sbufused=0;
+		if(hwbufs.vbufused){
+			hwbufs.vbufsize=vbuf.size;
+			hwbufs.vdatasize=vbuf.data_len;
+		}
+		if(hwbufs.abufused){
+			hwbufs.abufsize=abuf.size;
+			hwbufs.adatasize=abuf.data_len;
+		}
+		if(hwbufs.vbufused || hwbufs.abufused)
+			send_event(player,PLAYER_EVENTS_HWBUF_DATA_SIZE_CHANGED,&hwbufs,0);
+	}
+	return 0;
 }
 

@@ -22,6 +22,7 @@
 #define VIDEO_PATH       "/dev/amvideo"
 #define VIDEO_GLOBAL_OFFSET_PATH "/sys/class/video/global_offset"
 #define FREE_SCALE_PATH  "/sys/class/graphics/fb0/free_scale"
+#define PPSCALER_PATH  "/sys/class/ppmgr/ppscaler"
 
 static int rotation = 0;
 static int disp_width = 1920;
@@ -97,6 +98,7 @@ int amvideo_utils_set_virtual_position(int32_t x, int32_t y, int32_t w, int32_t 
         (video_global_offset == 0)) {
         char val[256];
         int free_scale_enable = 0;
+        int ppscaler_enable = 0;
 
         memset(val, 0, sizeof(val));
         if (amsysfs_get_sysfs_str(FREE_SCALE_PATH, val, sizeof(val)) == 0) {
@@ -104,7 +106,13 @@ int amvideo_utils_set_virtual_position(int32_t x, int32_t y, int32_t w, int32_t 
             free_scale_enable = (val[21] == '0') ? 0 : 1;
         }
 
-        if (free_scale_enable == 0) {
+        memset(val, 0, sizeof(val));
+        if (amsysfs_get_sysfs_str(PPSCALER_PATH, val, sizeof(val)) == 0) {
+            /* the returned string should be "current ppscaler mode is disabled/enable" */            
+            ppscaler_enable = (val[24] == 'd') ? 0 : 1;
+        }
+
+        if (free_scale_enable == 0 && ppscaler_enable == 0) {
             dst_x = dst_x * dev_w / disp_w;
             dst_y = dst_y * dev_h / disp_h;
             dst_w = dst_w * dev_w / disp_w;
@@ -213,6 +221,8 @@ int amvideo_utils_get_position(int32_t *x, int32_t *y, int32_t *w, int32_t *h)
 
     ioctl(video_fd, AMSTREAM_IOC_GET_VIDEO_AXIS, &axis[0]);
 
+    close(video_fd);
+
     *x = axis[0];
     *y = axis[1];
     *w = axis[2] - axis[0] + 1;
@@ -220,3 +230,42 @@ int amvideo_utils_get_position(int32_t *x, int32_t *y, int32_t *w, int32_t *h)
 
     return 0;
 }
+
+int amvideo_utils_get_screen_mode(int *mode)
+{
+    LOG_FUNCTION_NAME
+    int video_fd;
+    int screen_mode = 0;
+
+    video_fd = open(VIDEO_PATH, O_RDWR);
+    if (video_fd < 0) {
+        return -1;
+    }
+
+    ioctl(video_fd, AMSTREAM_IOC_GET_SCREEN_MODE, &screen_mode);
+
+    close(video_fd);
+
+    *mode = screen_mode;
+
+    return 0;
+}
+
+int amvideo_utils_set_screen_mode(int mode)
+{
+    LOG_FUNCTION_NAME
+    int screen_mode = mode;
+    int video_fd;
+
+    video_fd = open(VIDEO_PATH, O_RDWR);
+    if (video_fd < 0) {
+        return -1;
+    }
+
+    ioctl(video_fd, AMSTREAM_IOC_SET_SCREEN_MODE, &screen_mode);
+
+    close(video_fd);
+
+    return 0;
+}
+

@@ -26,7 +26,7 @@ typedef enum
 	PLAYER_INITING  	= 0x10001,
 	PLAYER_TYPE_REDY  = 0x10002,
 	PLAYER_INITOK   	= 0x10003,	
-
+        
 	/******************************
 	* 0x2000x: 
 	* playback status
@@ -44,7 +44,7 @@ typedef enum
 
 	PLAYER_PLAY_NEXT	= 0x20009,	
 	PLAYER_BUFFER_OK	= 0x2000a,	
-	PLAYER_FOUND_SUB	= 0x2000b,
+	PLAYER_FOUND_SUB	= 0x2000b,	
 
 	/******************************
 	* 0x3000x: 
@@ -65,7 +65,7 @@ typedef enum
     PLAYER_DIVX_RENTAL_EXPIRED  =   0x40002,
     PLAYER_DIVX_RENTAL_VIEW =   0x40003,
 
-	
+    PLAYER_HTTP_WV     = 0x40010,	
 }player_status;
 
 
@@ -213,7 +213,23 @@ typedef enum
 	PLAYER_EVENTS_ERROR,					///<ext1=error_code,ext2=message char *
 	PLAYER_EVENTS_BUFFERING,				///<ext1=buffered=d,d={0-100},ext2=0,
 	PLAYER_EVENTS_FILE_TYPE,				///<ext1=player_file_type_t*,ext2=0
+	PLAYER_EVENTS_HTTP_WV,				        ///<(need use DRMExtractor),ext1=0, ext2=0
+	PLAYER_EVENTS_HWBUF_DATA_SIZE_CHANGED,		///<(need use DRMExtractor),ext1=0, ext2=0
 }player_events;
+
+typedef struct
+{
+    int vbufused;
+    int vbufsize;
+    int vdatasize;
+    int abufused;
+    int abufsize;	
+    int adatasize;	
+    int sbufused;
+    int sbufsize;	
+    int sdatasize;		
+}hwbufstats_t;
+
 
 typedef struct
 {

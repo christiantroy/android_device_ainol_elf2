@@ -354,7 +354,22 @@ static int ape_read_packet(AVFormatContext * s, AVPacket * pkt)
         return AVERROR(EIO);
     if (ape->currentframe > ape->totalframes)
         return AVERROR(EIO);
-
+    //find the correct currentframe when seeking
+    while(1)
+    {
+        if(ape->frames[ape->currentframe].pos==s->pb->pos)
+            break;
+        if(ape->currentframe==0)
+            break;
+        if(ape->currentframe==ape->totalframes-1)
+            break;
+        if(ape->frames[ape->currentframe].pos<s->pb->pos&&ape->frames[ape->currentframe+1].pos>s->pb->pos)
+            break;
+        else if(ape->frames[ape->currentframe+1].pos<s->pb->pos)
+            ape->currentframe+=1;
+        else
+            ape->currentframe-=1;
+    }
     avio_seek (s->pb, ape->frames[ape->currentframe].pos, SEEK_SET);
 
     /* Calculate how many blocks there are in this frame */
