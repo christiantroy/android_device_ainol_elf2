@@ -35,6 +35,57 @@
 
     <bool name="config_automatic_brightness_available">true</bool>
 
+    <integer-array name="config_autoBrightnessLevels">
+        <item>11</item>
+        <item>41</item>
+        <item>91</item>
+        <item>161</item>
+        <item>226</item>
+        <item>321</item>
+        <item>641</item>
+        <item>1281</item>
+        <item>2601</item>
+    </integer-array>
+
+    <integer-array name="config_autoBrightnessLcdBacklightValues">
+        <item>30</item>
+        <item>47</item>
+        <item>60</item>
+        <item>88</item>
+        <item>125</item>
+        <item>143</item>
+        <item>171</item>
+        <item>199</item>
+        <item>227</item>
+        <item>255</item>
+    </integer-array>
+
+    <integer-array name="config_autoBrightnessButtonBacklightValues">
+        <item>60</item>
+        <item>60</item>
+        <item>60</item>
+        <item>60</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+    </integer-array>
+
+    <integer-array name="config_autoBrightnessKeyboardBacklightValues">
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+    </integer-array>
+
     <bool name="config_voice_capable">false</bool>
 
     <bool name="config_sms_capable">true</bool>
