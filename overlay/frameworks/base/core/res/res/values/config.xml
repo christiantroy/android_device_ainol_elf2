@@ -33,7 +33,7 @@
 
     <string name="config_geocodeProviderPackageName">com.google.android.location</string>
 
-    <bool name="config_automatic_brightness_available">false</bool>
+    <bool name="config_automatic_brightness_available">true</bool>
 
     <bool name="config_voice_capable">false</bool>
 
