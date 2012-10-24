@@ -16,11 +16,11 @@ import android.util.Log;
 public class HdmiDelayedService extends Service {
     private static final String TAG = "HdmiDelayedService";
 
-    private static int DELAY = 3*1000;	
+    private static int DELAY = 3*1000;
 
     private Handler mProgressHandler;
     private Context mContext;
-    
+
     @Override
     public void onCreate() {
         mContext = this;
@@ -28,17 +28,17 @@ public class HdmiDelayedService extends Service {
     }
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {        
-        /* start after DELAY */        
-        if (mProgressHandler != null) 
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        /* start after DELAY */
+        if (mProgressHandler != null)
             mProgressHandler.sendEmptyMessageDelayed(0, DELAY);
-                
+
         return super.onStartCommand(intent, flags, startId);
     }
 
     @Override
     public void onDestroy() {
-    }    
+    }
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -52,10 +52,11 @@ public class HdmiDelayedService extends Service {
             onDelayedProcess();
         }
     }
-	
+
     private void onDelayedProcess() {
         HdmiSwitch.setMode("panel");
-        if (SystemProperties.getBoolean("ro.vout.dualdisplay2", false)) {                        
+        if (SystemProperties.getBoolean("ro.vout.dualdisplay2", false)
+            || SystemProperties.getBoolean("ro.vout.dualdisplay3", false)) {
             int dualEnabled = Settings.System.getInt(mContext.getContentResolver(),
                                     Settings.System.HDMI_DUAL_DISP, 1);
             HdmiSwitch.setDualDisplayStatic(false, (dualEnabled == 1));
@@ -63,6 +64,6 @@ public class HdmiDelayedService extends Service {
         Intent it = new Intent(WindowManagerPolicy.ACTION_HDMI_PLUGGED);
         it.putExtra(WindowManagerPolicy.EXTRA_HDMI_PLUGGED_STATE, false);
         mContext.sendStickyBroadcast(it);
-    }	
-	
+    }
+
 }
