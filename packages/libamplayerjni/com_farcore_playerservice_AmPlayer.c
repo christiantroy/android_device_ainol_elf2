@@ -9,8 +9,10 @@
 #include "sys_conf.h"
 #include "player.h"
 //#include "adecproc.h"
+#include<sys/stat.h>
 
 #define LOG_TAG "AMPLAYER_JNI"
+#define MIN(x,y) ((x)<(y)?(x):(y))
 
 #if 0
 #define  ALOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
@@ -29,8 +31,121 @@ static JavaVM* gJavaVm = NULL;
 static jmethodID gPostMid = NULL;
 static jclass gMplayerClazz = NULL;
 
+static URLProtocol android_protocol;
+
 //about player info updating interval
 #define PLAYER_INFO_POP_INTERVAL 500 // 0.5s
+
+
+int vp_open(URLContext *h, const char *filename, int flags)
+{	
+	/*
+	sprintf(file,"android:AmlogicPlayer=[%x:%x],AmlogicPlayer_fd=[%x:%x]",
+	*/
+	ALOGI("vp_open=%s\n",filename);
+	if(strncmp(filename,"android",strlen("android"))==0)
+	{	
+		unsigned int fd=0,fd1=0;
+		char *str=strstr(filename,"AmlogicPlayer_fd");
+		if(str==NULL)
+			return -1;
+		sscanf(str,"AmlogicPlayer_fd=[%x:%x]\n",(unsigned int*)&fd,(unsigned int*)&fd1);
+		if(fd!=0 && ((unsigned int)fd1==~(unsigned int)fd))
+		{
+			AmlogicPlayer_File* af= (AmlogicPlayer_File*)fd;
+			h->priv_data=(void*) fd;
+			if(af!=NULL && af->fd_valid)
+			{
+				lseek(af->fd, af->mOffset, SEEK_SET);
+				af->mCurPos=af->mOffset;
+				ALOGI("android_open %s OK,h->priv_data=%p\n",filename,h->priv_data);
+				return 0;
+			}
+			else
+			{
+				ALOGI("android_open %s Faild\n",filename);
+				return -1;
+			}
+		}
+	}
+	return -1;
+}
+
+int vp_read(URLContext *h, unsigned char *buf, int size)
+{	
+	AmlogicPlayer_File* af= (AmlogicPlayer_File*)h->priv_data;
+	int ret;
+	int len=MIN(size,(af->mOffset+af->mLength-af->mCurPos));
+	if(len<=0)
+		return 0;/*read end*/
+	//LOGV("start%s,pos=%lld,size=%d,ret=%d\n",__FUNCTION__,(int64_t)lseek(af->fd, 0, SEEK_CUR),size,ret);
+	ret=read(af->fd,buf,len);
+	//LOGV("end %s,size=%d,ret=%d\n",__FUNCTION__,size,ret);
+	if(ret>0)
+		af->mCurPos+=ret;
+	return ret;
+}
+
+int vp_write(URLContext *h, unsigned char *buf, int size)
+{	
+	AmlogicPlayer_File* af= (AmlogicPlayer_File*)h->priv_data;
+	ALOGI("%s\n",__FUNCTION__);
+	return -1;
+}
+
+int64_t vp_seek(URLContext *h, int64_t pos, int whence)
+{
+	struct stat st;
+	AmlogicPlayer_File* af= (AmlogicPlayer_File*)h->priv_data;
+	int64_t ret;
+	int64_t newsetpos;	
+	//LOGV("%sret=%lld,pos=%lld,whence=%d,tell=%lld\n",__FUNCTION__,(int64_t)0,pos,whence,(int64_t)lseek(af->fd,0,SEEK_CUR));
+	if (whence == AVSEEK_SIZE)
+	{
+    ret = fstat(af->fd, &st);
+    return ret < 0 ? AVERROR(errno) : st.st_size;
+		//return af->mLength;
+	}
+	switch(whence){
+		case SEEK_CUR:
+			newsetpos=af->mCurPos+pos;
+			break;
+		case SEEK_END:	
+			newsetpos=af->mOffset+af->mLength+pos;
+			break;
+		case SEEK_SET:
+			newsetpos=af->mOffset+pos;
+			break;
+		default:
+			return -1;/*unsupport other case;*/
+	}
+	if(newsetpos>(af->mOffset+af->mLength) || newsetpos<af->mOffset){
+		return -1;/*out stream range*/
+	}
+	ret=lseek(af->fd,newsetpos, SEEK_SET);
+	if(ret>=0){
+		af->mCurPos=ret;
+		return ret-af->mOffset;
+	}else{
+		return ret;
+	}
+	return -1;
+}
+
+
+int vp_close(URLContext *h)
+{
+	FILE* fp= (FILE*)h->priv_data;
+	ALOGI("%s\n",__FUNCTION__);
+	return 0; /*don't close file here*/
+	//return fclose(fp);
+}
+
+int vp_get_file_handle(URLContext *h)
+{
+	ALOGI("%s\n",__FUNCTION__);
+    return (intptr_t) h->priv_data;
+}
 
 
 jclass MediaPlayer_getClass(JNIEnv *env) {
@@ -431,6 +546,113 @@ JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_setMedia
     
     
     (*env)->ReleaseStringUTFChars(env,url, pname);
+    return pid;
+            
+}
+
+/*
+ * Class:     com_farcore_playerservice_MediaPlayer
+ * Method:    addMediaSource
+ * Signature: (Ljava/lang/String;III)I
+ */
+JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_setMediaFd
+  (JNIEnv *env, jobject obj, jobject fileDescriptor,jint isloop, jint pMode,jint st,jlong offset, jlong length){    
+    int pid = -1;   
+		char * file=NULL;
+    jclass clazz = (*env)->GetObjectClass(env, obj);
+		
+    gMplayerClazz =(*env)->NewGlobalRef(env,clazz);
+    if(gMplayerClazz){
+        ALOGI("get mediaplayer class");
+    }else{
+        ALOGE("can't get mediaplayer class");
+        return -100;
+    }
+    
+    gPostMid = (*env)->GetStaticMethodID(env, gMplayerClazz, "onUpdateState", "(IIIIIII)V");
+    if(gPostMid){
+        ALOGI("get update state object id");
+    }else{
+        ALOGE("failed to get update object id");
+        return -101;
+    }      
+		
+		URLProtocol *prot=&android_protocol;
+		prot->name="android";
+	    prot->url_open=(int (*)(URLContext *, const char *, int ))vp_open;
+	    prot->url_read=(int (*)(URLContext *, unsigned char *, int))vp_read;
+	    prot->url_write=(int (*)(URLContext *, unsigned char *, int))vp_write;
+	    prot->url_seek=(int64_t (*)(URLContext *, int64_t , int))vp_seek;
+	    prot->url_close=(int (*)(URLContext *))vp_close;
+	    prot->url_get_file_handle = (int (*)(URLContext *))vp_get_file_handle;
+		av_register_protocol(prot);
+		
+		if (fileDescriptor == NULL) {
+        return -1;
+    }
+		
+    int fd = jniGetFDFromFileDescriptor(env, fileDescriptor);
+		
+		if(fd<0 || offset<0)
+			return -1;
+		file=(char *)malloc(128);
+		if(file==NULL)
+			return -1;
+		mAmlogicFile.oldfd=fd;
+		mAmlogicFile.fd = dup(fd);
+		mAmlogicFile.fd_valid=1;
+		mAmlogicFile.mOffset=offset;
+		mAmlogicFile.mLength=length;
+		_plCtrl.t_pos=-1;/*don't seek to 0*/
+		//mPlay_ctl.t_pos=0;/*don't seek to 0*/
+		sprintf(file,"android:AmlogicPlayer=[%x:%x],AmlogicPlayer_fd=[%x:%x]",
+					NULL,NULL,
+					(unsigned int)&mAmlogicFile,(~(unsigned int)&mAmlogicFile));
+
+    if(_plCtrl.file_name != NULL){
+        free(_plCtrl.file_name);        
+    }
+    
+    memset((void*)&_plCtrl,0,sizeof(play_control_t)); 
+    
+    player_register_update_callback(&_plCtrl.callback_fn,&update_player_info,PLAYER_INFO_POP_INTERVAL);
+
+    //_plCtrl.file_name = strndup(pname,FILENAME_LENGTH_MAX);
+		mAmlogicFile.datasource=file;
+		_plCtrl.file_name=(char*)mAmlogicFile.datasource;
+    _plCtrl.video_index = -1;//MUST
+    _plCtrl.audio_index = -1;//MUST
+    _plCtrl.hassub = 1;  //enable subtitle
+    if(pMode == 1){
+        _plCtrl.nosound = 1;
+        SYS_set_tsync_enable(0);//if no sound,can set to be 0
+        ALOGI("disable sound");
+    }else if(pMode ==2){
+        _plCtrl.novideo = 1;
+        ALOGI("disable video");
+    }
+    if(st>0){
+        ALOGI("play start position:%d",st);
+        _plCtrl.t_pos = st;
+    }
+   
+    SYS_set_tsync_enable(1);//if no sound,can set to be 0
+
+    if(isloop>0){
+        _plCtrl.loop_mode =1;
+        ALOGI("set loop mode");
+    }
+    _plCtrl.need_start = 1;
+    ALOGI("set a media file to play,but need start it using start interface");
+    pid=player_start(&_plCtrl,0);
+    if(pid<0)
+    {
+        ALOGI("player start failed!error=%d\n",pid);
+        return -1;
+    }
+    
+    
+    //(*env)->ReleaseStringUTFChars(env,url, pname);
     return pid;
             
 }
@@ -967,7 +1189,8 @@ JNIEXPORT jint JNICALL Java_com_farcore_playerservice_AmPlayer_GL2XScale(JNIEnv 
 
 //
 static JNINativeMethod gMethods[] = {
-    {"setMedia",            "(Ljava/lang/String;III)I",         (void*)Java_com_farcore_playerservice_AmPlayer_setMedia},   
+    {"setMedia",            "(Ljava/lang/String;III)I",         (void*)Java_com_farcore_playerservice_AmPlayer_setMedia}, 
+		{"setMedia",            "(Ljava/io/FileDescriptor;IIIJJ)I", 	(void*)Java_com_farcore_playerservice_AmPlayer_setMediaFd}, 
     {"playMedia",           "(Ljava/lang/String;III)I",         (void*)Java_com_farcore_playerservice_AmPlayer_playMedia}, 
     {"close",       "(I)I",                         (void*)Java_com_farcore_playerservice_AmPlayer_close},
     {"start",           "(I)I",                         (void*)Java_com_farcore_playerservice_AmPlayer_start}, 
