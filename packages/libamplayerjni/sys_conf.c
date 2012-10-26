@@ -247,91 +247,91 @@ static int Open3DPpmgr(SYS_3D_MODE_SET commd)
 	{
 		case SYS_3D_DISABLE:
 			ret = ioctl(ppmgrfd, PPMGR_IOC_ENABLE_PP, MODE_3D_DISABLE);
-#ifdef LOGD_3D_FUNCTION
+#ifdef ALOGD_3D_FUNCTION
 			ALOGD("VideoPlayer 3D fucntion (0: Disalbe!!)\n");
 #endif
 			break;
 		case SYS_3D_AUTO:
 			ret = ioctl(ppmgrfd, PPMGR_IOC_ENABLE_PP, MODE_3D_AUTO);
-#ifdef LOGD_3D_FUNCTION
+#ifdef ALOGD_3D_FUNCTION
 			ALOGD("VideoPlayer 3D fucntion (1: AUTO!!)\n");
 #endif
 			break;
 		case SYS_3D_LR:
 			ret = ioctl(ppmgrfd, PPMGR_IOC_ENABLE_PP, MODE_3D_LR);
-#ifdef LOGD_3D_FUNCTION
+#ifdef ALOGD_3D_FUNCTION
 			ALOGD("VideoPlayer 3D fucntion (2 L/R!!)\n");
 #endif
 			break;
 		case SYS_3D_BT:
 			ret = ioctl(ppmgrfd, PPMGR_IOC_ENABLE_PP, MODE_3D_BT);
-#ifdef LOGD_3D_FUNCTION
+#ifdef ALOGD_3D_FUNCTION
 			ALOGD("VideoPlayer 3D fucntion (3: B/T!)\n");
 #endif
 			break;
 		case SYS_3D_TO_2D_L:
 			ret = ioctl(ppmgrfd, PPMGR_IOC_ENABLE_PP, MODE_3D_TO_2D_L);
-#ifdef LOGD_3D_FUNCTION
+#ifdef ALOGD_3D_FUNCTION
 			ALOGD("VideoPlayer 3D function (4: 3D_TO_2D_L!!)\n");
 #endif
 			break;
 		case SYS_3D_TO_2D_R:
 			ret = ioctl(ppmgrfd, PPMGR_IOC_ENABLE_PP, MODE_3D_TO_2D_R);
-#ifdef LOGD_3D_FUNCTION
+#ifdef ALOGD_3D_FUNCTION
 			ALOGD("VideoPlayer 3D function (5: 3D_TO_2D_R!!)\n");
 #endif
 			break;
 		case SYS_3D_TO_2D_T:
 			ret = ioctl(ppmgrfd, PPMGR_IOC_ENABLE_PP, MODE_3D_TO_2D_T);
-#ifdef LOGD_3D_FUNCTION
+#ifdef ALOGD_3D_FUNCTION
 			ALOGD("VideoPlayer 3D function (6: 3D_TO_2D_T!!)\n");
 #endif		 	
 			break;
 		case SYS_3D_TO_2D_B:
 			ret = ioctl(ppmgrfd, PPMGR_IOC_ENABLE_PP, MODE_3D_TO_2D_B);
-#ifdef LOGD_3D_FUNCTION
+#ifdef ALOGD_3D_FUNCTION
 			ALOGD("VideoPlayer 3D function (7: 3D_TO_2D_B!!)\n");
 #endif		 	
 			break;
 		case SYS_3D_TO_2D_AUTO_1:
 			ret = ioctl(ppmgrfd, PPMGR_IOC_ENABLE_PP, MODE_3D_TO_2D_AUTO_1);
-#ifdef LOGD_3D_FUNCTION
+#ifdef ALOGD_3D_FUNCTION
 			ALOGD("VideoPlayer 3D function (8: 3D_TO_2D_AUTO_1!!)\n");
 #endif		 	
 			break;
 		case SYS_3D_TO_2D_AUTO_2:
 			ret = ioctl(ppmgrfd, PPMGR_IOC_ENABLE_PP, MODE_3D_TO_2D_AUTO_2);
-#ifdef LOGD_3D_FUNCTION
+#ifdef ALOGD_3D_FUNCTION
 			ALOGD("VideoPlayer 3D function (9: 3D_TO_2D_AUTO_2!!)\n");
 #endif		 	
 			break;
 		case SYS_2D_TO_3D:
 			ret = ioctl(ppmgrfd, PPMGR_IOC_ENABLE_PP, MODE_2D_TO_3D);
-#ifdef LOGD_3D_FUNCTION
+#ifdef ALOGD_3D_FUNCTION
 			ALOGD("VideoPlayer 3D fucntion (10: 2D->3D!!)\n");
 #endif
 			break;
 		case SYS_3D_FIELD_DEPTH:
 			ret = ioctl(ppmgrfd, PPMGR_IOC_ENABLE_PP, MODE_FIELD_DEPTH);
-#ifdef LOGD_3D_FUNCTION
+#ifdef ALOGD_3D_FUNCTION
 			ALOGD("VideoPlayer 3D function (11: FIELD_DEPTH!!)\n");
 #endif
 			break;
 		case SYS_3D_AUTO_SWITCH:
 			ret = ioctl(ppmgrfd, PPMGR_IOC_ENABLE_PP, MODE_3D_AUTO_SWITCH);
-#ifdef LOGD_3D_FUNCTION
+#ifdef ALOGD_3D_FUNCTION
 			ALOGD("VideoPlayer 3D function (12: 3D_AUTO_SWITCH!!)\n");
 #endif
 			break;
 		case SYS_3D_LR_SWITCH:
 			ret = ioctl(ppmgrfd, PPMGR_IOC_ENABLE_PP, MODE_3D_LR_SWITCH);
-#ifdef LOGD_3D_FUNCTION
+#ifdef ALOGD_3D_FUNCTION
 			ALOGD("VideoPlayer 3D function (13: 3D_LR_SWITCH!!)\n");
 #endif
 			break;
 		case SYS_3D_BT_SWITCH:
 			ret = ioctl(ppmgrfd, PPMGR_IOC_ENABLE_PP, MODE_3D_BT_SWITCH);
-#ifdef LOGD_3D_FUNCTION
+#ifdef ALOGD_3D_FUNCTION
 			ALOGD("VideoPlayer 3D function (14: 3D_BT_SWITCH!!)\n");
 #endif
 			break;
