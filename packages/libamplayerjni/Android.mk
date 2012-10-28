@@ -1,5 +1,5 @@
 LOCAL_PATH := $(call my-dir)
-LIBPLAYER_PATH := $(LOCAL_PATH)/../../LibPlayer
+LIBPLAYER_PATH := $(LOCAL_PATH)/../LibPlayer
 
 include $(CLEAR_VARS)
 
