@@ -88,12 +88,28 @@ USE_OPENGL_RENDERER := true
 ENABLE_WEBGL := true
 BOARD_USE_SKIA_LCDTEXT := true
 
+# CWM
 #TARGET_RECOVERY_INITRC := device/ainol/elf2/recovery.init.rc
-BOARD_HAS_NO_SELECT_BUTTON := true
-BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun0/file"
+#BOARD_HAS_NO_SELECT_BUTTON := true
+#BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun0/file"
 
 TARGET_BOOTANIMATION_PRELOAD := true
 
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun%d/file"
 
 COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB
+
+# TWRP
+#TARGET_RECOVERY_INITRC := device/ainol/elf2/recovery.init.rc
+#DEVICE_RESOLUTION := 1024x600
+#TARGET_RECOVERY_PIXEL_FORMAT := "RGB_565"
+#RECOVERY_GRAPHICS_USE_LINELENGTH := true
+#TW_INTERNAL_STORAGE_PATH := "/emmc"
+#TW_INTERNAL_STORAGE_MOUNT_POINT := "emmc"
+#TW_EXTERNAL_STORAGE_PATH := "/sdcard"
+#TW_EXTERNAL_STORAGE_MOUNT_POINT := "sdcard"
+#TW_NO_REBOOT_BOOTLOADER := true
+#TW_FLASH_FROM_STORAGE := true
+#TARGET_PREBUILT_KERNEL := device/ainol/elf2/kernel
+#BOARD_KERNEL_BASE := 0x40000000
+#BOARD_KERNEL_CMDLINE := console=ttyS0,115200 rw init=/init loglevel=8

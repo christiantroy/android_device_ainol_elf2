@@ -1,11 +1,15 @@
 on early-init
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1200000
+
     start ueventd
     
     write /sys/class/graphics/fb0/blank 0
     write /sys/class/graphics/fb1/blank 1
+    write /sys/class/backlight/aml-bl/brightness 200
 
 on init
     export PATH /system/bin:/sbin
+    export LD_LIBRARY_PATH .:/sbin
     export ANDROID_ROOT /system
     export ANDROID_DATA /data
     export EXTERNAL_STORAGE /emmc
@@ -19,7 +23,6 @@ on init
     mkdir /sdcard
     mkdir /emmc
     mount tmpfs tmpfs /tmp
-    mount vfat /dev/block/avnftli1 /emmc
     
     write /sys/devices/virtual/bdi/250:32/read_ahead_kb 2048
     write /sys/devices/virtual/bdi/253:0/read_ahead_kb 2048
