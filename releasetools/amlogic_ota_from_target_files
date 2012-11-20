@@ -428,7 +428,7 @@ def WriteFullOTAPackage(input_zip, output_zip):
   Item.Get("system").SetPermissions(script)
   script.SetPermissions("/system/bin/pppd", 0, 2000, 06755)
   script.SetPermissions("/system/bin/mtpd", 0, 2000, 06755)
-  script.DeleteFiles(["/system/app/CMUpdater.apk"])
+  script.DeleteFiles(["/system/app/CMUpdater.apk", "/system/app/GooManager.apk"])
 
   #common.CheckSize(boot_img.data, "boot.img", OPTIONS.info_dict)
   #common.ZipWriteStr(output_zip, "boot.img", boot_img.data)
