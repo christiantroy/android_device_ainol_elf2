@@ -29,10 +29,6 @@
 
     <bool name="config_enableLockScreenRotation">true</bool>
 
-    <string name="config_networkLocationProviderPackageName">com.google.android.location</string>
-
-    <string name="config_geocodeProviderPackageName">com.google.android.location</string>
-
     <bool name="config_automatic_brightness_available">true</bool>
 
     <integer-array name="config_autoBrightnessLevels">
