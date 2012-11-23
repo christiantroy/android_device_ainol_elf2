@@ -905,7 +905,7 @@ static void extrapolate_isf(float out[LP_ORDER_16k], float isf[LP_ORDER])
     float est, scale;
     int i, i_max_corr;
 
-    memcpy(out, isf, (LP_ORDER - 1) * sizeof(float));
+    memmove(out, isf, (LP_ORDER - 1) * sizeof(float));
     out[LP_ORDER_16k - 1] = isf[LP_ORDER - 1];
 
     /* Calculate the difference vector */

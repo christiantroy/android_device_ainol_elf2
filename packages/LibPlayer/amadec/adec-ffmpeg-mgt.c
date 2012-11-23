@@ -795,7 +795,7 @@ exit_decode_loop:
 	    				if (nAudioFormat==ACODEC_FMT_ALAC&&(startcode[0] == 0x11)&&(startcode[1] == 0x22)&&(startcode[2] == 0x33)&&(startcode[3] == 0x44))
 	    						break;
 	    				read_buffer(&startcode[4],1);
-	    				memcpy(startcode,&startcode[1],4);
+	    				memmove(startcode,&startcode[1],4);
 					}
 
 					if (nAudioFormat==ACODEC_FMT_APE){			
