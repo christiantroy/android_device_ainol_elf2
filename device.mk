@@ -187,6 +187,8 @@ PRODUCT_PACKAGES += \
 
 # libemoji for Webkit
 PRODUCT_PACKAGES += libemoji
+
+PRODUCT_PACKAGES += Torch
     
 PRODUCT_PROPERTY_OVERRIDES += \
     service.adb.root=1 \
