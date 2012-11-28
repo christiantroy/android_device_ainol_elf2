@@ -22,6 +22,8 @@
 #include <media/AudioRecord.h>
 #include <cutils/properties.h>
 
+#include <sys/stat.h>
+
 #undef DISABLE_HARWARE_RESAMPLING
 
 #define ALSA_NAME_MAX 128
@@ -127,7 +129,7 @@ static alsa_handle_t _defaultsIn = {
     channels    : 2,
     sampleRate  : DEFAULT_SAMPLE_RATE,	//AudioRecord::DEFAULT_SAMPLE_RATE,
     latency     : 100000, // Desired Delay in usec
-    bufferSize  : DEFAULT_SAMPLE_RATE/10, // Desired Number of samples
+    bufferSize  : 1024, // Desired Number of samples
     mLock       : PTHREAD_MUTEX_INITIALIZER,
     modPrivate  : 0,
 };
@@ -544,17 +546,6 @@ static status_t s_init(alsa_device_t *module, ALSAHandleList &list)
     _defaultsOut.bufferSize = bufferSize;
 
     list.push_back(_defaultsOut);
-    
-    bufferSize = _defaultsUSBIn.bufferSize;
-
-	    for (size_t i = 1; (bufferSize & ~i) != 0; i <<= 1)
-	        bufferSize &= ~i;
-
-	    _defaultsUSBIn.module = module;
-	    _defaultsUSBIn.bufferSize = bufferSize;
-        _defaultsUSBIn.modPrivate = (void*)usbAudio;
-	    list.push_back(_defaultsUSBIn);
-        ALOGW("use USB audio in as default");
 
 
 	    bufferSize = _defaultsIn.bufferSize;
@@ -569,6 +560,20 @@ static status_t s_init(alsa_device_t *module, ALSAHandleList &list)
         ALOGW("use AML audio in as default");
 
 	        return NO_ERROR;
+}
+
+static int is_device_usb_speaker(void)
+{
+    struct stat info;
+    int ret = stat("/dev/snd/pcmC1D0p", &info);
+    return(ret == -1 ? 0 : 1);
+}
+
+static int is_device_usb_capture(void)
+{
+    struct stat info;
+    int ret = stat("/dev/snd/pcmC1D0c", &info);
+    return(ret == -1 ? 0 : 1);
 }
 
 static status_t s_open(alsa_handle_t *handle, uint32_t devices, int mode)
@@ -589,44 +594,29 @@ static status_t s_open(alsa_handle_t *handle, uint32_t devices, int mode)
     const char *stream = streamName(handle);
     const char *devName = deviceName(handle, devices, mode);
     int err,card;
-    char prop[20],dev_Name[20],card_name[32]; 
- ALOGD("input handle: %s, devName = %s \n", (char*)handle->modPrivate, devName);
-#if 1 
-    if ((direction(handle) == SND_PCM_STREAM_CAPTURE)/*||(direction(handle) == SND_PCM_STREAM_PLAYBACK)*/){
-        card = getDeviceNum(direction(handle), card_name);
-	ALOGD("card : %d\n", card);
+    char prop[20],dev_Name[20];
 
-        if(card >= 0){
-           // sprintf(dev_Name,"plug:SLAVE='hw:%d,0'",card);
-            sprintf(dev_Name, "hw:%d", card);
-            devName = dev_Name;
-        }
-        // if we want usb-audio, but returned builtin-audio, return error.
-        // audiopolicymanager should try next card
-        ALOGD("card name: %s\n", card_name);
-        ALOGD("devName: %s\n", devName);
-        if(strncmp(card_name,"AML", 3) == 0 && strcmp((char*)handle->modPrivate, "usb-audio") == 0){
-          
-          pthread_mutex_unlock(&handle->mLock);
-          ALOGD("You are request usb-audio with usb's params, but returned builtin-audio card\n");
-          return NO_INIT;
-        }
-   }
-    if(direction(handle) == SND_PCM_STREAM_PLAYBACK){
-		card = snd_card_get_aml_card();
-		ALOGD("SND_PCM_STREAM_PLAYBACK  card : %d\n", card);
-
-		sprintf(dev_Name, "hw:%d", card);
-		devName = dev_Name;
+    ALOGD("input handle: %s, devName = %s \n", (char*)handle->modPrivate, devName);
+ 
+    if ((direction(handle) == SND_PCM_STREAM_CAPTURE)) {
+	char value[PROPERTY_VALUE_MAX];
+	property_get("snd.card.use_integrated_mic", value, "0");
+	if (atoi(value) == 1)
+	    card = 0;
+	else
+	    card = is_device_usb_capture();
+    } else if ((direction(handle) == SND_PCM_STREAM_PLAYBACK)) {
+	card = is_device_usb_speaker();
     }
-#else
 
-	if(direction(handle) == SND_PCM_STREAM_CAPTURE){
-		sprintf(dev_Name, "hw:0");
-		devName = dev_Name;
-    	}
+    if(card >= 0) {
+	sprintf(dev_Name, "hw:%d", card);
+	devName = dev_Name;
+    }
+    
+    ALOGD("card : %d\n", card);
+    ALOGD("devName: %s\n", devName);
 
-#endif	
     for (;;) {
         // The PCM stream is opened in blocking mode, per ALSA defaults.  The
         // AudioFlinger seems to assume blocking mode too, so asynchronous mode
