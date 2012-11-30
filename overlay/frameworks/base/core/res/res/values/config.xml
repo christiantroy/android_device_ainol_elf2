@@ -123,4 +123,7 @@
     </integer-array>
     
     <string translatable="false" name="config_ethernet_iface_regex">eth\\d|usbnet\\d</string>
+
+    <!--  Maximum number of supported users -->
+    <integer name="config_multiuserMaximumUsers">4</integer>
 </resources>
