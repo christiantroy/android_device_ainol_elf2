@@ -245,6 +245,8 @@ int wpa_driver_nl80211_driver_cmd(void *priv, char *cmd, char *buf,
 		} else {
 			wpa_driver_send_hang_msg(drv);
 		}
+	} else if (os_strncasecmp(cmd, "SCAN-ACTIVE", 11) == 0 || os_strncasecmp(cmd, "SCAN-PASSIVE", 12) == 0 || os_strncasecmp(cmd, "RXFILTER-ADD", 12) == 0 || os_strncasecmp(cmd, "RXFILTER-START", 14) == 0 || os_strncasecmp(cmd, "RXFILTER-STOP", 13) == 0 || os_strncasecmp(cmd, "RXFILTER-REMOVE", 15) == 0 || os_strncasecmp(cmd, "BTCOEXMODE", 10) == 0 || os_strncasecmp(cmd, "BTCOEXSCAN-STOP", 15) == 0 || os_strncasecmp(cmd, "GETBAND", 7) == 0) {
+		return 0;
 	} else { /* Use private command */
 		if (os_strcasecmp(cmd, "BGSCAN-START") == 0) {
 			ret = wpa_driver_set_backgroundscan_params(priv);
