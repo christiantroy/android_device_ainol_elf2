@@ -67,7 +67,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/wifi-config/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
     $(LOCAL_PATH)/proprietary/android_I2C_Calibrate_V1_0:system/bin/android_I2C_Calibrate_V1_0 \
-    $(LOCAL_PATH)/proprietary/gralloc.default.so:system/lib/hw/gralloc.default.so \
     $(LOCAL_PATH)/proprietary/battery/0.rot270.bmp:system/resource/battery_pic/0.bmp \
     $(LOCAL_PATH)/proprietary/battery/1.rot270.bmp:system/resource/battery_pic/1.bmp \
     $(LOCAL_PATH)/proprietary/battery/2.rot270.bmp:system/resource/battery_pic/2.bmp \
@@ -104,6 +103,7 @@ DEVICE_PACKAGE_OVERLAYS := device/ainol/elf2/overlay
 # AML HAL
 PRODUCT_PACKAGES += \
     camera.amlogic.so \
+    gralloc.amlogic \
     hwcomposer.amlogic \
     sensors.amlogic \
     lights.amlogic \
@@ -224,6 +224,11 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 TARGET_BOOTANIMATION_NAME := horizontal-1024x600
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
+
+$(shell mkdir -p out/target/product/elf2/obj/SHARED_LIBRARIES/libMali_intermediates)
+$(shell mkdir -p out/target/product/elf2/obj/SHARED_LIBRARIES/libUMP_intermediates)
+$(shell touch out/target/product/elf2/obj/SHARED_LIBRARIES/libMali_intermediates/export_includes)
+$(shell touch out/target/product/elf2/obj/SHARED_LIBRARIES/libUMP_intermediates/export_includes)
 
 $(call inherit-product, frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk)
 $(call inherit-product, build/target/product/full_base.mk)
