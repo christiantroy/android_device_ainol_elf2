@@ -26,7 +26,8 @@ PRODUCT_COPY_FILES += \
 
 # Prebuilt boot animation & PPP Widget
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/bootanimation.zip:system/media/bootanimation.zip
+    $(LOCAL_PATH)/prebuilt/bootanimation.zip:system/media/bootanimation.zip \
+    $(LOCAL_PATH)/prebuilt/mount-vfat:system/bin/mount-vfat
 
 # init.d scripts
 PRODUCT_COPY_FILES += \

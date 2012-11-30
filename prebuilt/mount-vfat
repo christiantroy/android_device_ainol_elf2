@@ -1,0 +1,3 @@
+#!/system/bin/sh
+
+/system/xbin/busybox mount -t vfat -o uid=1023,gid=1023,umask=0007 /dev/block/avnftli1 /data/media
