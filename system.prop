@@ -43,7 +43,7 @@ ro.usbstorage.maxfreq=600000
 virtualsd.enable=true
 ro.vout.dualdisplay2=true
 ro.vout.dualdisplay3=false
-persist.sys.usb.config=mass_storage,adb
+persist.sys.usb.config=mtp,adb
 # power hal
 ro.sys.min_cpu_on=408000
 ro.sys.min_cpu_off=96000
