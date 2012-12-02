@@ -25,7 +25,9 @@ BUILD_WITH_ALSA_UTILS := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
+BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/ainol/elf2/bluetooth
+BOARD_BLUETOOTH_LIBBT_VNDCFG := device/ainol/elf2/libbt_vndcfg.txt
 
 # Sensors
 BOARD_USES_SENSOR_BMA250 :=true
