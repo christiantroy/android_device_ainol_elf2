@@ -9,6 +9,7 @@ import android.os.Message;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.os.SystemProperties;
+import android.os.UserHandle;
 import android.view.WindowManagerPolicy;
 
 import android.util.Log;
@@ -63,7 +64,7 @@ public class HdmiDelayedService extends Service {
         }
         Intent it = new Intent(WindowManagerPolicy.ACTION_HDMI_PLUGGED);
         it.putExtra(WindowManagerPolicy.EXTRA_HDMI_PLUGGED_STATE, false);
-        mContext.sendStickyBroadcast(it);
+        mContext.sendStickyBroadcastAsUser(it, UserHandle.ALL);
     }
 
 }

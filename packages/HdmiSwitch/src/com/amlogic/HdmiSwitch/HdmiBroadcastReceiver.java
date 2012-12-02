@@ -19,6 +19,7 @@ import android.view.IWindowManager;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemClock;
+import android.os.UserHandle;
 
 import android.hardware.input.InputManager;
 
@@ -133,7 +134,7 @@ public class HdmiBroadcastReceiver extends BroadcastReceiver {
                 HdmiSwitch.setMode("720p");
                 Intent it = new Intent(WindowManagerPolicy.ACTION_HDMI_PLUGGED);
                 it.putExtra(WindowManagerPolicy.EXTRA_HDMI_PLUGGED_STATE, true);
-                context.sendStickyBroadcast(it);
+                context.sendStickyBroadcastAsUser(it, UserHandle.ALL);
                 if (SystemProperties.getBoolean("ro.vout.dualdisplay2", false)
                     || SystemProperties.getBoolean("ro.vout.dualdisplay3", false)) {
                     int dualEnabled = Settings.System.getInt(context.getContentResolver(),
@@ -166,7 +167,7 @@ public class HdmiBroadcastReceiver extends BroadcastReceiver {
                     HdmiSwitch.setMode("panel");
                     Intent it = new Intent(WindowManagerPolicy.ACTION_HDMI_PLUGGED);
                     it.putExtra(WindowManagerPolicy.EXTRA_HDMI_PLUGGED_STATE, false);
-                    context.sendStickyBroadcast(it);
+                    context.sendStickyBroadcastAsUser(it, UserHandle.ALL);
                     if (SystemProperties.getBoolean("ro.vout.dualdisplay2", false) ||
                         SystemProperties.getBoolean("ro.vout.dualdisplay3", false)) {
                         int dualEnabled = Settings.System.getInt(context.getContentResolver(),

@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.PowerManager;
+import android.os.UserHandle;
 import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
@@ -484,7 +485,7 @@ public class HdmiSwitch extends Activity {
 
         Intent intent = new Intent(WindowManagerPolicy.ACTION_HDMI_PLUGGED);
         intent.putExtra(WindowManagerPolicy.EXTRA_HDMI_PLUGGED_STATE, plugged);
-        sendStickyBroadcast(intent);
+        sendStickyBroadcastAsUser(intent, UserHandle.ALL);
 	}
 	private void notifyModeChanged() {
 	    if (SystemProperties.getBoolean("ro.vout.dualdisplay", false))
