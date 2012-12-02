@@ -32,7 +32,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/init.d/02modules:system/etc/init.d/02modules \
     $(LOCAL_PATH)/init.d/03kernel:system/etc/init.d/03kernel \
-    $(LOCAL_PATH)/init.d/06fixpermissions:system/etc/init.d/06fixpermissions \
     $(LOCAL_PATH)/init.d/10devlistener:system/etc/init.d/10devlistener \
     $(LOCAL_PATH)/init.d/11link2sd:system/etc/init.d/11link2sd
 
