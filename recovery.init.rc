@@ -8,7 +8,7 @@ on early-init
     write /sys/class/backlight/aml-bl/brightness 200
 
 on init
-    export PATH /system/bin:/sbin
+    export PATH /sbin:/system/bin
     export LD_LIBRARY_PATH .:/sbin
     export ANDROID_ROOT /system
     export ANDROID_DATA /data
