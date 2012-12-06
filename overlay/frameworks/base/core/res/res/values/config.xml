@@ -124,9 +124,6 @@
     
     <string translatable="false" name="config_ethernet_iface_regex">eth\\d|usbnet\\d</string>
 
-    <!--  Maximum number of supported users -->
-    <integer name="config_multiuserMaximumUsers">4</integer>
-    
     <string-array name="config_locationProviderPackageNames" translatable="false">
         <!-- The standard AOSP fused location provider -->
         <item>com.android.location.fused</item>
