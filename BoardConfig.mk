@@ -102,7 +102,7 @@ TARGET_BOOTANIMATION_PRELOAD := true
 
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun%d/file"
 
-COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB
+COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB -DAML_FT5X_HACK
 
 # TWRP
 #TARGET_RECOVERY_INITRC := device/ainol/elf2/recovery.init.rc
