@@ -49,5 +49,3 @@ ro.sys.min_cpu_on=408000
 ro.sys.min_cpu_off=96000
 ro.sys.max_cpu_on=1320000
 ro.sys.max_cpu_off=1008000
-# no hw vsync
-debug.sf.no_hw_vsync=1
