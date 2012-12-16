@@ -67,6 +67,14 @@
 
 struct nl80211_global {
 	struct dl_list interfaces;
+	int if_add_ifindex;
+	struct netlink_data *netlink;
+	struct nl_cb *nl_cb;
+	struct nl_handle *nl;
+	int nl80211_id;
+	int ioctl_sock; /* socket for ioctl() use */
+
+	struct nl_handle *nl_event;
 };
 
 struct i802_bss {
